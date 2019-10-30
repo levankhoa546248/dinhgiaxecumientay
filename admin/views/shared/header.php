@@ -45,5 +45,5 @@
 </head>
 <body>
 
-<div id="wrapper">
+<!--<div id="wrapper" style="width: 90%;">-->
 <?php require('admin/views/shared/navbar.php'); ?>

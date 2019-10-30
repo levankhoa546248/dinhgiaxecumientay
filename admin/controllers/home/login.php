@@ -1,16 +1,17 @@
 <?php
 require_once "lib/dbConnect.php";
+$db = new DBController();
+$conn = $db->connectDB();
 if (!empty($_POST)) {
     $username = escape($_POST['username']);
     $password = md5($_POST['password']);
-    $sql = "SELECT * FROM user WHERE Username='$username' AND Password='$password' LIMIT 0,1";
-//    $sql = "CALL DANGNHAP('$username', '$password')";
+    $sql = "SELECT * FROM employees WHERE username='$username' AND password='$password' LIMIT 0,1";
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
     if (mysqli_num_rows($query)>0) {
         $_SESSION['user'] = mysqli_fetch_assoc($query);
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
-            if ($user['RoleId']==1||$user['RoleId']==2){
+            if (!$user["id"]){
                 header('location:admin.php');
             }
         }

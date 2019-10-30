@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -122,14 +122,10 @@
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="admin.php?controller=user&amp;action=info&amp;uid=<?php echo $user['Id']; ?>"><i
+                <li><a <!--href="admin.php?controller=user&amp;action=info&amp;uid=--><?php /*echo $user['Id']; */?>"><i
                                 class="fa fa-user fa-fw"></i> User Profile</a></li>
-                <!--                --><?php //if ($user['RoleId'] == 1): ?>
                 <li><a href="admin.php?controller=user&amp;action=list"><i class="fa fa-gear fa-fw"></i>List quản
                         trị</a></li>
-                <!--                    <li><a href="admin.php?controller=user&amp;action=add"><i class="fa fa-gear fa-fw"></i>Thêm quản trị</a>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
                 <li class="divider"></li>
                 <li><a href="admin.php?controller=home&amp;action=logout"><i class="fa fa-sign-out fa-fw"></i>
                         Logout</a>
@@ -138,7 +134,7 @@
         </li>
     </ul>
 
-    <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" role="navigation" style="">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
@@ -163,29 +159,20 @@
                 <!--                    </li>-->
                 <!--                --><?php //endif; ?>
                 <!--                --><?php //if ($user['CauHinhWebsite'] == 1): ?>
-                <!--                    <li>-->
-                <!--                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Cấu hình website<span-->
-                <!--                                    class="fa arrow"></span></a>-->
-                <!--                        <ul class="nav nav-second-level">-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=banner">Quản lý Banner</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=slideshow">Quản lý Slideshow chính</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=contactinfo">Quản lý Thông tin liên hệ</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=intro">Trang giới thiệu</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=advertise">Banner quảng cáo</a>-->
-                <!--                            </li>-->
-                <!--                        </ul>-->
-                <!--                    </li>-->
+                <li>
+                    <a href="#"><i class="fa fa-th-list fa-fw"></i> Danh mục<span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="admin.php?controller=banner">Nhân viên</a>
+                        </li>
+                        <li>
+                            <a href="admin.php?controller=slideshow">Khách hàng</a>
+                        </li>
+                    </ul>
+                </li>
                 <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['XuatNhapHang'] == 1): ?>
+                <!--                                --><?php //if ($user['XuatNhapHang'] == 1): ?>
                 <li>
                     <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý bán hàng<span
                                 class="fa arrow"></span></a>
