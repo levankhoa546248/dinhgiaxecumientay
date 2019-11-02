@@ -42,8 +42,12 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+    <script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>
+    <link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
+
 </head>
 <body>
 
-<!--<div id="wrapper" style="width: 90%;">-->
+<div id="wrapper">
 <?php require('admin/views/shared/navbar.php'); ?>

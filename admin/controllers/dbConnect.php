@@ -39,7 +39,7 @@ class DBController {
             $value = mysqli_real_escape_string($conn, $value);
             $values[] = "`$key`='$value'";
         }
-        $Id = intval($data['Id']);
+        $Id = intval($data['id']);
         if ($Id > 0) {
             $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE Id=$Id";
         } else {
@@ -101,6 +101,20 @@ class DBController {
         }
 
         return $data;
+    }
+
+    function delete($table, $id)
+    {
+        $conn = $this -> conn;
+        $id = intval($id);
+        $sql = "DELETE FROM `$table` WHERE id=$id";
+        if (!mysqli_query($conn, $sql))
+        {
+            $result = 0;
+        }else{
+            $result = 1;
+        }
+        return $result;
     }
 }
 ?>

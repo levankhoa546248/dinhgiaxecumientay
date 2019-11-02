@@ -1,15 +1,15 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
-    <div class="navbar-header">
+    <div class="navbar-header small">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="admin.php">Admin Store Manager</a>
+        <a class="navbar-brand" href="admin.php">VIANSHOP</a>
 
     </div>
-    <ul class="nav navbar-top-links navbar-right">
+    <ul class="nav navbar-top-links navbar-right small">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -124,8 +124,6 @@
             <ul class="dropdown-menu dropdown-user">
                 <li><a <!--href="admin.php?controller=user&amp;action=info&amp;uid=--><?php /*echo $user['Id']; */?>"><i
                                 class="fa fa-user fa-fw"></i> User Profile</a></li>
-                <li><a href="admin.php?controller=user&amp;action=list"><i class="fa fa-gear fa-fw"></i>List quản
-                        trị</a></li>
                 <li class="divider"></li>
                 <li><a href="admin.php?controller=home&amp;action=logout"><i class="fa fa-sign-out fa-fw"></i>
                         Logout</a>
@@ -134,7 +132,7 @@
         </li>
     </ul>
 
-    <div class="navbar-default sidebar" role="navigation" style="">
+    <div class="navbar-default sidebar small" role="navigation" style="">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
@@ -164,7 +162,7 @@
                                 class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="admin.php?controller=banner">Nhân viên</a>
+                            <a href="admin.php?controller=employees">Nhân viên</a>
                         </li>
                         <li>
                             <a href="admin.php?controller=slideshow">Khách hàng</a>
@@ -173,20 +171,20 @@
                 </li>
                 <!--                --><?php //endif; ?>
                 <!--                                --><?php //if ($user['XuatNhapHang'] == 1): ?>
-                <li>
-                    <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý bán hàng<span
-                                class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin.php?controller=import"><i
-                                        class="fa fa-table fa-fw"></i> Nhập hàng</a>
-                        </li>
-                        <li>
-                            <a href="admin.php?controller=export"><i
-                                        class="fa fa-table fa-fw"></i> Xuất hàng</a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li>-->
+<!--                    <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý bán hàng<span-->
+<!--                                class="fa arrow"></span></a>-->
+<!--                    <ul class="nav nav-second-level">-->
+<!--                        <li>-->
+<!--                            <a href="admin.php?controller=import"><i-->
+<!--                                        class="fa fa-table fa-fw"></i> Nhập hàng</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="admin.php?controller=export"><i-->
+<!--                                        class="fa fa-table fa-fw"></i> Xuất hàng</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
                 <!--                --><?php //endif; ?>
                 <!--                --><?php //if ($user['DonHang'] == 1): ?>
                 <!--                    <li>-->
@@ -208,8 +206,8 @@
                 <!--                    </li>-->
                 <!--                --><?php //endif; ?>
                 <!--                --><?php //if ($user['SanPham'] == 1): ?>
-                <li>
-                    <a href="admin.php?controller=product"><i class="fa fa-car fa-fw"></i> Quản lý sản phẩm
+<!--                <li>-->
+<!--                    <a href="admin.php?controller=product"><i class="fa fa-car fa-fw"></i> Quản lý sản phẩm-->
                         <!--                            <span class="fa arrow"></span>-->
                     </a>
                     <!--                        <ul class="nav nav-third-level">-->
@@ -223,29 +221,29 @@
                     <!--                                <a href="admin.php?controller=product&amp;action=saleproduct">Sản phẩm khuyến mại</a>-->
                     <!--                            </li>-->
                     <!--                        </ul>-->
-                </li>
+<!--                </li>-->
                 <!--                --><?php //endif; ?>
                 <!--                --><?php //if ($user['NhomDanhMuc'] == 1): ?>
-                <li>
-                    <a href="admin.php?controller=category"><i class="fa fa-th-list fa-fw"></i> Nhóm danh mục</a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="admin.php?controller=category"><i class="fa fa-th-list fa-fw"></i> Nhóm danh mục</a>-->
+<!--                </li>-->
                 <!--                --><?php //endif; ?>
                 <!--                --><?php //if ($user['DanhMucSanPham'] == 1): ?>
-                <li>
-                    <a href="admin.php?controller=group"><i class="fa fa-folder-open fa-fw"></i> Danh
-                        mục</a>
-                </li>
+<!--                <li>-->
+<!--                    <a href="admin.php?controller=group"><i class="fa fa-folder-open fa-fw"></i> Danh-->
+<!--                        mục</a>-->
+<!--                </li>-->
                 <!--                --><?php //endif; ?>
-                <li>
-                    <a href="#"><i class="fa fa-file-archive-o fa-fw"></i> Thống kê<span
-                                class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin.php?controller=statistical"><i
-                                        class="fa fa-users fa-fw"></i> Theo người nhận</a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li>-->
+<!--                    <a href="#"><i class="fa fa-file-archive-o fa-fw"></i> Thống kê<span-->
+<!--                                class="fa arrow"></span></a>-->
+<!--                    <ul class="nav nav-second-level">-->
+<!--                        <li>-->
+<!--                            <a href="admin.php?controller=statistical"><i-->
+<!--                                        class="fa fa-users fa-fw"></i> Theo người nhận</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
                 <!--                --><?php //if ($user['BinhLuan'] == 1): ?>
                 <!--                    <li>-->
                 <!--                        <a href="admin.php?controller=comment"><i class="fa fa-comments-o fa-fw"></i>Quản lý bình-->
