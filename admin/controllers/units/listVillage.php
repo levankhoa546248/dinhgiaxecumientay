@@ -5,7 +5,7 @@ if (!empty($_POST["districtid"])) {
     $query = "SELECT * FROM village WHERE districtid = '" . $_POST["districtid"] . "'";
     $result = $db_handle->runQuery($query);
     ?>
-    <option value disabled selected>Chọn Phường/Xã</option>
+    <option value="-1" selected>Chọn Phường/Xã</option>
     <?php
     foreach ($result as $results) {
         ?>

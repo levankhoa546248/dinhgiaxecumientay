@@ -9,13 +9,13 @@
             <div id="home" class="tab-pane fade in active">
                 <form class="form-horizontal">
                     <div class="panel panel-default">
-                        <button class="btn btn-danger pull-right" style="margin: 3px"><i
+                        <button class="btn btn-danger pull-right" style="margin: 3px" type="button" id="btnDeleteEmployee"><i
                                     class="glyphicon glyphicon-minus"></i> Xóa
                         </button>
-                        <button class="btn btn-warning pull-right" style="margin: 3px" type="reset"><i
+                        <button class="btn btn-warning pull-right" style="margin: 3px" type="reset" id="btnResetEmployee"><i
                                     class="glyphicon glyphicon-trash"></i> Reset
                         </button>
-                        <button class="btn btn-primary pull-right" style="margin: 3px"><i
+                        <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnUpdateEmployee"><i
                                     class="glyphicon glyphicon-plus"></i> Cập nhật
                         </button>
                         <div class="panel-heading">
@@ -24,6 +24,7 @@
                         <div class="panel-body small">
                             <div>
                                 <input name="id" type="hidden" class="form-control" id="id"/>
+                                <input name="userid" type="hidden" class="form-control" id="userid"/>
                             </div>
                             <div class="form-group">
                                 <label for="username" class="col-sm-2 control-label">Tài khoản</label>
@@ -48,8 +49,8 @@
                                 </div>
                                 <label for="email" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-4">
-                                    <input name="email" type="text" class="form-control input-sm" id="email"
-                                           placeholder="Email" required=""/>
+                                    <input name="email" type="email" class="form-control input-sm" id="email"
+                                           placeholder="Email"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -57,7 +58,7 @@
                                 <div class="col-sm-4">
                                     <select name="province" class="form-control input-sm" id="province" required="" onChange="getListDistrict(this.value);"
                                             data-show-subtext="true" data-live-search="true">
-                                        <option value="-1" selected disabled>Chọn Thành phố/Tỉnh</option>
+                                        <option value="-1" selected>Chọn Thành phố/Tỉnh</option>
                                         <?php foreach ($province as $provinces) {
                                             echo '<option value="' . $provinces['id'] . '">' . $provinces['name'] . '</option>';
                                         } ?>
@@ -65,24 +66,28 @@
                                 </div>
                                 <label for="address" class="col-sm-2 control-label">Quận/Huyện</label>
                                 <div class="col-sm-4">
-                                    <select name="district" class="form-control input-sm" id="district" required="" onChange="getListVillage(this.value);"
-                                            data-show-subtext="true" data-live-search="true">
-                                        <option value="-1" selected disabled>Chọn Quận/Huyện</option>
+                                    <select name="district" class="form-control input-sm" id="district" required="" onChange="getListVillage(this.value);">
+                                        <option value="-1" selected>Chọn Quận/Huyện</option>
+<!--                                        --><?php //foreach ($unit as $units) {
+//                                            echo '<option value="' . $units['district'] . '">' . $units['districtname'] . '</option>';
+//                                        } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="village" class="col-sm-2 control-label">Phường/Xã</label>
                                 <div class="col-sm-4">
-                                    <select name="village" class="form-control input-sm" id="village" required=""
-                                            data-show-subtext="true" data-live-search="true">
-                                        <option value="-1" selected disabled>Chọn Phường/Xã</option>
+                                    <select name="village" class="form-control input-sm" id="village" required="">
+                                        <option value="-1" selected>Chọn Phường/Xã</option>
+<!--                                        --><?php //foreach ($unit as $units) {
+//                                            echo '<option value="' . $units['village'] . '">' . $units['villagename'] . '</option>';
+//                                        } ?>
                                     </select>
                                 </div>
                                 <label for="identity" class="col-sm-2 control-label">Địa chỉ</label>
                                 <div class="col-sm-4">
                                     <input name="address" type="text" class="form-control input-sm" id="address"
-                                           placeholder="Địa chỉ" required=""/>
+                                           placeholder="Địa chỉ"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -97,23 +102,8 @@
                                 </div>
                                 <label for="birthday" class="col-sm-2 control-label">Ngày sinh</label>
                                 <div class="col-sm-4">
-                                    <input name="birthday" type="text" class="form-control input-sm" id="birthday"
+                                    <input name="birthday" type="date" class="form-control input-sm" id="birthday"
                                            placeholder="Ngày sinh"
-                                           required=""/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="zalo" class="col-sm-2 control-label">Zalo</label>
-                                <div class="col-sm-4">
-                                    <input name="zalo" type="text" class="form-control input-sm" id="zalo"
-                                           placeholder="Zalo"
-                                           required=""/>
-                                </div>
-                                <label for="facebook" class="col-sm-2 control-label">
-                                    <a href="https://www.facebook.com/messages/t/vietanh.nguyenhoai" target="_blank">Facebook</a></label>
-                                <div class="col-sm-4">
-                                    <input name="facebook" type="text" class="form-control input-sm" id="facebook"
-                                           placeholder="Facebook"
                                            required=""/>
                                 </div>
                             </div>
@@ -122,7 +112,7 @@
                                 <div class="col-sm-4">
                                     <select name="position" class="form-control input-sm" id="position" required=""
                                             data-show-subtext="true" data-live-search="true">
-                                        <option value="-1" selected disabled>Chọn chức vụ</option>
+                                        <option value="-1" selected>Chọn chức vụ</option>
                                         <?php foreach ($listposition as $listpositions) {
                                             echo '<option value="' . $listpositions['id'] . '">' . $listpositions['name'] . '</option>';
                                         } ?>
@@ -136,12 +126,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="createtime" class="col-sm-2 control-label">Ngày tạo</label>
+                                <label for="zalo" class="col-sm-2 control-label">Zalo</label>
                                 <div class="col-sm-4">
-                                    <input name="createtime" type="date" class="form-control input-sm" id="createtime"
-                                           placeholder="Ngày tạo" value="<?php echo date('Y-m-d') ?>"
-                                           required=""/>
+                                    <input name="zalo" type="text" class="form-control input-sm" id="zalo"
+                                           placeholder="Zalo"/>
                                 </div>
+                                <label for="facebook" class="col-sm-2 control-label">
+                                    <a id="linkfacebook" target="_blank">Facebook</a></label>
+                                <div class="col-sm-4">
+                                    <input name="facebook" type="text" class="form-control input-sm" id="facebook"
+                                           placeholder="Facebook"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+<!--                                <label for="createtime" class="col-sm-2 control-label">Ngày tạo</label>-->
+<!--                                <div class="col-sm-4">-->
+<!--                                    <input name="createtime" type="datetime-local" class="form-control input-sm" id="createtime"-->
+<!--                                           placeholder="Ngày tạo" value="--><?php
+//                                    echo date('Y-m-d\Th:i:s') ?><!--"-->
+<!--                                           required=""/>-->
+<!--                                </div>-->
                                 <label for="datejoined" class="col-sm-2 control-label">Ngày vào</label>
                                 <div class="col-sm-4">
                                     <input name="datejoined" type="date" class="form-control input-sm" id="datejoined"
@@ -171,6 +175,7 @@
                     <th class="text-left">Chức vụ id</th>
                     <th class="text-left">Chức vụ</th>
                     <th class="text-left">Ngày vào</th>
+                    <th class="text-center" width="7%">User id</th>
                 </tr>
                 </thead>
             </table>
@@ -220,6 +225,108 @@
     <script>
         //Nhân viên
         $(document).ready(function () {
+
+            $('#btnDeleteEmployee').click(function (e) {
+                var id = $('#id').val();
+                if (id){
+                    $.ajax({
+                        type: "POST",
+                        url: "admin/controllers/employees/deleteEmployees.php",
+                        data: {
+                            'id': id
+                        },
+                        success: function (data) {
+                            if (data == '0') {
+                                jAlert('Thực hiện không thành công', 'Thông báo');
+                            } else {
+                                jAlert('Thực hiện thành công', 'Thông báo');
+                                $('#btnResetEmployee').click();
+                                loadTableEmployees();
+                            }
+                        }
+                    });
+                }else{
+                    jAlert('Chưa chọn tài khoản', 'Thông báo');
+                }
+            });
+
+            $('#btnResetEmployee').click(function (e) {
+                $('#id').val('');
+                $('#userid').val('');
+                $('#province').val('-1');
+                $('#district').val(-1);
+                $('#village').val(-1);
+            });
+
+            $('#btnUpdateEmployee').click(function (e) {
+                var id = $('#id').val();
+                var userid = $('#userid').val();
+                var username = $('#username').val();
+                var name = $('#name').val();
+                var identity = $('#identity').val();
+                var email = $('#email').val();
+                var province = $('#province').val();
+                if(checkIf(province)){
+                    return jAlert('Chưa chọn Thành phố/Tỉnh', 'Thông báo');
+                }
+                var district = $('#district').val();
+                if(checkIf(district)){
+                    return jAlert('Chưa chọn Quận/Huyện', 'Thông báo');
+                }
+                var village = $('#village').val();
+                if(checkIf(village)){
+                    return jAlert('Chưa chọn Phường/Xã', 'Thông báo');
+                }
+                var address = $('#address').val();
+                var sex = $('#sex').val();
+                if(checkIf(sex)){
+                    return jAlert('Chưa chọn giới tính', 'Thông báo');
+                }
+                var birthday = $('#birthday').val();
+                var position = $('#position').val();
+                var phone = $('#phone').val();
+                var zalo = $('#zalo').val();
+                var facebook = $('#facebook').val();
+                var createtime = $('#createtime').val();
+                var datejoined = $('#datejoined').val();
+                if (username){
+                    $.ajax({
+                        type: "POST",
+                        url: "admin/controllers/employees/updateEmployees.php",
+                        data: {
+                            'id': id,
+                            'userid': userid,
+                            'username': username,
+                            'name': name,
+                            'identity': identity,
+                            'email': email,
+                            'province': province,
+                            'district': district,
+                            'village': village,
+                            'address': address,
+                            'sex': sex,
+                            'birthday': birthday,
+                            'position': position,
+                            'phone': phone,
+                            'zalo': zalo,
+                            'facebook': facebook,
+                            'createtime': createtime,
+                            'datejoined': datejoined
+                        },
+                        success: function (data) {
+                            if (data == '0') {
+                                jAlert('Thực hiện không thành công', 'Thông báo');
+                            } else {
+                                jAlert('Thực hiện thành công', 'Thông báo');
+                                loadTableEmployees();
+                            }
+                        }
+                    });
+                }else{
+                    jAlert('Chưa nhập tên chức vụ', 'Thông báo');
+                }
+            });
+
             loadTableEmployees();
 
             function loadTableEmployees(){
@@ -248,7 +355,8 @@
                         {data: "createtime"},
                         {data: "position"},
                         {data: "positionname"},
-                        {data: "datejoined"}
+                        {data: "datejoined"},
+                        {data: "userid"}
                     ],
                     columnDefs: [
                         {
@@ -298,6 +406,10 @@
                         },{
                             targets: 15,
                             class: "text-right"
+                        },{
+                            targets: 16,
+                            class: "text-right",
+                            visible: false
                         }
                     ]
                 });
@@ -316,15 +428,54 @@
                     $("#address").val(data["address"]);
                     $("#sex").val(data["sex"]);
                     $("#facebook").val(data["facebook"]);
+                    // $("#linkfacebook").val(data["facebook"]);
+                    $("#linkfacebook").attr("href", data['facebook']);
                     $("#zalo").val(data["zalo"]);
-                    $("#password").val(data["password"]);
-                    $("#createtime").val(data["createtime"]);
+                    // $("#password").val(data["password"]);
+                    // $("#createtime").val(data["createtime"]);
                     $("#position").val(data["position"]);
                     $("#datejoined").val(data["datejoined"]);
+                    $("#userid").val(data["userid"]);
+                    var provinceid = data["province"];
+                    var districtid = data["district"];
+                    var villageid = data["village"];
+                    $("#province").val(provinceid);
+                    setDistrict(provinceid, districtid);
+                    setVillage(districtid, villageid);
                 }
             });
 
+            function setDistrict(provinceid, districtid){
+                $.ajax({
+                    type: "POST",
+                    url: "admin/controllers/units/setDistrict.php",
+                    data: {
+                        'provinceid': provinceid,
+                        'districtid': districtid
+                    },
+                    success: function (data) {
+                        $("#district").html(data);
+                    }
+                });
+                return true;
+            }
+
+            function setVillage(districtid, villageid){
+                $.ajax({
+                    type: "POST",
+                    url: "admin/controllers/units/setVillage.php",
+                    data: {
+                        'districtid': districtid,
+                        'villageid': villageid
+                    },
+                    success: function (data) {
+                        $("#village").html(data);
+                    }
+                });
+                return true;
+            }
         });
+
 
         function getListDistrict(val){
             $.ajax({
@@ -335,7 +486,9 @@
                     $("#district").html(data);
                 }
             });
+            return true;
         }
+
         function getListVillage(val){
             $.ajax({
                 type: "POST",
@@ -345,6 +498,7 @@
                     $("#village").html(data);
                 }
             });
+            return true;
         }
 
         // Chức vụ
@@ -434,6 +588,37 @@
                }
             });
         });
+
+
+        function checkIf(val) {
+            if (!val) {
+                return true;
+            } else if (val == null) {
+                return true;
+            } else if (val == '') {
+                return true;
+            } else if (val == "") {
+                return true;
+            } else if (val == " ") {
+                return true;
+            } else if (val == "null") {
+                return true;
+            } else if (val == 'null') {
+                return true;
+            } else if (val == ' ') {
+                return true;
+            } else if (val == 'undefined') {
+                return true
+            } else if (val == undefined) {
+                return true;
+            } else if (val == -1) {
+                return true;
+            } else if (val == '-1') {
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
     </div>
 <?php require('admin/views/shared/footer.php'); ?>

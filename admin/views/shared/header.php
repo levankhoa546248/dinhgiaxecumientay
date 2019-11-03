@@ -46,8 +46,15 @@
     <script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>
     <link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 </head>
 <body>
 
 <div id="wrapper">
-<?php require('admin/views/shared/navbar.php'); ?>
+<?php
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+require('admin/views/shared/navbar.php'); ?>

@@ -5,7 +5,7 @@ if (!empty($_POST["provinceid"])) {
     $query = "SELECT * FROM district WHERE provinceid = '" . $_POST["provinceid"] . "'";
     $result = $db_handle->runQuery($query);
     ?>
-    <option value disabled selected>Chọn Quận/Huyện</option>
+    <option value="-1" selected>Chọn Quận/Huyện</option>
     <?php
     foreach ($result as $results) {
         ?>

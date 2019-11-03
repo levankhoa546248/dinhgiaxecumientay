@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `Rr5s8PgcAw`.`employees` (
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `position` INT NULL,
   `datejoined` DATE NULL,
-  `user_id` INT NOT NULL,
+  `userid` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_employees_user_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_employees_useridx` (`userid` ASC) VISIBLE,
   CONSTRAINT `fk_employees_user`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`userid`)
     REFERENCES `Rr5s8PgcAw`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
@@ -66,11 +66,11 @@ CREATE TABLE IF NOT EXISTS `Rr5s8PgcAw`.`customers` (
   `lastpurchase` DATE NULL COMMENT 'Lần mua cuối',
   `total` DOUBLE NULL COMMENT 'Tổng tiền hàng',
   `debt` DOUBLE NULL COMMENT 'Tiền nợ',
-  `user_id` INT NOT NULL,
+  `userid` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_customers_user1_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_customers_user1_idx` (`userid` ASC) VISIBLE,
   CONSTRAINT `fk_customers_user1`
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`userid`)
     REFERENCES `Rr5s8PgcAw`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
