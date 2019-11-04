@@ -165,7 +165,7 @@
                             <a href="admin.php?controller=employees">Nhân viên</a>
                         </li>
                         <li>
-                            <a href="admin.php?controller=slideshow">Khách hàng</a>
+                            <a href="admin.php?controller=customer">Khách hàng</a>
                         </li>
                     </ul>
                 </li>
