@@ -51,6 +51,8 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <script src="admin/themes/js/2.5.3-crypto-md5.js" type="text/javascript"></script>
+    <script src="admin/themes/js/selfjs.js" type="text/javascript"></script>
 </head>
 <body>
 

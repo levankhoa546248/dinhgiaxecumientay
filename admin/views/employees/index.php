@@ -9,13 +9,20 @@
             <div id="home" class="tab-pane fade in active">
                 <form class="form-horizontal">
                     <div class="panel panel-default">
-                        <button class="btn btn-danger pull-right" style="margin: 3px" type="button" id="btnDeleteEmployee"><i
+                        <button class="btn btn-toolbar pull-right" style="margin: 3px" type="button"
+                                id="btnResetPassEmployee"><i
+                                    class="glyphicon glyphicon-repeat"></i> Reset password
+                        </button>
+                        <button class="btn btn-danger pull-right" style="margin: 3px" type="button"
+                                id="btnDeleteEmployee"><i
                                     class="glyphicon glyphicon-minus"></i> Xóa
                         </button>
-                        <button class="btn btn-warning pull-right" style="margin: 3px" type="reset" id="btnResetEmployee"><i
+                        <button class="btn btn-warning pull-right" style="margin: 3px" type="reset"
+                                id="btnResetEmployee"><i
                                     class="glyphicon glyphicon-trash"></i> Reset
                         </button>
-                        <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnUpdateEmployee"><i
+                        <button class="btn btn-primary pull-right" style="margin: 3px" type="button"
+                                id="btnUpdateEmployee"><i
                                     class="glyphicon glyphicon-plus"></i> Cập nhật
                         </button>
                         <div class="panel-heading">
@@ -56,7 +63,8 @@
                             <div class="form-group">
                                 <label for="province" class="col-sm-2 control-label">Thành phố/Tỉnh</label>
                                 <div class="col-sm-4">
-                                    <select name="province" class="form-control input-sm" id="province" required="" onChange="getListDistrict(this.value);"
+                                    <select name="province" class="form-control input-sm" id="province" required=""
+                                            onChange="getListDistrict(this.value);"
                                             data-show-subtext="true" data-live-search="true">
                                         <option value="-1" selected>Chọn Thành phố/Tỉnh</option>
                                         <?php foreach ($province as $provinces) {
@@ -66,11 +74,12 @@
                                 </div>
                                 <label for="address" class="col-sm-2 control-label">Quận/Huyện</label>
                                 <div class="col-sm-4">
-                                    <select name="district" class="form-control input-sm" id="district" required="" onChange="getListVillage(this.value);">
+                                    <select name="district" class="form-control input-sm" id="district" required=""
+                                            onChange="getListVillage(this.value);">
                                         <option value="-1" selected>Chọn Quận/Huyện</option>
-<!--                                        --><?php //foreach ($unit as $units) {
-//                                            echo '<option value="' . $units['district'] . '">' . $units['districtname'] . '</option>';
-//                                        } ?>
+                                        <!--                                        --><?php //foreach ($unit as $units) {
+                                        //                                            echo '<option value="' . $units['district'] . '">' . $units['districtname'] . '</option>';
+                                        //                                        } ?>
                                     </select>
                                 </div>
                             </div>
@@ -79,9 +88,9 @@
                                 <div class="col-sm-4">
                                     <select name="village" class="form-control input-sm" id="village" required="">
                                         <option value="-1" selected>Chọn Phường/Xã</option>
-<!--                                        --><?php //foreach ($unit as $units) {
-//                                            echo '<option value="' . $units['village'] . '">' . $units['villagename'] . '</option>';
-//                                        } ?>
+                                        <!--                                        --><?php //foreach ($unit as $units) {
+                                        //                                            echo '<option value="' . $units['village'] . '">' . $units['villagename'] . '</option>';
+                                        //                                        } ?>
                                     </select>
                                 </div>
                                 <label for="identity" class="col-sm-2 control-label">Địa chỉ</label>
@@ -139,13 +148,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-<!--                                <label for="createtime" class="col-sm-2 control-label">Ngày tạo</label>-->
-<!--                                <div class="col-sm-4">-->
-<!--                                    <input name="createtime" type="datetime-local" class="form-control input-sm" id="createtime"-->
-<!--                                           placeholder="Ngày tạo" value="--><?php
-//                                    echo date('Y-m-d\Th:i:s') ?><!--"-->
-<!--                                           required=""/>-->
-<!--                                </div>-->
+                                <!--                                <label for="createtime" class="col-sm-2 control-label">Ngày tạo</label>-->
+                                <!--                                <div class="col-sm-4">-->
+                                <!--                                    <input name="createtime" type="datetime-local" class="form-control input-sm" id="createtime"-->
+                                <!--                                           placeholder="Ngày tạo" value="--><?php
+                                //                                    echo date('Y-m-d\Th:i:s') ?><!--"-->
+                                <!--                                           required=""/>-->
+                                <!--                                </div>-->
                                 <label for="datejoined" class="col-sm-2 control-label">Ngày vào</label>
                                 <div class="col-sm-4">
                                     <input name="datejoined" type="date" class="form-control input-sm" id="datejoined"
@@ -183,13 +192,15 @@
         <div id="menu1" class="tab-pane fade">
             <form class="form-horizontal">
                 <div class="panel panel-default">
-                    <button class="btn btn-danger pull-right" style="margin: 3px" type="button" id="btnPositionDelete"><i
+                    <button class="btn btn-danger pull-right" style="margin: 3px" type="button" id="btnPositionDelete">
+                        <i
                                 class="glyphicon glyphicon-minus"></i> Xóa
                     </button>
                     <button class="btn btn-warning pull-right" style="margin: 3px" type="reset"><i
                                 class="glyphicon glyphicon-trash"></i> Reset
                     </button>
-                    <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnPositionUpdate"><i
+                    <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnPositionUpdate">
+                        <i
                                 class="glyphicon glyphicon-plus"></i> Cập nhật
                     </button>
                     <div class="panel-heading">
@@ -225,29 +236,62 @@
     <script>
         //Nhân viên
         $(document).ready(function () {
+            $('#btnResetPassEmployee').click(function (e) {
+                var id = $('#id').val();
+                if (id) {
+                    jConfirm('Bạn chắc chắn muốn reset password tài khoản này?', 'Thông báo', function (e) {
+                        if (e == true){
+                            $.ajax({
+                                type: "POST",
+                                url: "admin/controllers/employees/resetEmployees.php",
+                                data: {
+                                    'id': id
+                                },
+                                success: function (data) {
+                                    if (data == '0') {
+                                        jAlert('Thực hiện không thành công', 'Thông báo');
+                                    } else {
+                                        jAlert('Thực hiện thành công', 'Thông báo');
+                                        $('#btnResetEmployee').click();
+                                        loadTableEmployees();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    jAlert('Chưa chọn tài khoản', 'Thông báo');
+                }
+
+            });
 
             $('#btnDeleteEmployee').click(function (e) {
                 var id = $('#id').val();
-                if (id){
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/controllers/employees/deleteEmployees.php",
-                        data: {
-                            'id': id
-                        },
-                        success: function (data) {
-                            if (data == '0') {
-                                jAlert('Thực hiện không thành công', 'Thông báo');
-                            } else {
-                                jAlert('Thực hiện thành công', 'Thông báo');
-                                $('#btnResetEmployee').click();
-                                loadTableEmployees();
-                            }
+                if (id) {
+                    jConfirm('Bạn chắc chắn xóa tài khoản này?', 'Thông báo', function (e) {
+                        if (e == true){
+                            $.ajax({
+                                type: "POST",
+                                url: "admin/controllers/employees/deleteEmployees.php",
+                                data: {
+                                    'id': id
+                                },
+                                success: function (data) {
+                                    if (data == '0') {
+                                        jAlert('Thực hiện không thành công', 'Thông báo');
+                                    } else {
+                                        jAlert('Thực hiện thành công', 'Thông báo');
+                                        $('#btnResetEmployee').click();
+                                        loadTableEmployees();
+                                    }
+                                }
+                            });
                         }
                     });
-                }else{
+                } else {
                     jAlert('Chưa chọn tài khoản', 'Thông báo');
                 }
+
             });
 
             $('#btnResetEmployee').click(function (e) {
@@ -266,20 +310,20 @@
                 var identity = $('#identity').val();
                 var email = $('#email').val();
                 var province = $('#province').val();
-                if(checkIf(province)){
+                if (checkIf(province)) {
                     return jAlert('Chưa chọn Thành phố/Tỉnh', 'Thông báo');
                 }
                 var district = $('#district').val();
-                if(checkIf(district)){
+                if (checkIf(district)) {
                     return jAlert('Chưa chọn Quận/Huyện', 'Thông báo');
                 }
                 var village = $('#village').val();
-                if(checkIf(village)){
+                if (checkIf(village)) {
                     return jAlert('Chưa chọn Phường/Xã', 'Thông báo');
                 }
                 var address = $('#address').val();
                 var sex = $('#sex').val();
-                if(checkIf(sex)){
+                if (checkIf(sex)) {
                     return jAlert('Chưa chọn giới tính', 'Thông báo');
                 }
                 var birthday = $('#birthday').val();
@@ -289,7 +333,7 @@
                 var facebook = $('#facebook').val();
                 var createtime = $('#createtime').val();
                 var datejoined = $('#datejoined').val();
-                if (username){
+                if (username) {
                     $.ajax({
                         type: "POST",
                         url: "admin/controllers/employees/updateEmployees.php",
@@ -322,14 +366,14 @@
                             }
                         }
                     });
-                }else{
+                } else {
                     jAlert('Chưa nhập tên chức vụ', 'Thông báo');
                 }
             });
 
             loadTableEmployees();
 
-            function loadTableEmployees(){
+            function loadTableEmployees() {
                 $('#tableEmployees').DataTable().destroy();
                 $('#tableEmployees').DataTable({
                     width: '100%',
@@ -397,16 +441,16 @@
                         }, {
                             targets: 12,
                             visible: false
-                        },{
+                        }, {
                             targets: 13,
                             class: "text-right",
                             visible: false
-                        },{
+                        }, {
                             targets: 14
-                        },{
+                        }, {
                             targets: 15,
                             class: "text-right"
-                        },{
+                        }, {
                             targets: 16,
                             class: "text-right",
                             visible: false
@@ -445,7 +489,7 @@
                 }
             });
 
-            function setDistrict(provinceid, districtid){
+            function setDistrict(provinceid, districtid) {
                 $.ajax({
                     type: "POST",
                     url: "admin/controllers/units/setDistrict.php",
@@ -460,7 +504,7 @@
                 return true;
             }
 
-            function setVillage(districtid, villageid){
+            function setVillage(districtid, villageid) {
                 $.ajax({
                     type: "POST",
                     url: "admin/controllers/units/setVillage.php",
@@ -477,7 +521,7 @@
         });
 
 
-        function getListDistrict(val){
+        function getListDistrict(val) {
             $.ajax({
                 type: "POST",
                 url: "admin/controllers/units/listDistrict.php",
@@ -489,7 +533,7 @@
             return true;
         }
 
-        function getListVillage(val){
+        function getListVillage(val) {
             $.ajax({
                 type: "POST",
                 url: "admin/controllers/units/listVillage.php",
@@ -504,7 +548,8 @@
         // Chức vụ
         $(document).ready(function () {
             loadTablePosition();
-            function loadTablePosition(){
+
+            function loadTablePosition() {
                 $('#tablePosition').DataTable().destroy();
                 $('#tablePosition').DataTable({
                     width: '100%',
@@ -541,84 +586,53 @@
             });
 
             $('#btnPositionUpdate').click(function (e) {
-               var name = $('#positionname').val();
-               if (name){
-                   var id = $('#positionid').val();
-                   $.ajax({
-                       type: "POST",
-                       url: "admin/controllers/employees/updatePosition.php",
-                       data: {
-                           'id': id,
-                           'name': name
-                       },
-                       success: function (data) {
-                           if (data == '0') {
-                               jAlert('Thực hiện không thành công', 'Thông báo');
-                           } else {
-                               jAlert('Thực hiện thành công', 'Thông báo');
-                               loadTablePosition();
-                           }
-                       }
-                   });
-               }else{
-                   jAlert('Chưa nhập tên chức vụ', 'Thông báo');
-               }
+                var name = $('#positionname').val();
+                if (name) {
+                    var id = $('#positionid').val();
+                    $.ajax({
+                        type: "POST",
+                        url: "admin/controllers/employees/updatePosition.php",
+                        data: {
+                            'id': id,
+                            'name': name
+                        },
+                        success: function (data) {
+                            if (data == '0') {
+                                jAlert('Thực hiện không thành công', 'Thông báo');
+                            } else {
+                                jAlert('Thực hiện thành công', 'Thông báo');
+                                loadTablePosition();
+                            }
+                        }
+                    });
+                } else {
+                    jAlert('Chưa nhập tên chức vụ', 'Thông báo');
+                }
             });
 
             $('#btnPositionDelete').click(function (e) {
                 var id = $('#positionid').val();
-               if (id){
-                   $.ajax({
-                       type: "POST",
-                       url: "admin/controllers/employees/deletePosition.php",
-                       data: {
-                           'id': id
-                       },
-                       success: function (data) {
-                           if (data == '0') {
-                               jAlert('Thực hiện không thành công', 'Thông báo');
-                           } else {
-                               jAlert('Thực hiện thành công', 'Thông báo');
-                               loadTablePosition();
-                           }
-                       }
-                   });
-               }else{
-                   jAlert('Chưa chọn chức vụ', 'Thông báo');
-               }
+                if (id) {
+                    $.ajax({
+                        type: "POST",
+                        url: "admin/controllers/employees/deletePosition.php",
+                        data: {
+                            'id': id
+                        },
+                        success: function (data) {
+                            if (data == '0') {
+                                jAlert('Thực hiện không thành công', 'Thông báo');
+                            } else {
+                                jAlert('Thực hiện thành công', 'Thông báo');
+                                loadTablePosition();
+                            }
+                        }
+                    });
+                } else {
+                    jAlert('Chưa chọn chức vụ', 'Thông báo');
+                }
             });
         });
-
-
-        function checkIf(val) {
-            if (!val) {
-                return true;
-            } else if (val == null) {
-                return true;
-            } else if (val == '') {
-                return true;
-            } else if (val == "") {
-                return true;
-            } else if (val == " ") {
-                return true;
-            } else if (val == "null") {
-                return true;
-            } else if (val == 'null') {
-                return true;
-            } else if (val == ' ') {
-                return true;
-            } else if (val == 'undefined') {
-                return true
-            } else if (val == undefined) {
-                return true;
-            } else if (val == -1) {
-                return true;
-            } else if (val == '-1') {
-                return true;
-            } else {
-                return false;
-            }
-        }
     </script>
     </div>
 <?php require('admin/views/shared/footer.php'); ?>
