@@ -22,13 +22,13 @@
                                     class="glyphicon glyphicon-plus"></i> Cập nhật
                         </button>
                         <div class="panel-heading">
-                            <input name="status" type="hidden" id="status" value="1"/>
+<!--                            <input name="status" type="hidden" id="status" value="1"/>-->
                             <button class="small" type="button" id="btnShowHide" onclick="fShowHide()"><i class="glyphicon glyphicon-hand-down"></i></button>
                             <b>Danh mục khách hàng</b>
                         </div>
-                        <div class="panel-body small" id="divtoggle">
+                        <div class="panel-body small" id="divpanelbody" style="display: block">
                             <div hidden>
-                                <input name="status" type="hidden" id="status"/>
+                                <input name="userid" type="hidden" id="userid"/>
                             </div>
                             <div class="form-group">
                                 <label for="id" class="col-sm-2 control-label">Id</label>
@@ -75,9 +75,6 @@
                                     <select name="district" class="form-control input-sm" id="district" required=""
                                             onChange="getListVillage(this.value);">
                                         <option value="-1" selected>Chọn Quận/Huyện</option>
-                                        <!--                                        --><?php //foreach ($unit as $units) {
-                                        //                                            echo '<option value="' . $units['district'] . '">' . $units['districtname'] . '</option>';
-                                        //                                        } ?>
                                     </select>
                                 </div>
                             </div>
@@ -91,7 +88,7 @@
                                         //                                        } ?>
                                     </select>
                                 </div>
-                                <label for="identity" class="col-sm-2 control-label">Địa chỉ</label>
+                                <label for="address" class="col-sm-2 control-label">Địa chỉ</label>
                                 <div class="col-sm-4">
                                     <input name="address" type="text" class="form-control input-sm" id="address"
                                            placeholder="Địa chỉ"/>
@@ -133,6 +130,31 @@
                                     <input name="email" type="email" class="form-control input-sm" id="email"
                                            placeholder="Email"/>
                                 </div>
+                                <label for="groupid" class="col-sm-2 control-label">Nhóm khách hàng</label>
+                                <div class="col-sm-4">
+                                    <select name="groupid" class="form-control input-sm" id="groupid" required="">
+                                        <?php
+                                        foreach ($customergroup as $customergroups) {
+                                            $selected = '';
+                                            if ($customergroups['id'] == '-1') $selected = 'selected=""';
+                                            echo '<option value="' . $customergroups['id'] . '" ' . $selected . '>' . $customergroups['name']  . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="typeid" class="col-sm-2 control-label">Loại khách hàng</label>
+                                <div class="col-sm-4">
+                                    <select name="typeid" class="form-control input-sm" id="typeid" required=""
+                                            data-show-subtext="true" data-live-search="true">
+                                        <?php
+                                        foreach ($customertype as $customertypes) {
+                                            $selected = '';
+                                            if ($customertypes['id'] == '-1') $selected = 'selected=""';
+                                            echo '<option value="' . $customertypes['id'] . '" ' . $selected . '>' . $customertypes['name']  . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
                                 <label for="lastpurchase" class="col-sm-2 control-label">Lần mua cuối</label>
                                 <div class="col-sm-4">
                                     <input name="lastpurchase" type="text" class="form-control input-sm" id="lastpurchase"
@@ -149,21 +171,6 @@
                                 <div class="col-sm-4">
                                     <input name="debt" type="text" class="form-control input-sm" id="debt"
                                            placeholder="Nợ"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="typeid" class="col-sm-2 control-label">Loại khách hàng</label>
-                                <div class="col-sm-4">
-                                    <select name="typeid" class="form-control input-sm" id="typeid" required=""
-                                            data-show-subtext="true" data-live-search="true">
-                                        <option value="-1" selected>Chọn loại khách hàng</option>
-                                    </select>
-                                </div>
-                                <label for="groupid" class="col-sm-2 control-label">Nhóm khách hàng</label>
-                                <div class="col-sm-4">
-                                    <select name="groupid" class="form-control input-sm" id="groupid" required="">
-                                        <option value="-1" selected>Chọn nhóm khách hàng</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -281,44 +288,15 @@
     <script>
         //Khách hàng
         $(document).ready(function () {
-            // $('#divtoggle').hide();
-            $('#btnTypecustomerReset').click(function (e) {
-                // var id = $('#id').val();
-                // if (id) {
-                //     jConfirm('Bạn chắc chắn muốn reset password tài khoản này?', 'Thông báo', function (e) {
-                //         if (e == true) {
-                //             $.ajax({
-                //                 type: "POST",
-                //                 url: "admin/controllers/employees/resetEmployees.php",
-                //                 data: {
-                //                     'id': id
-                //                 },
-                //                 success: function (data) {
-                //                     if (data == '0') {
-                //                         jAlert('Thực hiện không thành công', 'Thông báo');
-                //                     } else {
-                //                         jAlert('Thực hiện thành công', 'Thông báo');
-                //                         $('#btnResetEmployee').click();
-                //                         loadTableEmployees();
-                //                     }
-                //                 }
-                //             });
-                //         }
-                //     });
-                // } else {
-                //     jAlert('Chưa chọn tài khoản', 'Thông báo');
-                // }
 
-            });
-
-            $('#btnDeleteEmployee').click(function (e) {
+            $('#btnDeleteCustomer').click(function (e) {
                 var id = $('#id').val();
                 if (id) {
-                    jConfirm('Bạn chắc chắn xóa tài khoản này?', 'Thông báo', function (e) {
+                    jConfirm('Bạn chắc chắn xóa khách hàng này?', 'Thông báo', function (e) {
                         if (e == true) {
                             $.ajax({
                                 type: "POST",
-                                url: "admin/controllers/employees/deleteEmployees.php",
+                                url: "admin/controllers/customer/deleteCustomer.php",
                                 data: {
                                     'id': id
                                 },
@@ -327,8 +305,8 @@
                                         jAlert('Thực hiện không thành công', 'Thông báo');
                                     } else {
                                         jAlert('Thực hiện thành công', 'Thông báo');
-                                        $('#btnResetEmployee').click();
-                                        loadTableEmployees();
+                                        $('#btnResetCustomer').click();
+                                        loadCustomer();
                                     }
                                 }
                             });
@@ -340,75 +318,64 @@
 
             });
 
-            $('#btnResetEmployee').click(function (e) {
+            $('#btnResetCustomer').click(function (e) {
                 $('#id').val('');
                 $('#userid').val('');
                 $('#province').val('-1');
                 $('#district').val(-1);
                 $('#village').val(-1);
+                loadCustomer();
             });
 
-            $('#btnUpdateEmployee').click(function (e) {
-                var id = $('#id').val();
-                var userid = $('#userid').val();
-                var username = $('#username').val();
+            $('#btnUpdateCustomer').click(function (e) {
+                var id = checkIf($('#id').val()) ? '0' : $('#id').val();
+                var userid = checkIf($('#userid').val()) ? '0' : $('#userid').val();
                 var name = $('#name').val();
                 var identity = $('#identity').val();
-                var email = $('#email').val();
+                var phone = $('#phone').val();
                 var province = $('#province').val();
-                if (checkIf(province)) {
-                    return jAlert('Chưa chọn Thành phố/Tỉnh', 'Thông báo');
-                }
                 var district = $('#district').val();
-                if (checkIf(district)) {
-                    return jAlert('Chưa chọn Quận/Huyện', 'Thông báo');
-                }
                 var village = $('#village').val();
-                if (checkIf(village)) {
-                    return jAlert('Chưa chọn Phường/Xã', 'Thông báo');
-                }
                 var address = $('#address').val();
                 var sex = $('#sex').val();
                 if (checkIf(sex)) {
                     return jAlert('Chưa chọn giới tính', 'Thông báo');
                 }
                 var birthday = $('#birthday').val();
-                var position = $('#position').val();
-                var phone = $('#phone').val();
                 var zalo = $('#zalo').val();
                 var facebook = $('#facebook').val();
-                var createtime = $('#createtime').val();
-                var datejoined = $('#datejoined').val();
-                if (username) {
+                var email = $('#email').val();
+                var groupid = $('#groupid').val();
+                var typeid = $('#typeid').val();
+                if (name) {
                     $.ajax({
                         type: "POST",
-                        url: "admin/controllers/employees/updateEmployees.php",
+                        url: "admin/controllers/customer/updateCustomer.php",
                         data: {
                             'id': id,
                             'userid': userid,
-                            'username': username,
                             'name': name,
                             'identity': identity,
-                            'email': email,
+                            'phone': phone,
                             'province': province,
                             'district': district,
                             'village': village,
                             'address': address,
                             'sex': sex,
                             'birthday': birthday,
-                            'position': position,
-                            'phone': phone,
                             'zalo': zalo,
                             'facebook': facebook,
-                            'createtime': createtime,
-                            'datejoined': datejoined
+                            'email': email,
+                            'groupid': groupid,
+                            'typeid': typeid
                         },
                         success: function (data) {
                             if (data == '0') {
                                 jAlert('Thực hiện không thành công', 'Thông báo');
                             } else {
                                 jAlert('Thực hiện thành công', 'Thông báo');
-                                loadTableEmployees();
+                                $('#btnResetCustomer').click();
+                                loadCustomer();
                             }
                         }
                     });
@@ -517,7 +484,6 @@
                 var data = $('#tblCustomer').DataTable().row(this).data();
                 if (data["id"] !== undefined && data["id"] !== null) {
                     $("#id").val(data["id"]);
-                    $("#username").val(data["username"]);
                     $("#name").val(data["name"]);
                     $("#birthday").val(data["birthday"]);
                     $("#identity").val(data["identity"]);
@@ -526,17 +492,17 @@
                     $("#address").val(data["address"]);
                     $("#sex").val(data["sex"]);
                     $("#facebook").val(data["facebook"]);
-                    // $("#linkfacebook").val(data["facebook"]);
                     $("#linkfacebook").attr("href", data['facebook']);
                     $("#zalo").val(data["zalo"]);
-                    // $("#password").val(data["password"]);
-                    // $("#createtime").val(data["createtime"]);
-                    $("#position").val(data["position"]);
-                    $("#datejoined").val(data["datejoined"]);
                     $("#userid").val(data["userid"]);
-                    var provinceid = data["province"];
-                    var districtid = data["district"];
-                    var villageid = data["village"];
+                    $("#lastpurchase").val(data["lastpurchase"]);
+                    $("#total").val(data["total"]);
+                    $("#debt").val(data["debt"]);
+                    $("#typeid").val(data["typeid"]);
+                    $("#groupid").val(data["groupid"]);
+                    var provinceid = data["provinceid"];
+                    var districtid = data["districtid"];
+                    var villageid = data["villageid"];
                     $("#province").val(provinceid);
                     setDistrict(provinceid, districtid);
                     setVillage(districtid, villageid);

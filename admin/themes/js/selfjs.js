@@ -29,13 +29,18 @@ function checkIf(val) {
 }
 
 function fShowHide() {
-    var status = $('#status').val();
-    if (status == "1"){
-        $('#divtoggle').show();
-        $('#status').val("0");
-    } else {
-        $('#divtoggle').hide();
-        $('#status').val("1");
+    // var status = $('#status').val();
+    // if (status == "1"){
+    //     $('#divtoggle').show();
+    //     $('#status').val("0");
+    // } else {
+    //     $('#divtoggle').hide();
+    //     $('#status').val("1");
+    // }
+    if ($('#divpanelbody')[0].style.display == "none"){
+        $('#divpanelbody').show();
+    }else {
+        $('#divpanelbody').hide();
     }
 }
 

@@ -1,5 +1,5 @@
 <?php require('admin/views/shared/header.php'); ?>
-    <div id="page-wrapper">
+<!--    <div id="page-wrapper">-->
         <ul class="nav nav-tabs small bg-info">
             <li class="active"><a data-toggle="tab" href="#home">Nhân viên</a></li>
             <li><a data-toggle="tab" href="#menu1">Chức vụ</a></li>
@@ -26,9 +26,10 @@
                                     class="glyphicon glyphicon-plus"></i> Cập nhật
                         </button>
                         <div class="panel-heading">
+                            <button class="small" type="button" id="btnShowHide" onclick="fShowHide()"><i class="glyphicon glyphicon-hand-down"></i></button>
                             <b class="small">Danh mục nhân viên</b>
                         </div>
-                        <div class="panel-body small">
+                        <div class="panel-body small" id="divpanelbody" style="display: none">
                             <div>
                                 <input name="id" type="hidden" class="form-control" id="id"/>
                                 <input name="userid" type="hidden" class="form-control" id="userid"/>
