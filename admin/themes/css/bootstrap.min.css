@@ -1524,7 +1524,7 @@ p {
 }
 
 .small, small {
-    font-size: 85%
+    font-size: 85%;
 }
 
 .mark, mark {
@@ -4748,7 +4748,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 .navbar-default {
     background-color: #f8f8f8;
     border-color: #e7e7e7;
-    width: 50px;
+
 }
 
 .navbar-default .navbar-brand {

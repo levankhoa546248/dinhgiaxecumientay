@@ -1,5 +1,4 @@
 <?php require('admin/views/shared/header.php'); ?>
-    <div id="page-wrapper">
         <ul class="nav nav-tabs small bg-info">
             <li class="active"><a data-toggle="tab" href="#home">Khách hàng</a></li>
             <li><a data-toggle="tab" href="#typecustomer">Loại khách hàng</a></li>
@@ -10,35 +9,32 @@
             <div id="home" class="tab-pane fade in active">
                 <form class="form-horizontal">
                     <div class="panel panel-default">
-                        <button class="btn btn-toolbar pull-right" style="margin: 3px" type="button"
-                                id="btnResetPassEmployee"><i
-                                    class="glyphicon glyphicon-repeat"></i> Reset password
-                        </button>
                         <button class="btn btn-danger pull-right" style="margin: 3px" type="button"
-                                id="btnDeleteEmployee"><i
+                                id="btnDeleteCustomer"><i
                                     class="glyphicon glyphicon-minus"></i> Xóa
                         </button>
                         <button class="btn btn-warning pull-right" style="margin: 3px" type="reset"
-                                id="btnResetEmployee"><i
+                                id="btnResetCustomer"><i
                                     class="glyphicon glyphicon-trash"></i> Reset
                         </button>
                         <button class="btn btn-primary pull-right" style="margin: 3px" type="button"
-                                id="btnUpdateEmployee"><i
+                                id="btnUpdateCustomer"><i
                                     class="glyphicon glyphicon-plus"></i> Cập nhật
                         </button>
                         <div class="panel-heading">
-                            <b class="small">Danh mục nhân viên</b>
+                            <input name="status" type="hidden" id="status" value="1"/>
+                            <button class="small" type="button" id="btnShowHide" onclick="fShowHide()"><i class="glyphicon glyphicon-hand-down"></i></button>
+                            <b>Danh mục khách hàng</b>
                         </div>
-                        <div class="panel-body small">
-                            <div>
-                                <input name="id" type="hidden" class="form-control" id="id"/>
-                                <input name="userid" type="hidden" class="form-control" id="userid"/>
+                        <div class="panel-body small" id="divtoggle">
+                            <div hidden>
+                                <input name="status" type="hidden" id="status"/>
                             </div>
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 control-label">Tài khoản</label>
+                                <label for="id" class="col-sm-2 control-label">Id</label>
                                 <div class="col-sm-4">
-                                    <input name="username" type="text" class="form-control input-sm" id="username"
-                                           placeholder="Tài khoản"
+                                    <input name="id" type="text" class="form-control input-sm" id="id"
+                                           placeholder="Id khách hàng"
                                            required=""/>
                                 </div>
                                 <label for="name" class="col-sm-2 control-label">Tên</label>
@@ -55,10 +51,11 @@
                                     <input name="identity" type="text" class="form-control input-sm" id="identity"
                                            placeholder="Chứng minh nhân dân" required=""/>
                                 </div>
-                                <label for="email" class="col-sm-2 control-label">Email</label>
+                                <label for="phone" class="col-sm-2 control-label">Điện thoại</label>
                                 <div class="col-sm-4">
-                                    <input name="email" type="email" class="form-control input-sm" id="email"
-                                           placeholder="Email"/>
+                                    <input name="phone" type="text" class="form-control input-sm" id="phone"
+                                           placeholder="Số điện thoại"
+                                           required=""/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -118,24 +115,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="position" class="col-sm-2 control-label">Chức vụ</label>
-                                <div class="col-sm-4">
-                                    <select name="position" class="form-control input-sm" id="position" required=""
-                                            data-show-subtext="true" data-live-search="true">
-                                        <option value="-1" selected>Chọn chức vụ</option>
-                                        <?php foreach ($listposition as $listpositions) {
-                                            echo '<option value="' . $listpositions['id'] . '">' . $listpositions['name'] . '</option>';
-                                        } ?>
-                                    </select>
-                                </div>
-                                <label for="phone" class="col-sm-2 control-label">Điện thoại</label>
-                                <div class="col-sm-4">
-                                    <input name="phone" type="text" class="form-control input-sm" id="phone"
-                                           placeholder="Số điện thoại"
-                                           required=""/>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="zalo" class="col-sm-2 control-label">Zalo</label>
                                 <div class="col-sm-4">
                                     <input name="zalo" type="text" class="form-control input-sm" id="zalo"
@@ -149,43 +128,74 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <!--                                <label for="createtime" class="col-sm-2 control-label">Ngày tạo</label>-->
-                                <!--                                <div class="col-sm-4">-->
-                                <!--                                    <input name="createtime" type="datetime-local" class="form-control input-sm" id="createtime"-->
-                                <!--                                           placeholder="Ngày tạo" value="--><?php
-                                //                                    echo date('Y-m-d\Th:i:s') ?><!--"-->
-                                <!--                                           required=""/>-->
-                                <!--                                </div>-->
-                                <label for="datejoined" class="col-sm-2 control-label">Ngày vào</label>
+                                <label for="email" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-4">
-                                    <input name="datejoined" type="date" class="form-control input-sm" id="datejoined"
-                                           placeholder="Ngày vào" value="<?php echo date('Y-m-d') ?>"
-                                           required=""/>
+                                    <input name="email" type="email" class="form-control input-sm" id="email"
+                                           placeholder="Email"/>
+                                </div>
+                                <label for="lastpurchase" class="col-sm-2 control-label">Lần mua cuối</label>
+                                <div class="col-sm-4">
+                                    <input name="lastpurchase" type="text" class="form-control input-sm" id="lastpurchase"
+                                           placeholder="Lần mua cuối"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="total" class="col-sm-2 control-label">Tổng tiền hàng</label>
+                                <div class="col-sm-4">
+                                    <input name="total" type="text" class="form-control input-sm" id="total"
+                                           placeholder="Tổng tiền hàng"/>
+                                </div>
+                                <label for="debt" class="col-sm-2 control-label">Nợ</label>
+                                <div class="col-sm-4">
+                                    <input name="debt" type="text" class="form-control input-sm" id="debt"
+                                           placeholder="Nợ"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="typeid" class="col-sm-2 control-label">Loại khách hàng</label>
+                                <div class="col-sm-4">
+                                    <select name="typeid" class="form-control input-sm" id="typeid" required=""
+                                            data-show-subtext="true" data-live-search="true">
+                                        <option value="-1" selected>Chọn loại khách hàng</option>
+                                    </select>
+                                </div>
+                                <label for="groupid" class="col-sm-2 control-label">Nhóm khách hàng</label>
+                                <div class="col-sm-4">
+                                    <select name="groupid" class="form-control input-sm" id="groupid" required="">
+                                        <option value="-1" selected>Chọn nhóm khách hàng</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                 </form>
             </div>
-            <table class="table table-striped table-bordered table-hover small" id="tableEmployees" style="width:100%">
+            <table class="table table-striped table-bordered table-hover small" id="tblCustomer" style="width:100%">
                 <thead class="bg-primary">
                 <tr>
                     <th class="text-center" width="7%">Id</th>
-                    <th class="text-left">Tài khoản</th>
                     <th class="text-left">Tên</th>
-                    <th class="text-left">Ngày sinh</th>
                     <th class="text-left">Chứng minh</th>
                     <th class="text-left">Điện thoại</th>
-                    <th class="text-left">Email</th>
+                    <th class="text-left">TP/Tỉnh</th>
+                    <th class="text-left">Quận/Huyện</th>
+                    <th class="text-left">Phường/Xã</th>
                     <th class="text-left">Địa chỉ</th>
                     <th class="text-left">Giới tính</th>
-                    <th class="text-left">Facebook</th>
+                    <th class="text-left">Ngày sinh</th>
+                    <th class="text-left">Email</th>
                     <th class="text-left">Zalo</th>
-                    <th class="text-left">Mật khẩu</th>
-                    <th class="text-left">Ngày tạo</th>
-                    <th class="text-left">Chức vụ id</th>
-                    <th class="text-left">Chức vụ</th>
-                    <th class="text-left">Ngày vào</th>
-                    <th class="text-center" width="7%">User id</th>
+                    <th class="text-left">Facebook</th>
+                    <th class="text-left">Lần mua cuối</th>
+                    <th class="text-left">Tổng tiền</th>
+                    <th class="text-left">Nợ</th>
+                    <th class="text-left">Loại KH</th>
+                    <th class="text-left">Nhóm KH</th>
+                    <th class="text-left">User id</th>
+                    <th class="text-left">Loại KH id</th>
+                    <th class="text-left">Nhóm KH id</th>
+                    <th class="text-left">TP/Tỉnh id</th>
+                    <th class="text-left">Quận/Huyện id</th>
+                    <th class="text-left">Phường/Xã id</th>
                 </tr>
                 </thead>
             </table>
@@ -269,35 +279,35 @@
     </div>
     </div>
     <script>
-
-        //Nhân viên
+        //Khách hàng
         $(document).ready(function () {
-            $('#btnResetPassEmployee').click(function (e) {
-                var id = $('#id').val();
-                if (id) {
-                    jConfirm('Bạn chắc chắn muốn reset password tài khoản này?', 'Thông báo', function (e) {
-                        if (e == true) {
-                            $.ajax({
-                                type: "POST",
-                                url: "admin/controllers/employees/resetEmployees.php",
-                                data: {
-                                    'id': id
-                                },
-                                success: function (data) {
-                                    if (data == '0') {
-                                        jAlert('Thực hiện không thành công', 'Thông báo');
-                                    } else {
-                                        jAlert('Thực hiện thành công', 'Thông báo');
-                                        $('#btnResetEmployee').click();
-                                        loadTableEmployees();
-                                    }
-                                }
-                            });
-                        }
-                    });
-                } else {
-                    jAlert('Chưa chọn tài khoản', 'Thông báo');
-                }
+            // $('#divtoggle').hide();
+            $('#btnTypecustomerReset').click(function (e) {
+                // var id = $('#id').val();
+                // if (id) {
+                //     jConfirm('Bạn chắc chắn muốn reset password tài khoản này?', 'Thông báo', function (e) {
+                //         if (e == true) {
+                //             $.ajax({
+                //                 type: "POST",
+                //                 url: "admin/controllers/employees/resetEmployees.php",
+                //                 data: {
+                //                     'id': id
+                //                 },
+                //                 success: function (data) {
+                //                     if (data == '0') {
+                //                         jAlert('Thực hiện không thành công', 'Thông báo');
+                //                     } else {
+                //                         jAlert('Thực hiện thành công', 'Thông báo');
+                //                         $('#btnResetEmployee').click();
+                //                         loadTableEmployees();
+                //                     }
+                //                 }
+                //             });
+                //         }
+                //     });
+                // } else {
+                //     jAlert('Chưa chọn tài khoản', 'Thông báo');
+                // }
 
             });
 
@@ -407,96 +417,104 @@
                 }
             });
 
-            loadTableEmployees();
+            loadCustomer();
 
-            function loadTableEmployees() {
-                $('#tableEmployees').DataTable().destroy();
-                $('#tableEmployees').DataTable({
+            function loadCustomer() {
+                $('#tblCustomer').DataTable().destroy();
+                $('#tblCustomer').DataTable({
                     width: '100%',
                     responsive: true,
                     order: [[0, 'desc']],
                     ajax: {
-                        url: "admin/controllers/employees/listEmployees.php",
+                        url: "admin/controllers/customer/listCustomer.php",
                         dataSrc: ''
                     },
                     columns: [
                         {data: "id"},
-                        {data: "username"},
                         {data: "name"},
-                        {data: "birthday"},
-                        {data: "identity"},
-                        {data: "phone"},
-                        {data: "email"},
-                        {data: "address"},
-                        {data: "sex"},
-                        {data: "facebook"},
-                        {data: "zalo"},
-                        {data: "password"},
-                        {data: "createtime"},
-                        {data: "position"},
-                        {data: "positionname"},
-                        {data: "datejoined"},
-                        {data: "userid"}
-                    ],
-                    columnDefs: [
                         {
-                            targets: 0, // your case first column
-                            className: "text-center",
-                            width: "7%"
-                        }, {
-                            targets: 1,
-                            width: "20%"
-                        }, {
-                            targets: 2,
-                            width: "25%"
-                        }, {
-                            targets: 3,
+                            data: "identity",
                             visible: false
-                        }, {
-                            targets: 4,
+                        },
+                        {data: "phone"},
+                        {
+                            data: "provincename"
+                        },
+                        {
+                            data: "districtname",
                             visible: false
-                        }, {
-                            targets: 6,
+                        },
+                        {
+                            data: "villagename",
                             visible: false
-                        }, {
-                            targets: 7,
+                        },
+                        {
+                            data: "address",
                             visible: false
-                        }, {
-                            targets: 8,
-                            class: "text-center",
+                        },
+                        {
+                            data: "sex",
                             visible: false
-                        }, {
-                            targets: 9,
+                        },
+                        {
+                            data: "birthday",
                             visible: false
-                        }, {
-                            targets: 10,
+                        },
+                        {
+                            data: "email",
                             visible: false
-                        }, {
-                            targets: 11,
+                        },
+                        {
+                            data: "zalo",
                             visible: false
-                        }, {
-                            targets: 12,
+                        },
+                        {
+                            data: "facebook",
                             visible: false
-                        }, {
-                            targets: 13,
-                            class: "text-right",
+                        },
+                        {data: "lastpurchase"},
+                        {
+                            data: "total",
+                            render: $.fn.dataTable.render.number(',', '.'),
+                            className: "text-right"
+                        },
+                        {
+                            data: "debt",
+                            render: $.fn.dataTable.render.number(',', '.'),
+                            className: "text-right"
+                        },
+                        {data: "typename"},
+                        {data: "groupname"},
+                        {
+                            data: "userid",
                             visible: false
-                        }, {
-                            targets: 14
-                        }, {
-                            targets: 15,
-                            class: "text-right"
-                        }, {
-                            targets: 16,
-                            class: "text-right",
+                        },
+                        {
+                            data: "typeid",
+                            visible: false
+                        },
+                        {
+                            data: "groupid",
+                            visible: false
+                        },
+                        {
+                            data: "provinceid",
+                            visible: false
+                        },
+                        {
+                            data: "districtid",
+                            visible: false
+                        },
+                        {
+                            data: "villageid",
                             visible: false
                         }
                     ]
                 });
             }
 
-            $('#tableEmployees tbody').on('click', 'tr', function (id) {
-                var data = $('#tableEmployees').DataTable().row(this).data();
+            $('#tblCustomer tbody').on('click', 'tr', function (id) {
+                var data = $('#tblCustomer').DataTable().row(this).data();
                 if (data["id"] !== undefined && data["id"] !== null) {
                     $("#id").val(data["id"]);
                     $("#username").val(data["username"]);
@@ -524,36 +542,6 @@
                     setVillage(districtid, villageid);
                 }
             });
-
-            function setDistrict(provinceid, districtid) {
-                $.ajax({
-                    type: "POST",
-                    url: "admin/controllers/units/setDistrict.php",
-                    data: {
-                        'provinceid': provinceid,
-                        'districtid': districtid
-                    },
-                    success: function (data) {
-                        $("#district").html(data);
-                    }
-                });
-                return true;
-            }
-
-            function setVillage(districtid, villageid) {
-                $.ajax({
-                    type: "POST",
-                    url: "admin/controllers/units/setVillage.php",
-                    data: {
-                        'districtid': districtid,
-                        'villageid': villageid
-                    },
-                    success: function (data) {
-                        $("#village").html(data);
-                    }
-                });
-                return true;
-            }
         });
 
         //Nhóm khách hàng
