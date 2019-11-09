@@ -158,19 +158,19 @@
                                 <label for="lastpurchase" class="col-sm-2 control-label">Lần mua cuối</label>
                                 <div class="col-sm-4">
                                     <input name="lastpurchase" type="text" class="form-control input-sm" id="lastpurchase"
-                                           placeholder="Lần mua cuối"/>
+                                           placeholder="Lần mua cuối" disabled/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="total" class="col-sm-2 control-label">Tổng tiền hàng</label>
                                 <div class="col-sm-4">
                                     <input name="total" type="text" class="form-control input-sm" id="total"
-                                           placeholder="Tổng tiền hàng"/>
+                                           placeholder="Tổng tiền hàng" disabled/>
                                 </div>
                                 <label for="debt" class="col-sm-2 control-label">Nợ</label>
                                 <div class="col-sm-4">
                                     <input name="debt" type="text" class="form-control input-sm" id="debt"
-                                           placeholder="Nợ"/>
+                                           placeholder="Nợ" disabled/>
                                 </div>
                             </div>
                         </div>
@@ -306,7 +306,7 @@
                                     } else {
                                         jAlert('Thực hiện thành công', 'Thông báo');
                                         $('#btnResetCustomer').click();
-                                        loadCustomer();
+                                        // loadCustomer();
                                     }
                                 }
                             });
@@ -375,7 +375,7 @@
                             } else {
                                 jAlert('Thực hiện thành công', 'Thông báo');
                                 $('#btnResetCustomer').click();
-                                loadCustomer();
+                                // loadCustomer();
                             }
                         }
                     });

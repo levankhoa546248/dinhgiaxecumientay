@@ -177,6 +177,9 @@
                         <li>
                             <a href="admin.php?controller=customer">Khách hàng</a>
                         </li>
+                        <li>
+                            <a href="admin.php?controller=goods">Hàng hóa</a>
+                        </li>
                     </ul>
                 </li>
                 <!--                --><?php //endif; ?>
