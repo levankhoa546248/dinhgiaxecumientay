@@ -4,6 +4,7 @@
         <li class="active"><a data-toggle="tab" href="#home">Hàng hóa</a></li>
         <li><a data-toggle="tab" href="#goodsgroup">Nhóm hàng</a></li>
         <li><a data-toggle="tab" href="#goodstype">Loại hàng</a></li>
+        <li><a data-toggle="tab" href="#goodsproperty">Thuộc tính</a></li>
     </ul>
 
     <div class="tab-content">
@@ -277,22 +278,22 @@
             </table>
         </div>
     </div>
-    <div id="goodstype" class="tab-pane fade in active">
+    <div id="goodstype" class="tab-pane fade">
         <div class="panel panel-default">
-<!--            <button class="btn btn-danger pull-right" style="margin: 3px" type="button" id="btnTypeDelete">-->
-<!--                <i-->
-<!--                        class="glyphicon glyphicon-minus"></i> Xóa-->
-<!--            </button>-->
-<!--            <button class="btn btn-warning pull-right" style="margin: 3px" type="reset" id="btnTypeReset"><i-->
-<!--                        class="glyphicon glyphicon-trash"></i> Reset-->
+            <!--            <button class="btn btn-danger pull-right" style="margin: 3px" type="button" id="btnTypeDelete">-->
+            <!--                <i-->
+            <!--                        class="glyphicon glyphicon-minus"></i> Xóa-->
+            <!--            </button>-->
+            <!--            <button class="btn btn-warning pull-right" style="margin: 3px" type="reset" id="btnTypeReset"><i-->
+            <!--                        class="glyphicon glyphicon-trash"></i> Reset-->
             <button class="btn btn-success pull-right" style="margin: 3px" type="reset" id="btnTypeReset"><i
                         class="glyphicon glyphicon-refresh"></i> Reset
             </button>
-<!--            </button>-->
-<!--            <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnTypeUpdate">-->
-<!--                <i-->
-<!--                        class="glyphicon glyphicon-plus"></i> Cập nhật-->
-<!--            </button>-->
+            <!--            </button>-->
+            <!--            <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnTypeUpdate">-->
+            <!--                <i-->
+            <!--                        class="glyphicon glyphicon-plus"></i> Cập nhật-->
+            <!--            </button>-->
             <div class="panel-heading">
                 <b class="small">Danh mục loại hàng hóa</b>
             </div>
@@ -321,9 +322,271 @@
             </thead>
         </table>
     </div>
-    </div>
+    <div id="goodsproperty" class="tab-pane fade in active">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <button class="btn btn-success pull-right" style="margin: 3px" type="button" id="btnColorReset"><i
+                            class="glyphicon glyphicon-refresh"></i> Reset
+                </button>
+                <div class="panel-heading">
+                    <b class="small">Danh mục màu</b>
+                </div>
+                <div class="panel-body small">
+                    <div>
+                        <input name="colorid" type="hidden" class="form-control" id="colorid"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="colorname" class="col-sm-4 control-label">Tên màu</label>
+                        <div class="col-sm-8">
+                            <input name="colorname" type="text" class="form-control input-sm"
+                                   id="colorname"
+                                   placeholder="Tên màu"
+                                   required=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover small" id="tblColor" style="width:100%">
+                <thead class="bg-primary">
+                <tr>
+                    <th class="text-center" width="30%">Id</th>
+                    <th class="text-left">Tên màu</th>
+                    <th class="text-center">Xóa</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <button class="btn btn-success pull-right" style="margin: 3px" type="button" id="btnSizeReset"><i
+                            class="glyphicon glyphicon-refresh"></i> Reset
+                </button>
+                <div class="panel-heading">
+                    <b class="small">Danh mục kích thước</b>
+                </div>
+                <div class="panel-body small">
+                    <div>
+                        <input name="sizeid" type="hidden" class="form-control" id="sizeid"/>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 15px">
+                        <label for="sex" class="col-sm-4 control-label">Giới tính</label>
+                        <div class="col-sm-8">
+                            <select name="sizesex" class="form-control input-sm" id="sizesex" required="">
+                                <option value="0" selected>Không chọn</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-top: 15px">
+                        <label for="sizename" class="col-sm-4 control-label">Tên kích thước</label>
+                        <div class="col-sm-8">
+                            <input name="sizename" type="text" class="form-control input-sm"
+                                   id="sizename"
+                                   placeholder="Tên kích thước"
+                                   required=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover small" id="tblSize" style="width:100%">
+                <thead class="bg-primary">
+                <tr>
+                    <th class="text-center" width="30%">Id</th>
+                    <th class="text-left">Tên kích thước</th>
+                    <th class="text-left">Giới tính</th>
+                    <th class="text-left">Xóa</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
     <script>
+        $(document).ready(function () {
+            loadColor();
+
+            function loadColor() {
+                $('#tblColor').DataTable().destroy();
+                $('#tblColor').DataTable({
+                    width: '100%',
+                    responsive: true,
+                    order: [[0, 'desc']],
+                    ajax: {
+                        url: "admin/controllers/goods/listColor.php",
+                        dataSrc: ''
+                    },
+                    columns: [
+                        {data: "id", className: "text-center", width: '20%'},
+                        {data: "name"},
+                        {
+                            data: null,
+                            className: "text-center",
+                            width: '10%',
+                            defaultContent: '<button class="colordelete"><i class="glyphicon glyphicon-trash"></i></button>'
+                        }
+                    ]
+                });
+            }
+
+            $('#tblColor tbody').on('click', 'tr', function (id) {
+                var data = $('#tblColor').DataTable().row(this).data();
+                if (data["id"] !== undefined && data["id"] !== null) {
+                    $("#colorid").val(data["id"]);
+                    $("#colorname").val(data["name"]);
+                }
+            });
+
+            $('#colorname').keypress(function (e) {
+                if (e.keyCode == 13) {
+                    var name = $('#colorname').val();
+                    if (name) {
+                        $.ajax({
+                            type: "POST",
+                            url: "admin/controllers/goods/updateColor.php",
+                            data: {
+                                'id': 0,
+                                'name': name
+                            },
+                            success: function (data) {
+                                if (data == '0') {
+                                    jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                        $('#colorname').focus();
+                                    });
+                                } else {
+                                    jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                        $('#colorname').focus();
+                                    });
+                                    $('#btnColorReset').click();
+                                }
+                            }
+                        });
+                    } else {
+                        jAlert('Chưa nhập tên loại hàng', 'Thông báo', function (e) {
+                            $('#colorname').focus();
+                        });
+                    }
+                }
+            });
+
+            $('#btnColorReset').click(function (e) {
+                $('#colorid').val('');
+                $('#colorname').val('');
+                loadColor();
+            });
+
+            $('#tblColor').on('click', 'button.colordelete', function (e) {
+                var $row = $(this).closest('tr');
+                var data = $('#tblColor').DataTable().row($row).data();
+                jConfirm('Bạn chắc chắn xóa màu này?', 'Thông báo', function (e) {
+                    if (e == true) {
+                        $.ajax({
+                            type: "POST",
+                            url: "admin/controllers/goods/deleteColor.php",
+                            data: {
+                                'id': data["id"]
+                            },
+                            success: function (data) {
+                                if (data == '0') {
+                                    jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                        $('#colorname').focus();
+                                    });
+                                } else {
+                                    jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                        $('#colorname').focus();
+                                    });
+                                    $('#btnColorReset').click();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+            loadSize(-1);
+
+            function loadSize(sex) {
+                $('#tblSize').DataTable().destroy();
+                $('#tblSize').DataTable({
+                    width: '100%',
+                    responsive: true,
+                    order: [[0, 'desc']],
+                    ajax: {
+                        type: 'POST',
+                        url: "admin/controllers/goods/listSize.php",
+                        data: {
+                            sex: sex
+                        },
+                        dataSrc: ''
+                    },
+                    columns: [
+                        {data: "id", className: "text-center", width: '20%'},
+                        {data: "name"},
+                        {data: "sex"},
+                        {
+                            data: null,
+                            className: "text-center",
+                            width: '10%',
+                            defaultContent: '<button class="sizedelete"><i class="glyphicon glyphicon-trash"></i></button>'
+                        }
+                    ]
+                });
+            }
+
+            document.getElementById('sizesex').addEventListener('change',function(){
+                var sex = $('#sizesex').val();
+                loadSize(sex);
+            });
+
+            $('#tblSize tbody').on('click', 'tr', function (id) {
+                var data = $('#tblSize').DataTable().row(this).data();
+                if (data["id"] !== undefined && data["id"] !== null) {
+                    $("#sizeid").val(data["id"]);
+                    $("#sizename").val(data["name"]);
+                }
+            });
+
+            $('#sizename').keypress(function (e) {
+                if (e.keyCode == 13) {
+                    var name = $('#sizename').val();
+                    var sizesex = $('#sizesex').val();
+                    if (name) {
+                        $.ajax({
+                            type: "POST",
+                            url: "admin/controllers/goods/updateSize.php",
+                            data: {
+                                'id': 0,
+                                'name': name,
+                                'sizesex': sizesex
+                            },
+                            success: function (data) {
+                                if (data == '0') {
+                                    jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                        $('#sizename').focus();
+                                    });
+                                } else {
+                                    jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                        $('#sizename').focus();
+                                    });
+                                    $('#btnSizeReset').click();
+                                }
+                            }
+                        });
+                    } else {
+                        jAlert('Chưa nhập tên loại hàng', 'Thông báo', function (e) {
+                            $('#sizename').focus();
+                        });
+                    }
+                }
+            });
+
+            $('#btnSizeReset').click(function (e) {
+                loadSize(-1);
+                $('#sizeid').val('');
+                $('#sizename').val('');
+                $('#sizesex').val(0);
+            });
+
+        });
         // Phân loại nhóm hàng
         $(document).ready(function () {
             $('#groupsubname').keypress(function (e) {
@@ -613,9 +876,13 @@
                             },
                             success: function (data) {
                                 if (data == '0') {
-                                    jAlert('Thực hiện không thành công', 'Thông báo');
+                                    jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                        $('#typename').focus();
+                                    });
                                 } else {
-                                    jAlert('Thực hiện thành công', 'Thông báo');
+                                    jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                        $('#typename').focus();
+                                    });
                                     $('#btnTypeReset').click();
                                 }
                             }
