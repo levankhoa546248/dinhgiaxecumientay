@@ -9,46 +9,20 @@ $sqlPosition = 'SELECT * FROM position';
 $listposition = $db->get_select_nested($sqlPosition);
 $sqlprovince = 'SELECT * FROM province';
 $province = $db->get_select_nested($sqlprovince);
-//$sqldistrict = '
-//SELECT
-//DISTINCT(u.district) as id,
-//d.`name` as name
-//FROM
-//	employees e
-//LEFT JOIN `user` u ON e.user_id = u.id
-//LEFT JOIN position p ON p.id = e.position
-//LEFT JOIN district d ON d.provinceid = u.province
-//WHERE u.village IS NOT NULL
-//ORDER BY u.district, d.`name` ASC
-//';
-//$district = $db->get_select_nested($sqldistrict);
-//$sqlvillage = '
-//SELECT
-//DISTINCT(u.district) as id,
-//d.`name` as name
-//FROM
-//	employees e
-//LEFT JOIN `user` u ON e.user_id = u.id
-//LEFT JOIN position p ON p.id = e.position
-//LEFT JOIN district d ON d.provinceid = u.province
-//WHERE u.village IS NOT NULL
-//ORDER BY u.district, d.`name` ASC
-//';
-//$village = $db->get_select_nested($sqlvillage);
-
-//load view
-$sqlunits = '
-SELECT
-DISTINCT(u.district) as district,
-v.districtname,
-u.village,
-v.`name` as villagename
-FROM
-	employees e
-LEFT JOIN `user` u ON e.userid = u.id
-LEFT JOIN village v ON v.id = u.village
-WHERE u.village IS NOT NULL
-ORDER BY u.district, v.districtname ASC
-';
-$unit = $db->get_select_nested($sqlunits);
+$sqlsize = 'SELECT * FROM size where sex = 0';
+$size = $db->get_select_nested($sqlsize);
+$sqlcolor = 'SELECT * FROM color';
+$color = $db->get_select_nested($sqlcolor);
+$sqlgoodstype = 'SELECT * FROM goodstype';
+$goodstype = $db->get_select_nested($sqlgoodstype);
+$sqlgoodsgroupsub = 'SELECT * FROM goodsgroupsub';
+$goodsgroupsub = $db->get_select_nested($sqlgoodsgroupsub);
+$sqlgoodsgroup = 'SELECT * FROM goodsgroup';
+$goodsgroup = $db->get_select_nested($sqlgoodsgroup);
+$sqlcountry = 'SELECT * FROM country';
+$country = $db->get_select_nested($sqlcountry);
+$sqlsupplier = 'SELECT * FROM supplier';
+$supplier = $db->get_select_nested($sqlsupplier);
+$sqlunit = 'SELECT * FROM unit';
+$unit = $db->get_select_nested($sqlunit);
 require('admin/views/goods/index.php');
