@@ -14,13 +14,14 @@ $sql = '
 SELECT g.*, 
 u.`name` as unitname,
 CASE g.sizesex WHEN 1 THEN \'Nam\' WHEN 2 THEN \'Nữ\' ELSE \'Không chọn\' END as sizesexname,
-s.`name` as sizename, c.`name` as colorname, 
+s.`name` as sizename, 
+-- c.`name` as colorname, 
 t.`name` as typename, ggs.`name` as groupsubname,
 gg.`name` as groupname, ct.`name` as countryname,
 sl.`name` as suppliername 
 FROM goods g
 LEFT JOIN size s ON g.sizeid = s.id
-LEFT JOIN color c ON g.colorid = c.id
+-- LEFT JOIN color c ON g.colorid = c.id
 LEFT JOIN goodstype t ON g.typeid = t.id
 LEFT JOIN goodsgroupsub ggs ON g.groupsubid = ggs.id
 LEFT JOIN goodsgroup gg ON g.groupid = gg.id

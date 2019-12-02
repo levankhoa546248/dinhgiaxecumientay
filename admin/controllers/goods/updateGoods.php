@@ -26,7 +26,7 @@ if (!empty($_POST)) {
             'unit' => $goodsunit,
             'sizesex' => $goodssizesex,
             'sizeid' => $goodssize,
-            'colorid' => $goodscolor,
+            'color' => $goodscolor,
             'typeid' => $goodstype,
             'groupsubid' => $goodsgroupsub,
             'groupid' => $goodsgroup,

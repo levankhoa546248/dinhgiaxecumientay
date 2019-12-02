@@ -132,3 +132,21 @@ function toggleSelectAll(control) {
     }
     control.data('allOptionIsSelected', allOptionIsSelected);
 }
+
+function getGoodsgroup(goodsgroupsubid, selected) {
+    $.ajax({
+        type: "POST",
+        url: "admin/controllers/goods/listGoodsgroup.php",
+        data: {
+            'goodsgroupsubid': goodsgroupsubid
+        },
+        success: function (data) {
+            $('#goodsgroup').html(data);
+            $('#goodsgroup').addClass('selectpicker');
+            $('#goodsgroup').attr('data-live-search', 'true');
+            $('select[name=goodsgroup]').val(selected);
+            $('#goodsgroup').selectpicker('refresh');
+        }
+    });
+    return true;
+}

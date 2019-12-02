@@ -144,7 +144,7 @@
                     <th class="text-left">Giới tính</th>
                     <th class="text-left">Kích thước id</th>
                     <th class="text-left">Kích thước</th>
-                    <th class="text-left">Màu sắc id</th>
+<!--                    <th class="text-left">Màu sắc id</th>-->
                     <th class="text-left">Màu sắc</th>
                     <th class="text-left">Loại id</th>
                     <th class="text-left">Loại</th>
@@ -459,24 +459,22 @@
         <script>
             //Hàng hóa
             $(document).ready(function () {
-
                 $('#goodsgroup').selectpicker();
                 $('#goodsgroupsub').selectpicker();
                 $('#goodstype').selectpicker();
-                $('#goodscolor').selectpicker();
                 $('#country').selectpicker();
                 $('#supplier').selectpicker();
                 $('#goodssize').selectpicker();
                 $('#goodssizesex').change(function () {
                     var goodssizesexid = $('#goodssizesex').val();
-                    setSizesex(goodssizesexid);
+                    getSizesex(goodssizesexid, "0");
                 });
-                $('#goodsgroupsubid').change(function () {
-                    var goodsgroupsubid = $('#goodsgroupsubid').val();
-                    setGoodsgroup(goodsgroupsubid);
+                $('#goodsgroupsub').change(function () {
+                    var goodsgroupsubid = $('#goodsgroupsub').val();
+                    getGoodsgroup(goodsgroupsubid, "0");
                 });
 
-                function setSizesex(goodssizesexid) {
+                function getSizesex(goodssizesexid, selected) {
                     $.ajax({
                         type: "POST",
                         url: "admin/controllers/goods/listSizesex.php",
@@ -487,24 +485,8 @@
                             $('#goodssize').html(data);
                             $('#goodssize').addClass('selectpicker');
                             $('#goodssize').attr('data-live-search', 'true');
+                            $('select[name=goodssize]').val(selected);
                             $('#goodssize').selectpicker('refresh');
-                        }
-                    });
-                    return true;
-                }
-
-                function setGoodsgroup(goodsgroupsubid) {
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/controllers/goods/listGoodsgroup.php",
-                        data: {
-                            'goodsgroupsubid': goodsgroupsubid
-                        },
-                        success: function (data) {
-                            $('#goodsgroupid').html(data);
-                            $('#goodsgroupid').addClass('selectpicker');
-                            $('#goodsgroupid').attr('data-live-search', 'true');
-                            $('#goodsgroupid').selectpicker('refresh');
                         }
                     });
                     return true;
@@ -531,8 +513,8 @@
                             {data: "sizesexname"},
                             {data: "sizeid", visible: false},
                             {data: "sizename", width: '5%', className: "text-center"},
-                            {data: "colorid", visible: false},
-                            {data: "colorname"},
+                            // {data: "colorid", visible: false},
+                            {data: "color"},
                             {data: "typeid", visible: false},
                             {data: "typename"},
                             {data: "groupsubid", visible: false},
@@ -559,7 +541,7 @@
                     $('#goodsunit').val('0');
                     $('#goodssizesex').val('0');
                     $('#goodssize').selectpicker('val', '0');
-                    $('#goodscolor').selectpicker('val', '0');
+                    $('#goodscolor').tagsinput('removeAll');
                     $('#goodstype').selectpicker('val', '0');
                     $('#goodsgroupsub').selectpicker('val', '0');
                     $('#goodsgroup').selectpicker('val', '0');
@@ -575,13 +557,15 @@
                         $("#goodsname").val(data["name"]);
                         $("#goodsunit").val(data["unit"]);
                         $("#goodssizesex").val(data["sizesex"]);
-                        $("#goodssize").val(data["sizeid"]);
-                        $("#goodscolor").val(data["colorid"]);
-                        $("#goodstype").val(data["typeid"]);
-                        $("#goodsgroupsub").val(data["groupsubid"]);
-                        $("#goodsgroup").val(data["groupid"]);
-                        $("#country").val(data["countryid"]);
-                        $("#supplier").val(data["supplierid"]);
+                        getSizesex(data["sizesex"], data["sizeid"]);
+                        // $("#goodscolor").val(data["color"]);
+                        $("#goodstype").selectpicker('val', data["typeid"]);
+                        $("#goodsgroupsub").selectpicker('val', data["groupsubid"]);
+                        getGoodsgroup(data["groupsubid"], data["groupid"]);
+                        $("#country").selectpicker('val', data["countryid"]);
+                        $("#supplier").selectpicker('val', data["supplierid"]);
+                        $('#goodscolor').tagsinput('removeAll');
+                        $('#goodscolor').tagsinput('add', data["color"]);
                     }
                 });
 
@@ -591,7 +575,7 @@
                     var goodsunit = $('#goodsunit').val();
                     var goodssizesex = $('#goodssizesex').val();
                     var goodssize = $('#goodssize').val();
-                    var goodscolor = $('#goodscolor').val();
+                    var goodscolor = $('#goodscolor').val().toUpperCase();
                     var goodstype = $('#goodstype').val();
                     var goodsgroupsub = $('#goodsgroupsub').val();
                     var goodsgroup = $('#goodsgroup').val();
@@ -634,6 +618,33 @@
                     }
                 });
 
+                $('#tblGoods').on('click', 'button.goodsdelete', function (e) {
+                    var $row = $(this).closest('tr');
+                    var data = $('#tblGoods').DataTable().row($row).data();
+                    jConfirm('Bạn chắc chắn xóa hàng hóa này?', 'Thông báo', function (e) {
+                        if (e == true) {
+                            $.ajax({
+                                type: "POST",
+                                url: "admin/controllers/goods/deleteGoods.php",
+                                data: {
+                                    'id': data["id"]
+                                },
+                                success: function (data) {
+                                    if (data == '0') {
+                                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                            $('#goodsname').focus();
+                                        });
+                                    } else {
+                                        jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                            $('#goodsname').focus();
+                                        });
+                                        $('#btnRefreshGoods').click();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
             });
             //Nhà cung cấp
             $(document).ready(function () {
