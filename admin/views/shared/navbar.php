@@ -1,10 +1,10 @@
 <script>
     $(document).ready(function () {
         $('#btnHideMenu').click(function (e) {
-            if ($('#navbarmenu')[0].style.display == "block"){
+            if ($('#navbarmenu')[0].style.display == "block") {
                 $('#navbarmenu').hide();
                 document.getElementById("page-wrapper").style.marginLeft = "0px";
-            }else {
+            } else {
                 $('#navbarmenu').show();
                 document.getElementById("page-wrapper").style.marginLeft = "200px";
             }
@@ -157,16 +157,9 @@
                         </div>
                     </form>
                 </li>
-
                 <li>
                     <a href="admin.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
-                <!--                --><?php //if ($user['QuyenTruyCap'] == 1): ?>
-                <!--                    <li>-->
-                <!--                        <a href="admin.php?controller=role"><i class="fa fa-cog fa-fw"></i> Quyền truy cập</a>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['CauHinhWebsite'] == 1): ?>
                 <li>
                     <a href="#"><i class="fa fa-th-list fa-fw"></i> Danh mục<span
                                 class="fa arrow"></span></a>
@@ -182,103 +175,12 @@
                         </li>
                     </ul>
                 </li>
-                <!--                --><?php //endif; ?>
-                <!--                                --><?php //if ($user['XuatNhapHang'] == 1): ?>
-                <!--                <li>-->
-                <!--                    <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý bán hàng<span-->
-                <!--                                class="fa arrow"></span></a>-->
-                <!--                    <ul class="nav nav-second-level">-->
-                <!--                        <li>-->
-                <!--                            <a href="admin.php?controller=import"><i-->
-                <!--                                        class="fa fa-table fa-fw"></i> Nhập hàng</a>-->
-                <!--                        </li>-->
-                <!--                        <li>-->
-                <!--                            <a href="admin.php?controller=export"><i-->
-                <!--                                        class="fa fa-table fa-fw"></i> Xuất hàng</a>-->
-                <!--                        </li>-->
-                <!--                    </ul>-->
-                <!--                </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['DonHang'] == 1): ?>
-                <!--                    <li>-->
-                <!--                        <a href="#"><i class="fa fa-shopping-cart fa-fw"></i> Quản lý đơn hàng<span-->
-                <!--                                    class="fa arrow"></span></a>-->
-                <!--                        <ul class="nav nav-second-level">-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=order&amp;action=order_inprocess"><i-->
-                <!--                                            class="fa fa-table fa-fw"></i>Danh sách chưa xử lý</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=order&amp;action=order_complete"><i-->
-                <!--                                            class="fa fa-table fa-fw"></i>Danh sách đã xử lý</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=order"><i class="fa fa-table fa-fw"></i>Danh sách đơn hàng</a>-->
-                <!--                            </li>-->
-                <!--                        </ul>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['SanPham'] == 1): ?>
-                <!--                <li>-->
-                <!--                    <a href="admin.php?controller=product"><i class="fa fa-car fa-fw"></i> Quản lý sản phẩm-->
-                <!--                            <span class="fa arrow"></span>-->
-                </a>
-                <!--                        <ul class="nav nav-third-level">-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=product&amp;action=newproduct">Sản phẩm mới</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=product&amp;action=orderproduct">Sản phẩm order</a>-->
-                <!--                            </li>-->
-                <!--                            <li>-->
-                <!--                                <a href="admin.php?controller=product&amp;action=saleproduct">Sản phẩm khuyến mại</a>-->
-                <!--                            </li>-->
-                <!--                        </ul>-->
-                <!--                </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['NhomDanhMuc'] == 1): ?>
-                <!--                <li>-->
-                <!--                    <a href="admin.php?controller=category"><i class="fa fa-th-list fa-fw"></i> Nhóm danh mục</a>-->
-                <!--                </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['DanhMucSanPham'] == 1): ?>
-                <!--                <li>-->
-                <!--                    <a href="admin.php?controller=group"><i class="fa fa-folder-open fa-fw"></i> Danh-->
-                <!--                        mục</a>-->
-                <!--                </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                <li>-->
-                <!--                    <a href="#"><i class="fa fa-file-archive-o fa-fw"></i> Thống kê<span-->
-                <!--                                class="fa arrow"></span></a>-->
-                <!--                    <ul class="nav nav-second-level">-->
-                <!--                        <li>-->
-                <!--                            <a href="admin.php?controller=statistical"><i-->
-                <!--                                        class="fa fa-users fa-fw"></i> Theo người nhận</a>-->
-                <!--                        </li>-->
-                <!--                    </ul>-->
-                <!--                </li>-->
-                <!--                --><?php //if ($user['BinhLuan'] == 1): ?>
-                <!--                    <li>-->
-                <!--                        <a href="admin.php?controller=comment"><i class="fa fa-comments-o fa-fw"></i>Quản lý bình-->
-                <!--                            luận</a>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['PhanHoi'] == 1): ?>
-                <!--                    <li>-->
-                <!--                        <a href="admin.php?controller=feedback"><i class="fa fa-envelope-o fa-fw"></i>Phản hồi của khách-->
-                <!--                            hàng</a>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                --><?php //if ($user['ThongKe'] == 1): ?>
-                <!--                    <li>-->
-                <!--                        <a href="admin.php?controller=counter"><i class="fa fa-tasks fa-fw"></i> Thống kê online</a>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
-                <!--                <li>-->
-                <!--                    <a href="index.php" target="_blank"><i class="fa fa-home fa-fw"></i>Trang chủ<span-->
-                <!--                                class="fa arrow"></span></a>-->
-                <!--                </li>-->
-
+                <li>
+                    <a href="admin.php?controller=import"><i class="fa fa-cloud-download fa-fw"></i> Nhập hàng</a>
+                </li>
+                <li>
+                    <a href="admin.php"><i class="fa fa-upload fa-fw"></i> Xuất hàng</a>
+                </li>
             </ul>
         </div>
     </div>

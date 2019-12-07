@@ -67,14 +67,15 @@
                     <div class="form-group">
                         <label for="goodscolor" class="col-sm-2 control-label">Màu sắc</label>
                         <div class="col-sm-4">
-<!--                            <select name="goodscolor" class="form-control btn btn-group-sm" id="goodscolor" required=""-->
-<!--                                    data-show-subtext="true" multiple>-->
-<!--                                <option value="" disabled >Chọn màu sắc</option>-->
-<!--                                --><?php //foreach ($color as $colors) {
-//                                    echo '<option value="' . $colors['id'] . '">' . $colors['name'] . '</option>';
-//                                } ?>
-<!--                            </select>-->
-                            <input name="goodscolor" id="goodscolor" type="text" value="" data-role="tagsinput" placeholder="" class="form-control input-sm"/>
+                            <!--                            <select name="goodscolor" class="form-control btn btn-group-sm" id="goodscolor" required=""-->
+                            <!--                                    data-show-subtext="true" multiple>-->
+                            <!--                                <option value="" disabled >Chọn màu sắc</option>-->
+                            <!--                                --><?php //foreach ($color as $colors) {
+                            //                                    echo '<option value="' . $colors['id'] . '">' . $colors['name'] . '</option>';
+                            //                                } ?>
+                            <!--                            </select>-->
+                            <input name="goodscolor" id="goodscolor" type="text" value="" data-role="tagsinput"
+                                   placeholder="" class="form-control input-sm"/>
                         </div>
                         <label for="goodstype" class="col-sm-2 control-label">Loại hàng</label>
                         <div class="col-sm-4">
@@ -144,7 +145,7 @@
                     <th class="text-left">Giới tính</th>
                     <th class="text-left">Kích thước id</th>
                     <th class="text-left">Kích thước</th>
-<!--                    <th class="text-left">Màu sắc id</th>-->
+                    <!--                    <th class="text-left">Màu sắc id</th>-->
                     <th class="text-left">Màu sắc</th>
                     <th class="text-left">Loại id</th>
                     <th class="text-left">Loại</th>
