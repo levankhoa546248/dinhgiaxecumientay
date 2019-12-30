@@ -62,8 +62,15 @@
         </div>
         <div class="panel-body small form-horizontal" style="padding-bottom: inherit">
             <div>
-                <input name="couponid" type="hidden" class="form-control" id="couponid"/>
+<!--                <input name="couponid" type="hidden" class="form-control" id="couponid"/>-->
                 <input name="isimport" type="hidden" class="form-control" id="isimport"/>
+            </div>
+            <div class="form-group">
+                <label for="couponid" class="col-sm-4 control-label">Id phiếu</label>
+                <div class="col-sm-8">
+                    <input name="couponid" type="text" class="form-control input-sm" disabled
+                           id="couponid" placeholder="Id phiếu"/>
+                </div>
             </div>
             <div class="form-group">
                 <label for="couponname" class="col-sm-4 control-label">Tên phiếu</label>
@@ -116,9 +123,10 @@
     <tr>
         <th class="text-center" width="5%">Id</th>
         <th class="text-left" width="15%">Tên hàng</th>
-        <th class="text-left" width="8%">Màu sắc</th>
+        <th class="text-left" width="7%">Màu sắc</th>
         <th class="text-left" width="8%">Kích thước</th>
         <th class="text-left" width="8%">Số lượng</th>
+        <th class="text-left" width="7%">ĐVT</th>
         <th class="text-left">Giá vốn</th>
         <th class="text-left">Thành tiền</th>
         <th class="text-left">Giá lẻ</th>
@@ -146,6 +154,10 @@
         <td>
             <input name="goodsamount" type="number" class="form-control input-sm text-center" id="goodsamount"
                    placeholder="Số lượng" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodsunit" type="text" class="form-control input-sm" id="goodsunit"
+                   placeholder="Đơn vị tính" disabled required=""/>
         </td>
         <td>
             <input name="goodsprice" type="text" class="form-control input-sm text-right" id="goodsprice"
@@ -180,6 +192,7 @@
         <th class="text-left">Kích thước</th>
         <th class="text-left" hidden>CouponId</th>
         <th class="text-left">Số lượng</th>
+        <th class="text-left">ĐVT</th>
         <th class="text-left">Giá vốn</th>
         <th class="text-left">Thành tiền</th>
         <th class="text-left">Giá lẻ</th>
@@ -197,6 +210,7 @@
         <th></th>
         <th class="text-right" hidden></th>
         <th class="text-center"></th>
+        <th class="text-right"></th>
         <th class="text-right"></th>
         <th class="text-right"></th>
         <th class="text-right"></th>
@@ -319,7 +333,7 @@
                 // paging: false,
                 width: '100%',
                 responsive: true,
-                lengthMenu: [[4, 10, 30, "All"]],
+                lengthMenu: [[5, 10, 30, "All"]],
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
@@ -414,17 +428,20 @@
 
         $("#goodsname").combogrid({
             url: 'admin/controllers/import/listGoods.php',
+            width: '50%',
             colModel: [
                 {'columnName': 'id', 'width': '10', 'label': 'Id'},
-                {'columnName': 'name', 'width': '30', 'label': 'Tên hàng'},
-                {'columnName': 'color', 'width': '30', 'label': 'Màu sắc'},
-                {'columnName': 'sizename', 'width': '30', 'label': 'Kích thước'}
+                {'columnName': 'name', 'width': '30', 'label': 'Tên hàng', align: 'left'},
+                {'columnName': 'color', 'width': '25', 'label': 'Màu sắc', align: 'left'},
+                {'columnName': 'sizename', 'width': '25', 'label': 'Kích thước'},
+                {'columnName': 'unitname', 'width': '10', 'label': 'Đơn vị tính'}
             ],
             select: function (event, ui) {
                 $("#goodsid").val(ui.item.id);
                 $("#goodsname").val(ui.item.name);
                 $("#goodscolor").val(ui.item.color);
                 $("#goodssize").val(ui.item.sizename);
+                $("#goodsunit").val(ui.item.unitname);
                 return false;
             }
         });
@@ -503,6 +520,7 @@
                 var goodsretail = StringToNumber($('#goodsretail').val());
                 var goodswholesale = StringToNumber($('#goodswholesale').val());
                 var goodspricevip = StringToNumber($('#goodspricevip').val());
+                var goodsunit = $('#goodsunit').val();
                 var couponid = $('#couponid').val();
                 $.blockUI({
                     message: '<h1>Đợi trong giây lát...</h1>',
@@ -531,6 +549,7 @@
                         'goodsretail': goodsretail,
                         'goodswholesale': goodswholesale,
                         'goodspricevip': goodspricevip,
+                        'goodsunit': goodsunit,
                         'couponid': couponid
                     },
                     success: function (data) {
@@ -578,7 +597,8 @@
                     {data: "goodscolor"},
                     {data: "goodssize"},
                     {data: "couponid", visible: false},
-                    {data: "amount", className: "text-center",},
+                    {data: "amount", className: "text-center"},
+                    {data: "goodsunit", className: "text-center"},
                     {
                         data: "price", className: "text-right",
                         render: $.fn.dataTable.render.number(',', '.', 0)

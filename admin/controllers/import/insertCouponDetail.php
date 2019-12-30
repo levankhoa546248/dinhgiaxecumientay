@@ -14,6 +14,7 @@ if (!empty($_POST)) {
     $goodsretail = intval($_POST['goodsretail']);
     $goodswholesale = intval($_POST['goodswholesale']);
     $goodspricevip = intval($_POST['goodspricevip']);
+    $goodsunit = intval($_POST['goodsunit']);
     $option = array(
         'goodsid' => $goodsid,
         'goodsname' => $goodsname,
@@ -25,7 +26,8 @@ if (!empty($_POST)) {
         'total' => $goodstotal,
         'retail' => $goodsretail,
         'wholesale' => $goodswholesale,
-        'pricevip' => $goodspricevip
+        'pricevip' => $goodspricevip,
+        'goodsunit' => $goodsunit
     );
 //    $sql = "CALL COUPONDETAIL_INSERT('$goodsid', '$couponid', '$goodsname', '$goodscolor', '$goodssize', '$goodsamount',
 //    '$goodsprice', '$goodstotal', '$goodsretail', '$goodswholesale', '$goodspricevip')";
