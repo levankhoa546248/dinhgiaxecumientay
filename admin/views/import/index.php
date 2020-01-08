@@ -38,8 +38,8 @@
                 <input name="toDate" type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control input-sm"
                        id="toDate"/>
             </div>
-            <label class="col-sm-3 control-label pull-right" style="padding-left: 0px"><input type="checkbox"
-                                                                                              id="checkImport"/> Đã nhập</label>
+            <label class="col-sm-3 control-label pull-right" style="padding-left: 0px">
+                <input type="checkbox" id="checkImport"/> Đã nhập</label>
         </div>
         <div class="form-group">
             <div class="col-sm-3">

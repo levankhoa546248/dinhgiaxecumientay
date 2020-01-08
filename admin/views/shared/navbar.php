@@ -179,7 +179,7 @@
                     <a href="admin.php?controller=import"><i class="fa fa-cloud-download fa-fw"></i> Nhập hàng</a>
                 </li>
                 <li>
-                    <a href="admin.php"><i class="fa fa-upload fa-fw"></i> Xuất hàng</a>
+                    <a href="admin.php?controller=export"><i class="fa fa-upload fa-fw"></i> Đơn hàng</a>
                 </li>
             </ul>
         </div>

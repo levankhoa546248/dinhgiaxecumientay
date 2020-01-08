@@ -1,669 +1,907 @@
 <?php require('admin/views/shared/header.php'); ?>
-    <div id="page-wrapper">
-        <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <b>Bán hàng</b>
+<link rel="stylesheet" type="text/css" media="screen"
+      href="admin/themes/css/selfcss.css"/>
+<link rel="stylesheet" type="text/css" media="screen"
+      href="admin/themes/combogrid/css/smoothness/jquery-ui-1.10.1.custom.css"/>
+<script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-ui-1.10.1.custom.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="admin/themes/combogrid/css/jquery-ui-redmond.1.9.1.css"/>
+<link rel="stylesheet" type="text/css" media="screen"
+      href="admin/themes/combogrid/css/smoothness/jquery.ui.combogrid.css"/>
+<script type="text/javascript" src="admin/themes/combogrid/plugin/jquery.ui.combogrid-1.6.4.js"></script>
+<script type="text/javascript" src="http://malsup.github.io/jquery.blockUI.js"></script>
+
+<div class="pull-right col-sm-8" style="padding-right: 0px; margin-top: 5px; width: 60%">
+    <table class="table table-striped table-bordered table-hover small" id="tblCoupon" style="width:100%">
+        <caption class="bg-primary text-center">Danh sách phiếu nhập</caption>
+        <thead class="bg-primary">
+        <tr>
+            <th class="text-center" width="15%">Id</th>
+            <th class="text-left">Tên phiếu</th>
+            <th class="text-left">Ngày nhập</th>
+            <th class="text-left">Nhân viên id</th>
+            <th class="text-left">Nhân viên</th>
+            <th class="text-left">Is Import</th>
+            <th class="text-left">Trạng thái</th>
+            <th class="text-left"><i class="fa fa-gears"></i></th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div class="pull-left col-sm-4" style="padding-left: 0px; margin-top: 5px; width: 40%">
+    <div class="small form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-3">
+                Từ ngày
             </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body" style="size: 13px">
-                <form id="category-form" class="form-horizontal" method="post"
-                      enctype="multipart/form-data" role="form">
-                    <input id="Status" name="Status" type="hidden"/>
-                    <input id="ProductId" name="ProductId" type="hidden"/>
-                    <input id="TotalFunds" name="TotalFunds" type="hidden"/>
-                    <input id="RestFunds" name="RestFunds" type="hidden"/>
-                    <input id="ExportId" name="ExportId" type="hidden"/>
-
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="name" class="col-sm-4 control-label">Tên S.P</label>
-                            <div class="col-sm-8">
-                                <input name="ProductName" type="text" value=""
-                                       class="form-control" id="ProductName" placeholder="Tên sản phẩm"
-                                       required=""/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="link" class="col-sm-4 control-label">Giá xe</label>
-                            <div class="col-sm-8">
-                                <input name="ProductPrice" type="text" value="" data-type="currency" disabled
-                                       class="form-control text-right" id="ProductPrice" placeholder="Giá xe"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="link" class="col-sm-4 control-label">Trạng thái</label>
-                            <div class="col-sm-8">
-                                <input name="StatusShow" type="text" value="" disabled
-                                       class="form-control text-right" id="StatusShow" placeholder="Trạng thái"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="link" class="col-sm-4 control-label">Ng nhận</label>
-                            <div class="col-sm-8">
-                                <select name="ReceiverId" class="form-control" id="ReceiverId" required=""
-                                        data-show-subtext="true" data-live-search="true">
-                                    <option value="-1" selected disabled>Chọn người nhận tiền</option>
-                                    <?php foreach ($userInvestor as $userInvestors) {
-                                        echo '<option value="' . $userInvestors['Id'] . '">' . $userInvestors['Name'] . '</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="link" class="col-sm-4 control-label">Hình thức</label>
-                            <div class="col-sm-8">
-                                <select name="PaymentId" class="form-control" id="PaymentId" required=""
-                                        data-show-subtext="true" data-live-search="true">
-                                    <?php
-                                    foreach ($paymention as $paymentions) {
-                                        $selected = '';
-                                        if ($paymentions && ($paymentions['Id'] == '1')) $selected = 'selected=""';
-                                        echo '<option value="' . $paymentions['Id'] . '" ' . $selected . '>' . $paymentions['Name'] . '</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="link" class="col-sm-4 control-label"></label>
-                            <div class="col-sm-8">
-                                <button id="btnPerform" name="btnPerform" type="button" hidden
-                                        class="btn btn-primary">Bán hàng
-                                </button>
-                                <button id="btnCancel" name="btnCancel" type="button" hidden
-                                        class="btn btn-danger">Hủy bán
-                                </button>
-                                <button id="btnReport" name="btnReport" type="button" hidden
-                                        class="btn btn-warning">Báo cáo
-                                </button>
-                            </div>
-                            <label for="link" class="col-sm-4 control-label"></label>
-                        </div>
-                    </div>
-                </form>
-                <div class="col-sm-8">
-                    <table class="table table-striped table-bordered table-hover" id="tableInvestor"
-                           name="tableInvestor">
-                        <thead>
-                        <tr>
-                            <th class="text-center" width="10%">Id</th>
-                            <th class="text-center" hidden>ProductId</th>
-                            <th class="text-center" hidden>UserId</th>
-                            <th>Sản phẩm</th>
-                            <th>Chủ đầu tư</th>
-                            <th class="text-right" width="20%">Vốn</th>
-                            <th class="text-center" width="10%">Tỉ lệ</th>
-                            <th class="text-right" width="20%">Tiền lãi</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($investor as $investors): ?>
-                            <tr class="odd gradeX">
-                                <td class="text-center"><?php echo $investors['Id'] ?></td>
-                                <td class="text-center" hidden><?php echo $investors['ProductId'] ?></td>
-                                <td class="text-center" hidden><?php echo $investors['UserId'] ?></td>
-                                <td>
-                                    <?php echo $investors['NameProduct'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $investors['NameUser']; ?>
-                                </td>
-                                <td class="text-right">
-                                    <?php echo $investors ? number_format($investors['Funds'], 0, '.', ',') : 0; ?>
-                                </td>
-                                <td class="text-right">
-                                    <?php echo $investors ? number_format($investors['Percentage'], 0, '.', ',') : 0; ?>
-                                </td>
-                                <td class="text-right">
-                                    <?php echo $investors ? number_format($investors['Dividends'], 0, '.', ',') : 0; ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                        <tfoot align="right">
-                        <tr>
-                            <th></th>
-                            <th hidden></th>
-                            <th hidden></th>
-                            <th></th>
-                            <th></th>
-                            <th class="text-right"></th>
-                            <th class="text-center"></th>
-                            <th class="text-right"></th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
+            <div class="col-sm-4">
+                <input name="toDate" type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control input-sm"
+                       id="toDate"/>
             </div>
-            <table class="table table-striped table-bordered table-hover" id="tlb_sanpham">
-                <thead>
-                <tr>
-                    <th class="text-center">Id</th>
-                    <th width="25%">Tên xe</th>
-                    <th>Giá xe</th>
-                    <th>Ngày nhập</th>
-                    <th>Trạng thái</th>
-                    <th>Ngày bán</th>
-                    <th hidden></th>
-                    <th hidden>Id hình thức</th>
-                    <th>Hình thức</th>
-                    <th hidden>Id người nhận</th>
-                    <th>Người nhận</th>
-                    <th hidden>Export Id</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($product as $products): ?>
-                    <tr class="odd gradeX">
-                        <td class="text-center"><?php echo $products['Id'] ?></td>
-                        <td>
-                            <?php echo $products['Name']; ?>
-                        </td>
-                        <td class="text-right">
-                            <?php echo $products ? number_format($products['Price'], 0, '.', ',') : 0; ?>
-                        </td>
-                        <td class="text-center"><?php echo date_format(new DateTime($products['Createdate']), 'd-m-Y') ?></td>
-                        <td class="text-center">
-                            <?php
-                            switch ($products['Status']) {
-                                case '1':
-                                    echo 'Đã bán';
-                                    break;
-                                case '2':
-                                    echo 'Đã báo cáo';
-                                    break;
-                                default:
-                                    echo 'Chưa bán';
-                            }
-                            ?>
-                        </td>
-                        <td class="text-center">
-                            <?php echo $products['Date'] ? date_format(new DateTime($products['Date']), 'd-m-Y H:m:i') : ''; ?>
-                        </td>
-                        <td class="text-center" hidden>
-                            <?php echo $products['Status']; ?>
-                        </td>
-                        <td class="text-center" hidden>
-                            <?php echo $products['PaymentId']; ?>
-                        </td>
-                        <td class="text-center">
-                            <?php echo $products['PaymentName']; ?>
-                        </td>
-                        <td class="text-center" hidden>
-                            <?php echo $products['ReceiverId']; ?>
-                        </td>
-                        <td class="text-center">
-                            <?php echo $products['ReceiverName']; ?>
-                        </td>
-                        <td class="text-center" hidden>
-                            <?php echo $products['ExportId']; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
+            <label class="col-sm-3 control-label pull-right" style="padding-left: 0px"><input type="checkbox"
+                                                                                              id="checkImport"/> Đã nhập</label>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-3">
+                Đến ngày
+            </div>
+            <div class="col-sm-4">
+                <input name="fromDate" type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control input-sm"
+                       id="fromDate"/>
+            </div>
+            <div class="col-sm-4 pull-right">
+                <button class="btnself btn-success pull-right"
+                        id="btnFreshCoupon"><i class="glyphicon glyphicon-refresh"></i> Làm mới
+                </button>
+            </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#btnPerform').hide();
-            $('#btnCancel').hide();
-            $('#btnReport').hide();
-            $('#tableInvestor tbody').on('click', 'tr', function (id) {
-                var data = $('#tableInvestor').DataTable().row(this).data();
-                if (data["Id"] !== undefined && data["Id"] !== null) {
-                    var InvestorId = data["UserId"];
-                    $('#ReceiverId').selectpicker('val', InvestorId);
-                } else {
-                    var InvestorId = data[2];
-                    $('#ReceiverId').selectpicker('val', InvestorId);
-                }
-            });
-
-            $("#btnCancel").click(function () {
-                var ExportId = $("#ExportId").val();
-                var ReceiverId = $("#ReceiverId").val();
-                var PaymentId = $("#PaymentId").val();
-                var ProductId = $("#ProductId").val();
-                if (ProductId == '0' || ProductId == "") {
-                    return alert("Chưa chọn sản phẩm");
-                }
-                var RestFunds = $("#RestFunds").val();
-                if (confirm('Xác nhận hủy bán hàng sản phẩm này') == true) {
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/views/export/exportProducts.php",
-                        data: {
-                            'ExportId': ExportId,
-                            'ProductId': ProductId,
-                            'Status': 0,
-                            'ReceiverId': ReceiverId,
-                            'PaymentId': PaymentId
-                        },
-                        success: function (data) {
-                            if (data > 0) {
-                                alert('Thực hiện thành công');
-                            } else {
-                                alert('Thực hiện không thành công');
-                            }
-                            var ProductId = $("#ProductId").val();
-                            loadDataTable(ProductId);
-                            loadDataTableProduct();
-                            reloadForm();
-                        }
-                    });
-                }
-            });
-
-            $("#btnReport").click(function () {
-                var ExportId = $("#ExportId").val();
-                var ReceiverId = $("#ReceiverId").val();
-                var PaymentId = $("#PaymentId").val();
-                var ProductId = $("#ProductId").val();
-                if (ProductId == '0' || ProductId == "") {
-                    return alert("Chưa chọn sản phẩm");
-                }
-                var ProductPrice = $("#ProductPrice").val();
-                if (confirm('Xác nhận sản phẩm này sẽ chốt báo cáo') == true) {
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/views/export/exportProducts.php",
-                        data: {
-                            'ExportId': ExportId,
-                            'ProductId': ProductId,
-                            'Status': 2,
-                            'ReceiverId': ReceiverId,
-                            'PaymentId': PaymentId,
-                            'ProductPrice': ProductPrice
-                        },
-                        success: function (data) {
-                            if (data > 0) {
-                                alert('Thực hiện thành công');
-                            } else {
-                                alert('Thực hiện không thành công');
-                            }
-                            var ProductId = $("#ProductId").val();
-                            loadDataTable(ProductId);
-                            loadDataTableProduct();
-                            reloadForm();
-                        }
-                    });
-                }
-            });
-
-            $("#btnPerform").click(function () {
-                var ExportId = $("#ExportId").val();
-                var ReceiverId = $("#ReceiverId").val();
-                if (ReceiverId == '-1' || ReceiverId == null) {
-                    return alert('Chưa chọn Người nhận tiền');
-                }
-                var PaymentId = $("#PaymentId").val();
-                var ProductId = $("#ProductId").val();
-                if (ProductId == '0' || ProductId == "") {
-                    return alert("Chưa chọn sản phẩm");
-                }
-                var RestFunds = $("#RestFunds").val();
-                if (RestFunds !== "0") {
-                    return alert('Chưa nhập đủ số tiền đầu tư cho sản phẩm');
-                }
-                if ($("#Status").val() == '1') {
-                    return alert('Xe này đã bán');
-                }
-                if (confirm('Xác nhận bán sản phẩm') == true) {
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/views/export/exportProducts.php",
-                        data: {
-                            'ExportId': ExportId,
-                            'ProductId': ProductId,
-                            'Status': 1,
-                            'ReceiverId': ReceiverId,
-                            'PaymentId': PaymentId
-                        },
-                        success: function (data) {
-                            if (data > 0) {
-                                alert('Thực hiện thành công');
-                            } else {
-                                alert('Thực hiện không thành công');
-                            }
-                            var ProductId = $("#ProductId").val();
-                            loadDataTable(ProductId);
-                            loadDataTableProduct();
-                            reloadForm();
-                        }
-                    });
-                }
-            });
-
-            $('#tableInvestor').DataTable({
-                responsive: true,
-                searching: true,
-                lengthMenu: [[5, 15, 30, -1], [5, 15, 30, "All"]],
-                order: [[0, 'desc']],
-                "scrollY": "100px",
-                "scrollCollapse": true,
-                "paging": false
-            });
-
-            $('#tlb_sanpham').DataTable({
-                responsive: true,
-                searching: true,
-                lengthMenu: [[5, 15, 30, -1], [5, 15, 30, "All"]],
-                order: [[0, 'desc']]
-            });
-
-            $('#tlb_sanpham tbody').on('click', 'tr', function (id) {
-                var data = $('#tlb_sanpham').DataTable().row(this).data();
-                if(data.length > 0){
-                    $("#ExportId").val(data[11]);
-                    $("#ProductId").val(data[0]);
-                    $("#ProductName").val(data[1]);
-                    $("#ProductPrice").val(data[2]);
-                    $("#StatusShow").val(data[4]);
-                    var status = data[6];
-                    $("#Status").val(status);
-                    if (status == 0) {
-                        $('#btnPerform').show();
-                        $('#btnCancel').hide();
-                        $('#btnReport').hide();
-                    } else if (status == 1) {
-                        $('#btnPerform').hide();
-                        $('#btnCancel').show();
-                        $('#btnReport').show();
-                    } else {
-                        $('#btnPerform').hide();
-                        $('#btnCancel').hide();
-                        $('#btnReport').hide();
-                    }
-                    loadDataTable(data[0]);
-                    var PaymentId = data[7] == "0" ? "" : data[7];
-                    var ReceiverId = data[9] == "0" ? "" : data[9];
-                    $("#PaymentId").selectpicker('val', PaymentId == "" ? "1" : PaymentId);
-                    $('#ReceiverId').selectpicker('val', ReceiverId == "" ? "-1" : ReceiverId);
-                } else {$("#ExportId").val(data["ExportId"]);
-                    $("#ProductId").val(data["Id"]);
-                    $("#ProductName").val(data["Name"]);
-                    $("#ProductPrice").val(data["Price"]);
-                    var status = data["Status"];
-                    $("#Status").val(status);
-                    if (status == 0) {
-                        $("#StatusShow").val('Chưa bán');
-                        $('#btnPerform').show();
-                        $('#btnCancel').hide();
-                        $('#btnReport').hide();
-                    } else if (status == 1) {
-                        $("#StatusShow").val('Đã bán');
-                        $('#btnPerform').hide();
-                        $('#btnCancel').show();
-                        $('#btnReport').show();
-                    } else {
-                        $("#StatusShow").val('Đã báo cáo');
-                        $('#btnPerform').hide();
-                        $('#btnCancel').hide();
-                        $('#btnReport').hide();
-                    }
-                    loadDataTable(data["Id"]);
-                    var PaymentId = data["PaymentId"] == null ? "" : data["PaymentId"];
-                    var ReceiverId = data["ReceiverId"] == null ? "" : data["ReceiverId"];
-                    $("#PaymentId").selectpicker('val', PaymentId == "" ? "1" : PaymentId);
-                    $('#ReceiverId').selectpicker('val', ReceiverId == "" ? "-1" : ReceiverId);
-                }
-            });
-
-            $("input[data-type='currency']").on({
-                keyup: function () {
-                    formatCurrency($(this));
-                },
-                blur: function () {
-                    formatCurrency($(this), "blur");
-                }
-            });
-
-            function formatNumber(n) {
-                // format number 1000000 to 1,234,567
-                return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-
-            function formatCurrency(input, blur) {
-                // appends $ to value, validates decimal side
-                // and puts cursor back in right position.
-
-                // get input value
-                var input_val = input.val();
-
-                // don't validate empty input
-                if (input_val === "") {
-                    return;
-                }
-
-                // original length
-                var original_len = input_val.length;
-
-                // initial caret position
-                var caret_pos = input.prop("selectionStart");
-
-                // check for decimal
-                if (input_val.indexOf(".") >= 0) {
-
-                    // get position of first decimal
-                    // this prevents multiple decimals from
-                    // being entered
-                    var decimal_pos = input_val.indexOf(".");
-
-                    // split number by decimal point
-                    var left_side = input_val.substring(0, decimal_pos);
-                    var right_side = input_val.substring(decimal_pos);
-
-                    // add commas to left side of number
-                    left_side = formatNumber(left_side);
-
-                    // validate right side
-                    right_side = formatNumber(right_side);
-
-                    // On blur make sure 2 numbers after decimal
-                    if (blur === "blur") {
-                        right_side;
-                    }
-
-                    // Limit decimal to only 2 digits
-                    right_side = right_side.substring(0, 2);
-
-                    // join number by .
-                    input_val = left_side;
-
-                } else {
-                    // no decimal entered
-                    // add commas to number
-                    // remove all non-digits
-                    input_val = formatNumber(input_val);
-                    input_val = input_val;
-
-                    // final formatting
-                    if (blur === "blur") {
-                        input_val;
-                    }
-                }
-
-                // send updated string to input
-                input.val(input_val);
-
-                // put caret back in the right position
-                var updated_len = input_val.length;
-                caret_pos = updated_len - original_len + caret_pos;
-                input[0].setSelectionRange(caret_pos, caret_pos);
-            }
-
-            function loadDataTableProduct() {
-                $.ajax({
-                    url: "admin/views/export/loadListProduct.php",
-                    type: "GET",
-                    success: function (json) {
-                        $('#tlb_sanpham').DataTable().destroy();
-                        $('#tlb_sanpham').DataTable({
-                            responsive: true,
-                            searching: true,
-                            lengthMenu: [[5, 15, 30, -1], [5, 15, 30, "All"]],
-                            order: [[0, 'desc']],
-                            data: JSON.parse(json),
-                            columns: [
-                                {data: 'Id', align: 'center'},
-                                {data: 'Name', align: 'center'},
-                                {
-                                    data: 'Price',
-                                    align: 'center',
-                                    render: $.fn.dataTable.render.number(',', '.')
-                                },
-                                {data: 'Createdate'},
-                                {data: 'Status'},
-                                {
-                                    data: 'Date'
-                                },
-                                {data: 'Status'},
-                                {data: 'PaymentId'},
-                                {data: 'PaymentName'},
-                                {data: 'ReceiverId'},
-                                {data: 'ReceiverName'},
-                                {data: 'ExportId'}
-                            ],
-                            columnDefs: [
-                                {
-                                    "targets": 0, // your case first column
-                                    "className": "text-center",
-                                    "width": "10%"
-                                }, {
-                                    "targets": 1, // your case first column
-                                    "width": "20%"
-                                }, {
-                                    "targets": 2,
-                                    "className": "text-right"
-                                }, {
-                                    "targets": 4,
-                                    render: function (data, type, row) {
-                                        return data == '1' ? 'Đã bán' : data == '2' ? 'Đã báo cáo' : 'Chưa bán'
-                                    }
-                                }, {
-                                    "targets": 6,
-                                    "visible": false
-                                }, {
-                                    "targets": 7,
-                                    "visible": false
-                                }, {
-                                    "targets": 9,
-                                    "visible": false
-                                }, {
-                                    "targets": 11,
-                                    "visible": false
-                                }
-                            ]
-                        });
-                    }
-                });
-            }
-
-            function loadDataTable(ProductId) {
-                $.ajax({
-                    url: "admin/views/import/loadListInvestor.php",
-                    type: "POST",
-                    data: {
-                        'ProductId': ProductId
-                    },
-                    success: function (json) {
-                        $('#tableInvestor').DataTable().destroy();
-                        $('#tableInvestor').DataTable({
-                            data: JSON.parse(json),
-                            columns: [
-                                {data: 'Id', align: 'center'},
-                                {data: 'ProductId', align: 'center'},
-                                {data: 'UserId', align: 'center'},
-                                {data: 'NameProduct'},
-                                {data: 'NameUser'},
-                                {
-                                    data: 'Funds',
-                                    render: $.fn.dataTable.render.number(',', '.')
-                                },
-                                {data: 'Percentage'},
-                                {
-                                    data: 'Dividends',
-                                    render: $.fn.dataTable.render.number(',', '.')
-                                }
-                            ],
-                            columnDefs: [
-                                {
-                                    "targets": 0, // your case first column
-                                    "className": "text-center",
-                                    "width": "10%"
-                                }, {
-                                    "targets": 1,
-                                    "visible": false,
-                                }, {
-                                    "targets": 2,
-                                    "visible": false,
-                                }, {
-                                    "targets": 5, // your case first column
-                                    "className": "text-right",
-                                    "width": "25%"
-                                }, {
-                                    "targets": 6, // your case first column
-                                    "className": "text-center",
-                                    "width": "10%"
-                                }, {
-                                    "targets": 7, // your case first column
-                                    "className": "text-right",
-                                    "width": "20%"
-                                }],
-                            footerCallback: function (row, data, start, end, display) {
-                                var api = this.api(), data;
-
-                                // converting to interger to find total
-                                var intVal = function (i) {
-                                    return typeof i === 'string' ?
-                                        i.replace(/[\$,]/g, '') * 1 :
-                                        typeof i === 'number' ?
-                                            i : 0;
-                                };
-
-                                var sumFunds = api
-                                    .column(5)
-                                    .data()
-                                    .reduce(function (a, b) {
-                                        return intVal(a) + intVal(b);
-                                    }, 0);
-
-                                var sumPercentage = api
-                                    .column(6)
-                                    .data()
-                                    .reduce(function (a, b) {
-                                        return intVal(a) + intVal(b);
-                                    }, 0);
-
-                                var sumDividends = api
-                                    .column(7)
-                                    .data()
-                                    .reduce(function (a, b) {
-                                        return intVal(a) + intVal(b);
-                                    }, 0);
-                                // Update footer by showing the total with the reference of the column index
-                                $(api.column(4).footer()).html('Total');
-                                $(api.column(5).footer()).html(formatNumber(sumFunds.toString()));
-                                $(api.column(6).footer()).html(sumPercentage);
-                                $(api.column(7).footer()).html(formatNumber(sumDividends.toString()));
-                                $('#TotalFunds').val(formatNumber(sumFunds.toString()));
-                                var price = Number($('#ProductPrice').val().replace(/[^0-9.-]+/g, ""));
-                                var restfunds = price - sumFunds;
-                                $('#RestFunds').val(formatNumber(restfunds.toString()));
-                            }
-                        });
-                    }
-                });
-            }
-
-            function reloadForm() {
-                $("#ProductId").val("");
-                $("#ProductName").val("");
-                $("#ProductPrice").val("");
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <b class="small">Tạo phiếu nhập</b>
+        </div>
+        <div class="panel-body small form-horizontal" style="padding-bottom: inherit">
+            <div>
+                <!--                <input name="couponid" type="hidden" class="form-control" id="couponid"/>-->
+                <input name="isimport" type="hidden" class="form-control" id="isimport"/>
+            </div>
+            <div class="form-group">
+                <label for="couponid" class="col-sm-4 control-label">Id phiếu</label>
+                <div class="col-sm-8">
+                    <input name="couponid" type="text" class="form-control input-sm" disabled
+                           id="couponid" placeholder="Id phiếu"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="couponname" class="col-sm-4 control-label">Tên phiếu</label>
+                <div class="col-sm-8">
+                    <input name="couponname" type="text" class="form-control input-sm"
+                           id="couponname" placeholder="Tên phiếu gợi nhớ"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="coupondate" class="col-sm-4 control-label">Ngày nhập</label>
+                <div class="col-sm-8">
+                    <input name="coupondate" type="date" value="<?php echo date('Y-m-d'); ?>"
+                           class="form-control input-sm"
+                           id="coupondate" placeholder="Ngày nhập"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="couponemployee" class="col-sm-4 control-label">Nhân viên</label>
+                <div class="col-sm-8">
+                    <input name="couponemployeeid" type="hidden" value="<?php echo $employee["0"]["id"]; ?>"
+                           class="form-control input-sm"
+                           id="couponemployeeid"/>
+                    <input name="couponemployeename" type="text" value="<?php echo $employee["0"]["name"]; ?>"
+                           class="form-control input-sm"
+                           id="couponemployeename" disabled/>
+                </div>
+            </div>
+            <div class="form-group pull-right">
+                <div class="col-sm-1"></div>
+                <div class="pull-right" style="padding-right: 15px">
+                    <button class="btnself btn-warning" type="button" id="btnReport">
+                        <i class="glyphicon glyphicon-book"></i> Nhận tiền
+                    </button>
+                    <button class="btnself btn-danger" type="button" id="btnCancel">
+                        <i class="glyphicon glyphicon-ban-circle"></i> Hủy phiếu
+                    </button>
+                    <button class="btnself btn-warning" type="button" id="btnIsImport">
+                        <i class="glyphicon glyphicon-open-file"></i> Nhập kho
+                    </button>
+                    <button class="btnself btn-primary" type="button" id="btnUpdateCoupon"><i
+                                class="glyphicon glyphicon-plus"></i> Cập nhật
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-striped table-bordered table-hover small" id="tblImport" style="width:100%">
+    <thead class="bg-info">
+    <tr>
+        <th class="text-center" width="5%">Id</th>
+        <th class="text-left" width="15%">Tên hàng</th>
+        <th class="text-left" width="7%">Màu sắc</th>
+        <th class="text-left" width="8%">Kích thước</th>
+        <th class="text-left" width="8%">Số lượng</th>
+        <th class="text-left" width="7%">ĐVT</th>
+        <th class="text-left">Giá vốn</th>
+        <th class="text-left">Thành tiền</th>
+        <th class="text-left">Giá lẻ</th>
+        <th class="text-left">Giá sỉ</th>
+        <th class="text-left">Giá VIP</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <input name="goodsid" type="text" class="form-control input-sm" id="goodsid" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodsname" type="text" class="form-control input-sm" id="goodsname"
+                   placeholder="Nhập tên hàng hóa" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodscolor" type="text" class="form-control input-sm" id="goodscolor"
+                   placeholder="Màu sắc" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodssize" type="text" class="form-control input-sm" id="goodssize"
+                   placeholder="Kích thước" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodsamount" type="number" class="form-control input-sm text-center" id="goodsamount"
+                   placeholder="Số lượng" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodsunit" type="text" class="form-control input-sm" id="goodsunit"
+                   placeholder="Đơn vị tính" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodsprice" type="text" class="form-control input-sm text-right" id="goodsprice"
+                   placeholder="Giá vốn" data-type="currency" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodstotal" type="text" class="form-control input-sm text-right" id="goodstotal"
+                   placeholder="Thành tiền" data-type="currency" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodsretail" type="text" class="form-control input-sm text-right" id="goodsretail"
+                   placeholder="Giá lẻ" data-type="currency" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodswholesale" type="text" class="form-control input-sm text-right" id="goodswholesale"
+                   placeholder="Giá sỉ" data-type="currency" disabled required=""/>
+        </td>
+        <td>
+            <input name="goodspricevip" type="text" class="form-control input-sm text-right" id="goodspricevip"
+                   placeholder="Giá VIP" data-type="currency" disabled required=""/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="table table-striped table-bordered table-hover small" id="tblCouponDetail" style="width:100%">
+    <thead class="bg-primary">
+    <tr>
+        <th class="text-center" width="7%" hidden>Id</th>
+        <th class="text-center" width="7%">Id hàng</th>
+        <th class="text-left">Tên hàng</th>
+        <th class="text-left">Màu sắc</th>
+        <th class="text-left">Kích thước</th>
+        <th class="text-left" hidden>CouponId</th>
+        <th class="text-left">Số lượng</th>
+        <th class="text-left">ĐVT</th>
+        <th class="text-left">Giá vốn</th>
+        <th class="text-left">Thành tiền</th>
+        <th class="text-left">Giá lẻ</th>
+        <th class="text-left">Giá sỉ</th>
+        <th class="text-left">Giá VIP</th>
+        <th class="text-left"><i class="fa fa-gears"></i></th>
+    </tr>
+    </thead>
+    <tfoot align="right">
+    <tr>
+        <th hidden></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="text-right" hidden></th>
+        <th class="text-center"></th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+        <th class="text-right"></th>
+    </tr>
+    </tfoot>
+</table>
+<div hidden>
+    <input name="sumAmount" type="text" class="form-control input-sm" id="sumAmount" required=""/>
+    <input name="sumTotal" type="text" class="form-control input-sm" id="sumTotal" required=""/>
+    <input name="sumRetail" type="text" class="form-control input-sm" id="sumRetail" required=""/>
+    <input name="sumWhole" type="text" class="form-control input-sm" id="sumWhole" required=""/>
+    <input name="sumVip" type="text" class="form-control input-sm" id="sumVip" required=""/>
+</div>
+<?php require('admin/views/shared/footer.php'); ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[data-type='currency']").on({
+            keyup: function () {
+                formatCurrency($(this));
+            },
+            blur: function () {
+                formatCurrency($(this), "blur");
             }
         });
-    </script>
-<?php require('admin/views/shared/footer.php'); ?>
+
+        $('#btnUpdateCoupon').click(function () {
+            updateCoupon();
+        });
+
+        $("#couponname").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                updateCoupon();
+            }
+        });
+        function updateCoupon() {
+            var id = $('#couponid').val();
+            var name = $('#couponname').val();
+            var coupondate = $('#coupondate').val();
+            var employeeid = $('#couponemployeeid').val();
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/import/updateCoupon.php",
+                data: {
+                    'id': id,
+                    'name': name,
+                    'coupondate': coupondate,
+                    'employeeid': employeeid
+                },
+                success: function (data) {
+                    if (data == '0') {
+                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                            $('#couponname').focus();
+                        });
+                    } else {
+                        jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                            $('#goodsname').focus();
+                        });
+                        // $('#btnFreshCoupon').click();
+                        $('#couponname').prop('disabled', true);
+                        $('#coupondate').prop('disabled', true);
+                        $('#couponid').val(data);
+                        disableTblImport(false);
+                        loadCoupon();
+                        var checkImport = $("#checkImport").is(":checked");
+                        disableObjectCoupon(checkImport);
+                    }
+                    $.unblockUI();
+                }
+            });
+        }
+        // var toDay = $('#toDate').val();
+        loadCoupon();
+
+        $('#btnFreshCoupon').click(function (e) {
+            var checkImport = $("#checkImport").is(":checked");
+            loadCoupon();
+            disableTblImport(true);
+            emptyObjectCoupon();
+            disableObjectCoupon(checkImport);
+            loadCouponDetail('0');
+        });
+
+        function disableObjectCoupon(bool) {
+            $('#couponname').prop('disabled', bool);
+            $('#coupondate').prop('disabled', bool);
+        }
+
+        function emptyObjectCoupon() {
+            $('#couponid').val('');
+            $('#couponname').val('');
+            $('#coupondate').val(<?php echo json_encode(date('Y-m-d')); ?>);
+        }
+
+        function loadCoupon() {
+            var toDate = $('#toDate').val();
+            var fromDate = $('#fromDate').val();
+            var checkImport = $("#checkImport").is(":checked") ? 1 : 0;
+            $('#tblCoupon').DataTable().destroy();
+            $('#tblCoupon').DataTable({
+                searching: true,
+                lengthChange: false,
+                // info: false,
+                // scrollY: "150px",
+                // paging: false,
+                width: '100%',
+                responsive: true,
+                lengthMenu: [[5, 10, 30, "All"]],
+                order: [[0, 'desc']],
+                ajax: {
+                    type: 'POST',
+                    url: "admin/controllers/import/listCoupon.php",
+                    data: {
+                        toDate: toDate,
+                        fromDate: fromDate,
+                        checkImport: checkImport
+                    },
+                    dataSrc: ''
+                },
+                columns: [
+                    {data: "id", className: "text-center", width: '12%'},
+                    {data: "name"},
+                    {data: "coupondate"},
+                    {data: "employeeid", visible: false},
+                    {data: "employeename"},
+                    {data: "isimport", visible: false},
+                    {data: "isimportname", width: '15%'},
+                    {
+                        data: null,
+                        className: "text-center",
+                        width: '10%',
+                        defaultContent: '<button class="coupondelete"><i class="glyphicon glyphicon-trash"></i></button>'
+                    }
+                ]
+            });
+        }
+
+        $('#tblCoupon tbody').on('click', 'tr', function (id) {
+            var data = $('#tblCoupon').DataTable().row(this).data();
+            if (data["id"] !== undefined && data["id"] !== null) {
+                $("#couponid").val(data["id"]);
+                $("#couponname").val(data["name"]);
+                $("#coupondate").val(data["coupondate"]);
+                $("#couponemployeeid").val(data["employeeid"]);
+                $("#couponemployeename").val(data["employeename"]);
+                var isimport = data["isimport"];
+                $("#isimport").val(isimport);
+                disableTblImport(isimport == '1' ? true : false);
+                loadCouponDetail(data["id"]);
+                changeIsImport(isimport);
+                // if (isimport == "0") {
+                //     changeIsImport("0");
+                // } else if (isimport == "1") {
+                //     changeIsImport("1");
+                // } else if (isimport == "2") {
+                //     changeIsImport("2");
+                // } else {
+                //     changeIsImport("2");
+                // }
+            }
+        });
+
+        $('#tblCoupon').on('click', 'button.coupondelete', function (e) {
+            var checkImport = $("#checkImport").is(":checked");
+            if (checkImport) {
+                return jAlert('Trạng thái không được xóa', 'Thông báo');
+            }
+            var $row = $(this).closest('tr');
+            var data = $('#tblCoupon').DataTable().row($row).data();
+            jConfirm('Bạn chắc chắn xóa phiếu này này?', 'Thông báo', function (e) {
+                if (e == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: "admin/controllers/import/deleteCoupon.php",
+                        data: {
+                            'id': data["id"]
+                        },
+                        success: function (data) {
+                            if (data == '0') {
+                                jAlert('Thực hiện không thành công. Vui lòng kiểm tra lại phiếu đã có nhập hàng chưa', 'Thông báo');
+                            } else {
+                                jAlert('Thực hiện thành công', 'Thông báo');
+                                $('#btnFreshCoupon').click();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        function disableTblImport(bool) {
+            $('#goodsname').prop('disabled', bool);
+            $('#goodsamount').prop('disabled', bool);
+            $('#goodsprice').prop('disabled', bool);
+            // $('#goodstotal').prop('disabled', bool);
+            $('#goodsretail').prop('disabled', bool);
+            $('#goodswholesale').prop('disabled', bool);
+            $('#goodspricevip').prop('disabled', bool);
+        }
+
+        $("#goodsname").combogrid({
+            url: 'admin/controllers/import/listGoods.php',
+            width: '50%',
+            colModel: [
+                {'columnName': 'id', 'width': '10', 'label': 'Id'},
+                {'columnName': 'name', 'width': '30', 'label': 'Tên hàng', align: 'left'},
+                {'columnName': 'color', 'width': '25', 'label': 'Màu sắc', align: 'left'},
+                {'columnName': 'sizename', 'width': '25', 'label': 'Kích thước'},
+                {'columnName': 'unitname', 'width': '10', 'label': 'Đơn vị tính'}
+            ],
+            select: function (event, ui) {
+                $("#goodsid").val(ui.item.id);
+                $("#goodsname").val(ui.item.name);
+                $("#goodscolor").val(ui.item.color);
+                $("#goodssize").val(ui.item.sizename);
+                $("#goodsunit").val(ui.item.unitname);
+                return false;
+            }
+        });
+
+        $("#goodsname").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                var goodsid = $("#goodsid").val();
+                var goodsCheck = $('#tblCouponDetail').DataTable().columns(1).data()[0];
+                var checkResult = checkSurvival(goodsid, goodsCheck);
+                if (checkResult) {
+                    jAlert('Sản phẩm đã có trong phiếu nhập. Vui lòng xóa sản phẩm ra khỏi phiếu và thêm lại !!!', 'Thông báo', function (e) {
+                        emptyTblImport();
+                        $('#goodsname').focus();
+                    });
+                } else {
+                    $("#goodsamount").focus();
+                }
+            }
+        });
+        $("#goodsamount").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                if (!checkIf($('#goodsamount').val())) {
+                    $("#goodsprice").focus();
+                } else {
+                    jAlert('Số lượng không được để trống', 'Thông báo', function (e) {
+                        $('#goodsamount').focus();
+                    });
+                }
+            }
+        });
+        $("#goodsprice").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                if (!checkIf($('#goodsprice').val())) {
+                    $("#goodsretail").focus();
+                    var amount = $('#goodsamount').val();
+                    var price = $("#goodsprice").val();
+                    var total = amount * StringToNumber(price);
+                    $('#goodstotal').val(formatNumber(total.toString()));
+                } else {
+                    jAlert('Giá vốn không được để trống', 'Thông báo', function (e) {
+                        $('#goodsprice').focus();
+                    });
+                }
+            }
+        });
+        $("#goodsretail").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                if (!checkIf($('#goodsretail').val())) {
+                    $("#goodswholesale").focus();
+                } else {
+                    jAlert('Giá bán lẻ không được để trống', 'Thông báo', function (e) {
+                        $('#goodsretail').focus();
+                    });
+                }
+            }
+        });
+        $("#goodswholesale").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                $("#goodspricevip").focus();
+            }
+        });
+        $("#goodspricevip").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                var goodsid = $('#goodsid').val();
+                if (checkIf(goodsid)) {
+                    return jAlert('Chưa nhập thông tin sản phẩm', 'Thông báo', function (e) {
+                        $("#goodspricevip").focus();
+                    });
+                }
+                var goodsname = $('#goodsname').val();
+                var goodscolor = $('#goodscolor').val();
+                var goodssize = $('#goodssize').val();
+                var goodsamount = $('#goodsamount').val();
+                var goodsprice = StringToNumber($('#goodsprice').val());
+                var goodstotal = StringToNumber($('#goodstotal').val());
+                var goodsretail = StringToNumber($('#goodsretail').val());
+                var goodswholesale = StringToNumber($('#goodswholesale').val());
+                var goodspricevip = StringToNumber($('#goodspricevip').val());
+                var goodsunit = $('#goodsunit').val();
+                var couponid = $('#couponid').val();
+                $.blockUI({
+                    message: '<h1>Đợi trong giây lát...</h1>',
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    },
+                    onOverlayClick: $.unblockUI
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "admin/controllers/import/insertCouponDetail.php",
+                    data: {
+                        'goodsid': goodsid,
+                        'goodsname': goodsname,
+                        'goodscolor': goodscolor,
+                        'goodssize': goodssize,
+                        'goodsamount': goodsamount,
+                        'goodsprice': goodsprice,
+                        'goodstotal': goodstotal,
+                        'goodsretail': goodsretail,
+                        'goodswholesale': goodswholesale,
+                        'goodspricevip': goodspricevip,
+                        'goodsunit': goodsunit,
+                        'couponid': couponid
+                    },
+                    success: function (data) {
+                        if (data == '0') {
+                            jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                $('#goodsname').focus();
+                            });
+                        } else {
+                            jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                emptyTblImport();
+                                $('#goodsname').focus();
+                            });
+                            loadCouponDetail(couponid);
+                        }
+                        $.unblockUI();
+                    }
+                });
+            }
+        });
+
+        function loadCouponDetail(couponid) {
+            $('#tblCouponDetail').DataTable().destroy();
+            $('#tblCouponDetail').DataTable({
+                searching: false,
+                // lengthChange: false,
+                // info: false,
+                // scrollY: "150px",
+                paging: false,
+                width: '100%',
+                responsive: true,
+                // lengthMenu: [[4, 10, 30, "All"]],
+                // order: [[0, 'desc']],
+                ajax: {
+                    type: 'POST',
+                    url: "admin/controllers/import/listCouponDetail.php",
+                    data: {
+                        couponid: couponid
+                    },
+                    dataSrc: ''
+                },
+                columns: [
+                    {data: "id", className: "text-center", width: '10%', visible: false},
+                    {data: "goodsid", className: "text-center", width: '10%'},
+                    {data: "goodsname"},
+                    {data: "goodscolor"},
+                    {data: "goodssize"},
+                    {data: "couponid", visible: false},
+                    {data: "amount", className: "text-center"},
+                    {data: "goodsunit", className: "text-center"},
+                    {
+                        data: "price", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "total", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "retail", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "wholesale", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "pricevip", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: null,
+                        className: "text-center",
+                        width: '7%',
+                        defaultContent: '<button class="coupondetaildelete"><i class="glyphicon glyphicon-trash"></i></button>'
+                    }
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var sumAmount = api
+                        .column(6)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var sumTotal = api
+                        .column(8)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var sumRetail = api
+                        .column(9)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var sumWhole = api
+                        .column(10)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var sumVip = api
+                        .column(11)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(2).footer()).html('Tổng');
+                    $(api.column(6).footer()).html(formatNumber(sumAmount.toString()));
+                    $(api.column(8).footer()).html(formatNumber(sumTotal.toString()));
+                    $(api.column(9).footer()).html(formatNumber(sumRetail.toString()));
+                    $(api.column(10).footer()).html(formatNumber(sumWhole.toString()));
+                    $(api.column(11).footer()).html(formatNumber(sumVip.toString()));
+                    $('#sumAmount').val(sumAmount);
+                    $('#sumTotal').val(sumTotal);
+                    $('#sumRetail').val(sumRetail);
+                    $('#sumWhole').val(sumWhole);
+                    $('#sumVip').val(sumVip);
+                }
+            });
+        }
+
+        function emptyTblImport() {
+            $('#goodsid').val('');
+            $('#goodsname').val('');
+            $('#goodscolor').val('');
+            $('#goodssize').val('');
+            $('#goodsamount').val('');
+            $('#goodsprice').val('');
+            $('#goodstotal').val('');
+            $('#goodsretail').val('');
+            $('#goodswholesale').val('');
+            $('#goodspricevip').val('');
+        }
+
+        $('#tblCouponDetail').on('click', 'button.coupondetaildelete', function (e) {
+            var checkImport = $("#checkImport").is(":checked");
+            if (checkImport) {
+                return jAlert('Trạng thái không được xóa', 'Thông báo');
+            }
+            var $row = $(this).closest('tr');
+            var data = $('#tblCouponDetail').DataTable().row($row).data();
+            var couponid = data["couponid"];
+            jConfirm('Bạn chắc chắn xóa sản phẩm này không?', 'Thông báo', function (e) {
+                if (e == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: "admin/controllers/import/deleteCouponDetail.php",
+                        data: {
+                            'id': data["id"]
+                        },
+                        success: function (data) {
+                            if (data == '0') {
+                                jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                    $('#goodsname').focus();
+                                });
+                            } else {
+                                jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                    $('#goodsname').focus();
+                                });
+                                loadCouponDetail(couponid);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        changeIsImport('0');
+
+        function changeIsImport(status) {
+            if (status == '0') {
+                $('#btnUpdateCoupon').show();
+                $('#btnIsImport').show();
+                $('#btnCancel').hide();
+                $('#btnReport').hide();
+            } else if (status == '1') {
+                $('#btnUpdateCoupon').hide();
+                $('#btnIsImport').hide();
+                $('#btnCancel').show();
+                $('#btnReport').show();
+            } else if (status == '2') {
+                $('#btnIsImport').hide();
+                $('#btnCancel').hide();
+                $('#btnReport').hide();
+            } else {
+                $('#btnIsImport').hide();
+                $('#btnCancel').hide();
+                $('#btnReport').hide();
+            }
+        }
+
+        $('#btnIsImport').click(function () {
+            var id = $('#couponid').val();
+            if (checkIf(id)) {
+                return jAlert('Chưa chọn phiếu nhập', 'Thông báo');
+            }
+            // var isimport = $('#isimport').val();
+            updateIsImport(id, 1)
+        });
+
+        function updateIsImport(couponid, isimport) {
+            var sumAmount = $('#sumAmount').val();
+            var sumTotal = $('#sumTotal').val();
+            if (sumTotal == '0') {
+                return jAlert('Phiếu chưa có dịch vụ', 'Thông báo');
+            }
+            var sumRetail = $('#sumRetail').val();
+            var sumWhole = $('#sumWhole').val();
+            var sumVip = $('#sumVip').val();
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/import/updateIsImport.php",
+                data: {
+                    couponid: couponid,
+                    isimport: isimport,
+                    sumAmount: sumAmount,
+                    sumTotal: sumTotal,
+                    sumRetail: sumRetail,
+                    sumWhole: sumWhole,
+                    sumVip: sumVip
+                },
+                success: function (data) {
+                    if (data == '0') {
+                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                            $('#couponname').focus();
+                        });
+                    } else {
+                        jAlert('Thực hiện thành công', 'Thông báo');
+                        $('#btnFreshCoupon').click();
+                        $('#couponname').prop('disabled', true);
+                        $('#coupondate').prop('disabled', true);
+                        $('#couponid').val(data);
+                        disableTblImport(true);
+                    }
+                    $.unblockUI();
+                }
+            });
+        }
+
+        $('#checkImport').click(function () {
+            $('#btnFreshCoupon').click();
+            if ($(this).is(':checked')) {
+                disableObjectCoupon(true);
+                changeIsImport('1');
+            } else {
+                disableObjectCoupon(false);
+                changeIsImport('0');
+            }
+        });
+
+        $('#btnReport').click(function () {
+            updateCouponReport(3);
+        });
+
+        function updateCouponReport(isimport) {
+            var id = $('#couponid').val();
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/import/updateCouponReport.php",
+                data: {
+                    id: id,
+                    isimport: isimport
+                },
+                success: function (data) {
+                    if (data == '0') {
+                        jAlert('Thực hiện không thành công', 'Thông báo');
+                    } else {
+                        jAlert('Thực hiện thành công', 'Thông báo');
+                        loadCoupon();
+                    }
+                    $.unblockUI();
+                }
+            });
+        }
+
+        $('#btnCancel').click(function () {
+            updateCouponCancel(2);
+        });
+        function updateCouponCancel(isimport) {
+            var id = $('#couponid').val();
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/import/updateCouponCancel.php",
+                data: {
+                    id: id,
+                    isimport: isimport
+                },
+                success: function (data) {
+                    if (data == '0') {
+                        jAlert('Thực hiện không thành công', 'Thông báo');
+                    } else {
+                        jAlert('Thực hiện thành công', 'Thông báo');
+                        loadCoupon();
+                    }
+                    $.unblockUI();
+                }
+            });
+        }
+    });
+</script>
