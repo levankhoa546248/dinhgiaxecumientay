@@ -13,7 +13,7 @@
 
 <div class="pull-right col-sm-8" style="padding-right: 0px; margin-top: 5px; width: 60%">
     <table class="table table-striped table-bordered table-hover small" id="tblCoupon" style="width:100%">
-        <caption class="bg-primary text-center">Danh sách phiếu nhập</caption>
+        <caption class="bg-primary text-center">Danh sách đơn bán hàng</caption>
         <thead class="bg-primary">
         <tr>
             <th class="text-center" width="15%">Id</th>
@@ -58,15 +58,14 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <b class="small">Tạo phiếu nhập</b>
+            <b class="small">Tạo đơn bán hàng</b>
         </div>
         <div class="panel-body small form-horizontal" style="padding-bottom: inherit">
             <div>
-                <!--                <input name="couponid" type="hidden" class="form-control" id="couponid"/>-->
-                <input name="isimport" type="hidden" class="form-control" id="isimport"/>
+                <input name="idexport" type="hidden" class="form-control" id="idexport"/>
             </div>
             <div class="form-group">
-                <label for="couponid" class="col-sm-4 control-label">Id phiếu</label>
+                <label for="couponid" class="col-sm-4 control-label">Id đơn hàng</label>
                 <div class="col-sm-8">
                     <input name="couponid" type="text" class="form-control input-sm" disabled
                            id="couponid" placeholder="Id phiếu"/>

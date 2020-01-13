@@ -1,6 +1,7 @@
 <script>
     $(document).ready(function () {
-        $('#btnHideMenu').click(function (e) {
+        hideMenu();
+        function hideMenu(){
             if ($('#navbarmenu')[0].style.display == "block") {
                 $('#navbarmenu').hide();
                 document.getElementById("page-wrapper").style.marginLeft = "0px";
@@ -8,6 +9,9 @@
                 $('#navbarmenu').show();
                 document.getElementById("page-wrapper").style.marginLeft = "200px";
             }
+        }
+        $('#btnHideMenu').click(function (e) {
+            hideMenu();
         });
     })
 </script>
@@ -21,111 +25,33 @@
     </div>
     <ul class="nav navbar-top-links navbar-right small">
         <li class="dropdown">
+            <a href="admin.php?controller=order"><i class="fa fa-upload fa-fw"></i> Đơn hàng</a>
+        </li>
+        <li class="dropdown">
+            <a href="admin.php?controller=import"><i class="fa fa-cloud-download fa-fw"></i> Nhập hàng</a>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-th-list fa-fw"></i> Danh mục <i class="fa fa-caret-down"></i>
             </a>
-            <ul class="dropdown-menu dropdown-messages">
+            <ul class="dropdown-menu dropdown-user">
                 <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
+                    <a href="admin.php?controller=employees">Nhân viên</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
+                    <a href="admin.php?controller=customer">Khách hàng</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>Read All Messages</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
+                    <a href="admin.php?controller=goods">Hàng hóa</a>
                 </li>
             </ul>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+            <a href="admin.php">
+                <i class="fa fa-dashboard fa-fw"></i> Dashboard
             </a>
-            <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                    <a href="admin.php?controller=comment">
-                        <div>
-                            <i class="fa fa-comment fa-fw"></i> New Comment
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                            <span class="pull-right text-muted small">12 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-envelope fa-fw"></i> Message Sent
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-tasks fa-fw"></i> New Task
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -179,7 +105,7 @@
                     <a href="admin.php?controller=import"><i class="fa fa-cloud-download fa-fw"></i> Nhập hàng</a>
                 </li>
                 <li>
-                    <a href="admin.php?controller=export"><i class="fa fa-upload fa-fw"></i> Đơn hàng</a>
+                    <a href="admin.php?controller=order"><i class="fa fa-upload fa-fw"></i> Đơn hàng</a>
                 </li>
             </ul>
         </div>

@@ -102,7 +102,7 @@
                 <div class="col-sm-1"></div>
                 <div class="pull-right" style="padding-right: 15px">
                     <button class="btnself btn-warning" type="button" id="btnReport">
-                        <i class="glyphicon glyphicon-book"></i> Nhận tiền
+                        <i class="glyphicon glyphicon-book"></i> Báo cáo
                     </button>
                     <button class="btnself btn-danger" type="button" id="btnCancel">
                         <i class="glyphicon glyphicon-ban-circle"></i> Hủy phiếu

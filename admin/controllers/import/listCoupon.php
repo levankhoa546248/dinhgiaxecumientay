@@ -9,7 +9,7 @@ if (!empty($_POST)) {
 //WHERE c.coupondate BETWEEN CAST("' . $toDate . '" AS DATE) AND CAST("' . $fromDate . '" AS DATE)
 //ORDER BY c.id desc';
     $sql = 'SELECT c.id, c.`name`, c.employeeid, c.coupondate, c.createdate, c.isimport, 
-CASE c.isimport WHEN 0 THEN \'Chưa nhập\' WHEN 1 THEN \'Đã nhập\' WHEN 2 THEN \'Đã hủy\' ELSE \'Đã nhận tiền\' END AS isimportname,
+CASE c.isimport WHEN 0 THEN \'Chưa nhập\' WHEN 1 THEN \'Đã nhập\' WHEN 2 THEN \'Đã hủy\' ELSE \'Đã báo cáo\' END AS isimportname,
 u.`name` as employeename FROM coupon c JOIN `user` u ON u.id = c.employeeid
 WHERE c.coupondate BETWEEN CAST("' . $toDate . '" AS DATE) AND CAST("' . $fromDate . '" AS DATE) 
 AND (( ' . $checkImport . ' = 0 AND c.isimport = 0) OR (' . $checkImport . ' != 0 AND c.isimport != 0)) ORDER BY c.id desc';
