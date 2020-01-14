@@ -11,7 +11,7 @@
 <script type="text/javascript" src="admin/themes/combogrid/plugin/jquery.ui.combogrid-1.6.4.js"></script>
 <script type="text/javascript" src="http://malsup.github.io/jquery.blockUI.js"></script>
 
-<div class="pull-right col-sm-8" style="padding-right: 0px; margin-top: 5px; width: 60%">
+<div class="pull-right" style="padding-left: 10px; margin-top: 5px; width: 70%">
     <table class="table table-striped table-bordered table-hover small" id="listOrder" style="width:100%">
         <caption class="bg-primary text-center">Danh sách đơn hàng</caption>
         <thead class="bg-primary">
@@ -30,30 +30,30 @@
         </thead>
     </table>
 </div>
-<div class="pull-left col-sm-4" style="padding-left: 0px; margin-top: 5px; width: 40%">
+<div class="pull-left" style="padding-left: 0px; margin-top: 5px; width: 30%">
     <div class="small form-horizontal">
         <div class="form-group">
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="width: 25%;">
                 Từ ngày
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="width: 50%;">
                 <input name="toDate" type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control input-sm"
                        id="toDate"/>
             </div>
-            <label class="col-sm-3 control-label pull-right" style="padding-left: 0px"><input type="checkbox"
-                                                                                              id="checkImport"/> Đã nhập</label>
+            <label class="col-sm-3 control-label pull-right" style="padding-left: 0px; width: 25%">
+                <input type="checkbox" id="checkOrder"/> Đã xuất</label>
         </div>
         <div class="form-group">
-            <div class="col-sm-3">
+            <div class="col-sm-3" style="width: 25%;">
                 Đến ngày
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="width: 50%;">
                 <input name="fromDate" type="date" value="<?php echo date('Y-m-d'); ?>" class="form-control input-sm"
                        id="fromDate"/>
             </div>
-            <div class="col-sm-4 pull-right">
+            <div class="col-sm-4 pull-right" style="width: 25%;">
                 <button class="btnself btn-success pull-right"
-                        id="btnFreshCoupon"><i class="glyphicon glyphicon-refresh"></i> Làm mới
+                        id="btnFreshOrder"><i class="glyphicon glyphicon-refresh"></i> Làm mới
                 </button>
             </div>
         </div>
@@ -63,55 +63,67 @@
             <b class="small">Tạo đơn hàng</b>
         </div>
         <div class="panel-body small form-horizontal" style="padding-bottom: inherit">
-            <div>
-                <input name="idexport" type="hidden" class="form-control" id="idexport"/>
-            </div>
             <div class="form-group">
-                <label for="couponid" class="col-sm-4 control-label">Id đơn hàng</label>
+                <label for="orderid" class="col-sm-4 control-label">Id đơn hàng</label>
                 <div class="col-sm-8">
-                    <input name="couponid" type="text" class="form-control input-sm" disabled
-                           id="couponid" placeholder="Id phiếu"/>
+                    <input name="orderid" type="text" class="form-control input-sm" disabled
+                           id="orderid" placeholder="Id đơn hàng"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="couponname" class="col-sm-4 control-label">Tên phiếu</label>
+                <label for="ordername" class="col-sm-4 control-label">Tên đơn</label>
                 <div class="col-sm-8">
-                    <input name="couponname" type="text" class="form-control input-sm"
-                           id="couponname" placeholder="Tên phiếu gợi nhớ"/>
+                    <input name="ordername" type="text" class="form-control input-sm"
+                           id="ordername" placeholder="Tên đơn gợi nhớ"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="coupondate" class="col-sm-4 control-label">Ngày nhập</label>
+                <label for="ordercustomer" class="col-sm-4 control-label">Khách hàng</label>
                 <div class="col-sm-8">
-                    <input name="coupondate" type="date" value="<?php echo date('Y-m-d'); ?>"
-                           class="form-control input-sm"
-                           id="coupondate" placeholder="Ngày nhập"/>
+                    <input name="ordercustomerid" type="hidden"
+                           class="form-control input-sm" id="ordercustomerid"/>
+                    <input name="ordercustomername" type="text"
+                           class="form-control input-sm" id="ordercustomername" placeholder="Tên khách hàng"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="couponemployee" class="col-sm-4 control-label">Nhân viên</label>
+                <label for="ordercustomertype" class="col-sm-4 control-label">Loại khách hàng</label>
                 <div class="col-sm-8">
-                    <input name="couponemployeeid" type="hidden" value="<?php echo $employee["0"]["id"]; ?>"
-                           class="form-control input-sm"
-                           id="couponemployeeid"/>
-                    <input name="couponemployeename" type="text" value="<?php echo $employee["0"]["name"]; ?>"
-                           class="form-control input-sm"
-                           id="couponemployeename" disabled/>
+                    <input name="ordercustomertypeid" type="hidden"
+                           class="form-control input-sm" id="ordercustomertypeid"/>
+                    <input name="ordercustomertypename" type="text" disabled
+                           class="form-control input-sm" id="ordercustomertypename" placeholder="Loại khách hàng"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="orderdate" class="col-sm-4 control-label">Ngày bán</label>
+                <div class="col-sm-8">
+                    <input name="orderdate" type="date" value="<?php echo date('Y-m-d'); ?>"
+                           class="form-control input-sm" id="orderdate" placeholder="Ngày lên đơn"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="orderemployee" class="col-sm-4 control-label">Nhân viên bán</label>
+                <div class="col-sm-8">
+                    <input name="orderemployeeid" type="hidden" value="<?php echo $employee["0"]["id"]; ?>"
+                           class="form-control input-sm" id="orderemployeeid"/>
+                    <input name="orderemployeename" type="text" value="<?php echo $employee["0"]["name"]; ?>"
+                           class="form-control input-sm" id="orderemployeename" disabled/>
                 </div>
             </div>
             <div class="form-group pull-right">
                 <div class="col-sm-1"></div>
                 <div class="pull-right" style="padding-right: 15px">
                     <button class="btnself btn-warning" type="button" id="btnReport">
-                        <i class="glyphicon glyphicon-book"></i> Nhận tiền
+                        <i class="glyphicon glyphicon-book"></i> Báo cáo
                     </button>
                     <button class="btnself btn-danger" type="button" id="btnCancel">
                         <i class="glyphicon glyphicon-ban-circle"></i> Hủy phiếu
                     </button>
-                    <button class="btnself btn-warning" type="button" id="btnIsImport">
-                        <i class="glyphicon glyphicon-open-file"></i> Nhập kho
+                    <button class="btnself btn-warning" type="button" id="btnIsOrder">
+                        <i class="glyphicon glyphicon-open-file"></i> Xuất kho
                     </button>
-                    <button class="btnself btn-primary" type="button" id="btnUpdateCoupon"><i
+                    <button class="btnself btn-primary" type="button" id="btnUpdateOrder"><i
                                 class="glyphicon glyphicon-plus"></i> Cập nhật
                     </button>
                 </div>
@@ -240,98 +252,16 @@
             }
         });
 
-        $('#btnUpdateCoupon').click(function () {
-            updateCoupon();
-        });
-
-        $("#couponname").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                updateCoupon();
-            }
-        });
-        function updateCoupon() {
-            var id = $('#couponid').val();
-            var name = $('#couponname').val();
-            var coupondate = $('#coupondate').val();
-            var employeeid = $('#couponemployeeid').val();
-            $.blockUI({
-                message: '<h1>Đợi trong giây lát...</h1>',
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
-                },
-                onOverlayClick: $.unblockUI
-            });
-            $.ajax({
-                type: "POST",
-                url: "admin/controllers/import/updateCoupon.php",
-                data: {
-                    'id': id,
-                    'name': name,
-                    'coupondate': coupondate,
-                    'employeeid': employeeid
-                },
-                success: function (data) {
-                    if (data == '0') {
-                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
-                            $('#couponname').focus();
-                        });
-                    } else {
-                        jAlert('Thực hiện thành công', 'Thông báo', function (e) {
-                            $('#goodsname').focus();
-                        });
-                        // $('#btnFreshCoupon').click();
-                        $('#couponname').prop('disabled', true);
-                        $('#coupondate').prop('disabled', true);
-                        $('#couponid').val(data);
-                        disableTblImport(false);
-                        loadOrder();
-                        var checkImport = $("#checkImport").is(":checked");
-                        disableObjectCoupon(checkImport);
-                    }
-                    $.unblockUI();
-                }
-            });
-        }
-        // var toDay = $('#toDate').val();
         loadOrder();
-
-        $('#btnFreshCoupon').click(function (e) {
-            var checkImport = $("#checkImport").is(":checked");
-            loadOrder();
-            disableTblImport(true);
-            emptyObjectCoupon();
-            disableObjectCoupon(checkImport);
-            loadOrderDetail('0');
-        });
-
-        function disableObjectCoupon(bool) {
-            $('#couponname').prop('disabled', bool);
-            $('#coupondate').prop('disabled', bool);
-        }
-
-        function emptyObjectCoupon() {
-            $('#couponid').val('');
-            $('#couponname').val('');
-            $('#coupondate').val(<?php echo json_encode(date('Y-m-d')); ?>);
-        }
 
         function loadOrder() {
             var toDate = $('#toDate').val();
             var fromDate = $('#fromDate').val();
-            var checkImport = $("#checkImport").is(":checked") ? 1 : 0;
+            var checkOrder = $("#checkOrder").is(":checked") ? 1 : 0;
             $('#listOrder').DataTable().destroy();
             $('#listOrder').DataTable({
                 searching: true,
                 lengthChange: false,
-                // info: false,
-                // scrollY: "150px",
-                // paging: false,
                 width: '100%',
                 responsive: true,
                 lengthMenu: [[5, 10, 30, "All"]],
@@ -342,24 +272,24 @@
                     data: {
                         toDate: toDate,
                         fromDate: fromDate,
-                        checkImport: checkImport
+                        checkOrder: checkOrder
                     },
                     dataSrc: ''
                 },
                 columns: [
-                    {data: "id", className: "text-center", width: '10%'},
+                    {data: "id", className: "text-center", width: '8%'},
                     {data: "name"},
-                    {data: "coupondate"},
-                    {data: "employeeid", visible: false},
-                    {data: "employeename"},
+                    {data: "orderdate", className: "text-right", width: '12%'},
                     {data: "customerid", visible: false},
                     {data: "customername"},
-                    {data: "isimport", visible: false},
-                    {data: "isimportname", width: '12%'},
+                    {data: "employeesid", visible: false},
+                    {data: "employeename"},
+                    {data: "isorder", visible: false},
+                    {data: "isordername", width: '13%'},
                     {
                         data: null,
                         className: "text-center",
-                        width: '10%',
+                        width: '7%',
                         defaultContent: '<button class="coupondelete"><i class="glyphicon glyphicon-trash"></i></button>'
                     }
                 ]
@@ -392,8 +322,8 @@
         });
 
         $('#listOrder').on('click', 'button.coupondelete', function (e) {
-            var checkImport = $("#checkImport").is(":checked");
-            if (checkImport) {
+            var checkOrder = $("#checkOrder").is(":checked");
+            if (checkOrder) {
                 return jAlert('Trạng thái không được xóa', 'Thông báo');
             }
             var $row = $(this).closest('tr');
@@ -411,7 +341,7 @@
                                 jAlert('Thực hiện không thành công. Vui lòng kiểm tra lại phiếu đã có nhập hàng chưa', 'Thông báo');
                             } else {
                                 jAlert('Thực hiện thành công', 'Thông báo');
-                                $('#btnFreshCoupon').click();
+                                $('#btnFreshOrder').click();
                             }
                         }
                     });
@@ -419,492 +349,47 @@
             });
         });
 
-        function disableTblImport(bool) {
-            $('#goodsname').prop('disabled', bool);
-            $('#goodsamount').prop('disabled', bool);
-            $('#goodsprice').prop('disabled', bool);
-            // $('#goodstotal').prop('disabled', bool);
-            $('#goodsretail').prop('disabled', bool);
-            $('#goodswholesale').prop('disabled', bool);
-            $('#goodspricevip').prop('disabled', bool);
-        }
+        $("#ordername").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                if (!checkIf($('#ordername').val())) {
+                    $("#ordercustomername").focus();
+                } else {
+                    jAlert('Tên đơn hàng không được để trống', 'Thông báo', function (e) {
+                        $('#ordername').focus();
+                    });
+                }
+            }
+        });
 
-        $("#goodsname").combogrid({
-            url: 'admin/controllers/import/listGoods.php',
+        $("#ordercustomername").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                if (!checkIf($('#ordercustomername').val())) {
+                    // Thêm đơn hàng
+                } else {
+                    jAlert('Tên khách hàng không được để trống', 'Thông báo', function (e) {
+                        $('#ordercustomername').focus();
+                    });
+                }
+            }
+        });
+
+        $("#ordercustomername").combogrid({
+            url: 'admin/controllers/order/listCustomerOrder.php',
             width: '50%',
             colModel: [
                 {'columnName': 'id', 'width': '10', 'label': 'Id'},
-                {'columnName': 'name', 'width': '30', 'label': 'Tên hàng', align: 'left'},
-                {'columnName': 'color', 'width': '25', 'label': 'Màu sắc', align: 'left'},
-                {'columnName': 'sizename', 'width': '25', 'label': 'Kích thước'},
-                {'columnName': 'unitname', 'width': '10', 'label': 'Đơn vị tính'}
+                {'columnName': 'name', 'width': '30', 'label': 'Tên khách hàng', align: 'left'},
+                {'columnName': 'phone', 'width': '25', 'label': 'Số điện thoại', align: 'right'},
+                {'columnName': 'typeid', 'width': '25', 'label': 'Loại khách id', hidden: true},
+                {'columnName': 'typename', 'width': '25', 'label': 'Loại khách'}
             ],
             select: function (event, ui) {
-                $("#goodsid").val(ui.item.id);
-                $("#goodsname").val(ui.item.name);
-                $("#goodscolor").val(ui.item.color);
-                $("#goodssize").val(ui.item.sizename);
-                $("#goodsunit").val(ui.item.unitname);
+                $("#ordercustomerid").val(ui.item.id);
+                $("#ordercustomername").val(ui.item.name);
+                $("#ordercustomertypeid").val(ui.item.typeid);
+                $("#ordercustomertypename").val(ui.item.typename);
                 return false;
             }
         });
-
-        $("#goodsname").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                var goodsid = $("#goodsid").val();
-                var goodsCheck = $('#listOrderDetail').DataTable().columns(1).data()[0];
-                var checkResult = checkSurvival(goodsid, goodsCheck);
-                if (checkResult) {
-                    jAlert('Sản phẩm đã có trong phiếu nhập. Vui lòng xóa sản phẩm ra khỏi phiếu và thêm lại !!!', 'Thông báo', function (e) {
-                        emptyTblImport();
-                        $('#goodsname').focus();
-                    });
-                } else {
-                    $("#goodsamount").focus();
-                }
-            }
-        });
-        $("#goodsamount").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                if (!checkIf($('#goodsamount').val())) {
-                    $("#goodsprice").focus();
-                } else {
-                    jAlert('Số lượng không được để trống', 'Thông báo', function (e) {
-                        $('#goodsamount').focus();
-                    });
-                }
-            }
-        });
-        $("#goodsprice").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                if (!checkIf($('#goodsprice').val())) {
-                    $("#goodsretail").focus();
-                    var amount = $('#goodsamount').val();
-                    var price = $("#goodsprice").val();
-                    var total = amount * StringToNumber(price);
-                    $('#goodstotal').val(formatNumber(total.toString()));
-                } else {
-                    jAlert('Giá vốn không được để trống', 'Thông báo', function (e) {
-                        $('#goodsprice').focus();
-                    });
-                }
-            }
-        });
-        $("#goodsretail").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                if (!checkIf($('#goodsretail').val())) {
-                    $("#goodswholesale").focus();
-                } else {
-                    jAlert('Giá bán lẻ không được để trống', 'Thông báo', function (e) {
-                        $('#goodsretail').focus();
-                    });
-                }
-            }
-        });
-        $("#goodswholesale").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                $("#goodspricevip").focus();
-            }
-        });
-        $("#goodspricevip").keypress(function (evt) {
-            if (evt.keyCode == 13) {
-                var goodsid = $('#goodsid').val();
-                if (checkIf(goodsid)) {
-                    return jAlert('Chưa nhập thông tin sản phẩm', 'Thông báo', function (e) {
-                        $("#goodspricevip").focus();
-                    });
-                }
-                var goodsname = $('#goodsname').val();
-                var goodscolor = $('#goodscolor').val();
-                var goodssize = $('#goodssize').val();
-                var goodsamount = $('#goodsamount').val();
-                var goodsprice = StringToNumber($('#goodsprice').val());
-                var goodstotal = StringToNumber($('#goodstotal').val());
-                var goodsretail = StringToNumber($('#goodsretail').val());
-                var goodswholesale = StringToNumber($('#goodswholesale').val());
-                var goodspricevip = StringToNumber($('#goodspricevip').val());
-                var goodsunit = $('#goodsunit').val();
-                var couponid = $('#couponid').val();
-                $.blockUI({
-                    message: '<h1>Đợi trong giây lát...</h1>',
-                    css: {
-                        border: 'none',
-                        padding: '15px',
-                        backgroundColor: '#000',
-                        '-webkit-border-radius': '10px',
-                        '-moz-border-radius': '10px',
-                        opacity: .5,
-                        color: '#fff'
-                    },
-                    onOverlayClick: $.unblockUI
-                });
-                $.ajax({
-                    type: "POST",
-                    url: "admin/controllers/import/insertCouponDetail.php",
-                    data: {
-                        'goodsid': goodsid,
-                        'goodsname': goodsname,
-                        'goodscolor': goodscolor,
-                        'goodssize': goodssize,
-                        'goodsamount': goodsamount,
-                        'goodsprice': goodsprice,
-                        'goodstotal': goodstotal,
-                        'goodsretail': goodsretail,
-                        'goodswholesale': goodswholesale,
-                        'goodspricevip': goodspricevip,
-                        'goodsunit': goodsunit,
-                        'couponid': couponid
-                    },
-                    success: function (data) {
-                        if (data == '0') {
-                            jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
-                                $('#goodsname').focus();
-                            });
-                        } else {
-                            jAlert('Thực hiện thành công', 'Thông báo', function (e) {
-                                emptyTblImport();
-                                $('#goodsname').focus();
-                            });
-                            loadOrderDetail(couponid);
-                        }
-                        $.unblockUI();
-                    }
-                });
-            }
-        });
-
-        function loadOrderDetail(couponid) {
-            $('#listOrderDetail').DataTable().destroy();
-            $('#listOrderDetail').DataTable({
-                searching: false,
-                // lengthChange: false,
-                // info: false,
-                // scrollY: "150px",
-                paging: false,
-                width: '100%',
-                responsive: true,
-                // lengthMenu: [[4, 10, 30, "All"]],
-                // order: [[0, 'desc']],
-                ajax: {
-                    type: 'POST',
-                    url: "admin/controllers/import/listCouponDetail.php",
-                    data: {
-                        couponid: couponid
-                    },
-                    dataSrc: ''
-                },
-                columns: [
-                    {data: "id", className: "text-center", width: '10%', visible: false},
-                    {data: "goodsid", className: "text-center", width: '10%'},
-                    {data: "goodsname"},
-                    {data: "goodscolor"},
-                    {data: "goodssize"},
-                    {data: "couponid", visible: false},
-                    {data: "amount", className: "text-center"},
-                    {data: "goodsunit", className: "text-center"},
-                    {
-                        data: "price", className: "text-right",
-                        render: $.fn.dataTable.render.number(',', '.', 0)
-                    },
-                    {
-                        data: "total", className: "text-right",
-                        render: $.fn.dataTable.render.number(',', '.', 0)
-                    },
-                    {
-                        data: "retail", className: "text-right",
-                        render: $.fn.dataTable.render.number(',', '.', 0)
-                    },
-                    {
-                        data: "wholesale", className: "text-right",
-                        render: $.fn.dataTable.render.number(',', '.', 0)
-                    },
-                    {
-                        data: "pricevip", className: "text-right",
-                        render: $.fn.dataTable.render.number(',', '.', 0)
-                    },
-                    {
-                        data: null,
-                        className: "text-center",
-                        width: '7%',
-                        defaultContent: '<button class="coupondetaildelete"><i class="glyphicon glyphicon-trash"></i></button>'
-                    }
-                ],
-                footerCallback: function (row, data, start, end, display) {
-                    var api = this.api(), data;
-
-                    // converting to interger to find total
-                    var intVal = function (i) {
-                        return typeof i === 'string' ?
-                            i.replace(/[\$,]/g, '') * 1 :
-                            typeof i === 'number' ?
-                                i : 0;
-                    };
-
-                    var sumAmount = api
-                        .column(6)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-
-                    var sumTotal = api
-                        .column(8)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-
-                    var sumRetail = api
-                        .column(9)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-
-                    var sumWhole = api
-                        .column(10)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-
-                    var sumVip = api
-                        .column(11)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-
-                    // Update footer by showing the total with the reference of the column index
-                    $(api.column(2).footer()).html('Tổng');
-                    $(api.column(6).footer()).html(formatNumber(sumAmount.toString()));
-                    $(api.column(8).footer()).html(formatNumber(sumTotal.toString()));
-                    $(api.column(9).footer()).html(formatNumber(sumRetail.toString()));
-                    $(api.column(10).footer()).html(formatNumber(sumWhole.toString()));
-                    $(api.column(11).footer()).html(formatNumber(sumVip.toString()));
-                    $('#sumAmount').val(sumAmount);
-                    $('#sumTotal').val(sumTotal);
-                    $('#sumRetail').val(sumRetail);
-                    $('#sumWhole').val(sumWhole);
-                    $('#sumVip').val(sumVip);
-                }
-            });
-        }
-
-        function emptyTblImport() {
-            $('#goodsid').val('');
-            $('#goodsname').val('');
-            $('#goodscolor').val('');
-            $('#goodssize').val('');
-            $('#goodsamount').val('');
-            $('#goodsprice').val('');
-            $('#goodstotal').val('');
-            $('#goodsretail').val('');
-            $('#goodswholesale').val('');
-            $('#goodspricevip').val('');
-        }
-
-        $('#listOrderDetail').on('click', 'button.coupondetaildelete', function (e) {
-            var checkImport = $("#checkImport").is(":checked");
-            if (checkImport) {
-                return jAlert('Trạng thái không được xóa', 'Thông báo');
-            }
-            var $row = $(this).closest('tr');
-            var data = $('#listOrderDetail').DataTable().row($row).data();
-            var couponid = data["couponid"];
-            jConfirm('Bạn chắc chắn xóa sản phẩm này không?', 'Thông báo', function (e) {
-                if (e == true) {
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/controllers/import/deleteCouponDetail.php",
-                        data: {
-                            'id': data["id"]
-                        },
-                        success: function (data) {
-                            if (data == '0') {
-                                jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
-                                    $('#goodsname').focus();
-                                });
-                            } else {
-                                jAlert('Thực hiện thành công', 'Thông báo', function (e) {
-                                    $('#goodsname').focus();
-                                });
-                                loadOrderDetail(couponid);
-                            }
-                        }
-                    });
-                }
-            });
-        });
-        changeIsImport('0');
-
-        function changeIsImport(status) {
-            if (status == '0') {
-                $('#btnUpdateCoupon').show();
-                $('#btnIsImport').show();
-                $('#btnCancel').hide();
-                $('#btnReport').hide();
-            } else if (status == '1') {
-                $('#btnUpdateCoupon').hide();
-                $('#btnIsImport').hide();
-                $('#btnCancel').show();
-                $('#btnReport').show();
-            } else if (status == '2') {
-                $('#btnIsImport').hide();
-                $('#btnCancel').hide();
-                $('#btnReport').hide();
-            } else {
-                $('#btnIsImport').hide();
-                $('#btnCancel').hide();
-                $('#btnReport').hide();
-            }
-        }
-
-        $('#btnIsImport').click(function () {
-            var id = $('#couponid').val();
-            if (checkIf(id)) {
-                return jAlert('Chưa chọn phiếu nhập', 'Thông báo');
-            }
-            // var isimport = $('#isimport').val();
-            updateIsImport(id, 1)
-        });
-
-        function updateIsImport(couponid, isimport) {
-            var sumAmount = $('#sumAmount').val();
-            var sumTotal = $('#sumTotal').val();
-            if (sumTotal == '0') {
-                return jAlert('Phiếu chưa có dịch vụ', 'Thông báo');
-            }
-            var sumRetail = $('#sumRetail').val();
-            var sumWhole = $('#sumWhole').val();
-            var sumVip = $('#sumVip').val();
-            $.blockUI({
-                message: '<h1>Đợi trong giây lát...</h1>',
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
-                },
-                onOverlayClick: $.unblockUI
-            });
-            $.ajax({
-                type: "POST",
-                url: "admin/controllers/import/updateIsImport.php",
-                data: {
-                    couponid: couponid,
-                    isimport: isimport,
-                    sumAmount: sumAmount,
-                    sumTotal: sumTotal,
-                    sumRetail: sumRetail,
-                    sumWhole: sumWhole,
-                    sumVip: sumVip
-                },
-                success: function (data) {
-                    if (data == '0') {
-                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
-                            $('#couponname').focus();
-                        });
-                    } else {
-                        jAlert('Thực hiện thành công', 'Thông báo');
-                        $('#btnFreshCoupon').click();
-                        $('#couponname').prop('disabled', true);
-                        $('#coupondate').prop('disabled', true);
-                        $('#couponid').val(data);
-                        disableTblImport(true);
-                    }
-                    $.unblockUI();
-                }
-            });
-        }
-
-        $('#checkImport').click(function () {
-            $('#btnFreshCoupon').click();
-            if ($(this).is(':checked')) {
-                disableObjectCoupon(true);
-                changeIsImport('1');
-            } else {
-                disableObjectCoupon(false);
-                changeIsImport('0');
-            }
-        });
-
-        $('#btnReport').click(function () {
-            updateCouponReport(3);
-        });
-
-        function updateCouponReport(isimport) {
-            var id = $('#couponid').val();
-            $.blockUI({
-                message: '<h1>Đợi trong giây lát...</h1>',
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
-                },
-                onOverlayClick: $.unblockUI
-            });
-            $.ajax({
-                type: "POST",
-                url: "admin/controllers/import/updateCouponReport.php",
-                data: {
-                    id: id,
-                    isimport: isimport
-                },
-                success: function (data) {
-                    if (data == '0') {
-                        jAlert('Thực hiện không thành công', 'Thông báo');
-                    } else {
-                        jAlert('Thực hiện thành công', 'Thông báo');
-                        loadOrder();
-                    }
-                    $.unblockUI();
-                }
-            });
-        }
-
-        $('#btnCancel').click(function () {
-            updateCouponCancel(2);
-        });
-        function updateCouponCancel(isimport) {
-            var id = $('#couponid').val();
-            $.blockUI({
-                message: '<h1>Đợi trong giây lát...</h1>',
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
-                },
-                onOverlayClick: $.unblockUI
-            });
-            $.ajax({
-                type: "POST",
-                url: "admin/controllers/import/updateCouponCancel.php",
-                data: {
-                    id: id,
-                    isimport: isimport
-                },
-                success: function (data) {
-                    if (data == '0') {
-                        jAlert('Thực hiện không thành công', 'Thông báo');
-                    } else {
-                        jAlert('Thực hiện thành công', 'Thông báo');
-                        loadOrder();
-                    }
-                    $.unblockUI();
-                }
-            });
-        }
     });
 </script>
