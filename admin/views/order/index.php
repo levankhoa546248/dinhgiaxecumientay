@@ -252,6 +252,14 @@
             }
         });
 
+        $('#checkOrder').click(function () {
+            loadOrder();
+        });
+
+        $('#btnFreshOrder').click(function () {
+            loadOrder();
+        });
+
         loadOrder();
 
         function loadOrder() {
@@ -364,7 +372,7 @@
         $("#ordercustomername").keypress(function (evt) {
             if (evt.keyCode == 13) {
                 if (!checkIf($('#ordercustomername').val())) {
-                    // Thêm đơn hàng
+                    updateOrders();
                 } else {
                     jAlert('Tên khách hàng không được để trống', 'Thông báo', function (e) {
                         $('#ordercustomername').focus();
@@ -390,6 +398,83 @@
                 $("#ordercustomertypename").val(ui.item.typename);
                 return false;
             }
+        });
+
+        function updateOrders() {
+            var orderid = $('#orderid').val();
+            var ordername = $('#ordername').val();
+            if (checkIf(ordername)){
+                jAlert('Chưa nhập tên đơn hàng', 'Thông báo', function () {
+                    $('#ordername').focus();
+                });
+            }
+            var ordercustomerid = $('#ordercustomerid').val();
+            var ordercustomername = $('#ordercustomername').val();
+            if (checkIf(ordercustomername)){
+                jAlert('Chưa nhập tên tên khách hàng', 'Thông báo', function () {
+                    $('#ordercustomername').focus();
+                });
+            }
+            var ordercustomertypeid = $('#ordercustomertypeid').val();
+            var ordercustomertypename = $('#ordercustomertypename').val();
+            var orderdate = $('#orderdate').val();
+            var orderemployeeid = $('#orderemployeeid').val();
+            var orderemployeename = $('#orderemployeename').val();
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/order/updateOrders.php",
+                data: {
+                    orderid: orderid,
+                    ordername: ordername,
+                    ordercustomerid: ordercustomerid,
+                    ordercustomername: ordercustomername,
+                    ordercustomertypeid: ordercustomertypeid,
+                    ordercustomertypename: ordercustomertypename,
+                    orderdate: orderdate,
+                    orderemployeeid: orderemployeeid,
+                    orderemployeename: orderemployeename
+                },
+                success: function (data) {
+                    if (data == '0') {
+                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                            $('#ordername').focus();
+                        });
+                    } else {
+                        jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                            $('#ordername').focus();
+                        });
+                    }
+                    $.unblockUI();
+                    loadOrder();
+                    emptyObject();
+                }
+            });
+        }
+
+        function emptyObject() {
+            $("#orderid").val('');
+            $("#ordername").val('');
+            $("#ordercustomerid").val('');
+            $("#ordercustomername").val('');
+            $("#ordercustomertypeid").val('');
+            $("#ordercustomertypename").val('');
+        }
+
+        $("#btnUpdateOrder").click(function (e) {
+            updateOrders();
         });
     });
 </script>

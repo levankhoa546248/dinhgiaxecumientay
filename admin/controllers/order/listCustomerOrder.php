@@ -15,28 +15,16 @@ require_once("../dbConnect.php");
 $db = new DBController();
 $sql_0 = 'SELECT
 c.id,
-c.lastpurchase,
-c.total,
-c.debt,
-c.userid,
+c.active,
 c.typeid,
-c.groupid,
+c.userid,
 u.`name`,
-u.birthday,
-u.identity,
-u.phone,
-u.email,
-u.address,
-u.sex,
-u.facebook,
-u.zalo,
-u.province as provinceid,
-u.district as districtid,
-u.village as villageid,
-t.`name` AS typename
-FROM `user` u 
-LEFT JOIN customer c ON c.userid = u.id
-LEFT JOIN customertype t ON t.id = c.typeid
+t.`name` AS typename,
+u.phone
+FROM
+customer AS c
+INNER JOIN `user` AS u ON c.userid = u.id
+INNER JOIN customertype AS t ON c.typeid = t.id
 WHERE c.active = 1 ';
 $sql = $sql_0 . "AND upper(u.`name`) like upper ('$searchTerm')";
 $count = $db->numRows($sql);
