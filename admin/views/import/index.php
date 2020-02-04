@@ -645,28 +645,28 @@
                         }, 0);
 
                     var sumTotal = api
-                        .column(8)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-
-                    var sumRetail = api
                         .column(9)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
 
-                    var sumWhole = api
+                    var sumRetail = api
                         .column(10)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
 
-                    var sumVip = api
+                    var sumWhole = api
                         .column(11)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var sumVip = api
+                        .column(12)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
@@ -675,10 +675,10 @@
                     // Update footer by showing the total with the reference of the column index
                     $(api.column(2).footer()).html('Tổng');
                     $(api.column(6).footer()).html(formatNumber(sumAmount.toString()));
-                    $(api.column(8).footer()).html(formatNumber(sumTotal.toString()));
-                    $(api.column(9).footer()).html(formatNumber(sumRetail.toString()));
-                    $(api.column(10).footer()).html(formatNumber(sumWhole.toString()));
-                    $(api.column(11).footer()).html(formatNumber(sumVip.toString()));
+                    $(api.column(9).footer()).html(formatNumber(sumTotal.toString()));
+                    $(api.column(10).footer()).html(formatNumber(sumRetail.toString()));
+                    $(api.column(11).footer()).html(formatNumber(sumWhole.toString()));
+                    $(api.column(12).footer()).html(formatNumber(sumVip.toString()));
                     $('#sumAmount').val(sumAmount);
                     $('#sumTotal').val(sumTotal);
                     $('#sumRetail').val(sumRetail);

@@ -6,6 +6,13 @@ if (!empty($_POST)) {
     $id = isset($_POST['id']) ? empty($_POST['id']) ? '0' : intval($_POST['id']) : '0';
     $isimport = $_POST['isimport'];
     $reportdate = date('Y-m-d H:m:i');
+    $opDetail = array(
+        'isimport' => $isimport
+    );
+    $whereDetail = array(
+        'couponid' => $id
+    );
+    $coupondetail = $db->update('coupondetail', $opDetail, $whereDetail);
     $option = array(
         'id' => $id,
         'isimport' => $isimport,

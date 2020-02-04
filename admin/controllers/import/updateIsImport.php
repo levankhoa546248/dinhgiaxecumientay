@@ -11,6 +11,15 @@ if (!empty($_POST)) {
     $sumWhole = $_POST['sumWhole'];
     $sumVip = $_POST['sumVip'];
     $importdate = date('Y-m-d H:m:i');
+    $opDetail = array(
+        'isimport' => $isimport,
+        'importdate' => $importdate
+    );
+    $whereDetail = array(
+        'couponid' => $couponid
+    );
+    $coupondetail = $db->update('coupondetail', $opDetail, $whereDetail);
+
     $option = array(
         'id' => $couponid,
         'isimport' => $isimport,

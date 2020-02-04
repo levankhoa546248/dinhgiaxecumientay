@@ -1,35 +1,41 @@
 <?php
-class DBController {
-	private $host = "remotemysql.com";
-	private $user = "Rr5s8PgcAw";
-	private $password = "vZ2uWTMgFd";
-	private $database = "Rr5s8PgcAw";
-	private $conn;
-	
-	function __construct() {
-		$this->conn = $this->connectDB();
-	}
-	
-	function connectDB() {
-		$conn = mysqli_connect($this->host,$this->user,$this->password,$this->database);
-		mysqli_set_charset($conn,"utf8");
-		return $conn;
-	}
-	
-	function runQuery($query) {
-		$result = mysqli_query($this->conn,$query);
-		while($row=mysqli_fetch_assoc($result)) {
-			$resultset[] = $row;
-		}		
-		if(!empty($resultset))
-			return $resultset;
-	}
-	
-	function numRows($query) {
-		$result  = mysqli_query($this->conn,$query);
-		$rowcount = mysqli_num_rows($result);
-		return $rowcount;	
-	}
+
+class DBController
+{
+    private $host = "remotemysql.com";
+    private $user = "Rr5s8PgcAw";
+    private $password = "vZ2uWTMgFd";
+    private $database = "Rr5s8PgcAw";
+    private $conn;
+
+    function __construct()
+    {
+        $this->conn = $this->connectDB();
+    }
+
+    function connectDB()
+    {
+        $conn = mysqli_connect($this->host, $this->user, $this->password, $this->database);
+        mysqli_set_charset($conn, "utf8");
+        return $conn;
+    }
+
+    function runQuery($query)
+    {
+        $result = mysqli_query($this->conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $resultset[] = $row;
+        }
+        if (!empty($resultset))
+            return $resultset;
+    }
+
+    function numRows($query)
+    {
+        $result = mysqli_query($this->conn, $query);
+        $rowcount = mysqli_num_rows($result);
+        return $rowcount;
+    }
 
     function save($table, $data = array())
     {
@@ -46,14 +52,33 @@ class DBController {
             $sql = "INSERT INTO `$table` SET " . implode(',', $values);
         }
 
-        if (!mysqli_query($conn, $sql))
-        {
+        if (!mysqli_query($conn, $sql)) {
             $Id = 0;
-        }else{
+        } else {
             $Id = ($Id > 0) ? $Id : mysqli_insert_id($conn);
         }
 //        mysqli_query($conn, $sql) or die(mysqli_error());
         return $Id;
+    }
+
+    function update($table, $data = array(), $where = array())
+    {
+        $conn = $this->conn;
+        $values = array();
+        foreach ($data as $key => $value) {
+            $value = mysqli_real_escape_string($conn, $value);
+            $values[] = "`$key`='$value'";
+        }
+        foreach ($where as $key => $condition) {
+            $condition = mysqli_real_escape_string($conn, $condition);
+            $conditions[] = "`$key`='$condition'";
+        }
+        $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE " . implode('AND ', $conditions);
+        if (!mysqli_query($conn, $sql)) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     function get_all($table, $options = array())
@@ -89,7 +114,7 @@ class DBController {
 
     function get_select_nested($sql)// select lồng
     {
-        $conn = $this -> conn;
+        $conn = $this->conn;
         $query = mysqli_query($conn, $sql) or die(mysqli_error());
 
         $data = array();
@@ -105,16 +130,16 @@ class DBController {
 
     function delete($table, $id)
     {
-        $conn = $this -> conn;
+        $conn = $this->conn;
         $id = intval($id);
         $sql = "DELETE FROM `$table` WHERE id=$id";
-        if (!mysqli_query($conn, $sql))
-        {
+        if (!mysqli_query($conn, $sql)) {
             $result = 0;
-        }else{
+        } else {
             $result = 1;
         }
         return $result;
     }
 }
+
 ?>

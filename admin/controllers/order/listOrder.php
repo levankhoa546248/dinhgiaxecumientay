@@ -7,7 +7,7 @@ if (!empty($_POST)) {
     $checkOrder = $_POST['checkOrder'];
     $sql = 'SELECT
             o.id,
-            o.`name` ,
+            o.`name`,
             o.createdate,
             o.orderdate,
             o.employeesid,
@@ -29,12 +29,15 @@ if (!empty($_POST)) {
             \'Đã hủy\'
         ELSE
             \'Đã báo cáo\'
-        END AS isordername
+        END AS isordername,
+         c.typeid,
+         ct.`name` AS typename
         FROM
             orders AS o
         INNER JOIN employees e ON o.employeesid = e.id
         INNER JOIN `user` AS ue ON ue.id = e.userid
         INNER JOIN customer c ON o.customerid = c.id
+        LEFT JOIN customertype ct ON ct.id = c.typeid
         INNER JOIN `user` AS uc ON uc.id = c.userid
         WHERE o.orderdate BETWEEN CAST("' . $toDate . '" AS DATE) AND CAST("' . $fromDate . '" AS DATE) 
         AND (( ' . $checkOrder . ' = 0 AND o.isorder = 0) OR (' . $checkOrder . ' != 0 AND o.isorder != 0)) 

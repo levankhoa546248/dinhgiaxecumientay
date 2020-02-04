@@ -23,6 +23,8 @@
             <th class="text-left">Nhân viên</th>
             <th class="text-left">Khách hàng id</th>
             <th class="text-left">Khách hàng</th>
+            <th class="text-left">Loại KH id</th>
+            <th class="text-left">Loại KH</th>
             <th class="text-left">Is Import</th>
             <th class="text-left">Trạng thái</th>
             <th class="text-left"><i class="fa fa-gears"></i></th>
@@ -131,7 +133,7 @@
         </div>
     </div>
 </div>
-<table class="table table-striped table-bordered table-hover small" id="tblImport" style="width:100%">
+<table class="table table-striped table-bordered table-hover small" id="tblOrdersDetail" style="width:100%">
     <thead class="bg-info">
     <tr>
         <th class="text-center" width="5%">Id</th>
@@ -161,8 +163,8 @@
                    placeholder="Màu sắc" disabled required=""/>
         </td>
         <td>
-            <input name="goodssize" type="text" class="form-control input-sm" id="goodssize"
-                   placeholder="Kích thước" disabled required=""/>
+            <input class="form-control input-sm" disabled id="goodssize" name="goodssize"
+                   placeholder="Kích thước" required="" type="text"/>
         </td>
         <td>
             <input name="goodsamount" type="number" class="form-control input-sm text-center" id="goodsamount"
@@ -254,10 +256,14 @@
 
         $('#checkOrder').click(function () {
             loadOrder();
+            emptyObjectOrder();
         });
 
         $('#btnFreshOrder').click(function () {
             loadOrder();
+            emptyObjectOrder();
+            disableOrders(false);
+            disableOrdersDetail(true);
         });
 
         loadOrder();
@@ -288,10 +294,12 @@
                     {data: "id", className: "text-center", width: '8%'},
                     {data: "name"},
                     {data: "orderdate", className: "text-right", width: '12%'},
-                    {data: "customerid", visible: false},
-                    {data: "customername"},
                     {data: "employeesid", visible: false},
                     {data: "employeename"},
+                    {data: "customerid", visible: false},
+                    {data: "customername"},
+                    {data: "typeid", visible: false},
+                    {data: "typename"},
                     {data: "isorder", visible: false},
                     {data: "isordername", width: '13%'},
                     {
@@ -307,26 +315,17 @@
         $('#listOrder tbody').on('click', 'tr', function (id) {
             var data = $('#listOrder').DataTable().row(this).data();
             if (data["id"] !== undefined && data["id"] !== null) {
-                $("#couponid").val(data["id"]);
-                $("#couponname").val(data["name"]);
-                $("#coupondate").val(data["coupondate"]);
-                $("#couponemployeeid").val(data["employeeid"]);
-                $("#couponemployeename").val(data["employeename"]);
-                var isimport = data["isimport"];
-                $("#isimport").val(isimport);
-                disableTblImport(isimport == '1' ? true : false);
-                loadOrderDetail(data["id"]);
-                changeIsImport(isimport);
-                // if (isimport == "0") {
-                //     changeIsImport("0");
-                // } else if (isimport == "1") {
-                //     changeIsImport("1");
-                // } else if (isimport == "2") {
-                //     changeIsImport("2");
-                // } else {
-                //     changeIsImport("2");
-                // }
+                $("#orderid").val(data["id"]);
+                $("#ordername").val(data["name"]);
+                $("#ordercustomerid").val(data["customerid"]);
+                $("#ordercustomername").val(data["customername"]);
+                $("#ordercustomertypeid").val(data["typeid"]);
+                $("#ordercustomertypename").val(data["typename"]);
+                $("#orderdate").val(data["orderdate"]);
             }
+            disableOrders(true);
+            disableOrdersDetail(false);
+            $("#goodsname").focus();
         });
 
         $('#listOrder').on('click', 'button.coupondelete', function (e) {
@@ -403,68 +402,71 @@
         function updateOrders() {
             var orderid = $('#orderid').val();
             var ordername = $('#ordername').val();
-            if (checkIf(ordername)){
-                jAlert('Chưa nhập tên đơn hàng', 'Thông báo', function () {
-                    $('#ordername').focus();
-                });
-            }
             var ordercustomerid = $('#ordercustomerid').val();
             var ordercustomername = $('#ordercustomername').val();
-            if (checkIf(ordercustomername)){
-                jAlert('Chưa nhập tên tên khách hàng', 'Thông báo', function () {
-                    $('#ordercustomername').focus();
-                });
-            }
             var ordercustomertypeid = $('#ordercustomertypeid').val();
             var ordercustomertypename = $('#ordercustomertypename').val();
             var orderdate = $('#orderdate').val();
             var orderemployeeid = $('#orderemployeeid').val();
             var orderemployeename = $('#orderemployeename').val();
-            $.blockUI({
-                message: '<h1>Đợi trong giây lát...</h1>',
-                css: {
-                    border: 'none',
-                    padding: '15px',
-                    backgroundColor: '#000',
-                    '-webkit-border-radius': '10px',
-                    '-moz-border-radius': '10px',
-                    opacity: .5,
-                    color: '#fff'
-                },
-                onOverlayClick: $.unblockUI
-            });
-            $.ajax({
-                type: "POST",
-                url: "admin/controllers/order/updateOrders.php",
-                data: {
-                    orderid: orderid,
-                    ordername: ordername,
-                    ordercustomerid: ordercustomerid,
-                    ordercustomername: ordercustomername,
-                    ordercustomertypeid: ordercustomertypeid,
-                    ordercustomertypename: ordercustomertypename,
-                    orderdate: orderdate,
-                    orderemployeeid: orderemployeeid,
-                    orderemployeename: orderemployeename
-                },
-                success: function (data) {
-                    if (data == '0') {
-                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
-                            $('#ordername').focus();
-                        });
-                    } else {
-                        jAlert('Thực hiện thành công', 'Thông báo', function (e) {
-                            $('#ordername').focus();
-                        });
+            if (checkIf(ordername)){
+                return jAlert('Chưa nhập tên đơn hàng', 'Thông báo', function () {
+                    $('#ordername').focus();
+                });
+            } else if (checkIf(ordercustomername)){
+                return jAlert('Chưa nhập tên tên khách hàng', 'Thông báo', function () {
+                    $('#ordercustomername').focus();
+                });
+            } else {
+                $.blockUI({
+                    message: '<h1>Đợi trong giây lát...</h1>',
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    },
+                    onOverlayClick: $.unblockUI
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "admin/controllers/order/updateOrders.php",
+                    data: {
+                        orderid: orderid,
+                        ordername: ordername,
+                        ordercustomerid: ordercustomerid,
+                        ordercustomername: ordercustomername,
+                        ordercustomertypeid: ordercustomertypeid,
+                        ordercustomertypename: ordercustomertypename,
+                        orderdate: orderdate,
+                        orderemployeeid: orderemployeeid,
+                        orderemployeename: orderemployeename
+                    },
+                    success: function (data) {
+                        if (data == '0') {
+                            jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                $('#ordername').focus();
+                            });
+                        } else {
+                            jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                disableOrdersDetail(false);
+                                disableOrders(true);
+                                $('#orderid').val(data);
+                                $('#goodsname').focus();
+                            });
+                        }
+                        $.unblockUI();
+                        loadOrder();
+                        // emptyObjectOrder();
                     }
-                    $.unblockUI();
-                    loadOrder();
-                    emptyObject();
-                }
-            });
+                });
+            }
         }
 
-        function emptyObject() {
+        function emptyObjectOrder() {
             $("#orderid").val('');
             $("#ordername").val('');
             $("#ordercustomerid").val('');
@@ -476,5 +478,45 @@
         $("#btnUpdateOrder").click(function (e) {
             updateOrders();
         });
+
+        function disableOrdersDetail(bool) {
+            // $('#goodsid').prop('disabled', bool);
+            $('#goodsname').prop('disabled', bool);
+            // $('#goodscolor').prop('disabled', bool);
+            // $('#goodssize').prop('disabled', bool);
+            $('#goodsamount').prop('disabled', bool);
+            $('#goodsunit').prop('disabled', bool);
+            $('#goodsprice').prop('disabled', bool);
+            $('#goodstotal').prop('disabled', bool);
+            $('#goodsretail').prop('disabled', bool);
+            $('#goodswholesale').prop('disabled', bool);
+            $('#goodspricevip').prop('disabled', bool);
+        }
+
+        function disableOrders(bool) {
+            $('#ordername').prop('disabled', bool);
+            $('#ordercustomername').prop('disabled', bool);
+            $('#orderdate').prop('disabled', bool);
+        }
+
+        $("#goodsname").combogrid({
+            url: 'admin/controllers/order/listCustomerOrder.php',
+            width: '50%',
+            colModel: [
+                {'columnName': 'id', 'width': '10', 'label': 'Id'},
+                {'columnName': 'name', 'width': '30', 'label': 'Tên khách hàng', align: 'left'},
+                {'columnName': 'phone', 'width': '25', 'label': 'Số điện thoại', align: 'right'},
+                {'columnName': 'typeid', 'width': '25', 'label': 'Loại khách id', hidden: true},
+                {'columnName': 'typename', 'width': '25', 'label': 'Loại khách'}
+            ],
+            select: function (event, ui) {
+                $("#ordercustomerid").val(ui.item.id);
+                $("#ordercustomername").val(ui.item.name);
+                $("#ordercustomertypeid").val(ui.item.typeid);
+                $("#ordercustomertypename").val(ui.item.typename);
+                return false;
+            }
+        });
+
     });
 </script>

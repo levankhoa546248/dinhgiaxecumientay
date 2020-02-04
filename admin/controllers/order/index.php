@@ -1,6 +1,6 @@
 <?php
 $db = new DBController();
-$title = 'Nhập hàng';
+$title = 'Đơn hàng';
 $user = $_SESSION['user'];
 $sqlemployees = 'SELECT
 e.id,
