@@ -814,6 +814,7 @@
                         disableTblImport(true);
                     }
                     $.unblockUI();
+                    emptyObjectCoupon();
                 }
             });
         }

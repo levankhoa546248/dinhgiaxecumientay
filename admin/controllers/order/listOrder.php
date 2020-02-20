@@ -13,7 +13,6 @@ if (!empty($_POST)) {
             o.employeesid,
             o.isorder,
             o.amount,
-            o.total,
             o.istotal,
             o.canceldate,
             o.reportdate,
@@ -31,7 +30,14 @@ if (!empty($_POST)) {
             \'Đã báo cáo\'
         END AS isordername,
          c.typeid,
-         ct.`name` AS typename
+         ct.`name` AS typename,
+            o.orderpayment,
+            o.intototal,
+            o.discountpercent,
+            o.discountmoney,
+            o.sumtotal,
+            o.paidtotal,
+            o.resttotal
         FROM
             orders AS o
         INNER JOIN employees e ON o.employeesid = e.id
