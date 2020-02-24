@@ -844,7 +844,10 @@
                     var paidtotal = $("#paidtotal").val();
                     var resttotal = sumtotal - StringToNumber(paidtotal);
                     $('#sumamount').val(sumAmount);
-                    $('#resttotal').val(formatNumber(resttotal.toString()));
+                    var rest = $('#resttotal').val();
+                    if (checkIf(rest)){
+                        $('#resttotal').val(formatNumber(resttotal.toString()));
+                    }
                 }
             });
         }
