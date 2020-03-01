@@ -2,9 +2,14 @@
 
 class DBController
 {
-    private $host = "remotemysql.com";
-    private $user = "Rr5s8PgcAw";
-    private $password = "vZ2uWTMgFd";
+//    private $host = "remotemysql.com";
+//    private $user = "Rr5s8PgcAw";
+//    private $password = "vZ2uWTMgFd";
+//    private $database = "Rr5s8PgcAw";
+
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
     private $database = "Rr5s8PgcAw";
     private $conn;
 
@@ -45,7 +50,7 @@ class DBController
             $value = mysqli_real_escape_string($conn, $value);
             $values[] = "`$key`='$value'";
         }
-        $Id = intval($data['id']);
+        $Id = isset($data['id']) ? empty($data['id']) ? '0' : intval($data['id']) : '0';
         if ($Id > 0) {
             $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE Id=$Id";
         } else {
@@ -106,7 +111,7 @@ class DBController
     {
         $conn = $this->conn;
         $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
-        $sql = "SELECT COUNT(*) as total FROM $table $where";
+        $sql = "SELECT COUNT(1) as total FROM $table $where";
         $query = mysqli_query($conn, $sql) or die(mysqli_error());
         $row = mysqli_fetch_assoc($query);
         return $row['total'];
@@ -139,6 +144,15 @@ class DBController
             $result = 1;
         }
         return $result;
+    }
+
+    function insert($sql){
+        $conn = $this->conn;
+        $Id = 0;
+        if (mysqli_query($conn, $sql)) {
+            $Id = ($Id > 0) ? $Id : mysqli_insert_id($conn);
+        }
+        return $Id;
     }
 }
 

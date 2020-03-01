@@ -14,33 +14,25 @@ if ($searchTerm=="") {
 require_once("../dbConnect.php");
 $db = new DBController();
 $sql_0 = 'SELECT
-cd.goodsid,
-cd.goodsname,
-cd.goodssize,
-cd.goodscolor,
-cd.price,
-cd.total,
-FORMAT(cd.retail, 0) AS retail,
-FORMAT(cd.wholesale, 0) AS wholesale,
-FORMAT(cd.pricevip, 0) AS pricevip,
-cd.goodsunit,
-SUM(cd.amount) as amount
-FROM
-coupondetail AS cd
-WHERE cd.isimport NOT IN (0, 2)
+st.id,
+st.gid AS goodsid,
+st.`name` AS goodsname,
+FORMAT(st.price, 0) as price,
+FORMAT(st.retail, 0) as retail,
+FORMAT(st.whole, 0) as wholesale,
+FORMAT(st.vip, 0) as pricevip,
+SUM(st.amount) - SUM(st.amounttemp) as amount
+FROM `storage` st
+WHERE st.amount > 0
 ';
-$sql_1 = $sql_0 . " AND upper(cd.goodsname) like upper ('$searchTerm')";
+$sql_1 = $sql_0 . " AND upper(st.`name`) like upper ('$searchTerm')";
 $sql_groupby = ' GROUP BY
-cd.goodsid,
-cd.goodsname,
-cd.goodssize,
-cd.goodscolor,
-cd.price,
-cd.total,
-cd.retail,
-cd.wholesale,
-cd.pricevip,
-cd.goodsunit';
+st.gid,
+st.`name`,
+st.price,
+st.retail,
+st.whole,
+st.vip';
 $sql = $sql_1 . $sql_groupby;
 $count = $db->numRows($sql);
 
@@ -52,9 +44,9 @@ if( $count >0 ) {
 if ($page > $total_pages) $page=$total_pages;
 $start = $limit*$page - $limit; // do not put $limit*($page - 1)
 if($total_pages!=0)
-	$SQL = $sql_0 . "AND upper(cd.goodsname) like upper ('$searchTerm') " . $sql_groupby . " ORDER BY $sidx $sord " . " LIMIT $start , $limit";
+	$SQL = $sql_0 . "AND upper(st.`name`) like upper ('$searchTerm') " . $sql_groupby . " ORDER BY $sidx $sord " . " LIMIT $start , $limit";
 else
-	$SQL = $sql_0 . "AND upper(cd.goodsname) like upper ('$searchTerm') " . $sql_groupby . " ORDER BY $sidx $sord";
+	$SQL = $sql_0 . "AND upper(st.`name`) like upper ('$searchTerm') " . $sql_groupby . " ORDER BY $sidx $sord";
 $result = $db->get_select_nested($SQL);
 class reponse{}
 $response = new reponse();

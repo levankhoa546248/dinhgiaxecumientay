@@ -62,7 +62,7 @@
         </div>
         <div class="panel-body small form-horizontal" style="padding-bottom: inherit">
             <div>
-<!--                <input name="couponid" type="hidden" class="form-control" id="couponid"/>-->
+                <!--                <input name="couponid" type="hidden" class="form-control" id="couponid"/>-->
                 <input name="isimport" type="hidden" class="form-control" id="isimport"/>
             </div>
             <div class="form-group">
@@ -104,15 +104,15 @@
                     <button class="btnself btn-warning" type="button" id="btnReport">
                         <i class="glyphicon glyphicon-book"></i> Báo cáo
                     </button>
-                    <button class="btnself btn-danger" type="button" id="btnCancel">
-                        <i class="glyphicon glyphicon-ban-circle"></i> Hủy phiếu
-                    </button>
+<!--                    <button class="btnself btn-danger" type="button" id="btnCancel">-->
+<!--                        <i class="glyphicon glyphicon-ban-circle"></i> Hủy phiếu-->
+<!--                    </button>-->
                     <button class="btnself btn-warning" type="button" id="btnIsImport">
                         <i class="glyphicon glyphicon-open-file"></i> Nhập kho
                     </button>
-                    <button class="btnself btn-primary" type="button" id="btnUpdateCoupon"><i
-                                class="glyphicon glyphicon-plus"></i> Cập nhật
-                    </button>
+<!--                    <button class="btnself btn-primary" type="button" id="btnUpdateCoupon"><i-->
+<!--                                class="glyphicon glyphicon-plus"></i> Cập nhật-->
+<!--                    </button>-->
                 </div>
             </div>
         </div>
@@ -248,6 +248,7 @@
                 updateCoupon();
             }
         });
+
         function updateCoupon() {
             var id = $('#couponid').val();
             var name = $('#couponname').val();
@@ -297,6 +298,7 @@
                 }
             });
         }
+
         // var toDay = $('#toDate').val();
         loadCoupon();
 
@@ -386,6 +388,7 @@
                 //     changeIsImport("2");
                 // }
             }
+            $("#goodsname").focus();
         });
 
         $('#tblCoupon').on('click', 'button.coupondelete', function (e) {
@@ -428,13 +431,13 @@
 
         $("#goodsname").combogrid({
             url: 'admin/controllers/import/listGoods.php',
-            width: '50%',
+            width: '60%',
             colModel: [
                 {'columnName': 'id', 'width': '10', 'label': 'Id'},
-                {'columnName': 'name', 'width': '30', 'label': 'Tên hàng', align: 'left'},
-                {'columnName': 'color', 'width': '25', 'label': 'Màu sắc', align: 'left'},
-                {'columnName': 'sizename', 'width': '25', 'label': 'Kích thước'},
-                {'columnName': 'unitname', 'width': '10', 'label': 'Đơn vị tính'}
+                {'columnName': 'name', 'width': '35', 'label': 'Tên hàng', align: 'left'},
+                {'columnName': 'color', 'width': '20', 'label': 'Màu sắc', align: 'left'},
+                {'columnName': 'sizename', 'width': '15', 'label': 'Kích thước'},
+                {'columnName': 'unitname', 'width': '20', 'label': 'Đơn vị tính'}
             ],
             select: function (event, ui) {
                 $("#goodsid").val(ui.item.id);
@@ -644,6 +647,13 @@
                             return intVal(a) + intVal(b);
                         }, 0);
 
+                    var sumPrice = api
+                        .column(8)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
                     var sumTotal = api
                         .column(9)
                         .data()
@@ -675,6 +685,7 @@
                     // Update footer by showing the total with the reference of the column index
                     $(api.column(2).footer()).html('Tổng');
                     $(api.column(6).footer()).html(formatNumber(sumAmount.toString()));
+                    $(api.column(8).footer()).html(formatNumber(sumPrice.toString()));
                     $(api.column(9).footer()).html(formatNumber(sumTotal.toString()));
                     $(api.column(10).footer()).html(formatNumber(sumRetail.toString()));
                     $(api.column(11).footer()).html(formatNumber(sumWhole.toString()));
@@ -762,8 +773,8 @@
             if (checkIf(id)) {
                 return jAlert('Chưa chọn phiếu nhập', 'Thông báo');
             }
-            // var isimport = $('#isimport').val();
-            updateIsImport(id, 1)
+            importStorage();
+            updateIsImport(id, 1);
         });
 
         function updateIsImport(couponid, isimport) {
@@ -871,6 +882,7 @@
         $('#btnCancel').click(function () {
             updateCouponCancel(2);
         });
+
         function updateCouponCancel(isimport) {
             var id = $('#couponid').val();
             $.blockUI({
@@ -901,6 +913,37 @@
                         loadCoupon();
                     }
                     $.unblockUI();
+                }
+            });
+        }
+
+        function importStorage() {
+            var dataColDetail = $('#tblCouponDetail').DataTable().columns().data();
+            var gid = dataColDetail[1];
+            var gname = dataColDetail[2];
+            var gamount = dataColDetail[6];
+            var gprice = dataColDetail[8];
+            var gretail = dataColDetail[10];
+            var gwhole = dataColDetail[11];
+            var gvip = dataColDetail[12];
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/import/importStorage.php",
+                data: {
+                    gid: gid,
+                    gname: gname,
+                    gamount: gamount,
+                    gprice: gprice,
+                    gretail: gretail,
+                    gwhole: gwhole,
+                    gvip: gvip
+                },
+                success: function (data) {
+                    if (data == '0') {
+                        return 0;
+                    } else {
+                        return 1;
+                    }
                 }
             });
         }

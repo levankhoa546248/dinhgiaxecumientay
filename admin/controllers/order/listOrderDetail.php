@@ -6,6 +6,7 @@ if (!empty($_POST)) {
     $sql = '
             SELECT
             od.id,
+            od.storageid,
             od.ordersid,
             od.goodsid,
             od.goodsname,

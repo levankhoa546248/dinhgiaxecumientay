@@ -21,6 +21,7 @@ if (!empty($_POST)) {
     $resttotal = $_POST['resttotal'];
     $sumamount = isset($_POST['sumamount']) ? empty($_POST['sumamount']) ? '0' : intval($_POST['sumamount']) : '0';
     $createdate = date('Y-m-d H:m:i');
+    $isorder = $_POST['isorder'];
     $option = array(
         'id' => $orderid,
         'name' => $ordername,
@@ -35,7 +36,8 @@ if (!empty($_POST)) {
         'sumtotal' => $sumtotal,
         'paidtotal' => $paidtotal,
         'resttotal' => $resttotal,
-        'amount' => $sumamount
+        'amount' => $sumamount,
+        'isorder' => $isorder
     );
     $result = $db->save('orders', $option);
     echo json_encode($result);

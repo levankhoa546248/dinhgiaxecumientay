@@ -147,18 +147,15 @@
             <div class="form-group pull-right">
                 <div class="col-sm-1"></div>
                 <div class="pull-right" style="padding-right: 15px">
-                    <button class="btnself btn-warning" type="button" id="btnReport">
-                        <i class="glyphicon glyphicon-book"></i> Báo cáo
-                    </button>
-                    <button class="btnself btn-danger" type="button" id="btnCancel">
-                        <i class="glyphicon glyphicon-ban-circle"></i> Hủy phiếu
-                    </button>
+                    <!--                    <button class="btnself btn-warning" type="button" id="btnReport">-->
+                    <!--                        <i class="glyphicon glyphicon-book"></i> Báo cáo-->
+                    <!--                    </button>-->
                     <button class="btnself btn-warning" type="button" id="btnIsOrder">
                         <i class="glyphicon glyphicon-open-file"></i> Xuất kho
                     </button>
-                    <button class="btnself btn-primary" type="button" id="btnUpdateOrder"><i
-                                class="glyphicon glyphicon-plus"></i> Cập nhật
-                    </button>
+                    <!--                    <button class="btnself btn-primary" type="button" id="btnUpdateOrder"><i-->
+                    <!--                                class="glyphicon glyphicon-plus"></i> Cập nhật-->
+                    <!--                    </button>-->
                 </div>
             </div>
         </div>
@@ -194,15 +191,21 @@
     <table class="table table-striped table-bordered table-hover small" id="tblOrdersDetail" style="width:100%">
         <thead class="bg-info">
         <tr>
+            <th class="text-center" width="10%" hidden>Id</th>
             <th class="text-center" width="10%">Id</th>
             <th class="text-left" width="35%">Tên hàng</th>
             <th class="text-center" width="15%">Số lượng</th>
             <th class="text-right">Giá bán</th>
             <th class="text-right">Thành tiền</th>
+            <th class="text-right" hidden>Tồn kho</th>
         </tr>
         </thead>
         <tbody>
         <tr>
+            <td hidden>
+                <input name="storageid" type="text" class="form-control input-sm text-center" id="storageid" disabled
+                       required=""/>
+            </td>
             <td>
                 <input name="goodsid" type="text" class="form-control input-sm text-center" id="goodsid" disabled
                        required=""/>
@@ -223,6 +226,10 @@
                 <input name="goodstotal" type="text" class="form-control input-sm text-right" id="goodstotal"
                        placeholder="Thành tiền" data-type="currency" disabled required=""/>
             </td>
+            <td hidden>
+                <input name="amounttotal" type="text" class="form-control input-sm text-right" id="amounttotal"
+                       placeholder="Tồn kho" data-type="currency" disabled required=""/>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -230,6 +237,7 @@
         <thead class="bg-primary">
         <tr>
             <th class="text-center" width="7%" hidden>Id orderdetail</th>
+            <th class="text-center" width="7%" hidden>Id storage</th>
             <th class="text-center" width="7%">Id</th>
             <th class="text-left" width="30%">Tên hàng</th>
             <th class="text-center" width="15%">Số lượng</th>
@@ -242,6 +250,7 @@
         <tfoot align="right">
         <tr>
             <th hidden></th>
+            <th hidden></th>
             <th></th>
             <th></th>
             <th></th>
@@ -253,66 +262,66 @@
         </tfoot>
     </table>
 </div>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title text-center" id="exampleModalLongTitle">Giảm giá
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </h4>
-            </div>
-            <div class="modal-body">
-                <div class="panel-body small form-horizontal" style="padding-bottom: inherit">
-                    <div class="form-group">
-                        <label for="discountstyle" class="col-sm-4 control-label">Hình thức</label>
-                        <div class="col-sm-2">
-                            <input type="radio" name="discountstyle" id="money" checked value="1"> Tiền
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="radio" name="discountstyle" id="percent" value="2"> %
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="discountmoney" class="col-sm-4 control-label">Nhập số tiền</label>
-                        <div class="col-sm-4">
-                            <input name="discountmoney" type="text" class="form-control input-sm text-right"
-                                   id="discountmoney" placeholder="Số tiền giảm giá" data-type="currency" required=""/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="discountpercent" class="col-sm-4 control-label">Nhập số %</label>
-                        <div class="col-sm-2">
-                            <input type="radio" name="radiopercent" id="radio5" checked value="5"> 5%
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="radio" name="radiopercent" id="radio10" value="10"> 10%
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="radio" name="radiopercent" id="radio15" value="15"> 15%
-                        </div>
-                        <div class="col-sm-2">
-                            <input type="radio" name="radiopercent" id="radio50" value="50"> 50%
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="discountpercent" class="col-sm-4 control-label"></label>
-                        <div class="col-sm-4">
-                            <input name="discountpercent" type="text" class="form-control input-sm text-right"
-                                   id="discountpercent" placeholder="Số % giảm giá" required=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Lưu</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h4 class="modal-title text-center" id="exampleModalLongTitle">Giảm giá-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </h4>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <div class="panel-body small form-horizontal" style="padding-bottom: inherit">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="discountstyle" class="col-sm-4 control-label">Hình thức</label>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="radio" name="discountstyle" id="money" checked value="1"> Tiền-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="radio" name="discountstyle" id="percent" value="2"> %-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="discountmoney" class="col-sm-4 control-label">Nhập số tiền</label>-->
+<!--                        <div class="col-sm-4">-->
+<!--                            <input name="discountmoney" type="text" class="form-control input-sm text-right"-->
+<!--                                   id="discountmoney" placeholder="Số tiền giảm giá" data-type="currency" required=""/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="discountpercent" class="col-sm-4 control-label">Nhập số %</label>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="radio" name="radiopercent" id="radio5" checked value="5"> 5%-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="radio" name="radiopercent" id="radio10" value="10"> 10%-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="radio" name="radiopercent" id="radio15" value="15"> 15%-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <input type="radio" name="radiopercent" id="radio50" value="50"> 50%-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="discountpercent" class="col-sm-4 control-label"></label>-->
+<!--                        <div class="col-sm-4">-->
+<!--                            <input name="discountpercent" type="text" class="form-control input-sm text-right"-->
+<!--                                   id="discountpercent" placeholder="Số % giảm giá" required=""/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>-->
+<!--                <button type="button" class="btn btn-primary">Lưu</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <div hidden>
     <input name="sumamount" type="text" class="form-control input-sm" id="sumamount" required=""/>
 </div>
@@ -368,7 +377,7 @@
                 columns: [
                     {data: "id", className: "text-center", width: '8%'},
                     {data: "name"},
-                    {data: "orderdate", className: "text-right", width: '12%'},
+                    {data: "orderdate", className: "text-right", width: '12%', visible: false},
                     {data: "employeesid", visible: false},
                     {data: "employeename"},
                     {data: "customerid", visible: false},
@@ -376,13 +385,13 @@
                     {data: "typeid", visible: false},
                     {data: "typename", visible: false},
                     {data: "isorder", visible: false},
-                    {data: "isordername", width: '13%'},
-                    {data: "orderpayment", width: '13%'},
+                    {data: "isordername", width: '13%', visible: false},
+                    {data: "orderpayment", width: '13%', visible: false},
                     {
-                        data: "intototal", width: '13%',
+                        data: "intototal", width: '13%', visible: false,
                         render: $.fn.dataTable.render.number(',', '.', 0)
                     },
-                    {data: "discountpercent", width: '13%'},
+                    {data: "discountpercent", width: '13%', visible: false},
                     {
                         data: "discountmoney", width: '13%',
                         render: $.fn.dataTable.render.number(',', '.', 0)
@@ -396,7 +405,7 @@
                         render: $.fn.dataTable.render.number(',', '.', 0)
                     },
                     {
-                        data: "resttotal", width: '13%',
+                        data: "resttotal", width: '13%', visible: false,
                         render: $.fn.dataTable.render.number(',', '.', 0)
                     },
                     {
@@ -433,9 +442,9 @@
                 $("#sumtotal").val(formatNumber(data["sumtotal"].toString()));
                 $("#paidtotal").val(formatNumber(data["paidtotal"].toString()));
                 $("#resttotal").val(formatNumber(data["resttotal"].toString()));
-
+                returnStorage();
             }
-            disableOrders(true);
+            // disableOrders(true);
             disableOrdersDetail(false);
             $("#goodsname").focus();
             loadOrderDetail();
@@ -483,24 +492,32 @@
 
         $("#ordercustomername").keypress(function (evt) {
             if (evt.keyCode == 13) {
-                var custumername = $('#ordercustomername').val();
-                if (!checkIf(custumername)) {
-                    $.ajax({
-                        type: "POST",
-                        url: "admin/controllers/order/checkCustomer.php",
-                        data: {
-                            custumername: custumername
-                        },
-                        success: function (data) {
-                            if (data !== '0') {
-                                updateOrders();
+                var ordercustomerid = $('#ordercustomerid').val();
+                if (checkIf(ordercustomerid)) {
+                    var customername = $('#ordercustomername').val();
+                    if (!checkIf(customername)) {
+                        $.ajax({
+                            type: "POST",
+                            url: "admin/controllers/order/checkCustomer.php",
+                            data: {
+                                customername: customername
+                            },
+                            success: function (data) {
+                                if (data !== '0') {
+                                    $('#ordercustomerid').val(data);
+                                    $('#ordercustomertypeid').val('-1');
+                                    $('#ordercustomertypename').val('Không phân loại');
+                                    updateOrders(0);
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        jAlert('Tên khách hàng không được để trống', 'Thông báo', function (e) {
+                            $('#ordercustomername').focus();
+                        });
+                    }
                 } else {
-                    jAlert('Tên khách hàng không được để trống', 'Thông báo', function (e) {
-                        $('#ordercustomername').focus();
-                    });
+                    updateOrders(0);
                 }
             }
         });
@@ -524,7 +541,7 @@
             }
         });
 
-        function updateOrders() {
+        function updateOrders(isOrder) {
             var orderid = $('#orderid').val();
             var ordername = $('#ordername').val();
             var ordercustomerid = $('#ordercustomerid').val();
@@ -585,7 +602,8 @@
                         sumtotal: StringToNumber(sumtotal),
                         paidtotal: StringToNumber(paidtotal),
                         resttotal: StringToNumber(resttotal),
-                        sumamount: sumamount
+                        sumamount: sumamount,
+                        isorder: isOrder
                     },
                     success: function (data) {
                         if (data == '0') {
@@ -596,13 +614,15 @@
                             jAlert('Thực hiện thành công', 'Thông báo', function (e) {
                                 disableOrdersDetail(false);
                                 disableOrders(true);
-                                $('#orderid').val(data);
+                                if (isOrder !== 1) {
+                                    $('#orderid').val(data);
+                                }
                                 $('#goodsname').focus();
                             });
                         }
                         $.unblockUI();
                         loadOrder();
-                        // emptyObjectOrder();
+                        loadOrderDetail();
                     }
                 });
             }
@@ -624,7 +644,7 @@
         }
 
         $("#btnUpdateOrder").click(function (e) {
-            updateOrders();
+            updateOrders(0);
         });
 
         function disableOrdersDetail(bool) {
@@ -637,24 +657,29 @@
             $('#ordername').prop('disabled', bool);
             $('#ordercustomername').prop('disabled', bool);
             $('#orderdate').prop('disabled', bool);
+            $('#discountpercent').prop('disabled', bool);
+            $('#discountmoney').prop('disabled', bool);
+            $('#paidtotal').prop('disabled', bool);
         }
 
         $("#goodsname").combogrid({
             url: 'admin/controllers/order/listGoodsOrders.php',
             width: '60%',
             colModel: [
+                {'columnName': 'id', 'width': '10', 'label': 'Id', hidden: true},
                 {'columnName': 'goodsid', 'width': '10', 'label': 'Id'},
                 {'columnName': 'goodsname', 'width': '25', 'label': 'Tên hàng', align: 'left'},
-                {'columnName': 'goodssize', 'width': '25', 'label': 'Kích thước', align: 'right', hidden: true},
-                {'columnName': 'goodscolor', 'width': '25', 'label': 'Màu sắc', hidden: true},
+                // {'columnName': 'goodssize', 'width': '25', 'label': 'Kích thước', align: 'right', hidden: true},
+                // {'columnName': 'goodscolor', 'width': '25', 'label': 'Màu sắc', hidden: true},
                 {'columnName': 'price', 'width': '25', 'label': 'Đơn giá', hidden: true},
-                {'columnName': 'total', 'width': '25', 'label': 'Thành tiền', hidden: true},
+                // {'columnName': 'total', 'width': '25', 'label': 'Thành tiền', hidden: true},
                 {'columnName': 'retail', 'width': '15', 'label': 'Giá bán lẻ', align: 'right'},
                 {'columnName': 'wholesale', 'width': '15', 'label': 'Giá bán sỉ', align: 'right'},
                 {'columnName': 'pricevip', 'width': '15', 'label': 'Giá VIP', align: 'right'},
                 {'columnName': 'amount', 'width': '15', 'label': 'Tồn kho'}
             ],
             select: function (event, ui) {
+                $("#storageid").val(ui.item.id);
                 $("#goodsid").val(ui.item.goodsid);
                 $("#goodsname").val(ui.item.goodsname);
                 var typecustomer = $("#ordercustomertypeid").val();
@@ -665,6 +690,7 @@
                 } else {
                     $("#goodscash").val(ui.item.retail);
                 }
+                $("#amounttotal").val(ui.item.amount);
                 return false;
             }
         });
@@ -685,36 +711,53 @@
 
         $("#goodsamount").keypress(function (evt) {
             if (evt.keyCode == 13) {
-                var goodsamount = $("#goodsamount").val();
-                var goodscash = $("#goodscash").val();
+                var amounttotal = StringToNumber($("#amounttotal").val());
+                var goodsamount = StringToNumber($("#goodsamount").val());
+                if (goodsamount > amounttotal) {
+                    return jAlert('Số lượng vượt tồn kho', 'Thông báo', function (e) {
+                        $("#goodsamount").focus();
+                    });
+                }
+                var goodscash = StringToNumber($("#goodscash").val());
                 if (checkIf(goodsamount)) {
                     jAlert('Số lượng không được để trống', 'Thông báo', function (e) {
                         $("#goodsamount").focus();
                     });
                 } else {
-                    var goodstotal = StringToNumber(goodscash) * goodsamount;
-                    $("#goodstotal").val(goodstotal);
+                    var goodstotal = goodscash * goodsamount;
+                    const subamount = amounttotal - goodsamount;
+                    $("#goodstotal").val(formatNumber(goodstotal.toString()));
+                    $("#amounttotal").val(subamount);
                     $("#goodstotal").focus();
                 }
             }
         });
 
+        function checkGoods() {
+            var storageid = $("#storageid").val();
+            var goodscash = StringToNumber($("#goodscash").val());
+            var rows = $('#listOrderDetail').DataTable().rows().data();
+            for (var i = 0; i < rows.length; i++) {
+                var c_storageid = rows[i]["storageid"];
+                var c_goodscash = rows[i]["goodscash"];
+                if (storageid == c_storageid && goodscash == c_goodscash) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         $("#goodstotal").keypress(function (evt) {
             if (evt.keyCode == 13) {
-                var goodsid = $("#goodsid").val();
-                var goodscash = $("#goodscash").val();
-                var idCheck = $('#listOrderDetail').DataTable().columns(1).data()[0];
-                var cashCheck = $('#listOrderDetail').DataTable().columns(4).data()[0];
-                var checkIdResult = checkSurvival(goodsid, idCheck);
-                var checkCashResult = checkSurvival(StringToNumber(goodscash), cashCheck);
-                if (checkIdResult && checkCashResult) {
+                var checkResult = checkGoods();
+                if (checkResult) {
                     jAlert('Sản phẩm đã có trong phiếu nhập. Vui lòng xóa sản phẩm ra khỏi phiếu và thêm lại !!!', 'Thông báo', function (e) {
                         emptyOrderDetail();
                         $('#goodsname').focus();
                     });
                 } else {
+                    subtractStorage();
                     updateOrderDetail();
-                    // loadOrderDetail();
                     emptyOrderDetail();
                 }
             }
@@ -722,6 +765,7 @@
 
         function updateOrderDetail() {
             var ordersid = $("#orderid").val();
+            var storageid = $("#storageid").val();
             var goodsid = $("#goodsid").val();
             var goodsname = $("#goodsname").val();
             var goodsamount = $("#goodsamount").val();
@@ -744,6 +788,7 @@
                 type: "POST",
                 url: "admin/controllers/order/updateOrderDetail.php",
                 data: {
+                    storageid: storageid,
                     ordersid: ordersid,
                     goodsid: goodsid,
                     goodsname: goodsname,
@@ -761,6 +806,7 @@
                             $("#goodsname").focus();
                         });
                     }
+                    emptyTotal();
                     loadOrderDetail();
                     $.unblockUI();
                 }
@@ -787,6 +833,7 @@
                 },
                 columns: [
                     {data: "id", className: "text-center", width: '7%', visible: false},
+                    {data: "storageid", className: "text-center", width: '7%', visible: false},
                     {data: "goodsid", className: "text-center", width: '7%'},
                     {data: "goodsname", className: "text-left", width: '30%'},
                     {data: "goodsamount", className: "text-center", width: '15%'},
@@ -818,14 +865,14 @@
                     };
 
                     var sumAmount = api
-                        .column(3)
+                        .column(4)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
 
                     var intoTotal = api
-                        .column(5)
+                        .column(6)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
@@ -833,31 +880,46 @@
 
                     var intoTotalString = formatNumber(intoTotal.toString());
                     // Update footer by showing the total with the reference of the column index
-                    $(api.column(2).footer()).html('Tổng');
-                    $(api.column(3).footer()).html(sumAmount);
-                    $(api.column(5).footer()).html(intoTotalString);
-                    $('#intoTotal').val(intoTotalString);
-                    var discountmoney = $("#discountmoney").val();
-                    var sumtotal = intoTotal - StringToNumber(discountmoney);
-                    $('#sumtotal').val(formatNumber(sumtotal.toString()));
-                    $('#paidtotal').val(formatNumber(sumtotal.toString()));
-                    var paidtotal = $("#paidtotal").val();
-                    var resttotal = sumtotal - StringToNumber(paidtotal);
-                    $('#sumamount').val(sumAmount);
-                    var rest = $('#resttotal').val();
-                    if (checkIf(rest)){
-                        $('#resttotal').val(formatNumber(resttotal.toString()));
-                    }
+                    $(api.column(3).footer()).html('Tổng');
+                    $(api.column(4).footer()).html(sumAmount);
+                    $(api.column(6).footer()).html(intoTotalString);
+                    calSumTotal(intoTotal);
                 }
             });
         }
 
+        function calSumTotal(intoTotal) {
+            var intoTotalOd = $("#intoTotal").val();
+            var discountpercentOd = $("#discountpercent").val();
+            var discountmoneyOd = $("#discountmoney").val();
+            var sumtotalOd = $("#sumtotal").val();
+            var paidtotalOd = $("#paidtotal").val();
+            var resttotalOd = $("#resttotal").val();
+            var checkOrder = $("#checkOrder").is(":checked");
+            if (intoTotal != StringToNumber(intoTotalOd) && !checkOrder) {
+                $("#intoTotal").val(formatNumber(intoTotal.toString()));
+                var discountmoney = intoTotal * StringToNumber(discountpercentOd) / 100;
+                $("#discountmoney").val(formatNumber(discountmoney.toString()));
+                var sumtotal = intoTotal - discountmoney;
+                $("#sumtotal").val(formatNumber(sumtotal.toString()));
+                if (paidtotalOd == "0") {
+                    $("#paidtotal").val(formatNumber(sumtotal.toString()));
+                }
+                var resttotal = sumtotal - StringToNumber(paidtotalOd);
+                if (resttotal != sumtotal) {
+                    $("#resttotal").val(formatNumber(resttotal.toString()));
+                }
+            }
+
+        }
         function emptyOrderDetail() {
+            $("#storageid").val('');
             $("#goodsid").val('');
             $("#goodsname").val('');
             $("#goodsamount").val('');
             $("#goodscash").val('');
             $("#goodstotal").val('');
+            $("#amounttotal").val('');
         }
 
         $('#listOrderDetail').on('click', 'button.delete', function (e) {
@@ -867,7 +929,11 @@
             }
             var $row = $(this).closest('tr');
             var data = $('#listOrderDetail').DataTable().row($row).data();
-            jConfirm('Bạn chắc chắn xóa phiếu này này?', 'Thông báo', function (e) {
+            var storageid = [];
+            storageid.push(data["storageid"]);
+            var amount = [];
+            amount.push(data["goodsamount"]);
+            jConfirm('Bạn chắc chắn xóa hàng hóa này?', 'Thông báo', function (e) {
                 if (e == true) {
                     $.ajax({
                         type: "POST",
@@ -880,7 +946,9 @@
                                 jAlert('Thực hiện không thành công', 'Thông báo');
                             } else {
                                 jAlert('Thực hiện thành công', 'Thông báo');
+                                returnStorage(storageid, amount);
                             }
+                            emptyTotal();
                             loadOrderDetail();
                         }
                     });
@@ -965,7 +1033,86 @@
         $("#paidtotal").keypress(function (evt) {
             if (evt.keyCode == 13) {
                 calpaidtotal();
-                updateOrders();
+                updateOrders(0);
+            }
+        });
+
+        $("#btnIsOrder").click(function (e) {
+            var length = $('#listOrderDetail').DataTable().rows().data().length;
+            if (length == 0) {
+                jAlert('Phiếu chưa nhập hàng', 'Thông báo');
+            } else {
+                exportStorage();
+                updateOrders(1);
+                emptyObjectOrder();
+                emptyTotal();
+            }
+        });
+
+        function exportStorage() {
+            var dataColDetail = $('#listOrderDetail').DataTable().columns().data();
+            var storageid = dataColDetail[1];
+            var amount = dataColDetail[4];
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/order/exportStorage.php",
+                data: {
+                    storageid: storageid,
+                    amount: amount
+                },
+                success: function (data) {
+                    return data;
+                }
+            });
+        }
+
+        function emptyTotal() {
+            $("#intoTotal").val('0');
+            $("#discountpercent").val('0');
+            $("#discountmoney").val('0');
+            $("#sumtotal").val('0');
+            $("#paidtotal").val('0');
+            $("#resttotal").val('0');
+        }
+
+        function subtractStorage() {
+            var storageid = $("#storageid").val();
+            var goodsamount = $("#goodsamount").val();
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/order/subtractStorage.php",
+                data: {
+                    storageid: storageid,
+                    goodsamount: goodsamount
+                },
+                success: function (data) {
+                    return data;
+                }
+            });
+        }
+
+        function returnStorage(storageid, amount) {
+            $.ajax({
+                type: "POST",
+                url: "admin/controllers/order/returnStorage.php",
+                data: {
+                    storageid: storageid,
+                    amount: amount
+                },
+                success: function (data) {
+                    return data;
+                }
+            });
+        }
+
+        $('#checkOrder').click(function () {
+            $('#btnFreshOrder').click();
+            if ($(this).is(':checked')) {
+                $("#btnIsOrder").hide();
+                disableOrders(true);
+            } else {
+                $("#btnIsOrder").show();
+                disableOrders(false);
             }
         });
     });
