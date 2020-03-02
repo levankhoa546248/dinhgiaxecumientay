@@ -359,6 +359,7 @@
             $('#listOrder').DataTable().destroy();
             $('#listOrder').DataTable({
                 searching: true,
+                serverSide: true,
                 lengthChange: false,
                 width: '100%',
                 responsive: true,
