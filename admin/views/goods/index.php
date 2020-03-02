@@ -45,14 +45,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="goodssizesex" class="col-sm-2 control-label">Giới tính</label>
-                        <div class="col-sm-4">
-                            <select name="goodssizesex" class="form-control input-sm" id="goodssizesex" required="">
-                                <option value="0" selected>Chọn giới tính</option>
-                                <option value="1">Nam</option>
-                                <option value="2">Nữ</option>
-                            </select>
-                        </div>
+<!--                        <label for="goodssizesex" class="col-sm-2 control-label">Giới tính</label>-->
+<!--                        <div class="col-sm-4">-->
+<!--                            <select name="goodssizesex" class="form-control input-sm" id="goodssizesex" required="">-->
+<!--                                <option value="0" selected>Chọn giới tính</option>-->
+<!--                                <option value="1">Nam</option>-->
+<!--                                <option value="2">Nữ</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
                         <label for="goodssize" class="col-sm-2 control-label">Kích thước</label>
                         <div class="col-sm-4">
                             <select name="goodssize" class="form-control btn btn-group-sm" id="goodssize" required=""
@@ -990,6 +990,34 @@
                         $("#sizeid").val(data["id"]);
                         $("#sizename").val(data["name"]);
                     }
+                });
+
+                $('#tblSize').on('click', 'button.sizedelete', function (e) {
+                    var $row = $(this).closest('tr');
+                    var data = $('#tblSize').DataTable().row($row).data();
+                    jConfirm('Bạn chắc chắn xóa thuộc tính này?', 'Thông báo', function (e) {
+                        if (e == true) {
+                            $.ajax({
+                                type: "POST",
+                                url: "admin/controllers/goods/deleteSize.php",
+                                data: {
+                                    'id': data["id"]
+                                },
+                                success: function (data) {
+                                    if (data == '0') {
+                                        jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+                                            $('#sizename').focus();
+                                        });
+                                    } else {
+                                        jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+                                            $('#sizename').focus();
+                                        });
+                                        $('#btnSizeReset').click();
+                                    }
+                                }
+                            });
+                        }
+                    });
                 });
 
                 $('#sizename').keypress(function (e) {

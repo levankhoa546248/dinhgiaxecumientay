@@ -1,9 +1,10 @@
 <?php
+//require_once("admin/controllers/dbConnect.php");
 $db = new DBController();
+$title = 'Danh mục';
+$user = $_SESSION['user'];
 $sql = 'SELECT e.*, u.*, p.name as positionname FROM employees e LEFT JOIN `user` u ON e.userid = u.id
 LEFT JOIN position p ON p.id = e.position';
-$title = 'Danh mục nhân viên';
-$user = $_SESSION['user'];
 $employees = $db->get_select_nested($sql);
 $sqlPosition = 'SELECT * FROM position';
 $listposition = $db->get_select_nested($sqlPosition);

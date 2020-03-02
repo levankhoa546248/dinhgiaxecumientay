@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('lib/model.php');
+require_once('admin/controllers/dbConnect.php');
 if (isset($_GET['controller'])) $controller = $_GET['controller'];
 else $controller = 'home';
 if (isset($_GET['action'])) $action = $_GET['action'];

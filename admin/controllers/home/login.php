@@ -1,9 +1,9 @@
 <?php
-require_once "lib/dbConnect.php";
+//require_once "lib/dbConnect.php";
 $db = new DBController();
 $conn = $db->connectDB();
 if (!empty($_POST)) {
-    $username = escape($_POST['username']);
+    $username = $_POST['username'];
     $password = md5($_POST['password']);
     $sql = "SELECT * FROM employees WHERE username='$username' AND password='$password' LIMIT 0,1";
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
