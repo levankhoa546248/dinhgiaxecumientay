@@ -1,5 +1,4 @@
 <?php require('admin/views/shared/header.php'); ?>
-<!--    <div id="page-wrapper">-->
         <ul class="nav nav-tabs small bg-info">
             <li class="active"><a data-toggle="tab" href="#home">Nhân viên</a></li>
             <li><a data-toggle="tab" href="#menu1">Chức vụ</a></li>

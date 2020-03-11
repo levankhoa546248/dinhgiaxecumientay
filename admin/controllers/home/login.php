@@ -5,7 +5,7 @@ $conn = $db->connectDB();
 if (!empty($_POST)) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
-    $sql = "SELECT * FROM employees WHERE username='$username' AND password='$password' LIMIT 0,1";
+    $sql = "SELECT * FROM nhanvien WHERE username='$username' AND password='$password' LIMIT 0,1";
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
     if (mysqli_num_rows($query)>0) {
         $_SESSION['user'] = mysqli_fetch_assoc($query);

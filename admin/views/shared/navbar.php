@@ -17,11 +17,11 @@
 </script>
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;">
     <div class="navbar-header small">
-        <button class="navbar-brand" type="button" style="border-bottom-style: dashed"
-                id="btnHideMenu"><i
-                    class="glyphicon glyphicon-menu-hamburger small"></i>
-        </button>
-        <a class="navbar-brand" href="admin.php" style="font-size: 25px">VIANSHOP</a>
+<!--        <button class="navbar-brand" type="button" style="border-bottom-style: dashed"-->
+<!--                id="btnHideMenu"><i-->
+<!--                    class="glyphicon glyphicon-menu-hamburger small"></i>-->
+<!--        </button>-->
+        <a class="navbar-brand" href="admin.php" style="font-size: 25px">DUY LINH</a>
     </div>
     <ul class="nav navbar-top-links navbar-right small">
         <li class="dropdown">

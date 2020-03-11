@@ -5,19 +5,12 @@
         <li><a data-toggle="tab" href="#goodsgrouptab">Nhóm hàng</a></li>
         <li><a data-toggle="tab" href="#goodstypetab">Loại hàng</a></li>
         <li><a data-toggle="tab" href="#goodspropertytab">Thuộc tính</a></li>
-        <li><a data-toggle="tab" href="#goodssuppliertab">Nhà cung cấp</a></li>
+        <!--        <li><a data-toggle="tab" href="#goodssuppliertab">Nhà cung cấp</a></li>-->
     </ul>
 
     <div class="tab-content">
         <div id="goodstab" class="tab-pane fade in active">
             <div class="panel panel-default form-horizontal">
-                <button class="btn btn-success pull-right" style="margin: 3px" type="reset"
-                        id="btnRefreshGoods"><i class="glyphicon glyphicon-refresh"></i> Refresh
-                </button>
-                <button class="btn btn-primary pull-right" style="margin: 3px" type="button"
-                        id="btnUpdateGoods"><i
-                            class="glyphicon glyphicon-plus"></i> Cập nhật
-                </button>
                 <div class="panel-heading">
                     <button class="small" type="button" id="btnShowHide" onclick="fShowHide()"><i
                                 class="glyphicon glyphicon-hand-down"></i></button>
@@ -28,31 +21,28 @@
                         <input name="goodsid" type="hidden" class="form-control" id="goodsid"/>
                     </div>
                     <div class="form-group">
+                        <label for="goodsname" class="col-sm-2 control-label">Mã hàng</label>
+                        <div class="col-sm-4">
+                            <input name="goodsname" type="text" class="form-control input-sm" id="goodsname"
+                                   placeholder="Mã hàng"
+                                   required=""/>
+                        </div>
                         <label for="goodsname" class="col-sm-2 control-label">Tên hàng</label>
                         <div class="col-sm-4">
                             <input name="goodsname" type="text" class="form-control input-sm" id="goodsname"
                                    placeholder="Tên hàng"
                                    required=""/>
                         </div>
-                        <label for="goodsunit" class="col-sm-2 control-label">Đơn vị tính</label>
-                        <div class="col-sm-4">
-                            <select name="goodsunit" class="form-control input-sm" id="goodsunit" required="">
-                                <option value="0" selected>Chọn đơn vị tính</option>
-                                <?php foreach ($unit as $units) {
-                                    echo '<option value="' . $units['id'] . '">' . $units['name'] . '</option>';
-                                } ?>
-                            </select>
-                        </div>
                     </div>
                     <div class="form-group">
-<!--                        <label for="goodssizesex" class="col-sm-2 control-label">Giới tính</label>-->
-<!--                        <div class="col-sm-4">-->
-<!--                            <select name="goodssizesex" class="form-control input-sm" id="goodssizesex" required="">-->
-<!--                                <option value="0" selected>Chọn giới tính</option>-->
-<!--                                <option value="1">Nam</option>-->
-<!--                                <option value="2">Nữ</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
+                        <label for="goodssizesex" class="col-sm-2 control-label">Giới tính</label>
+                        <div class="col-sm-4">
+                            <select name="goodssizesex" class="form-control input-sm" id="goodssizesex" required="">
+                                <option value="0" selected>Chọn giới tính</option>
+                                <option value="1">Nam</option>
+                                <option value="2">Nữ</option>
+                            </select>
+                        </div>
                         <label for="goodssize" class="col-sm-2 control-label">Kích thước</label>
                         <div class="col-sm-4">
                             <select name="goodssize" class="form-control btn btn-group-sm" id="goodssize" required=""
@@ -67,23 +57,29 @@
                     <div class="form-group">
                         <label for="goodscolor" class="col-sm-2 control-label">Màu sắc</label>
                         <div class="col-sm-4">
-                            <!--                            <select name="goodscolor" class="form-control btn btn-group-sm" id="goodscolor" required=""-->
-                            <!--                                    data-show-subtext="true" multiple>-->
-                            <!--                                <option value="" disabled >Chọn màu sắc</option>-->
-                            <!--                                --><?php //foreach ($color as $colors) {
-                            //                                    echo '<option value="' . $colors['id'] . '">' . $colors['name'] . '</option>';
-                            //                                } ?>
-                            <!--                            </select>-->
-                            <input name="goodscolor" id="goodscolor" type="text" value="" data-role="tagsinput"
-                                   placeholder="" class="form-control input-sm"/>
+                            <select name="goodscolor" class="form-control input-sm" id="goodscolor"
+                                    required="" data-show-subtext="true" data-live-search="true">
+                                <option value="0" selected>Chọn màu sắc</option>
+                                <?php foreach ($color as $colors) {
+                                    echo '<option value="' . $colors['id'] . '">' . $colors['name'] . '</option>';
+                                } ?>
+                            </select>
                         </div>
-                        <label for="goodstype" class="col-sm-2 control-label">Loại hàng</label>
+                        <!--                        <div class="col-sm-4">-->
+                        <!--                            <select name="goodscolor" class="form-control btn btn-group-sm" id="goodscolor" required=""-->
+                        <!--                                    data-show-subtext="true" data-live-search="true">-->
+                        <!--                                <option value="" disabled>Chọn màu sắc</option>-->
+                        <!--                                --><?php //foreach ($color as $colors) {
+                        //                                    echo '<option value="' . $colors['id'] . '">' . $colors['name'] . '</option>';
+                        //                                } ?>
+                        <!--                            </select>-->
+                        <!--                        </div>-->
+                        <label for="goodsunit" class="col-sm-2 control-label">Đơn vị tính</label>
                         <div class="col-sm-4">
-                            <select name="goodstype" class="form-control btn btn-group-sm" id="goodstype" required=""
-                                    data-show-subtext="true" data-live-search="true">
-                                <option value="0" selected>Chọn loại</option>
-                                <?php foreach ($goodstype as $goodstypes) {
-                                    echo '<option value="' . $goodstypes['id'] . '">' . $goodstypes['name'] . '</option>';
+                            <select name="goodsunit" class="form-control input-sm" id="goodsunit" required="">
+                                <option value="0" selected>Chọn đơn vị tính</option>
+                                <?php foreach ($unit as $units) {
+                                    echo '<option value="' . $units['id'] . '">' . $units['name'] . '</option>';
                                 } ?>
                             </select>
                         </div>
@@ -111,27 +107,73 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="country" class="col-sm-2 control-label">Nước sản xuất</label>
+                        <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
                         <div class="col-sm-4">
-                            <select name="country" class="form-control btn btn-group-sm" id="country"
-                                    required="" data-show-subtext="true" data-live-search="true">
-                                <option value="0" selected>Chọn nước</option>
-                                <?php foreach ($country as $countrys) {
-                                    echo '<option value="' . $countrys['id'] . '">' . $countrys['name'] . '</option>';
-                                } ?>
-                            </select>
+                            <input name="giavon" type="text" class="form-control input-sm" id="giavon"
+                                   placeholder="Giá vốn"
+                                   required=""/>
                         </div>
-                        <label for="supplier" class="col-sm-2 control-label">Nhà cung cấp</label>
+                        <label for="giaban" class="col-sm-2 control-label">Giá bán</label>
                         <div class="col-sm-4">
-                            <select name="supplier" class="form-control btn btn-group-sm" id="supplier"
-                                    required="" data-show-subtext="true" data-live-search="true">
-                                <option value="0" selected>Chọn nhà cung cấp</option>
-                                <?php foreach ($supplier as $suppliers) {
-                                    echo '<option value="' . $suppliers['id'] . '">' . $suppliers['name'] . '</option>';
-                                } ?>
-                            </select>
+                            <input name="giaban" type="text" class="form-control input-sm" id="giaban"
+                                   placeholder="Giá bán"
+                                   required=""/>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="giasi" class="col-sm-2 control-label">Giá sỉ</label>
+                        <div class="col-sm-4">
+                            <input name="giasi" type="text" class="form-control input-sm" id="giasi"
+                                   placeholder="Giá sỉ"
+                                   required=""/>
+                        </div>
+                        <label for="giavip" class="col-sm-2 control-label">Giá vip</label>
+                        <div class="col-sm-4">
+                            <input name="giavip" type="text" class="form-control input-sm" id="giavip"
+                                   placeholder="Giá vip"
+                                   required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
+                        <div class="col-sm-4">
+                            <input name="soluong" type="text" class="form-control input-sm" id="soluong"
+                                   placeholder="Số lượng"
+                                   required=""/>
+                        </div>
+                        <label for="soluong" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-4">
+                            <button class="btn btn-success pull-right" style="margin: 3px" type="reset"
+                                    id="btnRefreshGoods"><i class="glyphicon glyphicon-refresh"></i> Làm mới
+                            </button>
+                            <button class="btn btn-primary pull-right" style="margin: 3px" type="button"
+                                    id="btnUpdateGoods"><i
+                                        class="glyphicon glyphicon-plus"></i> Thêm
+                            </button>
+                        </div>
+                    </div>
+                    <!--                    <div class="form-group">-->
+                    <!--                        <label for="country" class="col-sm-2 control-label">Nước sản xuất</label>-->
+                    <!--                        <div class="col-sm-4">-->
+                    <!--                            <select name="country" class="form-control btn btn-group-sm" id="country"-->
+                    <!--                                    required="" data-show-subtext="true" data-live-search="true">-->
+                    <!--                                <option value="0" selected>Chọn nước</option>-->
+                    <!--                                --><?php //foreach ($country as $countrys) {
+                    //                                    echo '<option value="' . $countrys['id'] . '">' . $countrys['name'] . '</option>';
+                    //                                } ?>
+                    <!--                            </select>-->
+                    <!--                        </div>-->
+                    <!--                        <label for="supplier" class="col-sm-2 control-label">Nhà cung cấp</label>-->
+                    <!--                        <div class="col-sm-4">-->
+                    <!--                            <select name="supplier" class="form-control btn btn-group-sm" id="supplier"-->
+                    <!--                                    required="" data-show-subtext="true" data-live-search="true">-->
+                    <!--                                <option value="0" selected>Chọn nhà cung cấp</option>-->
+                    <!--                                --><?php //foreach ($supplier as $suppliers) {
+                    //                                    echo '<option value="' . $suppliers['id'] . '">' . $suppliers['name'] . '</option>';
+                    //                                } ?>
+                    <!--                            </select>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
             <table class="table table-striped table-bordered table-hover small" id="tblGoods" style="width:100%">
@@ -178,7 +220,7 @@
                     <!--                                class="glyphicon glyphicon-plus"></i> Cập nhật-->
                     <!--                    </button>-->
                     <div class="panel-heading">
-                        <b class="small">Danh mục phân loại cho nhóm hàng hóa</b>
+                        <b class="small">Danh mục nhóm hàng hóa chính</b>
                     </div>
                     <div class="panel-body small">
                         <div>
@@ -199,7 +241,7 @@
                     <thead class="bg-primary">
                     <tr>
                         <th class="text-center" width="30%">Id</th>
-                        <th class="text-left">Tên phân loại nhóm hàng</th>
+                        <th class="text-left">Danh mục nhóm hàng hóa phụ</th>
                         <th class="text-center">Xóa</th>
                     </tr>
                     </thead>
@@ -249,39 +291,39 @@
             </div>
         </div>
         <div id="goodstypetab" class="tab-pane fade">
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <button class="btn btn-success pull-right" style="margin: 3px" type="reset" id="btnTypeReset"><i
-                                class="glyphicon glyphicon-refresh"></i> Reset
-                    </button>
-                    <div class="panel-heading">
-                        <b class="small">Danh mục loại hàng hóa</b>
-                    </div>
-                    <div class="panel-body small">
-                        <div>
-                            <input name="typeid" type="hidden" class="form-control" id="typeid"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="typename" class="col-sm-4 control-label">Tên loại hàng</label>
-                            <div class="col-sm-8">
-                                <input name="typename" type="text" class="form-control input-sm"
-                                       id="typename"
-                                       placeholder="Tên loại hàng"
-                                       required=""/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-bordered table-hover small" id="tblType" style="width:100%">
-                    <thead class="bg-primary">
-                    <tr>
-                        <th class="text-center" width="20%">Id</th>
-                        <th class="text-left">Tên loại hàng</th>
-                        <th class="text-left">Xóa</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
+            <!--            <div class="col-sm-6">-->
+            <!--                <div class="panel panel-default">-->
+            <!--                    <button class="btn btn-success pull-right" style="margin: 3px" type="reset" id="btnTypeReset"><i-->
+            <!--                                class="glyphicon glyphicon-refresh"></i> Reset-->
+            <!--                    </button>-->
+            <!--                    <div class="panel-heading">-->
+            <!--                        <b class="small">Danh mục loại hàng hóa</b>-->
+            <!--                    </div>-->
+            <!--                    <div class="panel-body small">-->
+            <!--                        <div>-->
+            <!--                            <input name="typeid" type="hidden" class="form-control" id="typeid"/>-->
+            <!--                        </div>-->
+            <!--                        <div class="form-group">-->
+            <!--                            <label for="typename" class="col-sm-4 control-label">Tên loại hàng</label>-->
+            <!--                            <div class="col-sm-8">-->
+            <!--                                <input name="typename" type="text" class="form-control input-sm"-->
+            <!--                                       id="typename"-->
+            <!--                                       placeholder="Tên loại hàng"-->
+            <!--                                       required=""/>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <table class="table table-striped table-bordered table-hover small" id="tblType" style="width:100%">-->
+            <!--                    <thead class="bg-primary">-->
+            <!--                    <tr>-->
+            <!--                        <th class="text-center" width="20%">Id</th>-->
+            <!--                        <th class="text-left">Tên loại hàng</th>-->
+            <!--                        <th class="text-left">Xóa</th>-->
+            <!--                    </tr>-->
+            <!--                    </thead>-->
+            <!--                </table>-->
+            <!--            </div>-->
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <button class="btn btn-success pull-right" style="margin: 3px" type="reset" id="btnUnitReset"><i
@@ -542,7 +584,7 @@
                     $('#goodsunit').val('0');
                     $('#goodssizesex').val('0');
                     $('#goodssize').selectpicker('val', '0');
-                    $('#goodscolor').tagsinput('removeAll');
+                    // $('#goodscolor').tagsinput('removeAll');
                     $('#goodstype').selectpicker('val', '0');
                     $('#goodsgroupsub').selectpicker('val', '0');
                     $('#goodsgroup').selectpicker('val', '0');
@@ -565,8 +607,8 @@
                         getGoodsgroup(data["groupsubid"], data["groupid"]);
                         $("#country").selectpicker('val', data["countryid"]);
                         $("#supplier").selectpicker('val', data["supplierid"]);
-                        $('#goodscolor').tagsinput('removeAll');
-                        $('#goodscolor').tagsinput('add', data["color"]);
+                        // $('#goodscolor').tagsinput('removeAll');
+                        // $('#goodscolor').tagsinput('add', data["color"]);
                     }
                 });
 
@@ -576,7 +618,7 @@
                     var goodsunit = $('#goodsunit').val();
                     var goodssizesex = $('#goodssizesex').val();
                     var goodssize = $('#goodssize').val();
-                    var goodscolor = $('#goodscolor').val().toUpperCase();
+                    // var goodscolor = $('#goodscolor').val().toUpperCase();
                     var goodstype = $('#goodstype').val();
                     var goodsgroupsub = $('#goodsgroupsub').val();
                     var goodsgroup = $('#goodsgroup').val();
