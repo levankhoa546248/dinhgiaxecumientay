@@ -1,29 +1,7 @@
-<div class="panel-heading"><i class="glyphicon glyphicon-th-list"></i> Sản phẩm</div>
 <div class="panel-body">
     <form id="product-form" class="form-horizontal" method="post" action="admin.php?controller=product&amp;action=edit"
           enctype="multipart/form-data" role="form">
         <input name="id" type="hidden" value="<?php echo $product ? $product['Id'] : '0'; ?>"/>
-
-<!--        <div class="row">-->
-<!--            <label>State:</label><br/>-->
-<!--            <select name="state" id="state-list" class="demoInputBox" onChange="getCity(this.value);">-->
-<!--                <option value="">Select State</option>-->
-<!--            </select>-->
-<!--        </div>-->
-        <div class="form-group">
-            <label for="type_id" class="col-sm-3 control-label">Phân loại</label>
-
-            <div class="col-sm-9">
-                <select name="type_id" class="form-control">
-                    <?php foreach ($types as $type) {
-                        $selected = '';
-                        if ($product && ($product['TypeId'] == $type['Id'])) $selected = 'selected=""';
-                        echo '<option value="' . $type['Id'] . '" ' . $selected . '>' . $type['Name'] . '</option>';
-                    } ?>
-                </select>
-            </div>
-        </div>
-
         <div class="form-group">
             <label for="category_id" class="col-sm-3 control-label">Danh mục</label>
 
@@ -93,74 +71,74 @@
                        class="form-control" id="color" placeholder="Màu sắc"/>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="material" class="col-sm-3 control-label">Chất liệu</label>
-
-            <div class="col-sm-9">
-                <input name="material" type="text" value="<?php echo $product ? $product['Material'] : ''; ?>"
-                       class="form-control" id="material" placeholder="Chất liệu"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="size" class="col-sm-3 control-label">Size</label>
-
-            <div class="col-sm-9">
-                <input name="size" type="text" value="<?php echo $product ? $product['Size'] : ''; ?>"
-                       class="form-control" id="size" placeholder="Size"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="createdate" class="col-sm-3 control-label">Ngày tạo</label>
-
-            <div class="col-sm-9">
-
-                <input name="createdate" type="date" value="<?php echo $product ? $product['Createdate'] : date('Y-m-d'); ?>"
-                       class="form-control" id="createdate" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="isSaleOff" class="col-sm-3 control-label">Sale off</label>
-
-            <div class="col-sm-9">
-                <input type="radio" name="status"
-                    <?php if (isset($product) && $product['isSaleOff'] == "1") echo "checked"; ?>
-                       value="1">Bật
-                <input type="radio" name="status" checked
-                    <?php if (isset($product) && $product['isSaleOff'] == "0") echo "checked"; ?>
-                       value="0">Tắt
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="percent_off" class="col-sm-3 control-label">Phần trăm giảm giá</label>
-
-            <div class="col-sm-9">
-                <input name="percent_off" type="text" value="<?php echo $product ? $product['Percent_off'] : ''; ?>"
-                       class="form-control" id="Percent_off" placeholder="Phần trăm giảm giá"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="description" class="col-sm-3 control-label">Thông tin chi tiết</label>
-
-            <div class="col-sm-9">
-                <textarea name="description"  class="form-control" id="description"
-                          placeholder="Thông tin sản phẩm"/><?php echo $product ? $product['Description'] : ''; ?></textarea>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="totalview" class="col-sm-3 control-label">Lượt View</label>
-
-            <div class="col-sm-9">
-                <input name="totalview" type="text" value="<?php echo $product ? $product['TotalView'] : ''; ?>"
-                       class="form-control" id="totalview" placeholder="Lượt view"/>
-            </div>
-        </div>
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="material" class="col-sm-3 control-label">Chất liệu</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!--                <input name="material" type="text" value="--><?php //echo $product ? $product['Material'] : ''; ?><!--"-->
+<!--                       class="form-control" id="material" placeholder="Chất liệu"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="size" class="col-sm-3 control-label">Size</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!--                <input name="size" type="text" value="--><?php //echo $product ? $product['Size'] : ''; ?><!--"-->
+<!--                       class="form-control" id="size" placeholder="Size"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="createdate" class="col-sm-3 control-label">Ngày tạo</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!---->
+<!--                <input name="createdate" type="date" value="--><?php //echo $product ? $product['Createdate'] : date('Y-m-d'); ?><!--"-->
+<!--                       class="form-control" id="createdate" />-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="isSaleOff" class="col-sm-3 control-label">Sale off</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!--                <input type="radio" name="status"-->
+<!--                    --><?php //if (isset($product) && $product['isSaleOff'] == "1") echo "checked"; ?>
+<!--                       value="1">Bật-->
+<!--                <input type="radio" name="status" checked-->
+<!--                    --><?php //if (isset($product) && $product['isSaleOff'] == "0") echo "checked"; ?>
+<!--                       value="0">Tắt-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="percent_off" class="col-sm-3 control-label">Phần trăm giảm giá</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!--                <input name="percent_off" type="text" value="--><?php //echo $product ? $product['Percent_off'] : ''; ?><!--"-->
+<!--                       class="form-control" id="Percent_off" placeholder="Phần trăm giảm giá"/>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="description" class="col-sm-3 control-label">Thông tin chi tiết</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!--                <textarea name="description"  class="form-control" id="description"-->
+<!--                          placeholder="Thông tin sản phẩm"/>--><?php //echo $product ? $product['Description'] : ''; ?><!--</textarea>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="form-group">-->
+<!--            <label for="totalview" class="col-sm-3 control-label">Lượt View</label>-->
+<!---->
+<!--            <div class="col-sm-9">-->
+<!--                <input name="totalview" type="text" value="--><?php //echo $product ? $product['TotalView'] : ''; ?><!--"-->
+<!--                       class="form-control" id="totalview" placeholder="Lượt view"/>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="form-group">
 

@@ -1,16 +1,22 @@
 <?php
-//require_once("admin/controllers/dbConnect.php");
-$db = new DBController();
+require_once('admin/models/orders.php');
+
+if (isset($_POST['oid'])) {
+    foreach ($_POST['oid'] as $oid) {
+        $oid = intval($oid);
+        orders_delete($oid);
+    }
+}
+$options = array(
+    'order_by' => 'Status ASC, Id DESC'
+);
+$url = 'admin.php?controller=order';
+$total_rows = get_total('orders', $options);
 $title = 'Đơn hàng';
 $user = $_SESSION['user'];
-$sqlemployees = 'SELECT
-e.id,
-u.`name`,
-e.active
-FROM
-employees AS e
-INNER JOIN `user` AS u ON e.userid = u.id
-WHERE e.active = 1 AND UPPER(e.username) = UPPER(\'' . $user["username"] . '\')';
-$employee = $db->get_select_nested($sqlemployees);
-
+$orders = get_all('orders', $options);
+$status = array(
+    0 => 'Chưa xử lý',
+    1 => 'Đã xử lý'
+);
 require('admin/views/order/index.php');

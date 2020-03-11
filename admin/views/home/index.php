@@ -1,5 +1,5 @@
 <?php require('admin/views/shared/header.php'); ?>
-<!--    <div id="page-wrapper">-->
+    <div id="page-wrapper">
 
         <div class="row">
             <div class="col-lg-12">
@@ -16,8 +16,7 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">
-<!--                                    --><?php //echo $total_rows_comment; ?>
-                                </div>
+                                    <?php echo $total_rows_comment; ?></div>
                                 <div>New Comments !</div>
                             </div>
                         </div>
@@ -40,8 +39,7 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">
-<!--                                    --><?php //echo $total_rows_online; ?>
-                                </div>
+                                    <?php echo $total_rows_online; ?></div>
                                 <div>New Visiter</div>
                             </div>
                         </div>
@@ -64,8 +62,7 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">
-<!--                                    --><?php //echo $total_order; ?>
-                                </div>
+                                    <?php echo $total_order; ?></div>
                                 <div>New Orders!</div>
                             </div>
                         </div>
@@ -88,8 +85,7 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">
-<!--                                    --><?php //echo $total_feedback; ?>
-                                </div>
+                                    <?php echo $total_feedback; ?></div>
                                 <div>New Feedback !</div>
                             </div>
                         </div>
@@ -106,8 +102,8 @@
         </div>
         <div class="row">
             <div class="col-lg-8">
-<!--                --><?php //require "admin/views/order/tableOrderprocess.php"; ?>
-<!--                --><?php //require "admin/views/product/tableNewproduct.php"; ?>
+                <?php require "admin/views/order/tableOrderprocess.php"; ?>
+                <?php require "admin/views/product/tableNewproduct.php"; ?>
             </div>
             <div class="col-lg-4">
                 <div class="panel panel-default">
@@ -117,45 +113,36 @@
                     <div class="panel-body">
                         <div class="list-group">
 
-                            <a href="admin.php?controller=order&action=view&oid=<?php /*echo $order_new['Id'];*/ ?>"
+                            <a href="admin.php?controller=order&action=view&oid=<?php echo $order_new['Id']; ?>"
                                class="list-group-item">
                                 <i class="fa fa-upload fa-fw"></i> Đơn hàng mới
-                                <span class="pull-right text-muted small">
-                                    <em>
-<!--                                        --><?php //echo get_time($order_new['Createtime'], gmdate('Y:m:d H:i:s', time() + 7 * 3600)) ?>
-                                    </em>
+                                <span class="pull-right text-muted small"><em><?php echo get_time($order_new['Createtime'], gmdate('Y:m:d H:i:s', time() + 7 * 3600)) ?></em>
                                     </span>
                             </a>
 
                             <a href="admin.php?controller=order" class="list-group-item">
                                 <i class="fa fa-shopping-cart fa-fw"></i> Đơn hàng chưa xử lý
-                                <span class="pull-right text-muted small">
-                                    <em>
-<!--                                --><?php //echo $total_order_inprosess; ?>
-                                    </em>
-                                </span>
+                                <span class="pull-right text-muted small"><em>
+                                <?php echo $total_order_inprosess; ?></em></span>
                             </a>
 
                             <a href="#" class="list-group-item">
                                 <i class="fa fa-money fa-fw"></i> Đơn hàng đã xử lý
-                                <span class="pull-right text-muted small">
-                                    <em>
-<!--                                --><?php //echo $total_order_prosess; ?>
-                                    </em>
-                                </span>
+                                <span class="pull-right text-muted small"><em>
+                                <?php echo $total_order_prosess; ?></em></span>
                             </a>
 
-                            <a href="admin.php?controller=comment&action=edit&comid=<?php /*echo $comment_new['Id'];*/ ?>"
+                            <a href="admin.php?controller=comment&action=edit&comid=<?php echo $comment_new['Id']; ?>"
                                class="list-group-item">
                                 <i class="fa fa-comment fa-fw"></i>Bình luận mới
-                                <span class="pull-right text-muted small"><em><?php /*echo get_time($comment_new['CreateDate'], gmdate('Y:m:d H:i:s', time() + 7 * 3600))*/ ?></em>
+                                <span class="pull-right text-muted small"><em><?php echo get_time($comment_new['CreateDate'], gmdate('Y:m:d H:i:s', time() + 7 * 3600)) ?></em>
                                     </span>
                             </a>
 
-                            <a href="admin.php?controller=feedback&action=edit&fid=<?php /*echo $feedback_new['Id'];*/ ?>"
+                            <a href="admin.php?controller=feedback&action=edit&fid=<?php echo $feedback_new['Id']; ?>"
                                class="list-group-item">
                                 <i class="fa fa-envelope fa-fw"></i>Tin nhắn mới
-                                <span class="pull-right text-muted small"><em><?php /*echo get_time($feedback_new['Createtime'], gmdate('Y:m:d H:i:s', time() + 7 * 3600))*/ ?></em>
+                                <span class="pull-right text-muted small"><em><?php echo get_time($feedback_new['Createtime'], gmdate('Y:m:d H:i:s', time() + 7 * 3600)) ?></em>
                                     </span>
                             </a>
                         </div>
@@ -168,14 +155,14 @@
                     </div>
                     <div class="panel-body">
                         <div class="list-group">
-<!--                            --><?php //foreach ($order_completes as $order_complete): ?>
-<!--                                <a href="admin.php?controller=order&amp;action=view&amp;oid=--><?php //echo $order_complete['Id']; ?><!--"-->
-<!--                                   class="list-group-item">-->
-<!--                                    <i class="fa fa-shopping-cart fa-fw"></i> --><?php //echo $order_complete['Customer']; ?>
-<!--                                    <span class="pull-right text-muted small"><em>--><?php //echo get_time($feedback_new['Createtime'], gmdate('Y:m:d H:i:s', time() + 7 * 3600)) ?><!--</em>-->
-<!--                                    </span>-->
-<!--                                </a>-->
-<!--                            --><?php //endforeach; ?>
+                            <?php foreach ($order_completes as $order_complete): ?>
+                                <a href="admin.php?controller=order&amp;action=view&amp;oid=<?php echo $order_complete['Id']; ?>"
+                                   class="list-group-item">
+                                    <i class="fa fa-shopping-cart fa-fw"></i> <?php echo $order_complete['Customer']; ?>
+                                    <span class="pull-right text-muted small"><em><?php echo get_time($feedback_new['Createtime'], gmdate('Y:m:d H:i:s', time() + 7 * 3600)) ?></em>
+                                    </span>
+                                </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -188,19 +175,13 @@
                         <div class="list-group">
                             <a href="admin.php?controller=counter" class="list-group-item">
                                 <i class="fa fa-upload fa-fw"></i> Đang truy cập
-                                <span class="pull-right text-muted small">
-                                    <em>
-<!--                                --><?php //echo $total_rows_online; ?>
-                                    </em>
-                                </span>
+                                <span class="pull-right text-muted small"><em>
+                                <?php echo $total_rows_online; ?></em></span>
                             </a>
                             <a href="admin.php?controller=counter" class="list-group-item">
                                 <i class="fa fa-upload fa-fw"></i> Lượt truy cập
-                                <span class="pull-right text-muted small">
-                                    <em>
-<!--                                --><?php //echo $total_rows_access; ?>
-                                    </em>
-                                </span>
+                                <span class="pull-right text-muted small"><em>
+                                <?php echo $total_rows_access; ?></em></span>
                             </a>
                         </div>
                     </div>
@@ -212,12 +193,12 @@
                     </div>
                     <div class="panel-body">
                         <div class="list-group">
-<!--                            --><?php //foreach ($livesports as $livesport): ?>
-<!--                                <a href="admin.php?controller=livesport&amp;action=edit&amp;id=--><?php //echo $livesport['Id']; ?><!--"-->
-<!--                                   class="list-group-item">-->
-<!--                                    <i class="fa fa-youtube-play fa-fw"></i> --><?php //echo $livesport['Title']; ?>
-<!--                                </a>-->
-<!--                            --><?php //endforeach; ?>
+                            <?php foreach ($livesports as $livesport): ?>
+                                <a href="admin.php?controller=livesport&amp;action=edit&amp;id=<?php echo $livesport['Id']; ?>"
+                                   class="list-group-item">
+                                    <i class="fa fa-youtube-play fa-fw"></i> <?php echo $livesport['Title']; ?>
+                                </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -263,21 +244,21 @@
                     </div>
                     <div class="panel-body">
                         <ul class="chat">
-<!--                            --><?php //foreach ($feedbacks as $feedback): ?>
-<!--                                <li class="clearfix">-->
-<!--                                    <div class="chat-body ">-->
-<!--                                        <div class="header">-->
-<!--                                            <strong class="primary-font">--><?php //echo $feedback['Mobile'] ?><!--</strong>-->
-<!--                                            <small class="pull-right text-muted">-->
-<!--                                                <i class="fa fa-clock-o fa-fw"></i> --><?php //echo $feedback['Createtime'] ?>
-<!--                                            </small>-->
-<!--                                        </div>-->
-<!--                                        <p>-->
-<!--                                            --><?php //echo substring($feedback['Subject'], 50); ?>
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                </li>-->
-<!--                            --><?php //endforeach; ?>
+                            <?php foreach ($feedbacks as $feedback): ?>
+                                <li class="clearfix">
+                                    <div class="chat-body ">
+                                        <div class="header">
+                                            <strong class="primary-font"><?php echo $feedback['Mobile'] ?></strong>
+                                            <small class="pull-right text-muted">
+                                                <i class="fa fa-clock-o fa-fw"></i> <?php echo $feedback['Createtime'] ?>
+                                            </small>
+                                        </div>
+                                        <p>
+                                            <?php echo substring($feedback['Subject'], 50); ?>
+                                        </p>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
 

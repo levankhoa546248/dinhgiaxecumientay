@@ -1,9 +1,14 @@
 <?php
 class DBController {
-	private $host = "remotemysql.com";
-	private $user = "856Nl3IYtW";
-	private $password = "ghk9M1RdCg";
-	private $database = "856Nl3IYtW";
+    //DB Duy Linh
+	private $host = "sql308.byethost.com";
+	private $user = "b3_24684374";
+	private $password = "12345";
+	private $database = "b3_24684374_DuyLinhDB";
+//	private $host = "remotemysql.com";
+//	private $user = "ppJVniYc3Y";
+//	private $password = "b7zfOlXZJA";
+//	private $database = "ppJVniYc3Y";
 	private $conn;
 	
 	function __construct() {
@@ -48,23 +53,49 @@ class DBController {
 
         if (!mysqli_query($conn, $sql))
         {
-            return $Id = 0;
+            $Id = 0;
         }else{
-            return ($Id > 0) ? $Id : mysqli_insert_id($conn);
+            $Id = ($Id > 0) ? $Id : mysqli_insert_id($conn);
         }
 //        mysqli_query($conn, $sql) or die(mysqli_error());
-//        return $Id;
+        return $Id;
     }
 
     function get_all($table, $options = array())
     {
-
         $conn = $this->conn;
         $select = isset($options['select']) ? $options['select'] : '*';
         $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
         $order_by = isset($options['order_by']) ? 'ORDER BY ' . $options['order_by'] : '';
         $limit = isset($options['offset']) && isset($options['limit']) ? 'LIMIT ' . $options['offset'] . ',' . $options['limit'] : '';
         $sql = "SELECT $select FROM $table $where $order_by $limit";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error());
+
+        $data = array();
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_assoc($query)) {
+                $data[] = $row;
+            }
+            mysqli_free_result($query);
+        }
+
+        return $data;
+    }
+
+    function get_total($table, $options = array())
+    {
+        $conn = $this->conn;
+        $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
+        $sql = "SELECT COUNT(*) as total FROM $table $where";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error());
+        $row = mysqli_fetch_assoc($query);
+        return $row['total'];
+    }
+
+
+    function get_select_nested($sql)// select lồng
+    {
+        $conn = $this -> conn;
         $query = mysqli_query($conn, $sql) or die(mysqli_error());
 
         $data = array();

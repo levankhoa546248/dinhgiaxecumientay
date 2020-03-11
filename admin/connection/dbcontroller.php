@@ -46,19 +46,19 @@ class DBController {
             $sql = "INSERT INTO `$table` SET " . implode(',', $values);
         }
 
+        $Id = 0;
         if (!mysqli_query($conn, $sql))
         {
-            return $Id = 0;
+            $Id = 0;
         }else{
-            return ($Id > 0) ? $Id : mysqli_insert_id($conn);
+            $Id = ($Id > 0) ? $Id : mysqli_insert_id($conn);
         }
 //        mysqli_query($conn, $sql) or die(mysqli_error());
-//        return $Id;
+        return $Id;
     }
 
     function get_all($table, $options = array())
     {
-
         $conn = $this->conn;
         $select = isset($options['select']) ? $options['select'] : '*';
         $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
@@ -76,6 +76,16 @@ class DBController {
         }
 
         return $data;
+    }
+
+    function get_total($table, $options = array())
+    {
+        $conn = $this->conn;
+        $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
+        $sql = "SELECT COUNT(*) as total FROM `$table` $where";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error());
+        $row = mysqli_fetch_assoc($query);
+        return $row['total'];
     }
 }
 ?>
