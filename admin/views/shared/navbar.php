@@ -1,138 +1,42 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="admin.php">Admin Store Manager</a>
+        <a class="navbar-brand" href="admin.php">DUY LINH</a>
 
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+            <a href="admin.php?controller=nhadautu&action=list">
+                <div> Nhà đầu tư</div>
             </a>
-            <ul class="dropdown-menu dropdown-messages">
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <strong>John Smith</strong>
-                            <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                        </div>
-                        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>Read All Messages</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+            <a href="admin.php?controller=group">
+                <div> Hãng xe</div>
             </a>
-            <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                    <a href="admin.php?controller=comment">
-                        <div>
-                            <i class="fa fa-comment fa-fw"></i> New Comment
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                            <span class="pull-right text-muted small">12 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-envelope fa-fw"></i> Message Sent
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-tasks fa-fw"></i> New Task
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="admin.php?controller=product">
+                <div> Nhập xe</div>
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="admin.php?controller=export">
+                <div> Xuất xe</div>
+            </a>
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="admin.php?controller=user&amp;action=info&amp;uid=<?php echo $user['Id']; ?>"><i
-                                class="fa fa-user fa-fw"></i> User Profile</a></li>
-                <!--                --><?php //if ($user['RoleId'] == 1): ?>
-                <li><a href="admin.php?controller=user&amp;action=list"><i class="fa fa-gear fa-fw"></i>List quản
-                        trị</a></li>
-                <!--                    <li><a href="admin.php?controller=user&amp;action=add"><i class="fa fa-gear fa-fw"></i>Thêm quản trị</a>-->
-                <!--                    </li>-->
-                <!--                --><?php //endif; ?>
+                <li><a href="admin.php?controller=user&amp;action=info&amp;uid=<?php echo $user['Id']; ?>">
+                        <i class="fa fa-user fa-fw"></i> Thông tin</a></li>
                 <li class="divider"></li>
-                <li><a href="admin.php?controller=home&amp;action=logout"><i class="fa fa-sign-out fa-fw"></i>
-                        Logout</a>
+                <li><a href="admin.php?controller=home&amp;action=logout">
+                        <i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
                 </li>
             </ul>
         </li>
