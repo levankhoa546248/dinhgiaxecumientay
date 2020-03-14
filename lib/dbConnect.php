@@ -12,22 +12,6 @@ $ketnoi['Database']['dbname'] = 'duylinhstore';
 $ketnoi['Database']['username'] = 'root';
 $ketnoi['Database']['password'] = '';
 
-//DB Duy Linh
-//$ketnoi['Server']['name'] = 'remotemysql.com';
-//$ketnoi['Database']['dbname'] = 'ppJVniYc3Y';
-//$ketnoi['Database']['username'] = 'ppJVniYc3Y';
-//$ketnoi['Database']['password'] = 'b7zfOlXZJA';
-
-//$ketnoi['Server']['name'] = 'remotemysql.com';
-//$ketnoi['Database']['dbname'] = '856Nl3IYtW';
-//$ketnoi['Database']['username'] = '856Nl3IYtW';
-//$ketnoi['Database']['password'] = 'ghk9M1RdCg';
-
-//$ketnoi['Server']['name'] = 'sql308.byethost.com';
-//$ketnoi['Database']['dbname'] = 'b3_24684374_DuyLinhDB';
-//$ketnoi['Database']['username'] = 'b3_24684374';
-//$ketnoi['Database']['password'] = '12345';
-
 //mysqli_connect($server_host,$server_username,$server_password,$database)
 $conn = mysqli_connect(
     "{$ketnoi['Server']['name']}",
@@ -36,5 +20,31 @@ $conn = mysqli_connect(
     "{$ketnoi['Database']['dbname']}")
 or
 die("Can not connect database");
-mysqli_set_charset($conn, 'UTF8');
+
+//    private $host = "sql104.byethost.com";
+//    private $user = "b11_25278721";
+//    private $password = "vian@1995";
+//    private $database = "b11_25278721_vianshop";
+function __construct()
+{
+    $this->conn = $this->connectDB();
+}
+
+function connectDB()
+{
+    $ketnoi['Server']['name'] = 'localhost';
+    $ketnoi['Database']['dbname'] = 'duylinhstore';
+    $ketnoi['Database']['username'] = 'root';
+    $ketnoi['Database']['password'] = '';
+    $conn = mysqli_connect(
+        "{$ketnoi['Server']['name']}",
+        "{$ketnoi['Database']['username']}",
+        "{$ketnoi['Database']['password']}",
+        "{$ketnoi['Database']['dbname']}")
+    or
+    die("Can not connect database");
+    mysqli_set_charset($conn, "utf8");
+    return $conn;
+}
+
 ?>

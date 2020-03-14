@@ -1,6 +1,6 @@
 <?php
-require_once "lib/dbConnect.php";
 require "function.php";
+require_once("dbConnect.php");
 
 function save($table, $data = array())
 {
@@ -149,10 +149,60 @@ function get_time($timePost, $timeReply)
     return $result;
 }
 
-
 function get_select_nested($sql)// select lồng
 {
     $conn = $GLOBALS["conn"];
+    $query = mysqli_query($conn, $sql) or die(mysqli_error());
+
+    $data = array();
+    if (mysqli_num_rows($query) > 0) {
+        while ($row = mysqli_fetch_assoc($query)) {
+            $data[] = $row;
+        }
+        mysqli_free_result($query);
+    }
+
+    return $data;
+}
+
+function insert($table, $data = array())
+{
+    $conn = connectDB();
+    $values = array();
+    foreach ($data as $key => $value) {
+        $value = mysqli_real_escape_string($conn, $value);
+        $values[] = "`$key`='$value'";
+    }
+    $sql = "INSERT INTO `$table` SET " . implode(',', $values);
+
+    if (mysqli_query($conn, $sql) or die(mysqli_error())) {
+        $id = mysqli_insert_id($conn);
+        return $id;
+    } else {
+        return 0;
+    }
+}
+
+function update($table, $data = array(), $where)
+{
+    $conn = connectDB();
+    $values = array();
+    foreach ($data as $key => $value) {
+        $value = mysqli_real_escape_string($conn, $value);
+        $values[] = "`$key`='$value'";
+    }
+    $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE " + $where;
+
+    if (mysqli_query($conn, $sql) or die(mysqli_error())) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+function select($sql)
+{
+    $conn = connectDB();
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
 
     $data = array();

@@ -3,11 +3,8 @@
     <div class="panel panel-default">
         <div class="panel-heading bg-primary text-center"><b>THÊM NHÀ ĐẦU TƯ</b></div>
         <div class="panel-body">
-            <div class="dataTable_wrapper"><?php $user['Id']; ?>
-                <form id="user-form" class="form-horizontal" enctype="multipart/form-data" role="form">
-                    <input name="manhadautu" id="manhadautu" type="hidden"/>
-
-                    <div class="form-group">
+            <div class="dataTable_wrapper">
+                <form id="user-form" class="form-horizontal" method="post" action="admin.php?controller=nhadautu&action=add" enctype="multipart/form-data" role="form">                    <div class="form-group">
                         <label for="Name" class="col-sm-3 control-label">Họ tên</label>
                         <div class="col-sm-8">
                             <input name="tennhandautu" type="text" class="form-control" id="tennhandautu" placeholder="Tên nhà đầu tư"
@@ -18,7 +15,7 @@
                     <div class="form-group">
                         <label for="sodienthoai" class="col-sm-3 control-label">Số điện thoại</label>
                         <div class="col-sm-8">
-                            <input name="sodienthoai" type="text" class="form-control" id="sodienthoai" placeholder="Số điện thoại" pattern="[0-9]{10,11}"/>
+                            <input name="sodienthoai" type="text" class="form-control" id="sodienthoai" placeholder="Số điện thoại"/>
                         </div>
                     </div>
 
@@ -26,35 +23,14 @@
                         <label for="diachi" class="col-sm-3 control-label">Địa chỉ</label>
                         <div class="col-sm-8">
                             <input name="diachi" type="text" class="form-control" id="diachi"
-                                   placeholder="Địa chỉ" required=""/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="facebook" class="col-sm-3 control-label">Facebook</label>
-                        <div class="col-sm-8">
-                            <input name="facebook" type="text" class="form-control" id="facebook" placeholder="Facebook"required=""/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="zalo" class="col-sm-3 control-label">Zalo</label>
-                        <div class="col-sm-8">
-                            <input name="zalo" type="text" class="form-control" id="zalo" placeholder="Zalo"required=""/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="image1" class="col-sm-3 control-label">Ảnh Đại Diện</label>
-                        <div class="col-sm-8">
-                            <input name="Image1" type="file" class="form-control" id="image1" accept="image/*"/><br>
+                                   placeholder="Địa chỉ"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="image1" class="col-sm-3 control-label"></label>
                         <div class="col-sm-8">
-                            <button type="button" id="themnhadautu" name="themnhadautu" class="btn btn-primary">Thêm mới</button>
+                            <button type="submit" id="themnhadautu" name="themnhadautu" class="btn btn-primary">Thêm mới</button>
                             <a class="btn btn-warning" href="admin.php?controller=nhadautu&action=list">Trở về</a>
                         </div>
                     </div>
@@ -69,8 +45,30 @@
 
 <script>
     $(function() {
-        $("#themnhadautu").click(function (e) {
-
+        // $("#themnhadautu").click(function (e) {
+        //     var tennhadautu = $("#tennhandautu").val();
+        //     var sodienthoai = $("#sodienthoai").val();
+        //     var diachi = $("#diachi").val();
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "admin/controllers/import/updateCoupon.php",
+        //         data: {
+        //             tennhadautu: tennhadautu,
+        //             sodienthoai: sodienthoai,
+        //             diachi: diachi
+        //         },
+        //         success: function (data) {
+        //             if (data == '0') {
+        //                 jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
+        //                     $('#couponname').focus();
+        //                 });
+        //             } else {
+        //                 jAlert('Thực hiện thành công', 'Thông báo', function (e) {
+        //                     $('#goodsname').focus();
+        //                 });
+        //             }
+        //         }
+        //     });
         });
     });
 </script>
