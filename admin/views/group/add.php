@@ -10,20 +10,18 @@
             <div class="dataTable_wrapper">
                 <div class="panel-body">
                     <form id="category-form" class="form-horizontal" method="post" enctype="multipart/form-data"
-                          role="form">
-                        <input name="id" type="hidden"
-                               value="<?php echo $subcategories ? $subcategories['Id'] : '0'; ?>"/>
+                          role="form" action="admin.php?controller=group&action=add">
+                        <input name="id" type="hidden"/>
                         <div class="form-group">
                             <label for="name" class="col-sm-3 control-label">Tên hãng xe</label>
                             <div class="col-sm-9">
-                                <input name="name" type="text"
-                                       value="<?php echo $subcategories ? $subcategories['Name'] : ''; ?>"
-                                       class="form-control" id="name" placeholder="Tên hãng xe" required=""/>
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Tên hãng xe"
+                                       required=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary">Thêm mới</button>
                                 <a class="btn btn-warning" href="admin.php?controller=group">Trở về</a>
                             </div>
                         </div>

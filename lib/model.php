@@ -26,8 +26,7 @@ function save($table, $data = array())
 function get_a_record($table, $id, $select = '*')
 {
     $conn = connectDB();
-    $id = intval($id);
-    $sql = "SELECT $select FROM `$table` WHERE =$id";
+    $sql = "SELECT $select FROM `$table` WHERE = $id";
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
     $data = NULL;
     if (mysqli_num_rows($query) > 0) {
@@ -72,7 +71,7 @@ function Selecct_a_record($table, $options = array(), $select = '*')
 
 function get_all($table, $options = array())
 {
-    $conn = $GLOBALS["conn"];
+    $conn = connectDB();
     $select = isset($options['select']) ? $options['select'] : '*';
     $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
     $order_by = isset($options['order_by']) ? 'ORDER BY ' . $options['order_by'] : '';
@@ -143,7 +142,7 @@ function get_time($timePost, $timeReply)
 
 function get_select_nested($sql)// select lồng
 {
-    $conn = $GLOBALS["conn"];
+    $conn = connectDB();
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
 
     $data = array();
