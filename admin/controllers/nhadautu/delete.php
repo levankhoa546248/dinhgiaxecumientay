@@ -1,6 +1,6 @@
 <?php
 //load model
 require_once('admin/models/users.php');
-$uid = intval($_GET['uid']);
-user_delete($uid);
-header('location:admin.php?controller=user&action=list');
+$where = 'manhadautu = ' . intval($_GET['uid']);
+delete('nhadautu', $where);
+header('location:admin.php?controller=nhadautu&action=list');

@@ -23,19 +23,11 @@ function save($table, $data = array())
     return $Id;
 }
 
-function delete($table, $id)
-{
-    $conn = $GLOBALS["conn"];
-    $id = intval($id);
-    $sql = "DELETE FROM `$table` WHERE id=$id";
-    mysqli_query($conn, $sql) or die(mysqli_error());
-}
-
 function get_a_record($table, $id, $select = '*')
 {
-    $conn = $GLOBALS["conn"];
+    $conn = connectDB();
     $id = intval($id);
-    $sql = "SELECT $select FROM `$table` WHERE id=$id";
+    $sql = "SELECT $select FROM `$table` WHERE =$id";
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
     $data = NULL;
     if (mysqli_num_rows($query) > 0) {
@@ -191,7 +183,7 @@ function update($table, $data = array(), $where)
         $value = mysqli_real_escape_string($conn, $value);
         $values[] = "`$key`='$value'";
     }
-    $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE " + $where;
+    $sql = "UPDATE `$table` SET " . implode(',', $values) . " WHERE " . $where;
 
     if (mysqli_query($conn, $sql) or die(mysqli_error())) {
         return 1;
@@ -214,4 +206,23 @@ function select($sql)
     }
 
     return $data;
+}
+
+function select_1_record($sql)
+{
+    $conn = connectDB();
+    $query = mysqli_query($conn, $sql) or die(mysqli_error());
+    $data = NULL;
+    if (mysqli_num_rows($query) > 0) {
+        $data = mysqli_fetch_assoc($query);
+        mysqli_free_result($query);
+    }
+    return $data;
+}
+
+function delete($table, $where)
+{
+    $conn = connectDB();
+    $sql = "DELETE FROM `$table` WHERE " . $where;
+    mysqli_query($conn, $sql) or die(mysqli_error());
 }

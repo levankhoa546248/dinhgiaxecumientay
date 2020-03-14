@@ -32,10 +32,10 @@
                                 <td class="text-right"><?php echo number_format($records['tongtien'], 0, '.', ',') ?></td>
                                 <td class="text-right"><?php echo number_format($records['sodu'], 0, '.', ',') ?></td>
                                 <td class="text-center">
-                                    <a href="admin.php?controller=user&amp;action=edit&amp;uid=<?php echo $records['manhadautu']; ?>"
+                                    <a href="admin.php?controller=nhadautu&amp;action=edit&amp;uid=<?php echo $records['manhadautu']; ?>"
                                        class="text-danger"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="admin.php?controller=user&amp;action=delete&amp;uid=<?php echo $records['manhadautu']; ?>"
-                                       class="text-danger deleteitem"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a href="admin.php?controller=nhadautu&amp;action=delete&amp;uid=<?php echo $records['manhadautu']; ?>"
+                                       class="text-danger xoanhadautu"><i class="glyphicon glyphicon-remove"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -48,6 +48,10 @@
             $(document).ready(function () {
                 $('#dataTables-user').DataTable({
                     responsive: true, "order": [[0, 'desc']]
+                });
+
+                $('.xoanhadautu').on('click', function () {
+                    return confirm('Bạn chắc muốn xóa nhà đầu tư này?', 'Cảnh báo');
                 });
             });
         </script>
