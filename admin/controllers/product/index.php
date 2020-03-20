@@ -2,21 +2,12 @@
 //load model
 require_once('admin/models/products.php');
 
-if (isset($_POST['search'])) {
-    header('location:admin.php?controller=product&search='.$_POST['search']);
-}
-if (isset($_POST['pid'])) {
-    foreach ($_POST['pid'] as $pid) {
-        $pid = intval($pid);
-        products_delete($pid);
-    }
-}
-$url = 'admin.php?controller=product';
-if (isset($_GET['search'])) {
-    $search = escape($_GET['search']);
-    $options['where'] = "name LIKE '%$search%'";
-    $url = 'admin.php?controller=product&search='.$_GET['search'];
-}
+$sql = 'SELECT x.*, hx.`Name` as tenhangxe FROM xe x JOIN subcategory hx on x.hangxe = hx.id';
+$products = select($sql);
+$subcategories = get_all('subcategory', array(
+    'select' => 'Id,Name',
+    'order_by' => 'Name'
+));
 //data
 $title = 'Sản phẩm';
 $user = $_SESSION['user'];

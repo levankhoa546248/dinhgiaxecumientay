@@ -5,7 +5,7 @@ function show_404(){
     exit();
 }
 function escape($str) {
-    $conn = $GLOBALS["conn"];
+    $conn = connectDB();
     return mysqli_real_escape_string($conn, $str);
 }
 function pagination($url, $page, $total){

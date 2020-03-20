@@ -44,7 +44,7 @@ if (!empty($_POST)) {
     //chuyển hướng
     echo json_encode($idxe);
 } else {
-    $title = 'Sửa thông tin';
+    $title = 'Thêm xe';
     $user = $_SESSION['user'];
 //Sub category
     $subcategories = get_all('subcategory', array(
@@ -53,9 +53,5 @@ if (!empty($_POST)) {
     ));
     $dsNhaDauTu = select('SELECT * FROM nhadautu');
 //load view
-    $idxe = $_GET["idxe"];
-    $xe = select_1_record('SELECT * FROM xe WHERE id = ' . $idxe);
-    $chudautuxe = select('SELECT * FROM chudautuxe WHERE idxe = ' . $idxe);
-    $hinhanhxe = select('SELECT * FROM hinhanhxe WHERE idxe =' . $idxe);
-    require('admin/views/product/edit.php');
+    require('admin/views/product/add.php');
 }
