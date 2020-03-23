@@ -3,6 +3,13 @@
         display: block;
     }
 
+    .hinhanhxe {
+        max-height: 75px;
+        border: 1px solid;
+        padding: 1px;
+        cursor: pointer;
+    }
+
     .imageThumb {
         max-height: 75px;
         border: 1px solid;
@@ -52,6 +59,7 @@ $idxe = select_id_auto("xe");
                                     <option value="0" selected>Chọn hãng xe</option>
                                     <?php foreach ($subcategories as $subcategory) {
                                         $selected = '';
+                                        if ($xe && ($xe['hangxe'] == $subcategory['Id'])) $selected = 'selected=""';
                                         echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
                                     } ?>
                                 </select>
@@ -60,38 +68,41 @@ $idxe = select_id_auto("xe");
                         <div class="form-group">
                             <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
                             <div class="col-sm-10">
-                                <input name="tenxe" type="text"
+                                <input name="tenxe" type="text" value="<?php echo $xe ? $xe['tenxe'] : ''; ?>"
                                        class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mausac" class="col-sm-2 control-label">Màu sắc</label>
                             <div class="col-sm-10">
-                                <input name="mausac" type="text"
+                                <input name="mausac" type="text" value="<?php echo $xe ? $xe['mausac'] : ''; ?>"
                                        class="form-control" id="mausac" placeholder="Màu sắc"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
                             <div class="col-sm-10">
-                                <input name="giavon" type="text" data-type="currency"
-                                       class="form-control" id="giavon" placeholder="0"
+                                <input name="giavon" type="text" data-type="currency" class="form-control" id="giavon"
+                                       placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['giavon'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="chietkhaumua" class="col-sm-2 control-label">Chiết khấu mua</label>
+                            <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
                             <div class="col-sm-10">
-                                <input name="chietkhaumua" type="text" id="chietkhaumua"
-                                       data-type="currency" class="form-control" placeholder="0"
+                                <input name="chietkhaumua" type="text" id="chietkhaumua" data-type="currency"
+                                       class="form-control" placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['chietkhaumua'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="chietkhauban" class="col-sm-2 control-label">Chiết khấu bán</label>
+                            <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
                             <div class="col-sm-10">
-                                <input name="chietkhauban" type="text" id="chietkhauban"
-                                       data-type="currency" class="form-control" placeholder="0"
+                                <input name="chietkhauban" type="text" id="chietkhauban" data-type="currency"
+                                       class="form-control" placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['chietkhauban'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                         </div>
@@ -99,6 +110,7 @@ $idxe = select_id_auto("xe");
                             <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
                             <div class="col-sm-10">
                                 <input name="soluong" type="number" value="1"
+                                       value="<?php echo $xe ? $xe['soluong'] : ''; ?>"
                                        class="form-control" id="soluong" placeholder="0"
                                 />
                             </div>
@@ -106,28 +118,32 @@ $idxe = select_id_auto("xe");
                         <div class="form-group">
                             <label for="chiphiphatsinh" class="col-sm-2 control-label">Chi phí phát sinh</label>
                             <div class="col-sm-10">
-                                <input name="chiphiphatsinh" type="text" id="chiphiphatsinh"
-                                       data-type="currency" class="form-control" placeholder="0"
+                                <input name="chiphiphatsinh" type="text" id="chiphiphatsinh" data-type="currency"
+                                       class="form-control" placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['chiphiphatsinh'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="giaban" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-3">
-                                <input name="giaban" type="text" id="giaban"
-                                       data-type="currency" class="form-control" placeholder="0"
+                                <input name="giaban" type="text" id="giaban" data-type="currency" class="form-control"
+                                       placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['giaban'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                             <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
                             <div class="col-sm-2">
-                                <input name="tonglai" type="text" id="tonglai" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
+                                <input name="tonglai" type="text" id="tonglai" disabled data-type="currency"
+                                       class="form-control" placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['tonglai'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                             <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
                             <div class="col-sm-3">
-                                <input name="sotienconlai" type="text" id="sotienconlai" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
+                                <input name="sotienconlai" type="text" id="sotienconlai" disabled data-type="currency"
+                                       class="form-control" placeholder="0"
+                                       value="<?php echo $xe ? number_format($xe['sotienconlai'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                         </div>
@@ -194,7 +210,7 @@ $idxe = select_id_auto("xe");
                                     <tfoot align="right">
                                     <tr>
                                         <th></th>
-                                        <th></th>
+                                        <th class="text-center"></th>
                                         <th hidden=""></th>
                                         <th class="text-right"></th>
                                         <th class="text-center"></th>
@@ -211,7 +227,19 @@ $idxe = select_id_auto("xe");
                             <div class="col-sm-10">
                                 <div class="field" align="left">
                                     <input class="form-control" accept="image/*" type="file" id="files" name="files[]"
-                                           multiple/>
+                                           multiple style="border: #0c0b0b"/>
+                                    <?php
+                                    foreach ($hinhanhxe as $hinhanhxes) {
+                                        if ($hinhanhxes && is_file($hinhanhxes['duongdan'])) {
+                                            echo '
+                                                <span class="pip">
+                                                    <span class="remove">X</span>
+                                                    <img data-toggle="modal" data-target="#exampleModalCenter" class="hinhanhxe" 
+                                                    src="' . $hinhanhxes['duongdan'] . '?time=' . time() . '"/><br>
+                                                </span>';
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -229,9 +257,36 @@ $idxe = select_id_auto("xe");
     </div>
 </div>
 </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-right" style="padding: 5px">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
+            </div>
+            <div class="modal-body text-center">
+                <!--                --><?php
+                //                foreach ($hinhanhxe as $hinhanhxes) {
+                //                    if ($hinhanhxes && is_file($hinhanhxes['duongdan'])) {
+                //                        echo '<img style="max-height: 480px; margin-bottom: 15px;" src="' . $hinhanhxes['duongdan'] . '?time=' . time() . '"/><br>';
+                //                    }
+                //                }
+                //                ?>
+            </div>
+        </div>
+    </div>
+</div>
 <?php require('admin/views/shared/footer.php'); ?>
 <script>
     $(document).ready(function () {
+        $(".hinhanhxe").click(function (e) {
+            $(".this")
+        });
+        $(".remove").click(function () {
+            $(this).parent(".pip").remove();
+        });
+        var datanhadautu = <?php echo $chudautuxejson; ?>;
+        dsnhadautu(datanhadautu);
         $("#themmoixe").click(function (e) {
             var dataform = new FormData();
             var totalfiles = document.getElementById('files').files.length;
@@ -271,7 +326,7 @@ $idxe = select_id_auto("xe");
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    if (response > 0){
+                    if (response > 0) {
                         location.href = "admin.php?controller=product";
                     }
                 }
@@ -413,14 +468,18 @@ $idxe = select_id_auto("xe");
                     {data: "manhadautu", className: "text-center", width: '12%'},
                     {data: "tennhadautu"},
                     {data: "maxedautu", visible: false},
-                    {data: "vondautu", className: "text-right"},
+                    {
+                        data: "vondautu", className: "text-right"
+                    },
                     {
                         data: "taidautu",
                         className: "text-center",
                         width: '15%'
                     },
                     {data: "tile", width: '10%', className: "text-center"},
-                    {data: "tienlai", className: "text-right"},
+                    {
+                        data: "tienlai", className: "text-right"
+                    },
                     {
                         data: null,
                         className: "text-center",
@@ -445,10 +504,26 @@ $idxe = select_id_auto("xe");
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
+                    var tongtile = api
+                        .column(5)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var tonglaidautu = api
+                        .column(6)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
 
                     // Update footer by showing the total with the reference of the column index
-                    $(api.column(1).footer()).html('Tổng');
+                    $(api.column(0).footer()).html('Tổng');
+                    $(api.column(1).footer()).html(end);
                     $(api.column(3).footer()).html(formatNumber(tongtiendautu.toString()));
+                    $(api.column(5).footer()).html(formatNumber(tongtile.toString()));
+                    $(api.column(6).footer()).html(formatNumber(tonglaidautu.toString()));
                     var tienvon = StringToNumber($("#giavon").val());
                     $('#sotienconlai').val(formatNumber((tienvon - tongtiendautu).toString()));
                 }
@@ -475,8 +550,8 @@ $idxe = select_id_auto("xe");
                         fileReader.onload = (function (e) {
                             var file = e.target;
                             $("<span class=\"pip\">" + "<span class=\"remove\">X</span>" +
-                                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-                                "<br/>" + "</span>").insertAfter("#files");
+                                "<img name=\"imageup\" class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "<br/>" + "</span>" + "<span class=\"pip\">").insertAfter("#files");
                             $(".remove").click(function () {
                                 $(this).parent(".pip").remove();
                             });

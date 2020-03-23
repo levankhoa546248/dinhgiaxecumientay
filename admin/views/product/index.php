@@ -1,5 +1,5 @@
 <?php require('admin/views/shared/header.php'); ?>
-<div id="page-wrapper" style="min-height: 200px">
+<div id="page-wrapper">
     <a href="admin.php?controller=product&amp;action=add" class="btn btn-primary pull-right"><i
                 class="glyphicon glyphicon-plus"></i> Thêm mới</a>
     <div class="panel panel-default">
@@ -51,8 +51,8 @@
                         <th>Tên xe</th>
                         <th>Màu sắc</th>
                         <th>Giá vốn</th>
-                        <th>Chiết khấu mua</th>
-                        <th>Chiết khấu bán</th>
+                        <th>Chi phí mua</th>
+                        <th>Chi phí bán</th>
                         <th>Số lượng</th>
                         <th>Chi phí khác</th>
                         <th>Giá bán</th>
@@ -137,7 +137,7 @@
                             render: $.fn.dataTable.render.number(',', '.', 0)
                         },
                         {
-                            data: "sotienconlai", className: "text-right",
+                            data: "sotienconlai", className: "text-right", visible: false,
                             render: $.fn.dataTable.render.number(',', '.', 0)
                         },
                         {

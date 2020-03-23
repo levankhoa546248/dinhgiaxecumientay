@@ -80,7 +80,7 @@ $idxe = select_id_auto("xe");
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="chietkhaumua" class="col-sm-2 control-label">Chiết khấu mua</label>
+                            <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
                             <div class="col-sm-10">
                                 <input name="chietkhaumua" type="text" id="chietkhaumua"
                                        data-type="currency" class="form-control" placeholder="0"
@@ -88,7 +88,7 @@ $idxe = select_id_auto("xe");
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="chietkhauban" class="col-sm-2 control-label">Chiết khấu bán</label>
+                            <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
                             <div class="col-sm-10">
                                 <input name="chietkhauban" type="text" id="chietkhauban"
                                        data-type="currency" class="form-control" placeholder="0"

@@ -106,7 +106,7 @@ function upload($images, $nameimages, $table, $array)
 
         move_uploaded_file($file["tmp_name"][$i], $file_path);        //cập nhật ảnh mới
         if ($name) {
-            $arrinsert = $array + array("duongdan" => $name);
+            $arrinsert = $array + array("duongdan" => $file_path);
             insert($table, $arrinsert);
         }
     }
