@@ -73,4 +73,5 @@ $chudautuxe = select(
 );
 $chudautuxejson = json_encode($chudautuxe);
 $hinhanhxe = select('SELECT * FROM hinhanhxe WHERE idxe =' . $idxe);
+$hinhanhxe_json = json_encode($hinhanhxe);
 require('admin/views/product/edit.php');

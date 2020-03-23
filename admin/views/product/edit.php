@@ -4,7 +4,7 @@
     }
 
     .hinhanhxe {
-        max-height: 75px;
+        max-height: 65%;
         border: 1px solid;
         padding: 1px;
         cursor: pointer;
@@ -225,25 +225,27 @@ $idxe = select_id_auto("xe");
                         <div class="form-group">
                             <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>
                             <div class="col-sm-10">
-                                <div class="field" align="left">
-                                    <input class="form-control" accept="image/*" type="file" id="files" name="files[]"
-                                           multiple style="border: #0c0b0b"/>
-                                    <?php
-                                    foreach ($hinhanhxe as $hinhanhxes) {
-                                        if ($hinhanhxes && is_file($hinhanhxes['duongdan'])) {
-                                            echo '
-                                                <span class="pip">
-                                                    <span class="remove">X</span>
-                                                    <img data-toggle="modal" data-target="#exampleModalCenter" class="hinhanhxe" 
-                                                    src="' . $hinhanhxes['duongdan'] . '?time=' . time() . '"/><br>
-                                                </span>';
-                                        }
-                                    }
-                                    ?>
-                                </div>
+                                <table class="table table-striped table-bordered table-hover small" id="dshinhanhxe"
+                                       style="width:100%">
+                                    <thead class="bg-primary">
+                                    <tr>
+                                        <th class="text-center">Id</th>
+                                        <th class="text-center">Id xe</th>
+                                        <th class="text-center">Hình ảnh</th>
+                                        <th class="text-center"><i class="fa fa-gears"></i></th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot align="right">
+                                    <tr>
+                                        <th class="text-center"></th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center"></th>
+                                        <th class="text-center"></th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
                                 <button type="button" class="btn btn-primary" id="themmoixe">Thêm mới</button>
@@ -279,14 +281,40 @@ $idxe = select_id_auto("xe");
 <?php require('admin/views/shared/footer.php'); ?>
 <script>
     $(document).ready(function () {
-        $(".hinhanhxe").click(function (e) {
-            $(".this")
-        });
-        $(".remove").click(function () {
-            $(this).parent(".pip").remove();
-        });
-        var datanhadautu = <?php echo $chudautuxejson; ?>;
-        dsnhadautu(datanhadautu);
+        var dshinhanhxe_json = <?php echo $hinhanhxe_json; ?>;
+        f_dshinhanhxe(dshinhanhxe_json);
+        function f_dshinhanhxe (data_json){
+            $('#dshinhanhxe').DataTable().destroy();
+            var table = $('#dshinhanhxe').DataTable({
+                searching: false,
+                lengthChange: false,
+                width: '100%',
+                responsive: true,
+                paging: false,
+                info: false,
+                columns: [
+                    {data: "id", className: "text-center", visible: false},
+                    {data: "idxe", className: "text-center", visible: false},
+                    {
+                        data: "duongdan",
+                        className: "text-center",
+                        width: '10%',
+                        render: function(data, type, row) {
+                            return '<img class="hinhanhxe" src="'+data+'" />';
+                        }
+                    },
+                    {
+                        data: null,
+                        className: "text-center",
+                        width: '10%',
+                        defaultContent: '<button class="xoahinhanh"><i class="glyphicon glyphicon-trash"></i></button>'
+                    }
+                ]
+            });
+            table.rows.add(data_json).draw();
+        }
+        var dsnhadautu_json = <?php echo $chudautuxejson; ?>;
+        dsnhadautu(dsnhadautu_json);
         $("#themmoixe").click(function (e) {
             var dataform = new FormData();
             var totalfiles = document.getElementById('files').files.length;
