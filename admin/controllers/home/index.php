@@ -83,4 +83,4 @@ $options_order_new = array(
 );
 $order_new = Selecct_a_record('orders', $options_order_new);
 //load view
-require('admin/views/home/index.php');
+require('admin/views/product/index.php');

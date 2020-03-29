@@ -14,6 +14,7 @@
 }
 
 #popup_container {
+	top: 1px;
 	font-family: AntipastoRegular, sans-serif;
 	font-size: 14px;
 	min-width: 300px; /* Dialog will be no smaller than this */

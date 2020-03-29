@@ -3,10 +3,15 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="admin.php">DUY LINH</a>
+        <a class="navbar-brand" href="admin.php?controller=product">DUY LINH</a>
 
     </div>
     <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+            <a href="admin.php?controller=user&action=list">
+                <div> Nhân viên</div>
+            </a>
+        </li>
         <li class="dropdown">
             <a href="admin.php?controller=nhadautu&action=list">
                 <div> Nhà đầu tư</div>
@@ -22,11 +27,11 @@
                 <div> Nhập xe</div>
             </a>
         </li>
-        <li class="dropdown">
-            <a href="admin.php?controller=export">
-                <div> Xuất xe</div>
-            </a>
-        </li>
+        <!--        <li class="dropdown">-->
+        <!--            <a href="admin.php?controller=export">-->
+        <!--                <div> Xuất xe</div>-->
+        <!--            </a>-->
+        <!--        </li>-->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>

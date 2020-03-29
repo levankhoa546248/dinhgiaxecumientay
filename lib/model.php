@@ -69,13 +69,13 @@ function pagination($url, $page, $total)
  * @param array
  * @return mixed
  */
-function upload($images, $nameimages, $table, $array)
+function upload($images, $nameimages, $table, $array, $idhinh)
 {
     $count = count($_FILES[$images]["name"]);
     for ($i = 0; $i < $count; $i++) {
         $file = $_FILES[$images];
         $config = array(
-            'name' => $nameimages,
+            'name' => $nameimages . "_" . (intval($idhinh) + $i),
             'upload_path' => 'admin/upload/',
             'allowed_exts' => 'jpg|jpeg|png|gif',
         );
@@ -241,7 +241,7 @@ function get_all($table, $options = array())
 
 function get_total($table, $options = array())
 {
-    $conn = $GLOBALS["conn"];
+    $conn = connectDB();
     $where = isset($options['where']) ? 'WHERE ' . $options['where'] : '';
     $sql = "SELECT COUNT(*) as total FROM `$table` $where";
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
@@ -382,4 +382,30 @@ function select_id_auto($table)
     $query = mysqli_query($conn, $sql) or die(mysqli_error());
     $row = mysqli_fetch_assoc($query);
     return $row['autoid'];
+}
+
+function run_query($query)
+{
+    $conn = connectDB();
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $resultset[] = $row;
+    }
+    if (!empty($resultset))
+        return $resultset;
+}
+
+function numRows($query)
+{
+    $result = mysqli_query(connectDB(), $query);
+    return $result;
+}
+
+function select_value_a_record($table, $where, $selects)
+{
+    $conn = connectDB();
+    $sql = "SELECT  $selects as total FROM `$table` WHERE " . $where;
+    $query = mysqli_query($conn, $sql) or die(mysqli_error());
+    $row = mysqli_fetch_assoc($query);
+    return $row['total'];
 }

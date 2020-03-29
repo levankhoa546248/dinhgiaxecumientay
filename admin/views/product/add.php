@@ -41,188 +41,199 @@ $idxe = select_id_auto("xe");
         <div></div>
         <div class="panel-body">
             <div class="dataTable_wrapper">
-                <div class="panel-body">
-                    <form id="product-form" class="form-horizontal" method="post"
-                          enctype="multipart/form-data" role="form">
-                        <input name="idxe" type="hidden" value="<?php echo $idxe; ?>"/>
-                        <div class="form-group">
-                            <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
-                            <div class="col-sm-10">
-                                <select name="hangxe" class="form-control" id="hangxe">
-                                    <option value="0" selected>Chọn hãng xe</option>
-                                    <?php foreach ($subcategories as $subcategory) {
-                                        $selected = '';
-                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
-                                    } ?>
-                                </select>
+                <div class="panel-body form-horizontal">
+                    <input name="idxe" type="hidden" value="<?php echo $idxe; ?>"/>
+                    <div class="form-group">
+                        <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
+                        <div class="col-sm-10">
+                            <select name="hangxe" class="form-control" id="hangxe">
+                                <option value="0" selected>Chọn hãng xe</option>
+                                <?php foreach ($subcategories as $subcategory) {
+                                    $selected = '';
+                                    echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
+                        <div class="col-sm-10">
+                            <input name="tenxe" type="text"
+                                   class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mausac" class="col-sm-2 control-label">Màu sắc</label>
+                        <div class="col-sm-10">
+                            <input name="mausac" type="text"
+                                   class="form-control" id="mausac" placeholder="Màu sắc"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
+                        <div class="col-sm-10">
+                            <input name="giavon" type="text" data-type="currency"
+                                   class="form-control" id="giavon" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
+                        <div class="col-sm-10">
+                            <input name="chietkhaumua" type="text" id="chietkhaumua"
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
+                        <div class="col-sm-10">
+                            <input name="chietkhauban" type="text" id="chietkhauban"
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
+                        <div class="col-sm-4">
+                            <input name="soluong" type="number" value="1"
+                                   class="form-control" id="soluong" placeholder="0"
+                            />
+                        </div>
+                        <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
+                        <div class="col-sm-5">
+                            <input name="sotienconlai" type="text" id="sotienconlai" disabled
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label for="chiphiphatsinh" class="col-sm-2 control-label">Chi phí phát sinh</label>
+                        <div class="col-sm-10">
+                            <input name="chiphiphatsinh" type="text" id="chiphiphatsinh"
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label for="giaban" class="col-sm-2 control-label">Giá bán</label>
+                        <div class="col-sm-3">
+                            <input name="giaban" type="text" id="giaban"
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                        <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
+                        <div class="col-sm-2">
+                            <input name="tonglai" type="text" id="tonglai" disabled
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                        <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
+                        <div class="col-sm-3">
+                            <input name="sotienconlai" type="text" id="sotienconlai" disabled
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="chudautu" class="col-sm-2 control-label">Chủ đầu tư</label>
+                        <div class="col-sm-10">
+                            <select name="chudautu" class="form-control" id="chudautu"
+                                    data-show-subtext="true" data-live-search="true">
+                                <option value="0" selected disabled>Chọn nhà đầu tư</option>
+                                <?php foreach ($dsNhaDauTu as $dsNhaDauTus) {
+                                    echo '<option value="' . $dsNhaDauTus['manhadautu'] . '">' . $dsNhaDauTus['tennhadautu'] . '</option>';
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Số dư</label>
+                        <div class="col-sm-3">
+                            <input name="sodu" type="text" id="sodu" disabled
+                                   data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
+                            />
+                        </div>
+                        <label class="col-sm-1 control-label">Vốn</label>
+                        <div class="col-sm-3">
+                            <input name="vondautu" type="text" id="vondautu"
+                                   data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
+                            />
+                        </div>
+                        <label for="tonglai" class="col-sm-1 control-label" style="padding-left: 0px">Tái đầu
+                            tư</label>
+                        <div class="col-sm-1 control-label">
+                            <input name="taidautu" type="checkbox" id="taidautu" class="pull-left"/>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-success pull-right" id="themnhadautu"
+                                    name="themnhadautu">+
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label for="tile" class="col-sm-2 control-label">Tỉ lệ(%)</label>
+                        <div class="col-sm-3">
+                            <input name="tile" type="text" id="tile" disabled
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                        <label for="tienlai" class="col-sm-1 control-label">Tiền lãi</label>
+                        <div class="col-sm-2">
+                            <input name="tienlai" type="text" id="tienlai" disabled
+                                   data-type="currency" class="form-control" placeholder="0"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="giaban" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <table class="table table-striped table-bordered table-hover small" id="dsnhadautu"
+                                   style="width:100%">
+                                <caption class="bg-primary text-center">Danh sách nhà đầu tư</caption>
+                                <thead class="bg-primary">
+                                <tr>
+                                    <th class="text-center" width="10%">Mã</th>
+                                    <th class="text-left">Tên nhà đầu tư</th>
+                                    <th class="text-right" hidden>Mã xe</th>
+                                    <th class="text-right">Vốn</th>
+                                    <th class="text-center" width="10%">Tái đầu tư</th>
+                                    <th class="text-center">Tỉ lệ</th>
+                                    <th class="text-right" hidden>Tiền lãi</th>
+                                    <th class="text-center"><i class="fa fa-gears"></i></th>
+                                </tr>
+                                </thead>
+                                <tfoot align="right">
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th hidden=""></th>
+                                    <th class="text-right"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-right" hidden></th>
+                                    <th class="text-center"></th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>
+                        <div class="col-sm-10">
+                            <div class="field" align="left">
+                                <input class="form-control" accept="image/*" type="file" id="files" name="files[]"
+                                       multiple/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
-                            <div class="col-sm-10">
-                                <input name="tenxe" type="text"
-                                       class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="mausac" class="col-sm-2 control-label">Màu sắc</label>
-                            <div class="col-sm-10">
-                                <input name="mausac" type="text"
-                                       class="form-control" id="mausac" placeholder="Màu sắc"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
-                            <div class="col-sm-10">
-                                <input name="giavon" type="text" data-type="currency"
-                                       class="form-control" id="giavon" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
-                            <div class="col-sm-10">
-                                <input name="chietkhaumua" type="text" id="chietkhaumua"
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
-                            <div class="col-sm-10">
-                                <input name="chietkhauban" type="text" id="chietkhauban"
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
-                            <div class="col-sm-10">
-                                <input name="soluong" type="number" value="1"
-                                       class="form-control" id="soluong" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="chiphiphatsinh" class="col-sm-2 control-label">Chi phí phát sinh</label>
-                            <div class="col-sm-10">
-                                <input name="chiphiphatsinh" type="text" id="chiphiphatsinh"
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="giaban" class="col-sm-2 control-label">Giá bán</label>
-                            <div class="col-sm-3">
-                                <input name="giaban" type="text" id="giaban"
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                            <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
-                            <div class="col-sm-2">
-                                <input name="tonglai" type="text" id="tonglai" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                            <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
-                            <div class="col-sm-3">
-                                <input name="sotienconlai" type="text" id="sotienconlai" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="chudautu" class="col-sm-2 control-label">Chủ đầu tư</label>
-                            <div class="col-sm-3">
-                                <select name="chudautu" class="form-control" id="chudautu"
-                                        data-show-subtext="true" data-live-search="true">
-                                    <option value="0" selected disabled>Chọn nhà đầu tư</option>
-                                    <?php foreach ($dsNhaDauTu as $dsNhaDauTus) {
-                                        echo '<option value="' . $dsNhaDauTus['manhadautu'] . '">' . $dsNhaDauTus['tennhadautu'] . '</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                            <label class="col-sm-1 control-label">Vốn</label>
-                            <div class="col-sm-2">
-                                <input name="vondautu" type="text" id="vondautu"
-                                       data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
-                                />
-                            </div>
-                            <label for="tonglai" class="col-sm-1 control-label" style="padding-left: 0px">Tái đầu
-                                tư</label>
-                            <div class="col-sm-1 control-label">
-                                <input name="taidautu" type="checkbox" id="taidautu" class="pull-left"/>
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-success pull-right" id="themnhadautu"
-                                        name="themnhadautu">+
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="tile" class="col-sm-2 control-label">Tỉ lệ(%)</label>
-                            <div class="col-sm-3">
-                                <input name="tile" type="text" id="tile" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                            <label for="tienlai" class="col-sm-1 control-label">Tiền lãi</label>
-                            <div class="col-sm-2">
-                                <input name="tienlai" type="text" id="tienlai" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="giaban" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-10">
-                                <table class="table table-striped table-bordered table-hover small" id="dsnhadautu"
-                                       style="width:100%">
-                                    <caption class="bg-primary text-center">Danh sách nhà đầu tư</caption>
-                                    <thead class="bg-primary">
-                                    <tr>
-                                        <th class="text-center" width="10%">Mã</th>
-                                        <th class="text-left">Tên nhà đầu tư</th>
-                                        <th class="text-right" hidden>Mã xe</th>
-                                        <th class="text-right">Vốn</th>
-                                        <th class="text-center">Tái đầu tư</th>
-                                        <th class="text-center">Tỉ lệ</th>
-                                        <th class="text-right">Tiền lãi</th>
-                                        <th class="text-center"><i class="fa fa-gears"></i></th>
-                                    </tr>
-                                    </thead>
-                                    <tfoot align="right">
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th hidden=""></th>
-                                        <th class="text-right"></th>
-                                        <th class="text-center"></th>
-                                        <th class="text-center"></th>
-                                        <th class="text-right"></th>
-                                        <th class="text-center"></th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>
-                            <div class="col-sm-10">
-                                <div class="field" align="left">
-                                    <input class="form-control" accept="image/*" type="file" id="files" name="files[]"
-                                           multiple/>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="button" class="btn btn-primary" id="themmoixe">Thêm mới</button>
-                                <a class="btn btn-warning" href="admin.php?controller=product">Trở về</a>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="button" class="btn btn-primary" id="themmoixe">Thêm mới</button>
+                            <a class="btn btn-warning" href="admin.php?controller=product">Trở về</a>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -232,6 +243,35 @@ $idxe = select_id_auto("xe");
 <?php require('admin/views/shared/footer.php'); ?>
 <script>
     $(document).ready(function () {
+        $('#taidautu').click(function (e) {
+            var taidautu = $('#taidautu').is(":checked");
+            if (taidautu) {
+                f_taidautu();
+            }
+        });
+
+        function f_taidautu() {
+            var manhadautu = $("#chudautu").val();
+            var vondautu = StringToNumber($("#vondautu").val());
+            var sodu = StringToNumber($("#sodu").val());
+            if (checkIf(manhadautu)) {
+                jAlert('Chưa chọn chủ đầu tư', 'Thông báo');
+                $('#taidautu').prop("checked", false);
+                return true;
+            }
+            if (checkIf(vondautu)) {
+                jAlert('Chưa nhập vốn đầu tư', 'Thông báo');
+                $('#taidautu').prop("checked", false);
+                return true;
+            }
+            if(vondautu > sodu){
+
+                jAlert('Tiền không đủ để tái đầu tư', 'Thông báo');
+                $('#taidautu').prop("checked", false);
+                return true;
+            }
+        }
+
         $("#themmoixe").click(function (e) {
             var dataform = new FormData();
             var totalfiles = document.getElementById('files').files.length;
@@ -271,7 +311,7 @@ $idxe = select_id_auto("xe");
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    if (response > 0){
+                    if (response > 0) {
                         location.href = "admin.php?controller=product";
                     }
                 }
@@ -283,7 +323,17 @@ $idxe = select_id_auto("xe");
         }
 
         $('#chudautu').on('change', function () {
-            $('#vondautu').focus();
+            $.ajax({
+                url: "admin.php?controller=product&action=laysodu",
+                type: "POST",
+                data: {
+                    manhadautu: $("#chudautu").val()
+                },
+                success: function (response) {
+                    $("#sodu").val(formatNumber(response));
+                    $('#vondautu').focus();
+                }
+            });
         });
 
         $("#chietkhaumua").bind('input', function (e) {
@@ -320,6 +370,7 @@ $idxe = select_id_auto("xe");
             $("#vondautu").val("");
             $("#tile").val("");
             $("#tienlai").val("");
+            $("#sodu").val("");
             $("#taidautu").prop("checked", false);
         }
 
@@ -360,12 +411,6 @@ $idxe = select_id_auto("xe");
                     $("#tenxe").focus();
                 });
             }
-            var giaban = $("#giaban").val();
-            if (checkIf(giaban)) {
-                return jAlert('Chưa nhập giá bán', 'Thông báo', function (e) {
-                    $("#tenxe").focus();
-                });
-            }
             var manhadautu = $("#chudautu").val();
             if (manhadautu == "0" || checkIf(manhadautu)) {
                 return jAlert('Chưa chọn nhà đầu tư', 'Thông báo', function (e) {
@@ -384,7 +429,7 @@ $idxe = select_id_auto("xe");
                     $("#vondautu").focus();
                 });
             }
-            var taidautu = $('#taidautu').is(":checked");
+            var taidautu = $('#taidautu').is(":checked") ? "1" : "0";
             var tile = $('#tile').val();
             var tienlai = $('#tienlai').val();
             var objnhadautu = [{
@@ -417,10 +462,10 @@ $idxe = select_id_auto("xe");
                     {
                         data: "taidautu",
                         className: "text-center",
-                        width: '15%'
+                        width: '10%'
                     },
                     {data: "tile", width: '10%', className: "text-center"},
-                    {data: "tienlai", className: "text-right"},
+                    {data: "tienlai", className: "text-right", visible: false},
                     {
                         data: null,
                         className: "text-center",
@@ -530,7 +575,7 @@ $idxe = select_id_auto("xe");
         });
         $('#soluong').keypress(function (e) {
             if (e.keyCode == 13) {
-                $('#chiphiphatsinh').focus();
+                $('#vondautu').focus();
                 tinhtongtienlai();
             }
         });

@@ -42,34 +42,3 @@
 </div>
 </div>
 <?php require('admin/views/shared/footer.php'); ?>
-
-<script>
-    $(function () {
-        // $("#themnhadautu").click(function (e) {
-        //     var tennhadautu = $("#tennhandautu").val();
-        //     var sodienthoai = $("#sodienthoai").val();
-        //     var diachi = $("#diachi").val();
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "admin/controllers/import/updateCoupon.php",
-        //         data: {
-        //             tennhadautu: tennhadautu,
-        //             sodienthoai: sodienthoai,
-        //             diachi: diachi
-        //         },
-        //         success: function (data) {
-        //             if (data == '0') {
-        //                 jAlert('Thực hiện không thành công', 'Thông báo', function (e) {
-        //                     $('#couponname').focus();
-        //                 });
-        //             } else {
-        //                 jAlert('Thực hiện thành công', 'Thông báo', function (e) {
-        //                     $('#goodsname').focus();
-        //                 });
-        //             }
-        //         }
-        //     });
-    });
-    })
-
-</script>

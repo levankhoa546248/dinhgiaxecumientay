@@ -4,7 +4,7 @@
                 class="glyphicon glyphicon-plus"></i> Thêm mới</a>
     <div class="panel panel-default">
         <div class="panel-heading text-center">
-            <b>Danh mục sản phẩm</b>
+            <b>Danh mục xe</b>
         </div>
         <div class="panel-body">
             <div class="pull-left col-sm-12">
@@ -23,7 +23,7 @@
                                    class="form-control input-sm" id="denngay"/>
                         </div>
                         <div class="col-sm-1 control-label"> Hãng xe</div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <select name="hangxe" class="form-control input-sm" id="hangxe">
                                 <option value="0" selected>Chọn hãng xe</option>
                                 <?php foreach ($subcategories as $subcategory) {
@@ -32,6 +32,8 @@
                                 } ?>
                             </select>
                         </div>
+                        <label class="col-sm-1 control-label">
+                            <input type="checkbox" id="daban"/> Đã bán</label>
                         <div class="col-sm-2 pull-right">
                             <button type="button" class="btn btn-success" id="lammoi"><i
                                         class="glyphicon glyphicon-refresh"></i> Làm mới
@@ -59,6 +61,7 @@
                         <th>Tổng lãi</th>
                         <th>Số tiền còn lại</th>
                         <th>Ngày nhập</th>
+                        <th>Ngày bán</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -71,6 +74,9 @@
 <?php require('admin/views/shared/footer.php'); ?>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#daban').click(function () {
+            dsxe();
+        });
         $("#lammoi").click(function (e) {
             dsxe();
         });
@@ -80,79 +86,97 @@
             var tungay = $('#tungay').val();
             var denngay = $('#denngay').val();
             var hangxe = $("#hangxe").val();
+            var daban = $('#daban').is(":checked") ? "1" : "0";
             $('#dsxe').DataTable().destroy();
             $('#dsxe').DataTable({
-                    searching: true,
-                    lengthChange: false,
-                    width: '100%',
-                    responsive: true,
-                    lengthMenu: [[5, 10, 30, "All"]],
-                    order: [[0, 'desc']],
-                    ajax: {
-                        type: 'POST',
-                        url: "admin.php?controller=product&action=list",
-                        data: {
-                            tungay: tungay,
-                            denngay: denngay,
-                            hangxe: hangxe
-                        },
-                        dataSrc: ''
+                searching: true,
+                lengthChange: false,
+                width: '100%',
+                responsive: true,
+                lengthMenu: [[5, 10, 30, "All"]],
+                order: [[0, 'desc']],
+                ajax: {
+                    type: 'POST',
+                    url: "admin.php?controller=product&action=list",
+                    data: {
+                        tungay: tungay,
+                        denngay: denngay,
+                        hangxe: hangxe,
+                        daban: daban
                     },
-                    columns: [
-                        {data: "id", className: "text-center", width: '5%'},
-                        {data: "hangxe", visible: false},
-                        {
-                            data: "tenhangxe"
-                        },
-                        {
-                            data: "tenxe", width: '15%',
-                            render: function (data, type, full, meta) {
-                                return '<a href=admin.php?controller=product&action=edit&idxe=' + full.id + '>' + data + '</a>'
-                            }
-                        },
-                        {data: "mausac"},
-                        {
-                            data: "giavon", className: "text-right",
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {
-                            data: "chietkhaumua", className: "text-right",
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {
-                            data: "chietkhauban", className: "text-right",
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {data: "soluong", className: "text-center"},
-                        {
-                            data: "chiphiphatsinh", className: "text-right",
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {
-                            data: "giaban", className: "text-right",
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {
-                            data: "tonglai", className: "text-right",
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {
-                            data: "sotienconlai", className: "text-right", visible: false,
-                            render: $.fn.dataTable.render.number(',', '.', 0)
-                        },
-                        {
-                            data: "ngaynhap",
-                            className: "text-center",
-                        },
-                        {
-                            data: null,
-                            className: "text-center",
-                            width: '5%',
-                            defaultContent: '<button class="coupondelete"><i class="glyphicon glyphicon-trash"></i></button>'
+                    dataSrc: ''
+                },
+                columns: [
+                    {data: "id", className: "text-center", width: '5%'},
+                    {data: "hangxe", visible: false},
+                    {
+                        data: "tenhangxe"
+                    },
+                    {
+                        data: "tenxe", width: '15%',
+                        render: function (data, type, full, meta) {
+                            return '<a href=admin.php?controller=product&action=edit&idxe=' + full.id + '&trangthai=' + full.trangthai + '>' + data + '</a>'
                         }
-                    ]
-                }
-            )
+                    },
+                    {data: "mausac", width: '7%', className: "text-center"},
+                    {
+                        data: "giavon", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "chietkhaumua", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0),
+                        width: '9%'
+                    },
+                    {
+                        data: "chietkhauban", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0),
+                        width: '9%'
+                    },
+                    {data: "soluong", className: "text-center", width: '8%'},
+                    {
+                        data: "chiphiphatsinh", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0),
+                        visible: false
+                    },
+                    {
+                        data: "giaban", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "tonglai", className: "text-right",
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "sotienconlai", className: "text-right", visible: false,
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "ngaynhap",
+                        className: "text-center",
+                        width: '8%',
+                        visible: $('#daban').is(":checked") ? false : true
+                    },
+                    {
+                        data: "ngayban",
+                        className: "text-center",
+                        width: '8%',
+                        visible: $('#daban').is(":checked") ? true : false
+                    },
+                    {
+                        data: null,
+                        className: "text-center",
+                        width: '5%',
+                        render: function (data, type, full, meta) {
+                            if (full.trangthai == 0) {
+                                return '<button class="xoaxe"><i class="glyphicon glyphicon-trash"></i></button>'
+                            } else {
+                                return '';
+                            }
+                        }
+                    }
+                ]
+            });
         }
     })
 

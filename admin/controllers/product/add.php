@@ -18,11 +18,12 @@ if (!empty($_POST)) {
     $idxe = insert('xe', $xe);
     //upload ảnh 4
     $tenxe = escape($_POST['tenxe']);
-    $nameimage = $idxe . "_" . alias($tenxe) . "_" . date('Ymd');
+    $nameimage = $idxe . "_" . alias($tenxe);
+    $idhinh = select_id_auto("hinhanhxe");
     $arrxe = array(
         'idxe' => $idxe
     );
-    $image = upload("images", $nameimage, 'hinhanhxe', $arrxe);
+    $image = upload("images", $nameimage, 'hinhanhxe', $arrxe, $idhinh);
     $jsonnhadautu = json_decode($_POST["dsnhadautu"]);
     $countnhadautu = count(json_decode($_POST["dsnhadautu"]));
     for ($k = 0; $k < $countnhadautu; $k++) {

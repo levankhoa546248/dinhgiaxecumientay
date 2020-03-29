@@ -4,7 +4,8 @@
     }
 
     .hinhanhxe {
-        max-height: 65%;
+        max-height: 750px;
+        max-width: 80%;
         border: 1px solid;
         padding: 1px;
         cursor: pointer;
@@ -37,9 +38,7 @@
         color: black;
     }
 </style>
-<?php require('admin/views/shared/header.php');
-$idxe = select_id_auto("xe");
-?>
+<?php require('admin/views/shared/header.php'); ?>
 <div id="page-wrapper">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
@@ -48,10 +47,10 @@ $idxe = select_id_auto("xe");
         <div></div>
         <div class="panel-body">
             <div class="dataTable_wrapper">
-                <div class="panel-body">
-                    <form id="product-form" class="form-horizontal" method="post"
-                          enctype="multipart/form-data" role="form">
-                        <input name="idxe" type="hidden" value="<?php echo $idxe; ?>"/>
+                <div class="panel-body form-horizontal">
+                    <fieldset>
+                        <legend>Thông tin xe:</legend>
+                        <input name="idxe" id="idxe" type="hidden" value="<?php echo $_GET["idxe"]; ?>"/>
                         <div class="form-group">
                             <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
                             <div class="col-sm-10">
@@ -115,7 +114,7 @@ $idxe = select_id_auto("xe");
                                 />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" hidden>
                             <label for="chiphiphatsinh" class="col-sm-2 control-label">Chi phí phát sinh</label>
                             <div class="col-sm-10">
                                 <input name="chiphiphatsinh" type="text" id="chiphiphatsinh" data-type="currency"
@@ -125,31 +124,31 @@ $idxe = select_id_auto("xe");
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="giaban" class="col-sm-2 control-label">Giá bán</label>
-                            <div class="col-sm-3">
+                            <label for="giaban" class="col-sm-2 control-label" style="color: red; font-size: large">Giá
+                                bán</label>
+                            <div class="col-sm-4">
                                 <input name="giaban" type="text" id="giaban" data-type="currency" class="form-control"
-                                       placeholder="0"
-                                       value="<?php echo $xe ? number_format($xe['giaban'], 0, '.', ',') : ''; ?>"
+                                       placeholder="0" style="font-size: large"
+                                       value="<?php echo $xe ? $xe['giaban'] == "0" ? '' : number_format($xe['giaban'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
                             <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <input name="tonglai" type="text" id="tonglai" disabled data-type="currency"
                                        class="form-control" placeholder="0"
                                        value="<?php echo $xe ? number_format($xe['tonglai'], 0, '.', ',') : ''; ?>"
                                 />
                             </div>
-                            <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
-                            <div class="col-sm-3">
-                                <input name="sotienconlai" type="text" id="sotienconlai" disabled data-type="currency"
-                                       class="form-control" placeholder="0"
-                                       value="<?php echo $xe ? number_format($xe['sotienconlai'], 0, '.', ',') : ''; ?>"
-                                />
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-warning" id="banxe">Bán xe</button>
                             </div>
                         </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Nhà đầu tư:</legend>
                         <div class="form-group">
                             <label for="chudautu" class="col-sm-2 control-label">Chủ đầu tư</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-8">
                                 <select name="chudautu" class="form-control" id="chudautu"
                                         data-show-subtext="true" data-live-search="true">
                                     <option value="0" selected disabled>Chọn nhà đầu tư</option>
@@ -158,21 +157,23 @@ $idxe = select_id_auto("xe");
                                     } ?>
                                 </select>
                             </div>
-                            <label class="col-sm-1 control-label">Vốn</label>
-                            <div class="col-sm-2">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Số dư</label>
+                            <div class="col-sm-3">
+                                <input name="sodu" type="text" id="sodu" disabled
+                                       data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
+                                />
+                            </div>
+                            <label class="col-sm-2 control-label">Vốn</label>
+                            <div class="col-sm-3">
                                 <input name="vondautu" type="text" id="vondautu"
                                        data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
                                 />
                             </div>
-                            <label for="tonglai" class="col-sm-1 control-label" style="padding-left: 0px">Tái đầu
-                                tư</label>
-                            <div class="col-sm-1 control-label">
+                            <label for="tonglai" class="col-sm-1 text-left control-label">Tái đầu tư</label>
+                            <div class="col-sm-1 control-label pull-left">
                                 <input name="taidautu" type="checkbox" id="taidautu" class="pull-left"/>
-                            </div>
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-success pull-right" id="themnhadautu"
-                                        name="themnhadautu">+
-                                </button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -182,6 +183,21 @@ $idxe = select_id_auto("xe");
                                        data-type="currency" class="form-control" placeholder="0"
                                 />
                             </div>
+                            <label for="tonglai" class="col-sm-2 control-label">Còn lại</label>
+                            <div class="col-sm-3">
+                                <input name="sotienconlai" type="text" id="sotienconlai" disabled data-type="currency"
+                                       class="form-control" placeholder="0"
+                                       value="<?php echo $xe ? $xe['sotienconlai'] == "0" ? '' : number_format($xe['sotienconlai'], 0, '.', ',') : ''; ?>"
+                                />
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-success" id="themnhadautu"
+                                        name="themnhadautu">+
+                                </button>
+                            </div>
+                        </div>
+                        <div hidden>
                             <label for="tienlai" class="col-sm-1 control-label">Tiền lãi</label>
                             <div class="col-sm-2">
                                 <input name="tienlai" type="text" id="tienlai" disabled
@@ -190,9 +206,9 @@ $idxe = select_id_auto("xe");
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="giaban" class="col-sm-2 control-label"></label>
+                            <label for="" class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
-                                <table class="table table-striped table-bordered table-hover small" id="dsnhadautu"
+                                <table class="table table-striped table-bordered table-hover small" id="tbldsnhadautu"
                                        style="width:100%">
                                     <caption class="bg-primary text-center">Danh sách nhà đầu tư</caption>
                                     <thead class="bg-primary">
@@ -222,68 +238,220 @@ $idxe = select_id_auto("xe");
                                 </table>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>
-                            <div class="col-sm-10">
-                                <table class="table table-striped table-bordered table-hover small" id="dshinhanhxe"
-                                       style="width:100%">
-                                    <thead class="bg-primary">
-                                    <tr>
-                                        <th class="text-center">Id</th>
-                                        <th class="text-center">Id xe</th>
-                                        <th class="text-center">Hình ảnh</th>
-                                        <th class="text-center"><i class="fa fa-gears"></i></th>
-                                    </tr>
-                                    </thead>
-                                    <tfoot align="right">
-                                    <tr>
-                                        <th class="text-center"></th>
-                                        <th class="text-center"></th>
-                                        <th class="text-center"></th>
-                                        <th class="text-center"></th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
+                    </fieldset>
+                    <div class="form-group">
+                        <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>
+                        <div class="col-sm-10">
+                            <div class="field" align="left">
+                                <input class="form-control" accept="image/*" type="file" id="files" name="files[]"
+                                       multiple style="border: #0c0b0b"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="button" class="btn btn-primary" id="themmoixe">Thêm mới</button>
-                                <a class="btn btn-warning" href="admin.php?controller=product">Trở về</a>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image1" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <table class="table table-striped table-bordered table-hover small" id="dshinhanhxe"
+                                   style="width:100%">
+                                <thead class="bg-primary">
+                                <tr>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Id xe</th>
+                                    <th class="text-center">Hình ảnh</th>
+                                    <th class="text-center" width="10%"><i class="fa fa-gears"></i></th>
+                                </tr>
+                                </thead>
+                                <tfoot align="right">
+                                <tr>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center"></th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
-                    </form>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="button" class="btn btn-primary" id="capnhatxe">Cập nhật</button>
+                            <a class="btn btn-warning" href="admin.php?controller=product">Trở về</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </div>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-right" style="padding: 5px">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">X</button>
-            </div>
-            <div class="modal-body text-center">
-                <!--                --><?php
-                //                foreach ($hinhanhxe as $hinhanhxes) {
-                //                    if ($hinhanhxes && is_file($hinhanhxes['duongdan'])) {
-                //                        echo '<img style="max-height: 480px; margin-bottom: 15px;" src="' . $hinhanhxes['duongdan'] . '?time=' . time() . '"/><br>';
-                //                    }
-                //                }
-                //                ?>
-            </div>
-        </div>
-    </div>
-</div>
 <?php require('admin/views/shared/footer.php'); ?>
 <script>
     $(document).ready(function () {
+        $('#taidautu').click(function (e) {
+            var taidautu = $('#taidautu').is(":checked");
+            if (taidautu) {
+                f_taidautu();
+            }
+        });
+
+        function f_taidautu() {
+            var manhadautu = $("#chudautu").val();
+            var vondautu = StringToNumber($("#vondautu").val());
+            var sodu = StringToNumber($("#sodu").val());
+            if (checkIf(manhadautu)) {
+                jAlert('Chưa chọn chủ đầu tư', 'Thông báo');
+                $('#taidautu').prop("checked", false);
+                return true;
+            }
+            if (checkIf(vondautu)) {
+                jAlert('Chưa nhập vốn đầu tư', 'Thông báo');
+                $('#taidautu').prop("checked", false);
+                return true;
+            }
+            if(vondautu > sodu){
+
+                jAlert('Tiền không đủ để tái đầu tư', 'Thông báo');
+                $('#taidautu').prop("checked", false);
+                return true;
+            }
+        }
+
+        $("#giaban").focus();
+        var trangthai = "<?php
+            if (!empty($_GET["trangthai"])) {
+                echo '1';
+            } else {
+                echo '0';
+            }
+            ?>";
+
+        f_khoatrangthai(trangthai);
+
+        function f_khoatrangthai(trangthai) {
+            var bool = "";
+            if (trangthai == "1") {
+                bool = true;
+            } else {
+                bool = false;
+            }
+            $('#banxe').prop('disabled', bool);
+            $('#capnhatxe').prop('disabled', bool);
+            $('#themnhadautu').prop('disabled', bool);
+            $('#hangxe').prop('disabled', bool);
+            $('#tenxe').prop('disabled', bool);
+            $('#mausac').prop('disabled', bool);
+            $('#giavon').prop('disabled', bool);
+            $('#chietkhaumua').prop('disabled', bool);
+            $('#chietkhauban').prop('disabled', bool);
+            $('#soluong').prop('disabled', bool);
+            $('#chiphiphatsinh').prop('disabled', bool);
+            $('#giaban').prop('disabled', bool);
+            $('#chudautu').prop('disabled', bool);
+            $('#vondautu').prop('disabled', bool);
+            $('#taidautu').prop('disabled', bool);
+            $('#files').prop('disabled', bool);
+        }
+
+        $("#banxe").click(function (e) {
+            var giaban = StringToNumber($("#giaban").val());
+            var tonglai = StringToNumber($("#tonglai").val());
+            var idxe = $("#idxe").val();
+            var sotienconlai = StringToNumber($("#sotienconlai").val());
+            if (checkIf(giaban)) {
+                return jAlert('Chưa nhập giá bán', 'Thông báo');
+            }
+            var datadschudautu = $('#tbldsnhadautu').DataTable().rows().data();
+            var length = datadschudautu.length;
+            var arrnhadautu = [];
+            for (let i = 0; i < length; i++) {
+                var obj = {
+                    chudautu: datadschudautu[i]["manhadautu"],
+                    vondautu: StringToNumber(datadschudautu[i]["vondautu"]),
+                    taidautu: datadschudautu[i]["taidautu"],
+                    tile: datadschudautu[i]["tile"],
+                    tienlai: StringToNumber(datadschudautu[i]["tienlai"])
+                };
+                arrnhadautu.push(obj);
+            }
+            $.ajax({
+                url: "admin.php?controller=product&action=banxe",
+                type: "POST",
+                data: {
+                    idxe: idxe,
+                    giaban: giaban,
+                    tonglai: tonglai,
+                    sotienconlai: sotienconlai,
+                    dsnhadautu: JSON.stringify(arrnhadautu)
+                },
+                success: function (response) {
+                    if (response > 0) {
+                        location.href = "admin.php?controller=product";
+                    }
+                }
+            });
+        });
+
         var dshinhanhxe_json = <?php echo $hinhanhxe_json; ?>;
+        $('#dshinhanhxe').on('click', 'button.xoahinhanh', function (e) {
+            if (trangthai == "1") {
+                return jAlert('Trạng thái không thể xóa', 'Thông báo');
+            }
+            var $row = $(this).closest('tr');
+            var data = $('#dshinhanhxe').DataTable().row($row).data();
+            var idxe = data["idxe"];
+            $.ajax({
+                type: "POST",
+                url: "admin.php?controller=product&action=xoahinhanh",
+                data: {
+                    id: data["id"],
+                    idxe: idxe,
+                    duongdan: data["duongdan"]
+                },
+                success: function (response) {
+                    if (response != 0) {
+                        $('#dshinhanhxe').DataTable().destroy();
+                        $('#dshinhanhxe').DataTable({
+                            searching: false,
+                            lengthChange: false,
+                            width: '100%',
+                            responsive: true,
+                            paging: false,
+                            info: false,
+                            ajax: {
+                                type: 'POST',
+                                url: "admin.php?controller=product&action=hinhanhxe",
+                                data: {
+                                    idxe: idxe
+                                },
+                                dataSrc: ''
+                            },
+                            columns: [
+                                {data: "id", className: "text-center", visible: false},
+                                {data: "idxe", className: "text-center", visible: false},
+                                {
+                                    data: "duongdan",
+                                    className: "text-center",
+                                    width: '50%',
+                                    render: function (data, type, row) {
+                                        return '<img class="hinhanhxe" src="' + data + '" />';
+                                    }
+                                },
+                                {
+                                    data: null,
+                                    className: "text-center",
+                                    width: '10%',
+                                    defaultContent: '<button class="xoahinhanh"><i class="glyphicon glyphicon-trash"></i></button>'
+                                }
+                            ]
+                        });
+                    }
+                }
+            });
+        });
+
         f_dshinhanhxe(dshinhanhxe_json);
-        function f_dshinhanhxe (data_json){
+
+        function f_dshinhanhxe(data_json) {
             $('#dshinhanhxe').DataTable().destroy();
             var table = $('#dshinhanhxe').DataTable({
                 searching: false,
@@ -298,9 +466,8 @@ $idxe = select_id_auto("xe");
                     {
                         data: "duongdan",
                         className: "text-center",
-                        width: '10%',
-                        render: function(data, type, row) {
-                            return '<img class="hinhanhxe" src="'+data+'" />';
+                        render: function (data, type, row) {
+                            return '<img class="hinhanhxe" src="' + data + '" />';
                         }
                     },
                     {
@@ -313,9 +480,8 @@ $idxe = select_id_auto("xe");
             });
             table.rows.add(data_json).draw();
         }
-        var dsnhadautu_json = <?php echo $chudautuxejson; ?>;
-        dsnhadautu(dsnhadautu_json);
-        $("#themmoixe").click(function (e) {
+
+        $("#capnhatxe").click(function (e) {
             var dataform = new FormData();
             var totalfiles = document.getElementById('files').files.length;
             for (var index = 0; index < totalfiles; index++) {
@@ -333,7 +499,7 @@ $idxe = select_id_auto("xe");
             dataform.append("giaban", StringToNumber($("#giaban").val()));
             dataform.append("tonglai", StringToNumber($("#tonglai").val()));
             dataform.append("sotienconlai", StringToNumber($("#sotienconlai").val()));
-            var datadschudautu = $('#dsnhadautu').DataTable().rows().data();
+            var datadschudautu = $('#tbldsnhadautu').DataTable().rows().data();
             var length = datadschudautu.length;
             var arrnhadautu = [];
             for (let i = 0; i < length; i++) {
@@ -347,15 +513,27 @@ $idxe = select_id_auto("xe");
                 arrnhadautu.push(obj);
             }
             dataform.append("dsnhadautu", JSON.stringify(arrnhadautu));
+            var dtdshinhanhxe = $('#dshinhanhxe').DataTable().rows().data();
+            var lengthhinh = dtdshinhanhxe.length;
+            var arrhinhanhxe = [];
+            for (let i = 0; i < lengthhinh; i++) {
+                var obj = {
+                    id: dtdshinhanhxe[i]["id"],
+                    idxe: dtdshinhanhxe[i]["idxe"],
+                    duongdan: dtdshinhanhxe[i]["duongdan"]
+                };
+                arrhinhanhxe.push(obj);
+            }
+            dataform.append("dshinhanhxe", JSON.stringify(arrhinhanhxe));
             $.ajax({
-                url: "admin.php?controller=product&action=add",
+                url: "admin.php?controller=product&action=capnhatxe",
                 type: "POST",
                 data: dataform,
                 contentType: false,
                 processData: false,
                 success: function (response) {
                     if (response > 0) {
-                        location.href = "admin.php?controller=product";
+                        location.href = "admin.php?controller=product&action=edit&idxe=" + $("#idxe").val() + "&trangthai=" + trangthai;
                     }
                 }
             });
@@ -366,7 +544,17 @@ $idxe = select_id_auto("xe");
         }
 
         $('#chudautu').on('change', function () {
-            $('#vondautu').focus();
+            $.ajax({
+                url: "admin.php?controller=product&action=laysodu",
+                type: "POST",
+                data: {
+                    manhadautu: $("#chudautu").val()
+                },
+                success: function (response) {
+                    $("#sodu").val(formatNumber(response));
+                    $('#vondautu').focus();
+                }
+            });
         });
 
         $("#chietkhaumua").bind('input', function (e) {
@@ -403,6 +591,7 @@ $idxe = select_id_auto("xe");
             $("#vondautu").val("");
             $("#tile").val("");
             $("#tienlai").val("");
+            $("#sodu").val("");
             $("#taidautu").prop("checked", false);
         }
 
@@ -443,19 +632,13 @@ $idxe = select_id_auto("xe");
                     $("#tenxe").focus();
                 });
             }
-            var giaban = $("#giaban").val();
-            if (checkIf(giaban)) {
-                return jAlert('Chưa nhập giá bán', 'Thông báo', function (e) {
-                    $("#tenxe").focus();
-                });
-            }
             var manhadautu = $("#chudautu").val();
             if (manhadautu == "0" || checkIf(manhadautu)) {
                 return jAlert('Chưa chọn nhà đầu tư', 'Thông báo', function (e) {
                     $("#chudautu").focus();
                 });
             }
-            var dscheck = $('#dsnhadautu').DataTable().columns(0).data()[0];
+            var dscheck = $('#tbldsnhadautu').DataTable().columns(0).data()[0];
             var checkResult = checkSurvival(manhadautu, dscheck);
             if (checkResult) {
                 return jAlert('Nhà đầu tư đã có', 'Thông báo');
@@ -467,7 +650,13 @@ $idxe = select_id_auto("xe");
                     $("#vondautu").focus();
                 });
             }
-            var taidautu = $('#taidautu').is(":checked");
+            var sotienconlai = StringToNumber($("#sotienconlai").val());
+            if (sotienconlai <= 0){
+                return jAlert('Đã đủ vốn đầu tư', 'Thông báo', function (e) {
+                    $("#vondautu").focus();
+                });
+            }
+            var taidautu = $('#taidautu').is(":checked") ? "1" : "0";
             var tile = $('#tile').val();
             var tienlai = $('#tienlai').val();
             var objnhadautu = [{
@@ -483,9 +672,12 @@ $idxe = select_id_auto("xe");
             emptynhadautu();
         });
 
+        var datachudautu = <?php echo $chudautuxejson; ?>;
+        dsnhadautu(datachudautu);
+
         function dsnhadautu(data) {
-            $('#dsnhadautu').DataTable().destroy();
-            var table = $('#dsnhadautu').DataTable({
+            $('#tbldsnhadautu').DataTable().destroy();
+            var table = $('#tbldsnhadautu').DataTable({
                 searching: false,
                 lengthChange: false,
                 width: '100%',
@@ -559,8 +751,11 @@ $idxe = select_id_auto("xe");
             table.rows.add(data).draw();
         }
 
-        $('#dsnhadautu').on('click', 'button.xoanhadautu', function (e) {
-            $('#dsnhadautu').DataTable()
+        $('#tbldsnhadautu').on('click', 'button.xoanhadautu', function (e) {
+            if (trangthai == "1") {
+                return jAlert('Trạng thái không thể xóa', 'Thông báo');
+            }
+            $('#tbldsnhadautu').DataTable()
                 .row($(this).parents('tr'))
                 .remove()
                 .draw();
@@ -609,50 +804,43 @@ $idxe = select_id_auto("xe");
             }
         });
         $('#mausac').keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 $('#giavon').focus();
             }
         });
         $('#giavon').keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 $('#chietkhaumua').focus();
                 tinhtongtienlai();
             }
         });
         $('#chietkhaumua').keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 $('#chietkhauban').focus();
                 tinhtongtienlai();
             }
         });
         $('#chietkhauban').keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 $('#soluong').focus();
                 tinhtongtienlai();
             }
         });
         $('#soluong').keypress(function (e) {
-            if (e.keyCode == 13) {
-                $('#chiphiphatsinh').focus();
+            if (e.keyCode === 13) {
+                $('#giaban').focus();
                 tinhtongtienlai();
             }
         });
         $('#chiphiphatsinh').keypress(function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 $('#giaban').focus();
                 tinhtongtienlai();
             }
         });
         $('#giaban').keypress(function (e) {
-            if (e.keyCode == 13) {
-                var giaban = $("#giaban").val();
-                if (checkIf(giaban)) {
-                    jAlert('Chưa nhập giá bán', 'Thông báo', function (e) {
-                        $('#giaban').focus();
-                    });
-                } else {
-                    $('#vondautu').focus();
-                }
+            if (e.keyCode === 13) {
+                $('#vondautu').focus();
                 tinhtongtienlai();
             }
         });

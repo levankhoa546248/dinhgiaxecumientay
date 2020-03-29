@@ -14,7 +14,8 @@
                         </div>
                         <div class="panel-body small">
                             <div>
-                                <input name="id" type="hidden" class="form-control" id="id" value="<?php echo $employees['id'] ?>"/>
+                                <input name="id" type="hidden" class="form-control" id="id"
+                                       value="<?php echo $employees['id'] ?>"/>
                             </div>
                             <div class="form-group">
                                 <label for="username" class="col-sm-2 control-label">Tài khoản</label>
@@ -120,7 +121,8 @@
                     <button class="btn btn-warning pull-right" style="margin: 3px" type="reset" id="btnResetEmployee"><i
                                 class="glyphicon glyphicon-trash"></i> Reset
                     </button>
-                    <button class="btn btn-primary pull-right" style="margin: 3px" type="button" id="btnResetPassEmployee">
+                    <button class="btn btn-primary pull-right" style="margin: 3px" type="button"
+                            id="btnResetPassEmployee">
                         <i
                                 class="glyphicon glyphicon-plus"></i> Cập nhật
                     </button>
@@ -129,7 +131,8 @@
                     </div>
                     <div class="panel-body small">
                         <div>
-                            <input name="password" type="hidden" class="form-control" id="password" value="<?php echo $employees['password'] ?>"/>
+                            <input name="password" type="hidden" class="form-control" id="password"
+                                   value="<?php echo $employees['password'] ?>"/>
                         </div>
                         <div class="form-group">
                             <label for="passwordcurrent" class="col-sm-2 control-label">Mật khẩu hiện tại</label>
@@ -171,27 +174,27 @@
                 var id = $('#id').val();
                 var password = $('#password').val();
                 var passwordcurrent = $('#passwordcurrent').val();
-                if (checkIf(passwordcurrent)){
+                if (checkIf(passwordcurrent)) {
                     return jAlert('Chưa nhập mật khẩu', 'Thông báo');
                 }
                 var passcurrentmd5 = Crypto.MD5(passwordcurrent);
                 var passwordnew = $('#passwordnew').val();
-                if (checkIf(passwordnew)){
+                if (checkIf(passwordnew)) {
                     return jAlert('Chưa nhập mật khẩu mới', 'Thông báo');
                 }
                 var passwordconfirm = $('#passwordconfirm').val();
-                if (checkIf(passwordconfirm)){
+                if (checkIf(passwordconfirm)) {
                     return jAlert('Chưa xác nhận mật khẩu', 'Thông báo');
                 }
-                if (password != passcurrentmd5){
+                if (password != passcurrentmd5) {
                     return jAlert('Mật khẩu không chính xác', 'Thông báo');
                 }
-                if (passwordnew != passwordconfirm){
+                if (passwordnew != passwordconfirm) {
                     return jAlert('Xác nhận mật khẩu không khớp với mật khẩu mới', 'Thông báo');
                 }
                 if (id) {
                     jConfirm('Bạn chắc chắn muốn đổi mật khẩu này?', 'Thông báo', function (e) {
-                        if (e == true){
+                        if (e == true) {
                             $.ajax({
                                 type: "POST",
                                 url: "admin/controllers/employees/changePassword.php",

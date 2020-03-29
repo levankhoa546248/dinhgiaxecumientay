@@ -15,7 +15,7 @@ if (!empty($_POST)) {
             }
         }
         $title = 'Administrator';
-        require('admin/controllers/home/index.php');
+        require('admin/controllers/product/index.php');
     }else{
         echo '<script type="text/javascript">alert("Đăng nhập không thành công!");</script>';
         require('admin/views/home/login.php');

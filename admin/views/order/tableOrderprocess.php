@@ -43,10 +43,3 @@ $status = array(
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#dataTables-order_inprocess').DataTable({
-            responsive: true,"order":[[0, 'desc']]
-        });
-    });
-</script>
