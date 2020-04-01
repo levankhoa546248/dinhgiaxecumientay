@@ -304,6 +304,19 @@ $idxe = select_id_auto("xe");
                 arrnhadautu.push(obj);
             }
             dataform.append("dsnhadautu", JSON.stringify(arrnhadautu));
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
             $.ajax({
                 url: "admin.php?controller=product&action=add",
                 type: "POST",

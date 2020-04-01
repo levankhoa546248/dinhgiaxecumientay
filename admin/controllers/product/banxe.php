@@ -1,5 +1,6 @@
 <?php
 if (!empty($_POST)) {
+    $today = date('Y-m-d');
     $idxe = $_POST['idxe'];
     $giaban = $_POST['giaban'];
     $tonglai = $_POST['tonglai'];
@@ -18,7 +19,12 @@ if (!empty($_POST)) {
             $resultsodu = numRows($sqlsodu);
         }
     }
-    $sqlchudautuxe = "UPDATE `chudautuxe` SET `tienlai`= tile/100*" . $tonglai . " WHERE idxe = " . $idxe;
+    $sqlchudautuxe = "
+        UPDATE `chudautuxe` 
+        SET `tienlai`= tile/100*" . $tonglai . ",
+            `ngayban` =  '" . $today . "',
+            `trangthai` = 1 " .
+        " WHERE idxe = " . $idxe;
     $rschudautuxe = numRows($sqlchudautuxe);
 
     $sqlnhadautu =

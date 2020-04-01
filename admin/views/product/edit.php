@@ -373,6 +373,19 @@
                 };
                 arrnhadautu.push(obj);
             }
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
             $.ajax({
                 url: "admin.php?controller=product&action=banxe",
                 type: "POST",
@@ -525,6 +538,19 @@
                 arrhinhanhxe.push(obj);
             }
             dataform.append("dshinhanhxe", JSON.stringify(arrhinhanhxe));
+            $.blockUI({
+                message: '<h1>Đợi trong giây lát...</h1>',
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .5,
+                    color: '#fff'
+                },
+                onOverlayClick: $.unblockUI
+            });
             $.ajax({
                 url: "admin.php?controller=product&action=capnhatxe",
                 type: "POST",

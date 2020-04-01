@@ -61,6 +61,18 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="admin/themes/css/selfcss.css"/>
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="admin/themes/combogrid/css/smoothness/jquery-ui-1.10.1.custom.css"/>
+    <script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-ui-1.10.1.custom.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="admin/themes/combogrid/css/jquery-ui-redmond.1.9.1.css"/>
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="admin/themes/combogrid/css/smoothness/jquery.ui.combogrid.css"/>
+    <script type="text/javascript" src="admin/themes/combogrid/plugin/jquery.ui.combogrid-1.6.4.js"></script>
+    <script type="text/javascript" src="http://malsup.github.io/jquery.blockUI.js"></script>
 </head>
 <body>
 

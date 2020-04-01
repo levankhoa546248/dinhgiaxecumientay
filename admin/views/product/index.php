@@ -74,6 +74,24 @@
 <?php require('admin/views/shared/footer.php'); ?>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#dsxe').on('click', 'button.xoaxe', function (e) {
+            var $row = $(this).closest('tr');
+            var data = $('#dsxe').DataTable().row($row).data();
+            jConfirm('Bạn chắc chắn xóa xe này?', 'Thông báo', function (e) {
+                $.ajax({
+                    url: "admin.php?controller=product&action=xoaxe",
+                    type: "POST",
+                    data: {
+                        id: data["id"]
+                    },
+                    success: function (response) {
+                        jAlert('Đã xóa thành công', 'Thông báo');
+                        dsxe();
+                    }
+                });
+            });
+        });
+
         $('#daban').click(function () {
             dsxe();
         });

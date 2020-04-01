@@ -5,7 +5,7 @@ if (!empty($_POST)) {
     $password = md5($_POST['password']);
     $sql = "SELECT * FROM user WHERE Username='$username' AND Password='$password' LIMIT 0,1";
 //    $sql = "CALL DANGNHAP('$username', '$password')";
-    $query = mysqli_query($conn, $sql) or die(mysqli_error());
+    $query = mysqli_query(connectDB(), $sql) or die(mysqli_error());
     if (mysqli_num_rows($query)>0) {
         $_SESSION['user'] = mysqli_fetch_assoc($query);
         if (isset($_SESSION['user'])) {
