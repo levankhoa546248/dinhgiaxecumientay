@@ -69,13 +69,13 @@ function pagination($url, $page, $total)
  * @param array
  * @return mixed
  */
-function upload($images, $nameimages, $table, $array, $idhinh)
+function upload($images, $nameimages, $table, $idxe)
 {
     $count = count($_FILES[$images]["name"]);
     for ($i = 0; $i < $count; $i++) {
         $file = $_FILES[$images];
         $config = array(
-            'name' => $nameimages . "_" . (intval($idhinh) + $i),
+            'name' => $nameimages . "_" . $i,
             'upload_path' => 'admin/upload/',
             'allowed_exts' => 'jpg|jpeg|png|gif',
         );
@@ -98,7 +98,7 @@ function upload($images, $nameimages, $table, $array, $idhinh)
         $size = $file['size'][$i] / 1024 / 1024;
         if (($options['max_size'] > 0) && ($size > $options['max_size'])) return FALSE;
 
-        $name = empty($options['name']) ? $file["name"][$i] : $options['name'] . '_' . $i . '.' . $ext;
+        $name = empty($options['name']) ? $file["name"][$i] : $options['name'] . '.' . $ext;
         $file_path = $options['upload_path'] . $name;
         if ($options['overwrite'] && file_exists($file_path)) {
             unlink($file_path);
@@ -106,10 +106,18 @@ function upload($images, $nameimages, $table, $array, $idhinh)
 
         move_uploaded_file($file["tmp_name"][$i], $file_path);        //cập nhật ảnh mới
         if ($name) {
-            $arrinsert = $array + array("duongdan" => $file_path);
-            insert($table, $arrinsert);
+//            $arrinsert = $array + array("duongdan" => $file_path);
+//            insert($table, $arrinsert);
+            $sql = "";
+            if ($i == 0) {
+                $sql = "SELECT $idxe, $file_path FROM DUAL";
+            } else {
+                $sql = $sql + "UNION ALL SELECT $idxe, $file_path FROM DUAL";
+            }
         }
     }
+    $sqlInsert = "INSERT INTO hinhanhxe (idxe, duongdan) " + $sql;
+    numRows($sqlInsert);
     return 1;
 }
 
@@ -397,8 +405,16 @@ function run_query($query)
 
 function numRows($query)
 {
-    $result = mysqli_query(connectDB(), $query);
-    return $result;
+    try {
+        $result = mysqli_query(connectDB(), $query);
+        if ($result){
+            return 1;
+        }
+        return 0;
+    } catch (Exception $e) {
+        return 0;
+    }
+
 }
 
 function select_value_a_record($table, $where, $selects)

@@ -1,38 +1,8 @@
-<style>
-    input[type="file"] {
-        display: block;
-    }
-
-    .imageThumb {
-        max-height: 75px;
-        border: 1px solid;
-        padding: 1px;
-        cursor: pointer;
-    }
-
-    .pip {
-        display: inline-block;
-        margin: 10px 10px 0 0;
-    }
-
-    .remove {
-        display: block;
-        background: #444;
-        border: 1px solid black;
-        color: white;
-        text-align: center;
-        cursor: pointer;
-        width: fit-content;
-    }
-
-    .remove:hover {
-        background: white;
-        color: black;
-    }
-</style>
-<?php require('admin/views/shared/header.php');
-$idxe = select_id_auto("xe");
-?>
+<script src="themes/jquery/js/jquery-3.4.1.js" type="text/javascript"></script>
+<script src="themes/jquery/blockUI/jquery.blockUI.js" type="text/javascript"></script>
+<script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>
+<link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
+<?php require('admin/views/shared/header.php'); ?>
 <div id="page-wrapper">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
@@ -42,7 +12,7 @@ $idxe = select_id_auto("xe");
         <div class="panel-body">
             <div class="dataTable_wrapper">
                 <div class="panel-body form-horizontal">
-                    <input name="idxe" type="hidden" value="<?php echo $idxe; ?>"/>
+                    <input name="idxe" id="idxe" type="hidden" value="<?php echo $idxe; ?>"/>
                     <div class="form-group">
                         <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
                         <div class="col-sm-10">
@@ -95,13 +65,19 @@ $idxe = select_id_auto("xe");
                     </div>
                     <div class="form-group">
                         <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <input name="soluong" type="number" value="1"
                                    class="form-control" id="soluong" placeholder="0"
                             />
                         </div>
+                        <label for="ngaynhap" class="col-sm-1 control-label">Ngày</label>
+                        <div class="col-sm-3">
+                            <input name="ngaynhap" id="ngaynhap" class="form-control"
+                                   type="date" value="<?php echo date('Y-m-d'); ?>"
+                            />
+                        </div>
                         <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-2">
                             <input name="sotienconlai" type="text" id="sotienconlai" disabled
                                    data-type="currency" class="form-control" placeholder="0"
                             />
@@ -125,12 +101,6 @@ $idxe = select_id_auto("xe");
                         <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
                         <div class="col-sm-2">
                             <input name="tonglai" type="text" id="tonglai" disabled
-                                   data-type="currency" class="form-control" placeholder="0"
-                            />
-                        </div>
-                        <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
-                        <div class="col-sm-3">
-                            <input name="sotienconlai" type="text" id="sotienconlai" disabled
                                    data-type="currency" class="form-control" placeholder="0"
                             />
                         </div>
@@ -218,15 +188,21 @@ $idxe = select_id_auto("xe");
                             </table>
                         </div>
                     </div>
+                    <!--                                        <form class="form-horizontal" method="post" enctype="multipart/form-data" role="form"-->
+                    <!--                                              action="admin.php?controller=product&action=themhinhanhxe">-->
                     <div class="form-group">
+                        <!--                            <input name="ha_idxe" id="ha_idxe" type="hidden" value="-->
+                        <?php //echo $idxe; ?><!--"/>-->
                         <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>
                         <div class="col-sm-10">
                             <div class="field" align="left">
-                                <input class="form-control" accept="image/*" type="file" id="files" name="files[]"
+                                <input class="form-control" accept="image/*" type="file" id="files" name="files"
                                        multiple/>
                             </div>
+                            <button type="button" class="btn btn-primary" id="themhinh">Thêm ảnh</button>
                         </div>
                     </div>
+                    <!--                    </form>-->
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
@@ -254,42 +230,74 @@ $idxe = select_id_auto("xe");
             var manhadautu = $("#chudautu").val();
             var vondautu = StringToNumber($("#vondautu").val());
             var sodu = StringToNumber($("#sodu").val());
+            var giavon = StringToNumber($("#giavon").val());
             if (checkIf(manhadautu)) {
                 jAlert('Chưa chọn chủ đầu tư', 'Thông báo');
                 $('#taidautu').prop("checked", false);
                 return true;
             }
             if (checkIf(vondautu)) {
-                jAlert('Chưa nhập vốn đầu tư', 'Thông báo');
+                jAlert('Chưa nhập vốn đầu tư', 'Thông báo', function (e) {
+                    $("#vondautu").focus();
+                });
                 $('#taidautu').prop("checked", false);
                 return true;
             }
-            if(vondautu > sodu){
-
-                jAlert('Tiền không đủ để tái đầu tư', 'Thông báo');
+            if (vondautu > sodu) {
+                jAlert('Tiền không đủ để tái đầu tư', 'Thông báo', function (e) {
+                    $("#vondautu").focus();
+                });
                 $('#taidautu').prop("checked", false);
                 return true;
+            }
+            if (giavon == 0) {
+                $('#taidautu').prop("checked", false);
+                return jAlert("Chưa chọn nhập giá vốn", "Thông báo", function (e) {
+                    $("#giavon").focus();
+                });
+            }
+            if (giavon < vondautu) {
+                $('#taidautu').prop("checked", false);
+                return jAlert("Vốn đầu tư lớn hơn giá vốn", "Thông báo", function (e) {
+                    $("#vondautu").focus();
+                });
             }
         }
 
         $("#themmoixe").click(function (e) {
-            var dataform = new FormData();
-            var totalfiles = document.getElementById('files').files.length;
-            for (var index = 0; index < totalfiles; index++) {
-                dataform.append("images[]", document.getElementById('files').files[index]);
+            var idxe = $("#idxe").val();
+            var hangxe = $("#hangxe").val();
+            if (hangxe == "0") {
+                return jAlert("Chưa chọn hãng xe", "Thông báo", function (e) {
+                    $("#hangxe").focus();
+                });
             }
-            dataform.append("idxe", $("#idxe").val());
-            dataform.append("hangxe", $("#hangxe").val());
-            dataform.append("tenxe", $("#tenxe").val());
-            dataform.append("mausac", $("#mausac").val());
-            dataform.append("giavon", StringToNumber($("#giavon").val()));
-            dataform.append("chietkhaumua", StringToNumber($("#chietkhaumua").val()));
-            dataform.append("chietkhauban", StringToNumber($("#chietkhauban").val()));
-            dataform.append("soluong", $("#soluong").val());
-            dataform.append("chiphiphatsinh", StringToNumber($("#chiphiphatsinh").val()));
-            dataform.append("giaban", StringToNumber($("#giaban").val()));
-            dataform.append("tonglai", StringToNumber($("#tonglai").val()));
-            dataform.append("sotienconlai", StringToNumber($("#sotienconlai").val()));
+            var tenxe = $("#tenxe").val();
+            if (checkIf(tenxe)) {
+                return jAlert("Chưa nhập tên xe", "Thông báo", function (e) {
+                    $("#tenxe").focus();
+                });
+            }
+            var mausac = $("#mausac").val();
+            if (checkIf($("#giavon").val())) {
+                return jAlert("Chưa chọn nhập giá vốn", "Thông báo", function (e) {
+                    $("#giavon").focus();
+                });
+            }
+            var giavon = StringToNumber($("#giavon").val());
+            var chietkhaumua = StringToNumber($("#chietkhaumua").val());
+            var chietkhauban = StringToNumber($("#chietkhauban").val());
+            var soluong = $("#soluong").val();
+            var ngaynhap = $("#ngaynhap").val();
+            var chiphiphatsinh = StringToNumber($("#chiphiphatsinh").val());
+            var giaban = StringToNumber($("#giaban").val());
+            var tonglai = StringToNumber($("#tonglai").val());
+            var sotienconlai = StringToNumber($("#sotienconlai").val());
+            if (sotienconlai > 0) {
+                return jAlert("Số tiền đầu tư chưa đủ so với giá vốn", "Thông báo", function (e) {
+                    $("#vondautu").focus();
+                });
+            }
             var datadschudautu = $('#dsnhadautu').DataTable().rows().data();
             var length = datadschudautu.length;
             var arrnhadautu = [];
@@ -303,7 +311,7 @@ $idxe = select_id_auto("xe");
                 };
                 arrnhadautu.push(obj);
             }
-            dataform.append("dsnhadautu", JSON.stringify(arrnhadautu));
+            var dsnhadautu = JSON.stringify(arrnhadautu);
             $.blockUI({
                 message: '<h1>Đợi trong giây lát...</h1>',
                 css: {
@@ -318,18 +326,85 @@ $idxe = select_id_auto("xe");
                 onOverlayClick: $.unblockUI
             });
             $.ajax({
-                url: "admin.php?controller=product&action=add",
+                url: "admin.php?controller=product&action=themmoixe",
                 type: "POST",
-                data: dataform,
-                contentType: false,
-                processData: false,
+                data: {
+                    idxe: idxe,
+                    hangxe: hangxe,
+                    tenxe: tenxe,
+                    mausac: mausac,
+                    giavon: giavon,
+                    chietkhaumua: chietkhaumua,
+                    chietkhauban: chietkhauban,
+                    soluong: soluong,
+                    ngaynhap: ngaynhap,
+                    chiphiphatsinh: chiphiphatsinh,
+                    giaban: giaban,
+                    tonglai: tonglai,
+                    sotienconlai: sotienconlai,
+                    dsnhadautu: dsnhadautu
+                },
                 success: function (response) {
                     if (response > 0) {
-                        location.href = "admin.php?controller=product";
+                        // $("#themhinh").click();
+                        themhinhanhxe();
                     }
                 }
             });
+            // $.ajax({
+            //     url: "admin.php?controller=product&action=themmoixe",
+            //     type: "POST",
+            //     data: dataform,
+            //     contentType: false,
+            //     processData: false,
+            //     success: function (response) {
+            //         if (response > 0) {
+            //             // location.href = "admin.php?controller=product";
+            //             themhinhanhxe();
+            //         }
+            //     }
+            // });
         });
+
+        $("#themhinh").click(function (e) {
+            themhinhanhxe();
+        });
+
+        // $("#themhinhanh").click();
+
+        function themhinhanhxe() {
+            var idxe = $("#idxe").val();
+            var tenxe = $("#tenxe").val();
+            var dataform = new FormData();
+            var totalfiles = document.getElementById('files').files.length;
+            dataform.append("idxe", idxe);
+            dataform.append("tenxe", tenxe);
+            if (totalfiles > 0) {
+                // var totalfiles = $(".imageThumb").length;
+                for (var index = 0; index < totalfiles; index++) {
+                    dataform.append("files[]", document.getElementById('files').files[index]);
+                    // dataform.append("images[]", $(".imageThumb")[index].src);
+                }
+                $.ajax({
+                    url: "admin.php?controller=product&action=themhinhanhxe",
+                    type: "POST",
+                    data: dataform,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // if (response > 0) {
+                        //     location.href = "admin.php?controller=product";
+                        // }else {
+                        //     jAlert("Lỗi thêm hình ảnh", "Thông báo", function (e) {
+                        //         location.href = "admin.php?controller=product";
+                        //     });
+                        // }
+                    }
+                });
+            } else {
+                location.href = "admin.php?controller=product";
+            }
+        }
 
         function disablethongtinxe(bool) {
             $("#tenxe").prop('disabled', bool);
@@ -412,16 +487,22 @@ $idxe = select_id_auto("xe");
         }
 
         $("#themnhadautu").click(function (e) {
+            var hangxe = $("#hangxe").val();
+            if (hangxe == "0") {
+                return jAlert("Chưa chọn hãng xe", "Thông báo", function (e) {
+                    $("#hangxe").focus();
+                });
+            }
             var tenxe = $("#tenxe").val();
             if (checkIf(tenxe)) {
                 return jAlert('Chưa nhập tên xe', 'Thông báo', function (e) {
                     $("#tenxe").focus();
                 });
             }
-            var giavon = $("#giavon").val();
-            if (checkIf(giavon)) {
+            var giavon = StringToNumber($("#giavon").val());
+            if (checkIf(giavon) || giavon == 0) {
                 return jAlert('Chưa nhập giá vốn', 'Thông báo', function (e) {
-                    $("#tenxe").focus();
+                    $("#giavon").focus();
                 });
             }
             var manhadautu = $("#chudautu").val();
@@ -439,6 +520,11 @@ $idxe = select_id_auto("xe");
             var vondautu = $("#vondautu").val();
             if (checkIf(vondautu) || vondautu == "0") {
                 return jAlert('Chưa nhập vốn đầu tư', 'Thông báo', function (e) {
+                    $("#vondautu").focus();
+                });
+            }
+            if (giavon < StringToNumber(vondautu)) {
+                return jAlert("Vốn đầu tư lớn hơn giá vốn", "Thông báo", function (e) {
                     $("#vondautu").focus();
                 });
             }
@@ -471,7 +557,9 @@ $idxe = select_id_auto("xe");
                     {data: "manhadautu", className: "text-center", width: '12%'},
                     {data: "tennhadautu"},
                     {data: "maxedautu", visible: false},
-                    {data: "vondautu", className: "text-right"},
+                    {
+                        data: "vondautu", className: "text-right"
+                    },
                     {
                         data: "taidautu",
                         className: "text-center",

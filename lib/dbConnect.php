@@ -16,8 +16,8 @@ define('PATH_URL_IMG_PRODUCT', PATH_URL . '/public/upload/product/');
 //$ketnoi['Database']['dbname'] = 'duylinhstore';
 //$ketnoi['Database']['username'] = 'root';
 //$ketnoi['Database']['password'] = '';
-//
-////mysqli_connect($server_host,$server_username,$server_password,$database)
+
+//mysqli_connect($server_host,$server_username,$server_password,$database)
 //$conn = mysqli_connect(
 //    "{$ketnoi['Server']['name']}",
 //    "{$ketnoi['Database']['username']}",
@@ -37,15 +37,14 @@ function __construct()
 
 function connectDB()
 {
-//    $ketnoi['Server']['name'] = 'sql308.byethost.com';
-//    $ketnoi['Database']['dbname'] = 'b3_24684374_banxe';
-//    $ketnoi['Database']['username'] = 'b3_24684374';
-//    $ketnoi['Database']['password'] = '12345';
-
     $ketnoi['Server']['name'] = 'localhost';
     $ketnoi['Database']['dbname'] = 'duylinhstore';
     $ketnoi['Database']['username'] = 'root';
     $ketnoi['Database']['password'] = '';
+//    $ketnoi['Server']['name'] = 'sql308.byethost.com';
+//    $ketnoi['Database']['dbname'] = 'b3_24684374_banxe';
+//    $ketnoi['Database']['username'] = 'b3_24684374';
+//    $ketnoi['Database']['password'] = '12345';
     $conn = mysqli_connect(
         "{$ketnoi['Server']['name']}",
         "{$ketnoi['Database']['username']}",

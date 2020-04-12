@@ -1,4 +1,8 @@
 <?php require('admin/views/shared/header.php'); ?>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>-->
+<script type="text/javascript" src="admin/themes/js/jquery.min.js"></script>
+<script type="text/javascript" src="themes/bootstrap-select/1.13.9/js/bootstrap-select.min.js"></script>
+<!--<script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-1.9.1.min.js"></script>-->
 <div id="page-wrapper">
     <a href="admin.php?controller=product&amp;action=add" class="btn btn-primary pull-right"><i
                 class="glyphicon glyphicon-plus"></i> Thêm mới</a>

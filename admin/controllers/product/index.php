@@ -31,3 +31,4 @@ $user = $_SESSION['user'];
 
 //load view
 require('admin/views/product/index.php');
+//header('location:admin.php?controller=product');

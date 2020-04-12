@@ -38,6 +38,10 @@
         color: black;
     }
 </style>
+<script src="themes/jquery/js/jquery-3.4.1.js" type="text/javascript"></script>
+<script src="themes/jquery/blockUI/jquery.blockUI.js" type="text/javascript"></script>
+<script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>
+<link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
 <?php require('admin/views/shared/header.php'); ?>
 <div id="page-wrapper">
     <div class="panel panel-default">
