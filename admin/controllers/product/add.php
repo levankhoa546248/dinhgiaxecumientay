@@ -9,4 +9,4 @@ $subcategories = get_all('subcategory', array(
 $dsNhaDauTu = select('SELECT * FROM nhadautu');
 $idxe = select_id_auto("xe");
 //load view
-require('admin/views/product/test.php');
+require('admin/views/product/add.php');

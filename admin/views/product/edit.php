@@ -111,10 +111,16 @@
                         </div>
                         <div class="form-group">
                             <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input name="soluong" type="number" value="1"
                                        value="<?php echo $xe ? $xe['soluong'] : ''; ?>"
                                        class="form-control" id="soluong" placeholder="0"
+                                />
+                            </div>
+                            <label for="ngayban" class="col-sm-1 control-label">Ngày bán</label>
+                            <div class="col-sm-4">
+                                <input name="ngayban" id="ngayban" class="form-control"
+                                       type="date" value="<?php echo date('Y-m-d'); ?>"
                                 />
                             </div>
                         </div>
@@ -312,7 +318,7 @@
                 $('#taidautu').prop("checked", false);
                 return true;
             }
-            if(vondautu > sodu){
+            if (vondautu > sodu) {
 
                 jAlert('Tiền không đủ để tái đầu tư', 'Thông báo');
                 $('#taidautu').prop("checked", false);
@@ -360,6 +366,7 @@
             var giaban = StringToNumber($("#giaban").val());
             var tonglai = StringToNumber($("#tonglai").val());
             var idxe = $("#idxe").val();
+            var ngayban = $("#ngayban").val();
             var sotienconlai = StringToNumber($("#sotienconlai").val());
             if (checkIf(giaban)) {
                 return jAlert('Chưa nhập giá bán', 'Thông báo');
@@ -398,6 +405,7 @@
                     giaban: giaban,
                     tonglai: tonglai,
                     sotienconlai: sotienconlai,
+                    ngayban: ngayban,
                     dsnhadautu: JSON.stringify(arrnhadautu)
                 },
                 success: function (response) {
@@ -681,7 +689,7 @@
                 });
             }
             var sotienconlai = StringToNumber($("#sotienconlai").val());
-            if (sotienconlai <= 0){
+            if (sotienconlai <= 0) {
                 return jAlert('Đã đủ vốn đầu tư', 'Thông báo', function (e) {
                     $("#vondautu").focus();
                 });

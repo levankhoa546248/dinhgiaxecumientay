@@ -16,13 +16,12 @@
     <div class="form-group">
         <div class="file-loading">
             <input id="file-5" class="file" type="file" multiple data-preview-file-type="any"
-                   data-upload-url="admin.php?controller=product&action=themhinhanhxe_test&idxe=<?php echo $_GET["idxe"]; ?>"
                    data-theme="fas">
         </div>
     </div>
 <script type="text/javascript">
     $("#file-5").fileinput({
-        uploadUrl: "admin.php?controller=product&action=themhinhanhxe_test&idxe=" + <?php echo $idxe; ?>,
+        uploadUrl: "admin.php?controller=product&action=themhinhanhxe&idxe=" + <?php echo $idxe; ?>,
         theme: 'fas',
         showUpload: true,
         showCaption: true,
@@ -32,14 +31,14 @@
         overwriteInitial: false,
         initialPreviewAsData: false,
         initialPreview: [
-            "http://lorempixel.com/1920/1080/transport/1",
-            "http://lorempixel.com/1920/1080/transport/2",
-            "http://lorempixel.com/1920/1080/transport/3"
+            // "http://lorempixel.com/1920/1080/transport/1",
+            // "http://lorempixel.com/1920/1080/transport/2",
+            // "http://lorempixel.com/1920/1080/transport/3"
         ],
         initialPreviewConfig: [
-            {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
-            {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
-            {caption: "transport-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
+            // {caption: "transport-1.jpg", size: 329892, width: "120px", url: "{$url}", key: 1},
+            // {caption: "transport-2.jpg", size: 872378, width: "120px", url: "{$url}", key: 2},
+            // {caption: "transport-3.jpg", size: 632762, width: "120px", url: "{$url}", key: 3}
         ]
     });
     $(document).ready(function () {

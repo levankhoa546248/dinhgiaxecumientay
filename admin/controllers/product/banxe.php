@@ -1,6 +1,7 @@
 <?php
 if (!empty($_POST)) {
     $today = date('Y-m-d');
+    $ngayban = $_POST['ngayban'];
     $idxe = $_POST['idxe'];
     $giaban = $_POST['giaban'];
     $tonglai = $_POST['tonglai'];
@@ -41,7 +42,7 @@ if (!empty($_POST)) {
         'tonglai' => $tonglai,
         'sotienconlai' => $sotienconlai,
         'nhanvien' => $nhanvien,
-        'ngayban' => date('Y-m-d'),
+        'ngayban' => $ngayban,
         'trangthai' => '1'
     );
     $whbanxe = ' id = ' . $idxe;

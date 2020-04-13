@@ -1,12 +1,18 @@
-<script src="themes/jquery/js/jquery-3.4.1.js" type="text/javascript"></script>
-<script src="themes/jquery/blockUI/jquery.blockUI.js" type="text/javascript"></script>
-<script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>
-<link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
-<link href="admin/themes/css/bootstrap.min.css" rel="stylesheet">
+<!--<script src="themes/jquery/js/jquery-3.4.1.js" type="text/javascript"></script>-->
+<!--<script src="themes/jquery/blockUI/jquery.blockUI.js" type="text/javascript"></script>-->
+<!--<script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>-->
+<!--<link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>-->
+<!--<link href="admin/themes/css/bootstrap.min.css" rel="stylesheet">-->
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="admin/themes/images/favicon.png">
+    <title><?php echo isset($title) ? $title : 'Quản trị hệ thống'; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="admin/themes/css/bootstrap.min.css" rel="stylesheet">
 
@@ -268,7 +274,7 @@
                         <!--                                        <form class="form-horizontal" method="post" enctype="multipart/form-data" role="form"-->
                         <!--                                              action="admin.php?controller=product&action=themhinhanhxe">-->
                         <div class="form-group">
-                            <?php require('admin/views/product/test_1.php'); ?>
+                            <?php require('admin/views/product/themhinhanhxe.php'); ?>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
@@ -331,7 +337,8 @@
         }
 
         $("#themmoixe").click(function (e) {
-            themhinhanhxe();
+            // themhinhanhxe();
+            f_themxemoi();
         });
 
         function f_themxemoi() {
