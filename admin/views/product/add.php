@@ -1,9 +1,3 @@
-<!--<script src="themes/jquery/js/jquery-3.4.1.js" type="text/javascript"></script>-->
-<!--<script src="themes/jquery/blockUI/jquery.blockUI.js" type="text/javascript"></script>-->
-<!--<script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>-->
-<!--<link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>-->
-<!--<link href="admin/themes/css/bootstrap.min.css" rel="stylesheet">-->
-<!doctype html>
 <html class="no-js" lang="en">
 <head>
 
@@ -15,75 +9,29 @@
     <title><?php echo isset($title) ? $title : 'Quản trị hệ thống'; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="admin/themes/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="admin/themes/css/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Timeline CSS -->
-    <link href="admin/themes/css/timeline.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
     <link href="admin/themes/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="admin/themes/css/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="admin/themes/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- DataTables CSS -->
-    <link href="admin/themes/css/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="admin/themes/css/dataTables.responsive.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     <script src="admin/themes/js/jquery.min.js"></script>
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-
     <script src="admin/themes/js/jquery.alerts.js" type="text/javascript"></script>
     <link href="admin/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-    <script src="admin/themes/js/2.5.3-crypto-md5.js" type="text/javascript"></script>
     <script src="admin/themes/js/selfjs.js" type="text/javascript"></script>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="themes/jquery/blockUI/jquery.blockUI.js"></script>
+    <script src="admin/themes/js/bootstrap.min.js"></script>
+    <script src="admin/themes/js/metisMenu.min.js"></script>
+    <script src="admin/themes/js/sb-admin-2.js"></script>
+    <script src="admin/themes/js/jquery.dataTables.min.js"></script>
+    <script src="admin/themes/js/dataTables.bootstrap.min.js"></script>
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+    <link href="themes/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">-->
+    <link href="themes/fileinput/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="themes/fileinput/js/plugins/piexif.js" type="text/javascript"></script>
+    <script src="themes/fileinput/js/plugins/sortable.js" type="text/javascript"></script>
+    <script src="themes/fileinput/js/fileinput.js" type="text/javascript"></script>
+    <script src="themes/fileinput/js/locales/fr.js" type="text/javascript"></script>
+    <script src="themes/fileinput/js/locales/es.js" type="text/javascript"></script>
+    <script src="themes/fileinput/themes/fas/theme.js" type="text/javascript"></script>
+    <script src="themes/fileinput/themes/explorer-fas/theme.js" type="text/javascript"></script>
 
-    <!--Include upload images-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="admin/themes/css/selfcss.css"/>
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="admin/themes/combogrid/css/smoothness/jquery-ui-1.10.1.custom.css"/>
-    <script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="admin/themes/combogrid/jquery/jquery-ui-1.10.1.custom.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="admin/themes/combogrid/css/jquery-ui-redmond.1.9.1.css"/>
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="admin/themes/combogrid/css/smoothness/jquery.ui.combogrid.css"/>
-    <script type="text/javascript" src="admin/themes/combogrid/plugin/jquery.ui.combogrid-1.6.4.js"></script>
-    <script type="text/javascript" src="http://malsup.github.io/jquery.blockUI.js"></script>
 </head>
 <body>
 
@@ -295,7 +243,7 @@
         </div>
     </div>
 </div>
-<?php require('admin/views/shared/footer.php'); ?>
+<?php //require('admin/views/shared/footer.php'); ?>
 <script>
     $(document).ready(function () {
         $('#taidautu').click(function (e) {

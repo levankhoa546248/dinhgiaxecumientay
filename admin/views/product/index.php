@@ -69,6 +69,26 @@
                         <th></th>
                     </tr>
                     </thead>
+                    <tfoot align="right">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -190,14 +210,48 @@
                         className: "text-center",
                         width: '5%',
                         render: function (data, type, full, meta) {
-                            if (full.trangthai == 0) {
-                                return '<button class="xoaxe"><i class="glyphicon glyphicon-trash"></i></button>'
-                            } else {
-                                return '';
-                            }
+                            return '<button class="xoaxe"><i class="glyphicon glyphicon-trash"></i></button>'
                         }
                     }
-                ]
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var tongvon = api
+                        .column(5)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var soluong = api
+                        .column(8)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    var tonglai = api
+                        .column(11)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(2).footer()).html('Tổng');
+                    $(api.column(5).footer()).html(formatNumber(tongvon.toString()));
+                    $(api.column(8).footer()).html(soluong);
+                    $(api.column(11).footer()).html(formatNumber(tonglai.toString()));
+                }
             });
         }
     })
