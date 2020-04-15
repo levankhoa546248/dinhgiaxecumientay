@@ -1,8 +1,8 @@
 <?php
 /** setting **/
-define('BASEURL', 'http://localhost/StoreManager');
+define('BASEURL', 'http://localhost/duylinhstore');
 define('BASEPATH', dirname(__FILE__) . '/');
-define('PATH_URL', 'http://localhost/StoreManager');
+define('PATH_URL', 'http://localhost/duylinhstore');
 define('PATH_URL_IMG', PATH_URL . '/public/upload/images/');
 define('PATH_URL_IMG_PRODUCT', PATH_URL . '/public/upload/product/');
 

@@ -22,7 +22,7 @@
     <script src="admin/themes/js/dataTables.bootstrap.min.js"></script>
 
     <link href="themes/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
-    <!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
     <link href="themes/fileinput/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
     <script src="themes/fileinput/js/plugins/piexif.js" type="text/javascript"></script>
     <script src="themes/fileinput/js/plugins/sortable.js" type="text/javascript"></script>

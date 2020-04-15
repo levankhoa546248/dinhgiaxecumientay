@@ -18,7 +18,7 @@
                             Từ ngày
                         </div>
                         <div class="col-sm-2">
-                            <input name="tungay" type="date" value="<?php echo date('Y-m-d'); ?>"
+                            <input name="tungay" type="date" value="<?php echo date('Y-m-01'); ?>"
                                    class="form-control input-sm" id="tungay"/>
                         </div>
                         <div class="col-sm-1 control-label"> Đến ngày</div>
