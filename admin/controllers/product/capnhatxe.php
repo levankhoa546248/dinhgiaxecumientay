@@ -17,16 +17,16 @@ if (!empty($_POST)) {
     );
     update('xe', $xe, 'id = ' . $idxe);
     //upload ảnh 4
-    if(!empty($_FILES)){
-        $tenxe = escape($_POST['tenxe']);
-        $nameimage = $idxe . "_" . alias($tenxe);
-        $idhinh = select_id_auto("hinhanhxe");
-        $arrxe = array(
-            'idxe' => $idxe
-        );
+//    if(!empty($_FILES)){
+//        $tenxe = escape($_POST['tenxe']);
+//        $nameimage = $idxe . "_" . alias($tenxe);
+//        $idhinh = select_id_auto("hinhanhxe");
+//        $arrxe = array(
+//            'idxe' => $idxe
+//        );
 //        delete("hinhanhxe", 'idxe = ' . $idxe);
-        $image = upload("images", $nameimage, 'hinhanhxe', $arrxe, $idhinh);
-    }
+//        $image = upload("images", $nameimage, 'hinhanhxe', $arrxe, $idhinh);
+//    }
     $jsonnhadautu = json_decode($_POST["dsnhadautu"]);
     $countnhadautu = count($jsonnhadautu);
     if ($countnhadautu > 0){

@@ -553,10 +553,10 @@
 
         $("#capnhatxe").click(function (e) {
             var dataform = new FormData();
-            var totalfiles = document.getElementById('files').files.length;
-            for (var index = 0; index < totalfiles; index++) {
-                dataform.append("images[]", document.getElementById('files').files[index]);
-            }
+            // var totalfiles = document.getElementById('files').files.length;
+            // for (var index = 0; index < totalfiles; index++) {
+            //     dataform.append("images[]", document.getElementById('files').files[index]);
+            // }
             dataform.append("idxe", $("#idxe").val());
             dataform.append("hangxe", $("#hangxe").val());
             dataform.append("tenxe", $("#tenxe").val());

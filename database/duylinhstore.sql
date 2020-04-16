@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-03-30 16:43:19
+Date: 2020-04-16 21:58:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -75,8 +75,11 @@ CREATE TABLE `chudautuxe` (
   `taidautu` int(11) DEFAULT 0 COMMENT '0-Không tái đầu tư. 1-Tái đầu tư',
   `tile` int(11) DEFAULT 0,
   `tienlai` decimal(10,0) DEFAULT 0,
+  `ngayban` date DEFAULT NULL,
+  `trangthai` int(11) DEFAULT 0 COMMENT '0-Chưa bán. 1-Đã bán',
+  `ngaynhap` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=452 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for comment
@@ -162,8 +165,9 @@ CREATE TABLE `hinhanhxe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idxe` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `duongdan` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `images64` blob DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for imageslide
@@ -553,9 +557,10 @@ CREATE TABLE `xe` (
   `giaban` decimal(10,0) DEFAULT 0,
   `tonglai` decimal(10,0) DEFAULT 0,
   `sotienconlai` decimal(10,0) DEFAULT 0,
-  `ngaynhap` date DEFAULT NULL,
+  `ngaynhap` date DEFAULT NULL COMMENT 'Ngày nhập xe',
   `trangthai` int(11) DEFAULT 0 COMMENT '0-Chưa bán; 1-Đã bán',
   `nhanvien` int(11) DEFAULT NULL,
-  `ngayban` date DEFAULT NULL,
+  `ngayban` date DEFAULT NULL COMMENT 'Ngày bán xe',
+  `ngaytao` date DEFAULT NULL COMMENT 'Ngày nhập record',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
