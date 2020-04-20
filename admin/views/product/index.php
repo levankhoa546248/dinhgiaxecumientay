@@ -18,7 +18,7 @@
                             Từ ngày
                         </div>
                         <div class="col-sm-2">
-                            <input name="tungay" type="date" value="<?php echo date('Y-m-01'); ?>"
+                            <input name="tungay" type="date" value="<?php echo date('Y-01-01'); ?>"
                                    class="form-control input-sm" id="tungay"/>
                         </div>
                         <div class="col-sm-1 control-label"> Đến ngày</div>
@@ -135,7 +135,7 @@
                 lengthChange: false,
                 width: '100%',
                 responsive: true,
-                lengthMenu: [[5, 10, 30, "All"]],
+                lengthMenu: [[15, 30, 45, "All"]],
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',

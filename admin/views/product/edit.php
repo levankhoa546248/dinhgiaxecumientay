@@ -408,14 +408,19 @@
         }
 
         $("#banxe").click(function (e) {
-            var giaban = StringToNumber($("#giaban").val());
-            var tonglai = StringToNumber($("#tonglai").val());
-            var idxe = $("#idxe").val();
-            var ngayban = $("#ngayban").val();
-            var sotienconlai = StringToNumber($("#sotienconlai").val());
-            if (checkIf(giaban)) {
-                return jAlert('Chưa nhập giá bán', 'Thông báo');
-            }
+            var dataform = new FormData();
+            dataform.append("idxe", $("#idxe").val());
+            dataform.append("hangxe", $("#hangxe").val());
+            dataform.append("tenxe", $("#tenxe").val());
+            dataform.append("mausac", $("#mausac").val());
+            dataform.append("giavon", StringToNumber($("#giavon").val()));
+            dataform.append("chietkhaumua", StringToNumber($("#chietkhaumua").val()));
+            dataform.append("chietkhauban", StringToNumber($("#chietkhauban").val()));
+            dataform.append("soluong", $("#soluong").val());
+            dataform.append("chiphiphatsinh", StringToNumber($("#chiphiphatsinh").val()));
+            dataform.append("giaban", StringToNumber($("#giaban").val()));
+            dataform.append("tonglai", StringToNumber($("#tonglai").val()));
+            dataform.append("sotienconlai", StringToNumber($("#sotienconlai").val()));
             var datadschudautu = $('#tbldsnhadautu').DataTable().rows().data();
             var length = datadschudautu.length;
             var arrnhadautu = [];
@@ -429,6 +434,19 @@
                 };
                 arrnhadautu.push(obj);
             }
+            dataform.append("dsnhadautu", JSON.stringify(arrnhadautu));
+            var dtdshinhanhxe = $('#dshinhanhxe').DataTable().rows().data();
+            var lengthhinh = dtdshinhanhxe.length;
+            var arrhinhanhxe = [];
+            for (let i = 0; i < lengthhinh; i++) {
+                var obj = {
+                    id: dtdshinhanhxe[i]["id"],
+                    idxe: dtdshinhanhxe[i]["idxe"],
+                    duongdan: dtdshinhanhxe[i]["duongdan"]
+                };
+                arrhinhanhxe.push(obj);
+            }
+            dataform.append("dshinhanhxe", JSON.stringify(arrhinhanhxe));
             $.blockUI({
                 message: '<h1>Đợi trong giây lát...</h1>',
                 css: {
@@ -443,19 +461,52 @@
                 onOverlayClick: $.unblockUI
             });
             $.ajax({
-                url: "admin.php?controller=product&action=banxe",
+                url: "admin.php?controller=product&action=capnhatxe",
                 type: "POST",
-                data: {
-                    idxe: idxe,
-                    giaban: giaban,
-                    tonglai: tonglai,
-                    sotienconlai: sotienconlai,
-                    ngayban: ngayban,
-                    dsnhadautu: JSON.stringify(arrnhadautu)
-                },
+                data: dataform,
+                contentType: false,
+                processData: false,
                 success: function (response) {
                     if (response > 0) {
-                        location.href = "admin.php?controller=product";
+
+                        var giaban = StringToNumber($("#giaban").val());
+                        var tonglai = StringToNumber($("#tonglai").val());
+                        var idxe = $("#idxe").val();
+                        var ngayban = $("#ngayban").val();
+                        var sotienconlai = StringToNumber($("#sotienconlai").val());
+                        if (checkIf(giaban)) {
+                            return jAlert('Chưa nhập giá bán', 'Thông báo');
+                        }
+                        var datadschudautu = $('#tbldsnhadautu').DataTable().rows().data();
+                        var length = datadschudautu.length;
+                        var arrnhadautu = [];
+                        for (let i = 0; i < length; i++) {
+                            var obj = {
+                                chudautu: datadschudautu[i]["manhadautu"],
+                                vondautu: StringToNumber(datadschudautu[i]["vondautu"]),
+                                taidautu: datadschudautu[i]["taidautu"],
+                                tile: datadschudautu[i]["tile"],
+                                tienlai: StringToNumber(datadschudautu[i]["tienlai"])
+                            };
+                            arrnhadautu.push(obj);
+                        }
+                        $.ajax({
+                            url: "admin.php?controller=product&action=banxe",
+                            type: "POST",
+                            data: {
+                                idxe: idxe,
+                                giaban: giaban,
+                                tonglai: tonglai,
+                                sotienconlai: sotienconlai,
+                                ngayban: ngayban,
+                                dsnhadautu: JSON.stringify(arrnhadautu)
+                            },
+                            success: function (response) {
+                                if (response > 0) {
+                                    location.href = "admin.php?controller=product";
+                                }
+                            }
+                        });
                     }
                 }
             });
