@@ -45,7 +45,7 @@ if (!empty($_POST)) {
 //        insert("chudautuxe", $chudautuxe);
     }
     $sqlInsert =
-        "INSERT INTO `duylinhstore`.`chudautuxe` (
+        "INSERT INTO `chudautuxe` (
             `idchudautu`,
             `idxe`,
             `vondautu`,
