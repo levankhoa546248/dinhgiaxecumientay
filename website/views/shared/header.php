@@ -9,7 +9,7 @@ $parent_menus = get_all('categories',$options_parent_menu);
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
-    <base href="http://localhost/StoreManager/" />
+<!--    <base href="http://localhost/StoreManager/" />-->
     <meta charset="UTF-8">
     <title><?php echo isset($title) ? $title : 'eCommerce - Fashion Shop'; ?></title>
     <link rel="shortcut icon" href="admin/themes/images/favicon.png">
@@ -67,11 +67,11 @@ $parent_menus = get_all('categories',$options_parent_menu);
     <div class="header-top">
         <div class="header-bottom">
             <div class="container">
-                <div class="logo">
-                    <a href="index.html">
-                        <h1>Fashion Store</h1>
-                    </a>
-                </div>
+<!--                <div class="logo">-->
+<!--                    <a href="index.html">-->
+<!--                        <h1>Auto Dũng Lâm</h1>-->
+<!--                    </a>-->
+<!--                </div>-->
                 <div class="top-nav">
                     <ul class="memenu skyblue">
                         <li><a href="home">Trang chủ</a></li>
@@ -105,14 +105,14 @@ $parent_menus = get_all('categories',$options_parent_menu);
                         </li>
                         <?php endif; ?>
                         <?php endforeach; ?>
-                        <li><a href="livesport">Live sport</a></li>
+                        <li><a href="livesport">LIÊN HỆ</a></li>
                     </ul>
                 </div>
-                <div class="cart box_1">
-                    <a href="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ hàng :
-                        <?php echo cart_number(); ?> sp</a>
-                    <div class="clearfix"></div>
-                </div>
+<!--                <div class="cart box_1">-->
+<!--                    <a href="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ hàng :-->
+<!--                        --><?php //echo cart_number(); ?><!-- sp</a>-->
+<!--                    <div class="clearfix"></div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>

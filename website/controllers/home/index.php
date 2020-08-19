@@ -1,8 +1,8 @@
 <?php
-$banner_left = get_a_record('banner',1);
-$banner_right = get_a_record('banner',2);
-$banner_ads = get_a_record('banner',3);
-$slideshow = get_a_record('slideshow',1);
+$banner_left = get_a_record('banner','Visible = 1');
+$banner_right = get_a_record('banner','Visible = 2');
+$banner_ads = get_a_record('banner','Visible = 3');
+$slideshow = get_a_record('slideshow','Id = 1');
 
 $options_orderproduct = array(
     'where' => 'TypeId = 1',

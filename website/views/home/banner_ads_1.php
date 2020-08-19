@@ -3,7 +3,7 @@
 <div class="container">
     <a href="home">
         <figure >
-            <?php echo '<image class="img-responsive" src="'.PATH_URL_IMG.$banner_ads['Image'] . '?time=' . time() . '" alt="'.$banner_ads['Image'].'"/ >'; ?>
+            <?php echo '<image class="img-responsive" src="'.PATH_IMG_WEB.$banner_ads['Image'] . '?time=' . time() . '" alt="'.$banner_ads['Image'].'"/ >'; ?>
         </figure>
     </a>
 </div>

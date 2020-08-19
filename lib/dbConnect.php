@@ -4,6 +4,7 @@ define('BASEURL', 'http://duylinh.byethost3.com');
 define('BASEPATH', dirname(__FILE__) . '/');
 define('PATH_URL', 'http://duylinh.byethost3.com');
 define('PATH_URL_IMG', PATH_URL . '/public/upload/images/');
+define('PATH_IMG_WEB', 'website/themes/upload/images/');
 define('PATH_URL_IMG_PRODUCT', PATH_URL . '/public/upload/product/');
 
 //DB Duy Linh
@@ -37,14 +38,14 @@ function __construct()
 
 function connectDB()
 {
-//    $ketnoi['Server']['name'] = 'localhost';
-//    $ketnoi['Database']['dbname'] = 'duylinhstore';
-//    $ketnoi['Database']['username'] = 'root';
-//    $ketnoi['Database']['password'] = '';
-    $ketnoi['Server']['name'] = 'sql308.byethost.com';
-    $ketnoi['Database']['dbname'] = 'b3_24684374_autodunglam';
-    $ketnoi['Database']['username'] = 'b3_24684374';
-    $ketnoi['Database']['password'] = '12345';
+    $ketnoi['Server']['name'] = 'localhost';
+    $ketnoi['Database']['dbname'] = 'duylinhstore';
+    $ketnoi['Database']['username'] = 'root';
+    $ketnoi['Database']['password'] = '';
+//    $ketnoi['Server']['name'] = 'sql308.byethost.com';
+//    $ketnoi['Database']['dbname'] = 'b3_24684374_autodunglam';
+//    $ketnoi['Database']['username'] = 'b3_24684374';
+//    $ketnoi['Database']['password'] = '12345';
     $conn = mysqli_connect(
         "{$ketnoi['Server']['name']}",
         "{$ketnoi['Database']['username']}",

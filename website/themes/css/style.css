@@ -151,7 +151,7 @@ h1.b1,h2.b2,h3.b3 {
     min-height: 89px;
 }
 .header-bottom {
-    padding: 2.3em 0;
+    padding: 0.5em 0.5em;
 }
 .logo  a h1{
     color:#333;
@@ -168,7 +168,7 @@ h1.b1,h2.b2,h3.b3 {
 }
 .top-nav{
     margin-top: 0;
-    width:63%;
+    /*     width:%; */
     margin: 1% auto 0;
     display: block;
     float: left;
@@ -209,7 +209,7 @@ h1.b1,h2.b2,h3.b3 {
 }
 .rslides img {
     display: block;
-    height: auto;
+    height: max-content;
     float: left;
     width: 100%;
     border: 0;
@@ -1673,7 +1673,7 @@ a.cpns:hover{
     }
 
     .top-nav {
-        width: 40%;
+        width: 20%;
     }
     .box_1 {
         width: 24%;

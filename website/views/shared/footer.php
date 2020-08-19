@@ -138,13 +138,13 @@ $contactinfo = get_a_record('contactinfo',1);
 <div class="fb-chat-popup">
     <div class="fb-page-header"><i class="fa fa-comments"></i> Hỗ Trợ Trực Tuyến</div>
     <div class="fb-page-box">
-        <div class="fb-page" data-href="https://www.facebook.com/FCTueTinh" data-height="350" data-width="300" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false" data-tabs="messages" data-show-posts="false"></div>
-        <div class="chat-single"><a target="_blank" href="https://www.facebook.com/FCTueTinh"><i class="fa fa-facebook-square"></i> Fanpage Blog</a></div>
+        <div class="fb-page" data-href="https://www.facebook.com/C%E1%BB%ADa-H%C3%A0ng-D%C5%A9ng-L%C3%A2m-387688081723225/" data-height="350" data-width="300" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false" data-tabs="messages" data-show-posts="false"></div>
+        <div class="chat-single"><a target="_blank" href="https://www.facebook.com/C%E1%BB%ADa-H%C3%A0ng-D%C5%A9ng-L%C3%A2m-387688081723225/"><i class="fa fa-facebook-square"></i> Fanpage Blog</a></div>
     </div>
 </div>
 
-<script src="<?=PATH_URL?>/public/js/responsiveslides.min.js"></script>
-<script type="text/javascript" src="<?=PATH_URL?>/public/js/memenu.js"></script>
+<script src="website\themes\js\responsiveslides.min.js"></script>
+<script type="text/javascript" src="website\themes\js\memenu.js"></script>
 <script>
     $('#q').focus(function()
     {
