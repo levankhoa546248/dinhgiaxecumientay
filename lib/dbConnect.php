@@ -5,6 +5,7 @@ define('BASEPATH', dirname(__FILE__) . '/');
 define('PATH_URL', 'http://duylinh.byethost3.com');
 define('PATH_URL_IMG', PATH_URL . '/public/upload/images/');
 define('PATH_IMG_WEB', 'website/themes/upload/images/');
+define('PATH_IMG_PRODUCT', 'website/themes/upload/product/');
 define('PATH_URL_IMG_PRODUCT', PATH_URL . '/public/upload/product/');
 
 //DB Duy Linh

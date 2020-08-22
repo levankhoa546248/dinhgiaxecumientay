@@ -3,14 +3,15 @@ $banner_left = get_a_record('banner','Visible = 1');
 $banner_right = get_a_record('banner','Visible = 2');
 $banner_ads = get_a_record('banner','Visible = 3');
 $slideshow = get_a_record('slideshow','Id = 1');
+$logo = get_a_record('logo','LogoId = 1 and IsActive = 1');
 
 $options_orderproduct = array(
-    'where' => 'TypeId = 1',
+    'where' => 'trangthai = 0',
     'limit' => '16',
     'offset' => '0',
-    'order_by' => 'Createdate DESC'
+    'order_by' => 'ngaytao DESC'
 );
-$order_products = get_all('product',$options_orderproduct);
+$order_products = get_all('xe',$options_orderproduct);
 
 $options_newproduct = array(
     'where' => 'TypeId = 2',
