@@ -33,6 +33,22 @@
             </a>
         </li>
         <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Danh mục</a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="admin.php?controller=dongxe">Dòng xe</a></li>
+<!--                <li class="divider"></li>-->
+<!--                <li><a href="admin.php?controller=namsanxuat">Năm sản xuất</a></li>-->
+                <li class="divider"></li>
+                <li><a href="admin.php?controller=nhienlieu">Nhiên liệu</a></li>
+                <li class="divider"></li>
+                <li><a href="admin.php?controller=hopso">Hợp số</a></li>
+                <li class="divider"></li>
+                <li><a href="admin.php?controller=chongoi">Chỗ ngồi</a></li>
+                <li class="divider"></li>
+                <li><a href="admin.php?controller=xuatxu">Xuất xứ</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
