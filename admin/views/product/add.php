@@ -50,8 +50,15 @@
                     <div class="panel-body form-horizontal">
                         <input name="idxe" id="idxe" type="hidden" value="<?php echo $idxe; ?>"/>
                         <div class="form-group">
-                            <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
+                            <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
                             <div class="col-sm-10">
+                                <input name="tenxe" type="text"
+                                       class="form-control" id="tenxe" placeholder="Tên sản phẩm" required="" autofocus/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
+                            <div class="col-sm-4">
                                 <select name="hangxe" class="form-control" id="hangxe">
                                     <option value="0" selected>Chọn hãng xe</option>
                                     <?php foreach ($subcategories as $subcategory) {
@@ -60,19 +67,70 @@
                                     } ?>
                                 </select>
                             </div>
+                            <label for="dongxe" class="col-sm-2 control-label">Dòng xe</label>
+                            <div class="col-sm-4">
+                                <select name="dongxe" class="form-control" id="dongxe">
+                                    <option value="0" selected>Chọn dòng xe</option>
+                                    <?php foreach ($subcategories as $subcategory) {
+                                        $selected = '';
+                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
-                            <div class="col-sm-10">
-                                <input name="tenxe" type="text"
-                                       class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""/>
+                            <label for="nhienlieu" class="col-sm-2 control-label">Nhiên liệu</label>
+                            <div class="col-sm-4">
+                                <select name="nhienlieu" class="form-control" id="nhienlieu">
+                                    <option value="0" selected>Chọn nhiên liệu</option>
+                                    <?php foreach ($subcategories as $subcategory) {
+                                        $selected = '';
+                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                            <label for="hopso" class="col-sm-2 control-label">Hợp số</label>
+                            <div class="col-sm-4">
+                                <select name="hopso" class="form-control" id="hopso">
+                                    <option value="0" selected>Chọn hợp số</option>
+                                    <?php foreach ($subcategories as $subcategory) {
+                                        $selected = '';
+                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="chongoi" class="col-sm-2 control-label">Chỗ ngồi</label>
+                            <div class="col-sm-4">
+                                <select name="chongoi" class="form-control" id="chongoi">
+                                    <option value="0" selected>Chọn chỗ ngồi</option>
+                                    <?php foreach ($subcategories as $subcategory) {
+                                        $selected = '';
+                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                            <label for="xuatxu" class="col-sm-2 control-label">Xuất xứ</label>
+                            <div class="col-sm-4">
+                                <select name="xuatxu" class="form-control" id="xuatxu">
+                                    <option value="0" selected>Chọn xuất xứ</option>
+                                    <?php foreach ($subcategories as $subcategory) {
+                                        $selected = '';
+                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                    } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mausac" class="col-sm-2 control-label">Màu sắc</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input name="mausac" type="text"
                                        class="form-control" id="mausac" placeholder="Màu sắc"/>
+                            </div>
+                            <label for="namsanxuat" class="col-sm-2 control-label">Năm sản xuất</label>
+                            <div class="col-sm-4">
+                                <input name="namsanxuat" type="text" class="form-control" id="namsanxuat" placeholder="Năm sản xuất"/>
                             </div>
                         </div>
                         <div class="form-group">

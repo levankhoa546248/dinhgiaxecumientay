@@ -46,6 +46,10 @@
                 <li><a href="admin.php?controller=chongoi">Chỗ ngồi</a></li>
                 <li class="divider"></li>
                 <li><a href="admin.php?controller=xuatxu">Xuất xứ</a></li>
+                <li class="divider"></li>
+                <li><a href="admin.php?controller=mausac">Màu sắc</a></li>
+                <li class="divider"></li>
+                <li><a href="admin.php?controller=namsanxuat">Năm sản xuất</a></li>
             </ul>
         </li>
         <li class="dropdown">
