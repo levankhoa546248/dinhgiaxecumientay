@@ -53,14 +53,16 @@
                             <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
                             <div class="col-sm-10">
                                 <input name="tenxe" type="text"
-                                       class="form-control" id="tenxe" placeholder="Tên sản phẩm" required="" autofocus/>
+                                       class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""
+                                       autofocus/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
                             <div class="col-sm-4">
-                                <select name="hangxe" class="form-control" id="hangxe">
-                                    <option value="0" selected>Chọn hãng xe</option>
+                                <select name="hangxe" class="form-control" id="hangxe"
+                                        onChange="getDongXe(this.value);">
+                                    <option disabled selected>Chọn hãng xe</option>
                                     <?php foreach ($subcategories as $subcategory) {
                                         $selected = '';
                                         echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
@@ -70,10 +72,10 @@
                             <label for="dongxe" class="col-sm-2 control-label">Dòng xe</label>
                             <div class="col-sm-4">
                                 <select name="dongxe" class="form-control" id="dongxe">
-                                    <option value="0" selected>Chọn dòng xe</option>
-                                    <?php foreach ($subcategories as $subcategory) {
+                                    <option disabled selected>Chọn dòng xe</option>
+                                    <?php foreach ($dongxes as $dongxe) {
                                         $selected = '';
-                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                        echo '<option value="' . $dongxe['id'] . '" ' . $selected . '>' . $dongxe['dongxe'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
@@ -82,20 +84,20 @@
                             <label for="nhienlieu" class="col-sm-2 control-label">Nhiên liệu</label>
                             <div class="col-sm-4">
                                 <select name="nhienlieu" class="form-control" id="nhienlieu">
-                                    <option value="0" selected>Chọn nhiên liệu</option>
-                                    <?php foreach ($subcategories as $subcategory) {
+                                    <option disabled selected>Chọn nhiên liệu</option>
+                                    <?php foreach ($nhienlieus as $nhienlieu) {
                                         $selected = '';
-                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                        echo '<option value="' . $nhienlieu['id'] . '" ' . $selected . '>' . $nhienlieu['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
                             <label for="hopso" class="col-sm-2 control-label">Hợp số</label>
                             <div class="col-sm-4">
                                 <select name="hopso" class="form-control" id="hopso">
-                                    <option value="0" selected>Chọn hợp số</option>
-                                    <?php foreach ($subcategories as $subcategory) {
+                                    <option disabled selected>Chọn hợp số</option>
+                                    <?php foreach ($hopsos as $hopso) {
                                         $selected = '';
-                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                        echo '<option value="' . $hopso['id'] . '" ' . $selected . '>' . $hopso['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
@@ -104,20 +106,20 @@
                             <label for="chongoi" class="col-sm-2 control-label">Chỗ ngồi</label>
                             <div class="col-sm-4">
                                 <select name="chongoi" class="form-control" id="chongoi">
-                                    <option value="0" selected>Chọn chỗ ngồi</option>
-                                    <?php foreach ($subcategories as $subcategory) {
+                                    <option disabled selected>Chọn chỗ ngồi</option>
+                                    <?php foreach ($chongois as $chongoi) {
                                         $selected = '';
-                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                        echo '<option value="' . $chongoi['id'] . '" ' . $selected . '>' . $chongoi['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
                             <label for="xuatxu" class="col-sm-2 control-label">Xuất xứ</label>
                             <div class="col-sm-4">
                                 <select name="xuatxu" class="form-control" id="xuatxu">
-                                    <option value="0" selected>Chọn xuất xứ</option>
-                                    <?php foreach ($subcategories as $subcategory) {
+                                    <option disabled selected>Chọn xuất xứ</option>
+                                    <?php foreach ($xuatxus as $xuatxu) {
                                         $selected = '';
-                                        echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
+                                        echo '<option value="' . $xuatxu['id'] . '" ' . $selected . '>' . $xuatxu['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
@@ -125,53 +127,68 @@
                         <div class="form-group">
                             <label for="mausac" class="col-sm-2 control-label">Màu sắc</label>
                             <div class="col-sm-4">
-                                <input name="mausac" type="text"
-                                       class="form-control" id="mausac" placeholder="Màu sắc"/>
+                                <select name="mausac" class="form-control" id="mausac">
+                                    <option disabled selected>Chọn màu sắc</option>
+                                    <?php foreach ($mausacs as $mausac) {
+                                        $selected = '';
+                                        echo '<option value="' . $mausac['id'] . '" ' . $selected . '>' . $mausac['name'] . '</option>';
+                                    } ?>
+                                </select>
                             </div>
                             <label for="namsanxuat" class="col-sm-2 control-label">Năm sản xuất</label>
                             <div class="col-sm-4">
-                                <input name="namsanxuat" type="text" class="form-control" id="namsanxuat" placeholder="Năm sản xuất"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
-                            <div class="col-sm-10">
-                                <input name="giavon" type="text" data-type="currency"
-                                       class="form-control" id="giavon" placeholder="0"
-                                />
+                                <select name="namsanxuat" class="form-control" id="namsanxuat">
+                                    <option disabled selected>Chọn năm sản xuất</option>
+                                    <?php foreach ($namsanxuats as $namsanxuat) {
+                                        $selected = '';
+                                        echo '<option value="' . $namsanxuat['id'] . '" ' . $selected . '>' . $namsanxuat['name'] . '</option>';
+                                    } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input name="chietkhaumua" type="text" id="chietkhaumua"
                                        data-type="currency" class="form-control" placeholder="0"
                                 />
                             </div>
-                        </div>
-                        <div class="form-group">
                             <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-4">
                                 <input name="chietkhauban" type="text" id="chietkhauban"
                                        data-type="currency" class="form-control" placeholder="0"
                                 />
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
+                            <div class="col-sm-4">
+                                <input name="giavon" type="text" data-type="currency"
+                                       class="form-control" id="giavon" placeholder="0"
+                                />
+                            </div>
+                            <label for="giavon" class="col-sm-2 control-label">Giá bán</label>
+                            <div class="col-sm-4">
+                                <input name="giaban" type="text" data-type="currency"
+                                       class="form-control" id="giaban" placeholder="0"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-1">
                                 <input name="soluong" type="number" value="1"
                                        class="form-control" id="soluong" placeholder="0"
                                 />
                             </div>
                             <label for="ngaynhap" class="col-sm-1 control-label">Ngày</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <input name="ngaynhap" id="ngaynhap" class="form-control"
                                        type="date" value="<?php echo date('Y-m-d'); ?>"
                                 />
                             </div>
-                            <label for="tonglai" class="col-sm-1 control-label">Còn lại</label>
-                            <div class="col-sm-2">
+                            <label for="tonglai" class="col-sm-2 control-label">Còn lại</label>
+                            <div class="col-sm-4">
                                 <input name="sotienconlai" type="text" id="sotienconlai" disabled
                                        data-type="currency" class="form-control" placeholder="0"
                                 />
@@ -186,12 +203,6 @@
                             </div>
                         </div>
                         <div class="form-group" hidden>
-                            <label for="giaban" class="col-sm-2 control-label">Giá bán</label>
-                            <div class="col-sm-3">
-                                <input name="giaban" type="text" id="giaban"
-                                       data-type="currency" class="form-control" placeholder="0"
-                                />
-                            </div>
                             <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
                             <div class="col-sm-2">
                                 <input name="tonglai" type="text" id="tonglai" disabled
@@ -356,22 +367,68 @@
 
         function f_themxemoi() {
             var idxe = $("#idxe").val();
-            var hangxe = $("#hangxe").val();
-            if (hangxe == "0") {
-                return jAlert("Chưa chọn hãng xe", "Thông báo", function (e) {
-                    $("#hangxe").focus();
-                });
-            }
             var tenxe = $("#tenxe").val();
             if (checkIf(tenxe)) {
                 return jAlert("Chưa nhập tên xe", "Thông báo", function (e) {
                     $("#tenxe").focus();
                 });
             }
+            var hangxe = $("#hangxe").val();
+            if (checkIf(hangxe)) {
+                return jAlert("Chưa chọn hãng xe", "Thông báo", function (e) {
+                    $("#hangxe").focus();
+                });
+            }
+            var dongxe = $("#dongxe").val();
+            if (checkIf(dongxe)) {
+                return jAlert("Chưa chọn dòng xe", "Thông báo", function (e) {
+                    $("#dongxe").focus();
+                });
+            }
+            var nhienlieu = $("#nhienlieu").val();
+            if (checkIf(nhienlieu)) {
+                return jAlert("Chưa chọn nhiên liệu", "Thông báo", function (e) {
+                    $("#nhienlieu").focus();
+                });
+            }
+            var hopso = $("#hopso").val();
+            if (checkIf(hopso)) {
+                return jAlert("Chưa chọn hợp số", "Thông báo", function (e) {
+                    $("#hopso").focus();
+                });
+            }
+            var chongoi = $("#chongoi").val();
+            if (checkIf(chongoi)) {
+                return jAlert("Chưa chọn chỗ ngồi", "Thông báo", function (e) {
+                    $("#chongoi").focus();
+                });
+            }
+            var xuatxu = $("#xuatxu").val();
+            if (checkIf(xuatxu)) {
+                return jAlert("Chưa chọn xuất xứ", "Thông báo", function (e) {
+                    $("#xuatxu").focus();
+                });
+            }
             var mausac = $("#mausac").val();
+            if (checkIf(mausac)) {
+                return jAlert("Chưa chọn màu sắc", "Thông báo", function (e) {
+                    $("#mausac").focus();
+                });
+            }
+            var namsanxuat = $("#namsanxuat").val();
+            if (checkIf(namsanxuat)) {
+                return jAlert("Chưa chọn năm sản xuất", "Thông báo", function (e) {
+                    $("#namsanxuat").focus();
+                });
+            }
             if (checkIf($("#giavon").val())) {
                 return jAlert("Chưa chọn nhập giá vốn", "Thông báo", function (e) {
                     $("#giavon").focus();
+                });
+            }
+            if (checkIf($("#giaban").val())) {
+                return jAlert("Chưa chọn nhập giá bán", "Thông báo", function (e) {
+                    $("#giaban").focus();
                 });
             }
             var giavon = StringToNumber($("#giavon").val());
@@ -421,6 +478,12 @@
                 data: {
                     idxe: idxe,
                     hangxe: hangxe,
+                    dongxe: dongxe,
+                    nhienlieu: nhienlieu,
+                    hopso: hopso,
+                    chongoi: chongoi,
+                    namsanxuat: namsanxuat,
+                    xuatxu: xuatxu,
                     tenxe: tenxe,
                     mausac: mausac,
                     giavon: giavon,
@@ -773,4 +836,16 @@
             }
         });
     });
+
+    function getDongXe(val) {
+        $.ajax({
+            type: "POST",
+            url: "admin.php?controller=dongxe&action=getdongxe",
+            data: 'idhangxe=' + val,
+            success: function (data) {
+                $("#dongxe").html(data);
+                // getCity();
+            }
+        });
+    }
 </script>
