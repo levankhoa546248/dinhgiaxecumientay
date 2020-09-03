@@ -6,7 +6,7 @@ if (!empty($_FILES)) {
     $nameimage = $idxe . "_" . $namefile;
     $config = array(
         'name' => $nameimage,
-        'upload_path' => 'admin/upload/',
+        'upload_path' => 'images/xe/',
         'allowed_exts' => 'jpg|jpeg|png|gif',
     );
     $options = array(

@@ -7,7 +7,7 @@
                     class="block-title-name"><a style="color: #FFFFFF">SẢN PHẨM</a></h5>
         </div>
         <div class="panel panel-default">
-            <div class="panel-body" style="padding: 0px">
+            <div class="panel-body">
                 <div class="pull-left col-sm-12">
                     <div class="small form-horizontal">
                         <div class="form-group">
@@ -106,39 +106,46 @@
             </div>
         </div>
         <!--            <div class="feature-grids" style="background-color:#ffffff">-->
-        <div class="dataTable_wrapper" style="width: 100%">
-            <table class="table table-striped table-bordered table-hover small" id="dsxe" style="width:100%">
-                <tr>
-                    <th>
-                        <?php if (empty($order_products)) : ?>
-                            <h3 class="col-sm-12">Không có sản phẩm nào trong danh mục này.</h3>
-                        <?php endif; ?>
-                        <?php foreach ($order_products as $order_product): ?>
-                            <div class="width-float-20 feature-grid jewel">
-                                <a href="product/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
-                                   class="screenshot"
-                                   rel="<?php echo PATH_IMG_PRODUCT . $order_product['imagemain'] ?>"><?php echo '<image src="' . PATH_IMG_PRODUCT . $order_product['imagemain'] . '?time=' . time() . '"alt="' . $order_product['imagemain'] . '" />'; ?>
-                                </a>
+        <div class="dataTable_wrapper small" style="width: 100%">
+            <?php if (empty($order_products)) : ?>
+                <h3 class="col-sm-12">Không có sản phẩm nào trong danh mục này.</h3>
+            <?php endif; ?>
+            <?php foreach ($order_products as $order_product): ?>
+                <div class="col-xs-2 feature-grid jewel m-1">
+                    <a href="product/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
+                       class="screenshot"
+                       rel="<?php echo PATH_IMG_PRODUCT . $order_product['imagemain'] ?>"><?php echo '<image src="' . PATH_IMG_PRODUCT . $order_product['imagemain'] . '?time=' . time() . '"alt="' . $order_product['imagemain'] . '" />'; ?>
+                    </a>
+                    <!--                                --><?php //if ($order_product['imagemain'] == null):?>
+                    <!--                                <a href="product/-->
+                    <?php //echo $order_product['id']; ?><!-----><?php //echo $order_product['mausac']; ?><!--.html"-->
+                    <!--                                   class="screenshot"-->
+                    <!--                                   rel="-->
+                    <?php //echo "website/themes/upload/product/car-loading.jpg" ?><!--">--><?php //echo '<image src="' . "website/themes/upload/product/car-loading.jpg" . '?time=' . time() . '"alt="' . $order_product['imagemain'] . '" />'; ?>
+                    <!--                                </a>-->
+                    <!--                                --><?php //else: ?>
+                    <!--                                <a href="product/-->
+                    <?php //echo $order_product['id']; ?><!-----><?php //echo $order_product['mausac']; ?><!--.html"-->
+                    <!--                                   class="screenshot"-->
+                    <!--                                   rel="-->
+                    <?php //echo PATH_IMG_PRODUCT . $order_product['imagemain'] ?><!--">--><?php //echo '<image src="' . PATH_IMG_PRODUCT . $order_product['imagemain'] . '?time=' . time() . '"alt="' . $order_product['imagemain'] . '" />'; ?>
+                    <!--                                </a>-->
+                    <!--                                --><?php //endif; ?>
+                    <div class="arrival-info">
+                        <h4><?php echo $order_product['tenxe'] ?></h4>
 
-                                <div class="arrival-info">
-                                    <h4><?php echo $order_product['tenxe'] ?></h4>
-
-                                    <p>Giá bán
-                                        : <?php echo $order_product ? number_format($order_product['giaban'], 0, ',', '.') : 0; ?>
-                                        vnđ</p>
-                                </div>
-                                <div class="viw">
-                                    <a href="product/view/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"><span
-                                                class="glyphicon glyphicon-eye-open"
-                                                aria-hidden="true"></span>Quick
-                                        View</a>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </th>
-                </tr>
-                </tfoot>
-            </table>
+                        <p>Giá bán
+                            : <?php echo $order_product ? $order_product['giaban'] == "0" ? "Liên hệ" : number_format($order_product['giaban'], 0, ',', '.') . "vnđ" : "Liên hệ"; ?>
+                            </p>
+                    </div>
+                    <div class="viw">
+                        <a href="product/view/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"><span
+                                    class="glyphicon glyphicon-eye-open"
+                                    aria-hidden="true"></span>Quick
+                            View</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
         <div class="clearfix"></div>
     </div>

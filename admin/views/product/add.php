@@ -426,11 +426,6 @@
                     $("#giavon").focus();
                 });
             }
-            if (checkIf($("#giaban").val())) {
-                return jAlert("Chưa chọn nhập giá bán", "Thông báo", function (e) {
-                    $("#giaban").focus();
-                });
-            }
             var giavon = StringToNumber($("#giavon").val());
             var chietkhaumua = StringToNumber($("#chietkhaumua").val());
             var chietkhauban = StringToNumber($("#chietkhauban").val());

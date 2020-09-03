@@ -11,7 +11,9 @@ $options_orderproduct = array(
     'offset' => '0',
     'order_by' => 'ngaytao DESC'
 );
-$order_products = get_all('xe',$options_orderproduct);
+$order_products = get_select_nested("SELECT hax.id as idhax, hax.duongdan as imagemain, x.* FROM xe x
+LEFT JOIN (SELECT MIN(id) as id, idxe, duongdan FROM hinhanhxe
+GROUP BY idxe) hax ON x.id = hax.idxe WHERE x.trangthai = 0");
 
 $options_newproduct = array(
     'where' => 'TypeId = 2',

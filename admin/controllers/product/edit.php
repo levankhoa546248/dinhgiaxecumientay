@@ -36,9 +36,9 @@ $resulthax = "";
 
 for ($k = 0; $k < count($haxe); $k++) {
     if ($k == count($haxe) - 1) {
-        $resulthax .= "\"" . PATH_URL . "/" . $haxe[$k]["duongdan"] . "\"";
+        $resulthax .= "\"" . $haxe[$k]["duongdan"] . "\"";
     } else {
-        $resulthax .= "\"" . PATH_URL . "/" . $haxe[$k]["duongdan"] . "\"" . ",";
+        $resulthax .= "\"" . $haxe[$k]["duongdan"] . "\"" . ",";
     }
 }
 
