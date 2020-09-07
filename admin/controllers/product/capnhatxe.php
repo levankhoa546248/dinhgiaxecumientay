@@ -4,8 +4,14 @@ if (!empty($_POST)) {
     $idxe = intval($_POST['idxe']);
     $xe = array(
         'hangxe' => intval($_POST['hangxe']),
+        'dongxe' => intval($_POST['dongxe']),
+        'nhienlieu' => intval($_POST['nhienlieu']),
+        'hopso' => intval($_POST['hopso']),
+        'chongoi' => intval($_POST['chongoi']),
+        'xuatxu' => intval($_POST['xuatxu']),
+        'mausac' => intval($_POST['mausac']),
+        'namsanxuat' => intval($_POST['namsanxuat']),
         'tenxe' => escape($_POST['tenxe']),
-        'mausac' => escape($_POST['mausac']),
         'giavon' => intval($_POST['giavon']),
         'chietkhaumua' => intval($_POST['chietkhaumua']),
         'chietkhauban' => intval($_POST['chietkhauban']),

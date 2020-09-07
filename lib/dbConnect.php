@@ -7,6 +7,7 @@ define('PATH_URL_IMG', PATH_URL . '/public/upload/images/');
 define('PATH_IMG_WEB', 'website/themes/upload/images/');
 define('PATH_IMG_PRODUCT', 'website/themes/upload/product/');
 define('PATH_URL_IMG_PRODUCT', PATH_URL . '/public/upload/product/');
+define('PATH_IMG', '/images/xe/');
 
 //DB Duy Linh
 //$ketnoi['Server']['name'] = 'sql308.byethost.com';

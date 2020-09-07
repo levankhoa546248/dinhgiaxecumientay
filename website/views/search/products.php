@@ -1,5 +1,19 @@
 <script type="text/javascript" src="admin/themes/js/jquery.min.js"></script>
 <script type="text/javascript" src="themes/bootstrap-select/1.13.9/js/bootstrap-select.min.js"></script>
+<?php
+if (isset($_GET["search"])) {
+    $arrsearch = preg_split("/\,/", $_GET["search"]);
+    $s_hangxe = intval($arrsearch[0]);
+    $s_dongxe = intval($arrsearch[1]);
+    $s_nhienlieu = intval($arrsearch[2]);
+    $s_hopso = intval($arrsearch[3]);
+    $s_chongoi = intval($arrsearch[4]);
+    $s_namsanxuat = intval($arrsearch[5]);
+    $s_xuatxu = intval($arrsearch[6]);
+    $s_mausac = intval($arrsearch[7]);
+    $s_giaban = intval($arrsearch[8]);
+}
+?>
 <div class="arrivals">
     <div class="container-top">
         <div class="block-title"><h5 class="block-title-name">SẢN PHẨM</h5>
@@ -13,9 +27,10 @@
                             <div class="col-sm-2">
                                 <select name="hangxe" class="form-control" id="hangxe"
                                         onChange="getDongXe(this.value);">
-                                    <option disabled selected>Chọn hãng xe</option>
+                                    <option value="" selected>Chọn hãng xe</option>
                                     <?php foreach ($subcategories as $subcategory) {
                                         $selected = '';
+                                        if ($s_hangxe == $subcategory['Id']) $selected = 'selected=""';
                                         echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
                                     } ?>
                                 </select>
@@ -23,51 +38,45 @@
                             <div class="col-sm-1 control-label">Dòng xe</div>
                             <div class="col-sm-2">
                                 <select name="dongxe" class="form-control" id="dongxe">
-                                    <option disabled selected>Chọn dòng xe</option>
+                                    <option value="" selected>Chọn dòng xe</option>
                                     <?php foreach ($dongxes as $dongxe) {
                                         $selected = '';
+                                        if ($s_dongxe == $dongxe['id']) $selected = 'selected=""';
                                         echo '<option value="' . $dongxe['id'] . '" ' . $selected . '>' . $dongxe['dongxe'] . '</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                            <div class="col-sm-1 control-label">Năm sản xuất</div>
-                            <div class="col-sm-2">
-                                <select name="namsanxuat" class="form-control" id="namsanxuat">
-                                    <option disabled selected>Chọn năm sản xuất</option>
-                                    <?php foreach ($namsanxuats as $namsanxuat) {
-                                        $selected = '';
-                                        echo '<option value="' . $namsanxuat['id'] . '" ' . $selected . '>' . $namsanxuat['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
                             <div class="col-sm-1 control-label">Nhiên liệu</div>
                             <div class="col-sm-2">
                                 <select name="nhienlieu" class="form-control" id="nhienlieu">
-                                    <option disabled selected>Chọn nhiên liệu</option>
+                                    <option value="" selected>Chọn nhiên liệu</option>
                                     <?php foreach ($nhienlieus as $nhienlieu) {
                                         $selected = '';
+                                        if ($s_nhienlieu == $nhienlieu['id']) $selected = 'selected=""';
                                         echo '<option value="' . $nhienlieu['id'] . '" ' . $selected . '>' . $nhienlieu['name'] . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-1 control-label">Hợp số</div>
+                            <div class="col-sm-2">
+                                <select name="hopso" class="form-control" id="hopso">
+                                    <option value="" selected>Chọn hợp số</option>
+                                    <?php foreach ($hopsos as $hopso) {
+                                        $selected = '';
+                                        if ($s_hopso == $hopso['id']) $selected = 'selected=""';
+                                        echo '<option value="' . $hopso['id'] . '" ' . $selected . '>' . $hopso['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-1 control-label">Hợp số</div>
-                            <div class="col-sm-2">
-                                <select name="hopso" class="form-control" id="hopso">
-                                    <option disabled selected>Chọn hợp số</option>
-                                    <?php foreach ($hopsos as $hopso) {
-                                        $selected = '';
-                                        echo '<option value="' . $hopso['id'] . '" ' . $selected . '>' . $hopso['name'] . '</option>';
-                                    } ?>
-                                </select>
-                            </div>
                             <div class="col-sm-1 control-label">Chỗ ngồi</div>
                             <div class="col-sm-2">
                                 <select name="chongoi" class="form-control" id="chongoi">
-                                    <option disabled selected>Chọn chỗ ngồi</option>
+                                    <option value="" selected>Chọn chỗ ngồi</option>
                                     <?php foreach ($chongois as $chongoi) {
                                         $selected = '';
+                                        if ($s_chongoi == $chongoi['id']) $selected = 'selected=""';
                                         echo '<option value="' . $chongoi['id'] . '" ' . $selected . '>' . $chongoi['name'] . '</option>';
                                     } ?>
                                 </select>
@@ -75,9 +84,10 @@
                             <div class="col-sm-1 control-label">Xuất xứ</div>
                             <div class="col-sm-2">
                                 <select name="xuatxu" class="form-control" id="xuatxu">
-                                    <option disabled selected>Chọn xuất xứ</option>
+                                    <option value="" selected>Chọn xuất xứ</option>
                                     <?php foreach ($xuatxus as $xuatxu) {
                                         $selected = '';
+                                        if ($s_xuatxu == $xuatxu['id']) $selected = 'selected=""';
                                         echo '<option value="' . $xuatxu['id'] . '" ' . $selected . '>' . $xuatxu['name'] . '</option>';
                                     } ?>
                                 </select>
@@ -85,10 +95,22 @@
                             <div class="col-sm-1 control-label">Màu sắc</div>
                             <div class="col-sm-2">
                                 <select name="mausac" class="form-control" id="mausac">
-                                    <option disabled selected>Chọn màu sắc</option>
+                                    <option value="" selected>Chọn màu sắc</option>
                                     <?php foreach ($mausacs as $mausac) {
                                         $selected = '';
+                                        if ($s_mausac == $mausac['id']) $selected = 'selected=""';
                                         echo '<option value="' . $mausac['id'] . '" ' . $selected . '>' . $mausac['name'] . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-1 control-label">Năm sản xuất</div>
+                            <div class="col-sm-2">
+                                <select name="namsanxuat" class="form-control" id="namsanxuat">
+                                    <option value="" selected>Chọn năm sản xuất</option>
+                                    <?php foreach ($namsanxuats as $namsanxuat) {
+                                        $selected = '';
+                                        if ($s_namsanxuat == $namsanxuat['id']) $selected = 'selected=""';
+                                        echo '<option value="' . $namsanxuat['id'] . '" ' . $selected . '>' . $namsanxuat['name'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
@@ -97,16 +119,16 @@
                             <div class="col-sm-1 control-label">Giá bán</div>
                             <div class="col-sm-2">
                                 <select name="giaban" class="form-control" id="giaban">
-                                    <option disabled selected>Chọn giá bán</option>
-                                    <option value="1">Dưới 300</option>
-                                    <option value="2">Từ 300 - 500</option>
-                                    <option value="3">Từ 500 - 700</option>
-                                    <option value="4">Từ 700 - 900</option>
-                                    <option value="5">Trên 900</option>
+                                    <?php if($s_giaban == 0){echo '<option value="" selected>Chọn giá bán</option>';}else{ echo '<option value="">Chọn giá bán</option>';} ?>
+                                    <?php if($s_giaban == 1){echo '<option value="1" selected>Dưới 300</option>';}else{ echo '<option value="1">Dưới 300</option>';} ?>
+                                    <?php if($s_giaban == 2){echo '<option value="2" selected>Từ 300 - 500</option>';}else{ echo '<option value="2">Từ 300 - 500</option>';} ?>
+                                    <?php if($s_giaban == 3){echo '<option value="3" selected>Từ 500 - 700</option>';}else{ echo '<option value="3">Từ 500 - 700</option>';} ?>
+                                    <?php if($s_giaban == 4){echo '<option value="4" selected>Từ 700 - 900</option>';}else{ echo '<option value="4">Từ 700 - 900</option>';} ?>
+                                    <?php if($s_giaban == 5){echo '<option value="5" selected>Trên 900</option>';}else{ echo '<option value="5">Trên 900</option>';} ?>
                                 </select>
                             </div>
                             <div class="col-sm-1"></div>
-                            <div class="col-sm-2 text-center">
+                            <div class="col-sm-8 text-right">
                                 <button type="button" class="btn btn-success" id="timkiem"><i
                                             class="glyphicon glyphicon-search"></i> Tìm kiếm
                                 </button>

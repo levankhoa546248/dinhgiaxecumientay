@@ -45,4 +45,14 @@ for ($k = 0; $k < count($haxe); $k++) {
 $iprvConf = select('SELECT id as \'key\' FROM hinhanhxe WHERE idxe =' . $idxe);
 $iprvConf_json = json_encode($iprvConf);
 
+$dongxes = get_select_nested('SELECT dx.id, dx.dongxe, dx.idhangxe, sub.`Name` as tenhangxe FROM dongxe dx
+LEFT JOIN subcategory sub ON dx.idhangxe = sub.Id where dx.trangthai = 1 and dx.idhangxe = '.$xe["hangxe"]);
+$nhienlieus = get_select_nested('SELECT id, name FROM nhienlieu where trangthai = 1');
+$hopsos = get_select_nested('SELECT id, name FROM hopso where trangthai = 1');
+$chongois = get_select_nested('SELECT id, name FROM chongoi where trangthai = 1');
+$xuatxus = get_select_nested('SELECT id, name FROM xuatxu where trangthai = 1');
+$dsNhaDauTu = select('SELECT * FROM nhadautu');
+$mausacs = get_select_nested('SELECT id, name FROM mausac where trangthai = 1');
+$namsanxuats = get_select_nested('SELECT id, name FROM namsanxuat where trangthai = 1');
+
 require('admin/views/product/edit.php');

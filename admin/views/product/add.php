@@ -150,13 +150,13 @@
                             <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
                             <div class="col-sm-4">
                                 <input name="chietkhaumua" type="text" id="chietkhaumua"
-                                       data-type="currency" class="form-control" placeholder="0"
+                                       data-type="currency" class="form-control text-right" placeholder="0"
                                 />
                             </div>
                             <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
                             <div class="col-sm-4">
                                 <input name="chietkhauban" type="text" id="chietkhauban"
-                                       data-type="currency" class="form-control" placeholder="0"
+                                       data-type="currency" class="form-control text-right" placeholder="0"
                                 />
                             </div>
                         </div>
@@ -164,13 +164,13 @@
                             <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
                             <div class="col-sm-4">
                                 <input name="giavon" type="text" data-type="currency"
-                                       class="form-control" id="giavon" placeholder="0"
+                                       class="form-control text-right" id="giavon" placeholder="0"
                                 />
                             </div>
                             <label for="giavon" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-4">
                                 <input name="giaban" type="text" data-type="currency"
-                                       class="form-control" id="giaban" placeholder="0"
+                                       class="form-control text-right" id="giaban" placeholder="0"
                                 />
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                             <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
                             <div class="col-sm-1">
                                 <input name="soluong" type="number" value="1"
-                                       class="form-control" id="soluong" placeholder="0"
+                                       class="form-control text-center" id="soluong" placeholder="0"
                                 />
                             </div>
                             <label for="ngaynhap" class="col-sm-1 control-label">Ngày</label>
@@ -190,7 +190,7 @@
                             <label for="tonglai" class="col-sm-2 control-label">Còn lại</label>
                             <div class="col-sm-4">
                                 <input name="sotienconlai" type="text" id="sotienconlai" disabled
-                                       data-type="currency" class="form-control" placeholder="0"
+                                       data-type="currency" class="form-control text-right" placeholder="0"
                                 />
                             </div>
                         </div>

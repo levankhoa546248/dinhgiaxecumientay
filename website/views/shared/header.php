@@ -142,37 +142,40 @@ $parent_menus = get_all('categories', $options_parent_menu);
             </div>
             <div class="top-nav navbar-right">
                 <ul class="memenu skyblue">
-                    <li><a href="home">Trang chủ</a></li>
-                    <?php foreach ($parent_menus as $parent_menu): $parentId = $parent_menu['Id']; ?>
-                        <?php if ($parent_menu['Id'] != 3): ?>
-                            <li class="grid"><a
-                                        href="group/<?php echo $parent_menu['Id'] ?>-<?php echo $parent_menu['alias'] ?>.html"><?php echo $parent_menu['Name'] ?></a>
-
-                                <div class="mepanel">
-                                    <ul class="row">
-                                        <?php
-                                        $optionmenus = array(
-                                            'where' => 'CategoryId=' . $parent_menu['Id'] . ' ' . 'and pId = 0',
-                                        );
-                                        $_rowmenus = get_all('subcategory', $optionmenus)
-                                        ?>
-                                        <?php foreach ($_rowmenus as $_rowmenu): ?>
-                                            <li class="col1 me-one">
-                                                <h4>
-                                                    <a
-                                                            href="category/<?php echo $_rowmenu['Id'] ?>-<?php echo $_rowmenu['alias'] ?>.html"><?php echo $_rowmenu['Name'] ?></a>
-                                                </h4>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            </li>
-                        <?php elseif ($parent_menu['Id'] == 3): ?>
-                            <li class="grid"><a
-                                        href="group/<?php echo $parent_menu['Id'] ?>-<?php echo $parent_menu['alias'] ?>.html"><?php echo $parent_menu['Name'] ?></a>
-                            </li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                    <li><a href="website.php?controller=home">Trang chủ</a></li>
+                    <li><a href="website.php?controller=home">Sản phẩm</a></li>
+                    <li><a href="home">Gửi bán xe</a></li>
+                    <li><a href="home">Tìm mua xe</a></li>
+<!--                    --><?php //foreach ($parent_menus as $parent_menu): $parentId = $parent_menu['Id']; ?>
+<!--                        --><?php //if ($parent_menu['Id'] != 3): ?>
+<!--                            <li class="grid"><a-->
+<!--                                        href="group/--><?php //echo $parent_menu['Id'] ?><!-----><?php //echo $parent_menu['alias'] ?><!--.html">--><?php //echo $parent_menu['Name'] ?><!--</a>-->
+<!---->
+<!--                                <div class="mepanel">-->
+<!--                                    <ul class="row">-->
+<!--                                        --><?php
+//                                        $optionmenus = array(
+//                                            'where' => 'CategoryId=' . $parent_menu['Id'] . ' ' . 'and pId = 0',
+//                                        );
+//                                        $_rowmenus = get_all('subcategory', $optionmenus)
+//                                        ?>
+<!--                                        --><?php //foreach ($_rowmenus as $_rowmenu): ?>
+<!--                                            <li class="col1 me-one">-->
+<!--                                                <h4>-->
+<!--                                                    <a-->
+<!--                                                            href="category/--><?php //echo $_rowmenu['Id'] ?><!-----><?php //echo $_rowmenu['alias'] ?><!--.html">--><?php //echo $_rowmenu['Name'] ?><!--</a>-->
+<!--                                                </h4>-->
+<!--                                            </li>-->
+<!--                                        --><?php //endforeach; ?>
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        --><?php //elseif ($parent_menu['Id'] == 3): ?>
+<!--                            <li class="grid"><a-->
+<!--                                        href="group/--><?php //echo $parent_menu['Id'] ?><!-----><?php //echo $parent_menu['alias'] ?><!--.html">--><?php //echo $parent_menu['Name'] ?><!--</a>-->
+<!--                            </li>-->
+<!--                        --><?php //endif; ?>
+<!--                    --><?php //endforeach; ?>
                     <li><a href="livesport">LIÊN HỆ</a></li>
                 </ul>
             </div>

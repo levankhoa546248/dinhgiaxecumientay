@@ -92,9 +92,16 @@
                             <legend>Thông tin xe:</legend>
                             <input name="idxe" id="idxe" type="hidden" value="<?php echo $_GET["idxe"]; ?>"/>
                             <div class="form-group">
-                                <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
+                                <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
                                 <div class="col-sm-10">
-                                    <select name="hangxe" class="form-control" id="hangxe">
+                                    <input name="tenxe" type="text" value="<?php echo $xe ? $xe['tenxe'] : ''; ?>"
+                                           class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hangxe" class="col-sm-2 control-label">Hãng xe</label>
+                                <div class="col-sm-4">
+                                    <select name="hangxe" class="form-control" id="hangxe" onChange="getDongXe(this.value);">
                                         <option value="0" selected>Chọn hãng xe</option>
                                         <?php foreach ($subcategories as $subcategory) {
                                             $selected = '';
@@ -103,61 +110,103 @@
                                         } ?>
                                     </select>
                                 </div>
+                                <label for="dongxe" class="col-sm-2 control-label">Dòng xe</label>
+                                <div class="col-sm-4">
+                                    <select name="dongxe" class="form-control" id="dongxe">
+                                        <option disabled selected>Chọn dòng xe</option>
+                                        <?php foreach ($dongxes as $dongxe) {
+                                            $selected = '';
+                                            if ($xe && ($xe['dongxe'] == $dongxe['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $dongxe['id'] . '" ' . $selected . '>' . $dongxe['dongxe'] . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="tenxe" class="col-sm-2 control-label">Tên sản phẩm</label>
-                                <div class="col-sm-10">
-                                    <input name="tenxe" type="text" value="<?php echo $xe ? $xe['tenxe'] : ''; ?>"
-                                           class="form-control" id="tenxe" placeholder="Tên sản phẩm" required=""/>
+                                <label for="nhienlieu" class="col-sm-2 control-label">Nhiên liệu</label>
+                                <div class="col-sm-4">
+                                    <select name="nhienlieu" class="form-control" id="nhienlieu">
+                                        <option disabled selected>Chọn nhiên liệu</option>
+                                        <?php foreach ($nhienlieus as $nhienlieu) {
+                                            $selected = '';
+                                            if ($xe && ($xe['nhienlieu'] == $nhienlieu['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $nhienlieu['id'] . '" ' . $selected . '>' . $nhienlieu['name'] . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
+                                <label for="hopso" class="col-sm-2 control-label">Hợp số</label>
+                                <div class="col-sm-4">
+                                    <select name="hopso" class="form-control" id="hopso">
+                                        <option disabled selected>Chọn hợp số</option>
+                                        <?php foreach ($hopsos as $hopso) {
+                                            $selected = '';
+                                            if ($xe && ($xe['hopso'] == $hopso['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $hopso['id'] . '" ' . $selected . '>' . $hopso['name'] . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chongoi" class="col-sm-2 control-label">Chỗ ngồi</label>
+                                <div class="col-sm-4">
+                                    <select name="chongoi" class="form-control" id="chongoi">
+                                        <option disabled selected>Chọn chỗ ngồi</option>
+                                        <?php foreach ($chongois as $chongoi) {
+                                            $selected = '';
+                                            if ($xe && ($xe['chongoi'] == $chongoi['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $chongoi['id'] . '" ' . $selected . '>' . $chongoi['name'] . '</option>';
+                                        } ?>
+                                    </select>
+                                </div>
+                                <label for="xuatxu" class="col-sm-2 control-label">Xuất xứ</label>
+                                <div class="col-sm-4">
+                                    <select name="xuatxu" class="form-control" id="xuatxu">
+                                        <option disabled selected>Chọn xuất xứ</option>
+                                        <?php foreach ($xuatxus as $xuatxu) {
+                                            $selected = '';
+                                            if ($xe && ($xe['xuatxu'] == $xuatxu['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $xuatxu['id'] . '" ' . $selected . '>' . $xuatxu['name'] . '</option>';
+                                        } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="mausac" class="col-sm-2 control-label">Màu sắc</label>
-                                <div class="col-sm-10">
-                                    <input name="mausac" type="text" value="<?php echo $xe ? $xe['mausac'] : ''; ?>"
-                                           class="form-control" id="mausac" placeholder="Màu sắc"/>
+                                <div class="col-sm-4">
+                                    <select name="mausac" class="form-control" id="mausac">
+                                        <option disabled selected>Chọn màu sắc</option>
+                                        <?php foreach ($mausacs as $mausac) {
+                                            $selected = '';
+                                            if ($xe && ($xe['mausac'] == $mausac['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $mausac['id'] . '" ' . $selected . '>' . $mausac['name'] . '</option>';
+                                        } ?>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
-                                <div class="col-sm-10">
-                                    <input name="giavon" type="text" data-type="currency" class="form-control"
-                                           id="giavon"
-                                           placeholder="0"
-                                           value="<?php echo $xe ? number_format($xe['giavon'], 0, '.', ',') : ''; ?>"
-                                    />
+                                <label for="namsanxuat" class="col-sm-2 control-label">Năm sản xuất</label>
+                                <div class="col-sm-4">
+                                    <select name="namsanxuat" class="form-control" id="namsanxuat">
+                                        <option disabled selected>Chọn năm sản xuất</option>
+                                        <?php foreach ($namsanxuats as $namsanxuat) {
+                                            $selected = '';
+                                            if ($xe && ($xe['namsanxuat'] == $namsanxuat['id'])) $selected = 'selected=""';
+                                            echo '<option value="' . $namsanxuat['id'] . '" ' . $selected . '>' . $namsanxuat['name'] . '</option>';
+                                        } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="chietkhaumua" class="col-sm-2 control-label">Chi phí mua</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input name="chietkhaumua" type="text" id="chietkhaumua" data-type="currency"
-                                           class="form-control" placeholder="0"
+                                           class="form-control text-right" placeholder="0"
                                            value="<?php echo $xe ? number_format($xe['chietkhaumua'], 0, '.', ',') : ''; ?>"
                                     />
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="chietkhauban" class="col-sm-2 control-label">Chi phí bán</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input name="chietkhauban" type="text" id="chietkhauban" data-type="currency"
-                                           class="form-control" placeholder="0"
+                                           class="form-control text-right" placeholder="0"
                                            value="<?php echo $xe ? number_format($xe['chietkhauban'], 0, '.', ',') : ''; ?>"
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
-                                <div class="col-sm-4">
-                                    <input name="soluong" type="number" value="1"
-                                           value="<?php echo $xe ? $xe['soluong'] : ''; ?>"
-                                           class="form-control" id="soluong" placeholder="0"
-                                    />
-                                </div>
-                                <label for="ngayban" class="col-sm-1 control-label">Ngày bán</label>
-                                <div class="col-sm-4">
-                                    <input name="ngayban" id="ngayban" class="form-control"
-                                           type="date" value="<?php echo date('Y-m-d'); ?>"
                                     />
                                 </div>
                             </div>
@@ -165,25 +214,48 @@
                                 <label for="chiphiphatsinh" class="col-sm-2 control-label">Chi phí phát sinh</label>
                                 <div class="col-sm-10">
                                     <input name="chiphiphatsinh" type="text" id="chiphiphatsinh" data-type="currency"
-                                           class="form-control" placeholder="0"
+                                           class="form-control text-right" placeholder="0"
                                            value="<?php echo $xe ? number_format($xe['chiphiphatsinh'], 0, '.', ',') : ''; ?>"
                                     />
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="giavon" class="col-sm-2 control-label">Giá vốn</label>
+                                <div class="col-sm-4">
+                                    <input name="giavon" type="text" data-type="currency"
+                                           class="form-control text-right"
+                                           id="giavon" placeholder="0"
+                                           value="<?php echo $xe ? number_format($xe['giavon'], 0, '.', ',') : ''; ?>"
+                                    />
+                                </div>
                                 <label for="giaban" class="col-sm-2 control-label" style="color: red; font-size: large">Giá
                                     bán</label>
                                 <div class="col-sm-4">
                                     <input name="giaban" type="text" id="giaban" data-type="currency"
-                                           class="form-control"
-                                           placeholder="0" style="font-size: large"
+                                           class="form-control text-right" placeholder="0" style="font-size: large"
                                            value="<?php echo $xe ? $xe['giaban'] == "0" ? '' : number_format($xe['giaban'], 0, '.', ',') : ''; ?>"
                                     />
                                 </div>
-                                <label for="tonglai" class="col-sm-1 control-label">Tổng lãi</label>
-                                <div class="col-sm-4">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="soluong" class="col-sm-2 control-label">Số lượng</label>
+                                <div class="col-sm-1">
+                                    <input name="soluong" type="number" value="1"
+                                           value="<?php echo $xe ? $xe['soluong'] : ''; ?>"
+                                           class="form-control text-center" id="soluong" placeholder="0"
+                                    />
+                                </div>
+                                <label for="ngayban" class="col-sm-1 control-label">Ngày bán</label>
+                                <div class="col-sm-2">
+                                    <input name="ngayban" id="ngayban" class="form-control"
+                                           type="date" value="<?php echo date('Y-m-d'); ?>"
+                                    />
+                                </div>
+                                <label for="tonglai" class="col-sm-2 control-label">Tổng lãi</label>
+                                <div class="col-sm-3">
                                     <input name="tonglai" type="text" id="tonglai" disabled data-type="currency"
-                                           class="form-control" placeholder="0"
+                                           class="form-control text-right" placeholder="0"
                                            value="<?php echo $xe ? number_format($xe['tonglai'], 0, '.', ',') : ''; ?>"
                                     />
                                 </div>
@@ -196,7 +268,7 @@
                             <legend>Nhà đầu tư:</legend>
                             <div class="form-group">
                                 <label for="chudautu" class="col-sm-2 control-label">Chủ đầu tư</label>
-                                <div class="col-sm-8">
+                                <div class="col-sm-4">
                                     <select name="chudautu" class="form-control" id="chudautu"
                                             data-show-subtext="true" data-live-search="true">
                                         <option value="0" selected disabled>Chọn nhà đầu tư</option>
@@ -205,43 +277,41 @@
                                         } ?>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label">Số dư</label>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <input name="sodu" type="text" id="sodu" disabled
                                            data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
                                     />
                                 </div>
+                                <label for="tile" class="col-sm-1 control-label">Tỉ lệ(%)</label>
+                                <div class="col-sm-1">
+                                    <input name="tile" type="text" id="tile" disabled
+                                           data-type="currency" class="form-control text-center" placeholder="0"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">Vốn</label>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <input name="vondautu" type="text" id="vondautu"
                                            data-type="currency" class="form-control text-right col-sm-4" placeholder="0"
                                     />
                                 </div>
-                                <label for="tonglai" class="col-sm-1 text-left control-label">Tái đầu tư</label>
+                                <label for="taidautu" class="col-sm-1 text-left control-label">Tái đầu tư</label>
                                 <div class="col-sm-1 control-label pull-left">
                                     <input name="taidautu" type="checkbox" id="taidautu" class="pull-left"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="tile" class="col-sm-2 control-label">Tỉ lệ(%)</label>
-                                <div class="col-sm-3">
-                                    <input name="tile" type="text" id="tile" disabled
-                                           data-type="currency" class="form-control" placeholder="0"
-                                    />
-                                </div>
-                                <label for="tonglai" class="col-sm-2 control-label">Còn lại</label>
-                                <div class="col-sm-3">
+                                <label for="sotienconlai" class="col-sm-2 control-label">Còn lại</label>
+                                <div class="col-sm-2">
                                     <input name="sotienconlai" type="text" id="sotienconlai" disabled
                                            data-type="currency"
-                                           class="form-control" placeholder="0"
+                                           class="form-control text-right" placeholder="0"
                                            value="<?php echo $xe ? $xe['sotienconlai'] == "0" ? '' : number_format($xe['sotienconlai'], 0, '.', ',') : ''; ?>"
                                     />
                                 </div>
                                 <div class="col-sm-1"></div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-success" id="themnhadautu"
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-success pull-right" id="themnhadautu"
                                             name="themnhadautu">+
                                     </button>
                                 </div>
@@ -289,40 +359,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <!--                    <div class="form-group">-->
-                        <!--                        <label for="image1" class="col-sm-2 control-label">Hình ảnh</label>-->
-                        <!--                        <div class="col-sm-10">-->
-                        <!--                            <div class="field" align="left">-->
-                        <!--                                <input class="form-control" accept="image/*" type="file" id="files" name="files[]"-->
-                        <!--                                       multiple style="border: #0c0b0b"/>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-                        <!--                    <div class="form-group">-->
-                        <!--                        <label for="image1" class="col-sm-2 control-label"></label>-->
-                        <!--                        <div class="col-sm-10">-->
-                        <!--                            <table class="table table-striped table-bordered table-hover small" id="dshinhanhxe"-->
-                        <!--                                   style="width:100%">-->
-                        <!--                                <thead class="bg-primary">-->
-                        <!--                                <tr>-->
-                        <!--                                    <th class="text-center">Id</th>-->
-                        <!--                                    <th class="text-center">Id xe</th>-->
-                        <!--                                    <th class="text-center">Hình ảnh</th>-->
-                        <!--                                    <th class="text-center" width="10%"><i class="fa fa-gears"></i></th>-->
-                        <!--                                </tr>-->
-                        <!--                                </thead>-->
-                        <!--                                <tfoot align="right">-->
-                        <!--                                <tr>-->
-                        <!--                                    <th class="text-center"></th>-->
-                        <!--                                    <th class="text-center"></th>-->
-                        <!--                                    <th class="text-center"></th>-->
-                        <!--                                    <th class="text-center"></th>-->
-                        <!--                                </tr>-->
-                        <!--                                </tfoot>-->
-                        <!--                            </table>-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-                        <div class="form-group">
+                        <div class="form-group" style="margin-top: 15px">
                             <div class="col-sm-12">
                                 <?php require('admin/views/product/suahinhanhxe.php'); ?>
                             </div>
@@ -341,6 +378,17 @@
 </div>
 <?php require('admin/views/shared/footer.php'); ?>
 <script>
+    function getDongXe(val) {
+        $.ajax({
+            type: "POST",
+            url: "admin.php?controller=dongxe&action=getdongxe",
+            data: 'idhangxe=' + val,
+            success: function (data) {
+                $("#dongxe").html(data);
+                // getCity();
+            }
+        });
+    }
     $(document).ready(function () {
         $('#taidautu').click(function (e) {
             var taidautu = $('#taidautu').is(":checked");
@@ -412,8 +460,13 @@
             dataform.append("idxe", $("#idxe").val());
             dataform.append("hangxe", $("#hangxe").val());
             dataform.append("tenxe", $("#tenxe").val());
+            dataform.append("dongxe", $("#dongxe").val());
+            dataform.append("nhienlieu", $("#nhienlieu").val());
+            dataform.append("hopso", $("#hopso").val());
+            dataform.append("chongoi", $("#chongoi").val());
+            dataform.append("xuatxu", $("#xuatxu").val());
             dataform.append("mausac", $("#mausac").val());
-            dataform.append("giavon", StringToNumber($("#giavon").val()));
+            dataform.append("namsanxuat", $("#namsanxuat").val());            dataform.append("giavon", StringToNumber($("#giavon").val()));
             dataform.append("chietkhaumua", StringToNumber($("#chietkhaumua").val()));
             dataform.append("chietkhauban", StringToNumber($("#chietkhauban").val()));
             dataform.append("soluong", $("#soluong").val());
@@ -610,8 +663,14 @@
             // }
             dataform.append("idxe", $("#idxe").val());
             dataform.append("hangxe", $("#hangxe").val());
-            dataform.append("tenxe", $("#tenxe").val());
+            dataform.append("dongxe", $("#dongxe").val());
+            dataform.append("nhienlieu", $("#nhienlieu").val());
+            dataform.append("hopso", $("#hopso").val());
+            dataform.append("chongoi", $("#chongoi").val());
+            dataform.append("xuatxu", $("#xuatxu").val());
             dataform.append("mausac", $("#mausac").val());
+            dataform.append("namsanxuat", $("#namsanxuat").val());
+            dataform.append("tenxe", $("#tenxe").val());
             dataform.append("giavon", StringToNumber($("#giavon").val()));
             dataform.append("chietkhaumua", StringToNumber($("#chietkhaumua").val()));
             dataform.append("chietkhauban", StringToNumber($("#chietkhauban").val()));
