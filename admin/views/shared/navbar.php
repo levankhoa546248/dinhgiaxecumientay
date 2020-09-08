@@ -33,6 +33,16 @@
             </a>
         </li>
         <li class="dropdown">
+            <a href="admin.php?controller=timmuaxe">
+                <div> Tìm xe</div>
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="admin.php?controller=guibanxe">
+                <div> Gửi xe</div>
+            </a>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Danh mục</a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="admin.php?controller=dongxe">Dòng xe</a></li>

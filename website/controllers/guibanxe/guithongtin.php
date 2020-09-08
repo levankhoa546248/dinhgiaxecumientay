@@ -6,11 +6,12 @@ if (isset($_POST)) {
     $thongtinxe = $_POST["thongtinxe"];
     $giabanmongmuon = $_POST["giabanmongmuon"];
     $xeguiban = array(
-        'hoten' => escape($hoten),
+        'hoten' => ucwords($hoten),
         'dienthoai' => escape($dienthoai),
-        'diachi' => escape($diachi),
-        'thongtinxe' => escape($thongtinxe),
-        'giabanmongmuon' => escape($giabanmongmuon)
+        'diachi' => $diachi,
+        'thongtinxe' => $thongtinxe,
+        'giabanmongmuon' => escape($giabanmongmuon),
+        'ngaytao' => date('Y-m-d')
     );
     $result = insert("xeguiban", $xeguiban);
     echo $result;

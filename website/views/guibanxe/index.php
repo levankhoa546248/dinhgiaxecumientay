@@ -9,7 +9,7 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-3 control-label">Họ tên</label>
                             <div class="col-sm-9">
-                                <input name="hoten" type="text" class="form-control" id="hoten" placeholder="Họ tên"
+                                <input name="hoten" type="text" class="form-control text-capitalize" id="hoten" placeholder="Họ tên"
                                        required="" autofocus/>
                             </div>
                         </div>
@@ -56,6 +56,31 @@
     </div>
     <script>
         $(document).ready(function () {
+            $('#hoten').keypress(function (e) {
+                if (e.keyCode == 13){
+                    $('#dienthoai').focus();
+                }
+            });
+            $('#dienthoai').keypress(function (e) {
+                if (e.keyCode == 13){
+                    $('#diachi').focus();
+                }
+            });
+            $('#diachi').keypress(function (e) {
+                if (e.keyCode == 13){
+                    $('#thongtinxe').focus();
+                }
+            });
+            $('#thongtinxe').keypress(function (e) {
+                if (e.keyCode == 13){
+                    $('#giabanmongmuon').focus();
+                }
+            });
+            $('#giabanmongmuon').keypress(function (e) {
+                if (e.keyCode == 13){
+                    $('#guithongtin').focus();
+                }
+            });
             $('#guithongtin').click(function (e) {
                 var hoten = $("#hoten").val();
                 if (checkIf(hoten)) {
