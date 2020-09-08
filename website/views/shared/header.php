@@ -144,8 +144,8 @@ $parent_menus = get_all('categories', $options_parent_menu);
                 <ul class="memenu skyblue">
                     <li><a href="website.php?controller=home">Trang chủ</a></li>
                     <li><a href="website.php?controller=home">Sản phẩm</a></li>
-                    <li><a href="home">Gửi bán xe</a></li>
-                    <li><a href="home">Tìm mua xe</a></li>
+                    <li><a href="website.php?controller=guibanxe">Gửi bán xe</a></li>
+                    <li><a href="website.php?controller=timmuaxe">Tìm mua xe</a></li>
 <!--                    --><?php //foreach ($parent_menus as $parent_menu): $parentId = $parent_menu['Id']; ?>
 <!--                        --><?php //if ($parent_menu['Id'] != 3): ?>
 <!--                            <li class="grid"><a-->
