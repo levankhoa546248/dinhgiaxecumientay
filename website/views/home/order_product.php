@@ -122,7 +122,7 @@
                 <h3 class="col-sm-12">Không có sản phẩm nào trong danh mục này.</h3>
             <?php endif; ?>
             <?php foreach ($order_products as $order_product): ?>
-                <div class="col-xs-4 feature-grid jewel m-1" style="height: 250px">
+                <div class="col-xs-4 feature-grid jewel m-1" style="height: 300px">
                     <!--                    <a href="product/--><?php //echo $order_product['id']; ?><!----->
                     <?php //echo $order_product['mausac']; ?><!--.html"-->
                     <!--                       class="screenshot"-->
@@ -132,13 +132,13 @@
                     <?php if ($order_product['duongdan'] == null): ?>
                         <a href="product/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
                            class="screenshot" rel="<?php echo "website/themes/upload/product/car-loading.jpg" ?>">
-                            <?php echo '<image style="height: 150px;" src="' . "website/themes/upload/product/car-loading.jpg" . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
+                            <?php echo '<image style="height: 200px;" src="' . "website/themes/upload/product/car-loading.jpg" . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
                         </a>
                     <?php else: ?>
                         <a href="product/
                     <?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
                            class="screenshot" rel="<?php echo $order_product['duongdan'] ?>">
-                            <?php echo '<image style="height: 150px;" src="' . $order_product['duongdan'] . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
+                            <?php echo '<image style="height: 200px;" src="' . $order_product['duongdan'] . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
                         </a>
                     <?php endif; ?>
                     <div class="arrival-info">

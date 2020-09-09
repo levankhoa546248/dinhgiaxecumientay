@@ -25,8 +25,6 @@ $parent_menus = get_all('categories', $options_parent_menu);
     <link href="website/themes/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="website/themes/css/header.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="website/themes/css/livechat.css" rel="stylesheet" type="text/css" media="all"/>
-
-
     <link href="admin/themes/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
