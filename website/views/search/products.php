@@ -127,7 +127,7 @@ if (isset($_GET["search"])) {
                                     <?php if($s_giaban == 5){echo '<option value="5" selected>Trên 900</option>';}else{ echo '<option value="5">Trên 900</option>';} ?>
                                 </select>
                             </div>
-                            <div class="col-sm-1"></div>
+                            <div class="col-sm-1 control-label"></div>
                             <div class="col-sm-8 text-right">
                                 <button type="button" class="btn btn-success" id="timkiem"><i
                                             class="glyphicon glyphicon-search"></i> Tìm kiếm
@@ -144,7 +144,7 @@ if (isset($_GET["search"])) {
                 <h3 class="col-sm-12">Không có sản phẩm nào trong danh mục này.</h3>
             <?php endif; ?>
             <?php foreach ($order_products as $order_product): ?>
-                <div class="col-xs-2 feature-grid jewel m-1" style="height: 250px">
+                <div class="col-xs-4 feature-grid jewel m-1" style="height: 300px">
                     <!--                    <a href="product/--><?php //echo $order_product['id']; ?><!----->
                     <?php //echo $order_product['mausac']; ?><!--.html"-->
                     <!--                       class="screenshot"-->
@@ -154,13 +154,13 @@ if (isset($_GET["search"])) {
                     <?php if ($order_product['duongdan'] == null): ?>
                         <a href="product/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
                            class="screenshot" rel="<?php echo "website/themes/upload/product/car-loading.jpg" ?>">
-                            <?php echo '<image style="height: 150px;" src="' . "website/themes/upload/product/car-loading.jpg" . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
+                            <?php echo '<image style="height: 200px;" src="' . "website/themes/upload/product/car-loading.jpg" . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
                         </a>
                     <?php else: ?>
                         <a href="product/
                     <?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
                            class="screenshot" rel="<?php echo $order_product['duongdan'] ?>">
-                            <?php echo '<image style="height: 150px;" src="' . $order_product['duongdan'] . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
+                            <?php echo '<image style="height: 200px;" src="' . $order_product['duongdan'] . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
                         </a>
                     <?php endif; ?>
                     <div class="arrival-info">

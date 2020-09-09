@@ -105,8 +105,8 @@
                                     <option value="5">Trên 900</option>
                                 </select>
                             </div>
-                            <div class="col-sm-1"></div>
-                            <div class="col-sm-2 text-center">
+                            <div class="col-sm-1 control-label"></div>
+                            <div class="col-sm-8 text-right">
                                 <button type="button" class="btn btn-success" id="timkiem"><i
                                             class="glyphicon glyphicon-search"></i> Tìm kiếm
                                 </button>
