@@ -63,6 +63,11 @@
             </ul>
         </li>
         <li class="dropdown">
+            <a href="website.php?controller=home" target="_blank">
+                <div> Website</div>
+            </a>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>

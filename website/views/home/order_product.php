@@ -122,7 +122,7 @@
                 <h3 class="col-sm-12">Không có sản phẩm nào trong danh mục này.</h3>
             <?php endif; ?>
             <?php foreach ($order_products as $order_product): ?>
-                <div class="col-xs-2 feature-grid jewel m-1" style="height: 250px">
+                <div class="col-xs-4 feature-grid jewel m-1" style="height: 250px">
                     <!--                    <a href="product/--><?php //echo $order_product['id']; ?><!----->
                     <?php //echo $order_product['mausac']; ?><!--.html"-->
                     <!--                       class="screenshot"-->

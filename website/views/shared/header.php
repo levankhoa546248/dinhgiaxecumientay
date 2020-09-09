@@ -107,83 +107,23 @@ $parent_menus = get_all('categories', $options_parent_menu);
 </head>
 
 <body>
-<!--<div class="top_bg" id="top1">-->
-<!--    <div class="container">-->
-<!--        <div class="header_top-sec">-->
-<!--            <div class="top_right">-->
-<!--                <ul>-->
-<!--                    <li><a href="intro">Hướng dẫn Order </a></li>-->
-<!--                    <li><a href="contact">Liên Hệ</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div class="top_right" style="padding-left: 2em;">-->
-<!--            </div>-->
-<!--            <div class="top_left">-->
-<!--                <form style="margin-bottom:0em " action="http://localhost/StoreManager/search/" method="get"-->
-<!--                      onsubmit="return false;">-->
-<!--                    <input type=search name='q' id='q' value="Nhập từ khóa..." onfocus="this.value = '';"-->
-<!--                           onblur="if (this.value == '') {this.value = 'Nhập từ khóa...';}">-->
-<!--                    <input type="submit" value="Tìm kiếm"-->
-<!--                           onclick="window.location.href=this.form.action + this.form.q.value;" class="input-search"/>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="header-top">
     <div class="header-bottom">
         <div class="container-top" style="padding-top: 0px">
             <div class="logo">
                 <a href="index.html">
-                    <!--                        <h1>Auto Dũng Lâm</h1>-->
                     <?php echo '<image class="img-responsive" src="' . PATH_IMG_WEB . $logo['Images'] . '?time=' . time() . '" alt="' . $logo['Images'] . '"/ >'; ?>
                 </a>
             </div>
-            <div class="top-nav navbar-right">
+            <div class="top-nav navbar-right" style="width: auto;">
                 <ul class="memenu skyblue">
                     <li><a href="website.php?controller=home">Trang chủ</a></li>
                     <li><a href="website.php?controller=home">Sản phẩm</a></li>
                     <li><a href="website.php?controller=guibanxe">Gửi bán xe</a></li>
                     <li><a href="website.php?controller=timmuaxe">Tìm mua xe</a></li>
-<!--                    --><?php //foreach ($parent_menus as $parent_menu): $parentId = $parent_menu['Id']; ?>
-<!--                        --><?php //if ($parent_menu['Id'] != 3): ?>
-<!--                            <li class="grid"><a-->
-<!--                                        href="group/--><?php //echo $parent_menu['Id'] ?><!-----><?php //echo $parent_menu['alias'] ?><!--.html">--><?php //echo $parent_menu['Name'] ?><!--</a>-->
-<!---->
-<!--                                <div class="mepanel">-->
-<!--                                    <ul class="row">-->
-<!--                                        --><?php
-//                                        $optionmenus = array(
-//                                            'where' => 'CategoryId=' . $parent_menu['Id'] . ' ' . 'and pId = 0',
-//                                        );
-//                                        $_rowmenus = get_all('subcategory', $optionmenus)
-//                                        ?>
-<!--                                        --><?php //foreach ($_rowmenus as $_rowmenu): ?>
-<!--                                            <li class="col1 me-one">-->
-<!--                                                <h4>-->
-<!--                                                    <a-->
-<!--                                                            href="category/--><?php //echo $_rowmenu['Id'] ?><!-----><?php //echo $_rowmenu['alias'] ?><!--.html">--><?php //echo $_rowmenu['Name'] ?><!--</a>-->
-<!--                                                </h4>-->
-<!--                                            </li>-->
-<!--                                        --><?php //endforeach; ?>
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                        --><?php //elseif ($parent_menu['Id'] == 3): ?>
-<!--                            <li class="grid"><a-->
-<!--                                        href="group/--><?php //echo $parent_menu['Id'] ?><!-----><?php //echo $parent_menu['alias'] ?><!--.html">--><?php //echo $parent_menu['Name'] ?><!--</a>-->
-<!--                            </li>-->
-<!--                        --><?php //endif; ?>
-<!--                    --><?php //endforeach; ?>
                     <li><a href="livesport">LIÊN HỆ</a></li>
                 </ul>
             </div>
-            <!--                <div class="cart box_1">-->
-            <!--                    <a href="cart"><i class="glyphicon glyphicon-shopping-cart"></i> Giỏ hàng :-->
-            <!--                        --><?php //echo cart_number(); ?><!-- sp</a>-->
-            <!--                    <div class="clearfix"></div>-->
-            <!--                </div>-->
         </div>
     </div>
 </div>
