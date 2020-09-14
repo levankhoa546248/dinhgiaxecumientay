@@ -9,7 +9,7 @@ if (!empty($_POST)) {
     save('hopso', $hopso);
     header('location:admin.php?controller=hopso');
 }
-$title = 'Thêm hợp số';
+$title = 'Thêm hộp số';
 $user = $_SESSION['user'];
 //load view
 require('admin/views/hopso/add.php');

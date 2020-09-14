@@ -44,7 +44,7 @@
                 });
 
                 $('.xoahangxe').on('click', function () {
-                    return confirm('Bạn chắc muốn xóa hãng xe này?', 'Cảnh báo');
+                    return confirm('Bạn chắc muốn xóa dữ liệu này?', 'Cảnh báo');
                 });
             });
         </script>

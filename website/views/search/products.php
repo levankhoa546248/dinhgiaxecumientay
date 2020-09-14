@@ -57,10 +57,10 @@ if (isset($_GET["search"])) {
                                     } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-1 control-label">Hợp số</div>
+                            <div class="col-sm-1 control-label">Hộp số</div>
                             <div class="col-sm-2">
                                 <select name="hopso" class="form-control" id="hopso">
-                                    <option value="" selected>Chọn hợp số</option>
+                                    <option value="" selected>Chọn hộp số</option>
                                     <?php foreach ($hopsos as $hopso) {
                                         $selected = '';
                                         if ($s_hopso == $hopso['id']) $selected = 'selected=""';

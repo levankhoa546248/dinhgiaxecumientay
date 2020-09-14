@@ -91,10 +91,10 @@
                                     } ?>
                                 </select>
                             </div>
-                            <label for="hopso" class="col-sm-2 control-label">Hợp số</label>
+                            <label for="hopso" class="col-sm-2 control-label">Hộp số</label>
                             <div class="col-sm-4">
                                 <select name="hopso" class="form-control" id="hopso">
-                                    <option disabled selected>Chọn hợp số</option>
+                                    <option disabled selected>Chọn hộp số</option>
                                     <?php foreach ($hopsos as $hopso) {
                                         $selected = '';
                                         echo '<option value="' . $hopso['id'] . '" ' . $selected . '>' . $hopso['name'] . '</option>';
@@ -393,7 +393,7 @@
             }
             var hopso = $("#hopso").val();
             if (checkIf(hopso)) {
-                return jAlert("Chưa chọn hợp số", "Thông báo", function (e) {
+                return jAlert("Chưa chọn hộp số", "Thông báo", function (e) {
                     $("#hopso").focus();
                 });
             }

@@ -51,7 +51,7 @@
                 });
 
                 $('.xoanhadautu').on('click', function () {
-                    return confirm('Bạn chắc muốn xóa nhà đầu tư này?', 'Cảnh báo');
+                    return confirm('Bạn chắc muốn xóa dữ liệu này?', 'Cảnh báo');
                 });
             });
         </script>

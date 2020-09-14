@@ -40,7 +40,7 @@
                 });
 
                 $('.xoanhienlieu').on('click', function () {
-                    return confirm('Bạn chắc muốn xóa dòng xe này?', 'Cảnh báo');
+                    return confirm('Bạn chắc muốn xóa dữ liệu này?', 'Cảnh báo');
                 });
             });
         </script>

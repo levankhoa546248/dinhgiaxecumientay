@@ -13,9 +13,9 @@
                           role="form" action="admin.php?controller=hopso&action=add">
                         <input name="id" type="hidden"/>
                         <div class="form-group">
-                            <label for="name" class="col-sm-3 control-label">Hợp số</label>
+                            <label for="name" class="col-sm-3 control-label">Hộp số</label>
                             <div class="col-sm-9">
-                                <input name="name" type="text" class="form-control" id="name" placeholder="Hợp số"
+                                <input name="name" type="text" class="form-control" id="name" placeholder="Hộp số"
                                        required="" autofocus/>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <b>Danh sách hợp số</b>
+                <b>Danh sách hộp số</b>
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">
@@ -13,7 +13,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">Id</th>
-                            <th>Hợp số</th>
+                            <th>Hộp số</th>
                             <th class="text-center">Tác vụ</th>
                         </tr>
                         </thead>
@@ -40,7 +40,7 @@
                 });
 
                 $('.xoahopso').on('click', function () {
-                    return confirm('Bạn chắc muốn xóa dòng xe này?', 'Cảnh báo');
+                    return confirm('Bạn chắc muốn xóa dữ liệu này?', 'Cảnh báo');
                 });
             });
         </script>

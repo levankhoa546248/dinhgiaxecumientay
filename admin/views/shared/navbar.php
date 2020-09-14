@@ -51,7 +51,7 @@
                 <li class="divider"></li>
                 <li><a href="admin.php?controller=nhienlieu">Nhiên liệu</a></li>
                 <li class="divider"></li>
-                <li><a href="admin.php?controller=hopso">Hợp số</a></li>
+                <li><a href="admin.php?controller=hopso">Hộp số</a></li>
                 <li class="divider"></li>
                 <li><a href="admin.php?controller=chongoi">Chỗ ngồi</a></li>
                 <li class="divider"></li>
