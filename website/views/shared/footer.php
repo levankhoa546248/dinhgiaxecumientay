@@ -3,7 +3,7 @@ $options_category = array(
     'order_by' => 'Id'
 );
 $categories = get_all('categories', $options_category);
-$contactinfo = get_a_record('contactinfo',1);
+$contactinfo = get_a_record('contactinfo', 1);
 ?>
 
 <div class="footer">
@@ -14,13 +14,13 @@ $contactinfo = get_a_record('contactinfo',1);
                     contact info
                 </h1>
                 <address>
-                    <p><i class="fa fa-home pr-10"></i> Address:<?php echo  $contactinfo['Address']?></p>
+                    <p><i class="fa fa-home pr-10"></i> Address:<?php echo $contactinfo['Address'] ?></p>
 
-                    <p><i class="fa fa-globe pr-10"></i> <?php echo  $contactinfo['Country']?></p>
+                    <p><i class="fa fa-globe pr-10"></i> <?php echo $contactinfo['Country'] ?></p>
 
-                    <p><i class="fa fa-mobile pr-10"></i>  Mobile : <?php echo  $contactinfo['Mobile']?></p>
+                    <p><i class="fa fa-mobile pr-10"></i> Mobile : <?php echo $contactinfo['Mobile'] ?></p>
 
-                    <p><i class="fa fa-phone pr-10"></i> Phone : <?php echo  $contactinfo['Phone']?></p>
+                    <p><i class="fa fa-phone pr-10"></i> Phone : <?php echo $contactinfo['Phone'] ?></p>
 
                 </address>
             </div>
@@ -30,13 +30,17 @@ $contactinfo = get_a_record('contactinfo',1);
                 </h1>
                 <address>
 
-                    <p><i class="fa fa-envelope pr-10"></i> Email : <a href="javascript:;"><?php echo  $contactinfo['Email']?></a></p>
+                    <p><i class="fa fa-envelope pr-10"></i> Email : <a
+                                href="javascript:"><?php echo $contactinfo['Email'] ?></a></p>
 
-                    <p><i class="fa fa-facebook pr-10"></i>  Facebook : <a href="javascript:;"><?php echo  $contactinfo['Facebook']?></a></p>
+                    <p><i class="fa fa-facebook pr-10"></i> Facebook : <a
+                                href="javascript:"><?php echo $contactinfo['Facebook'] ?></a></p>
 
-                    <p><i class="fa fa-envelope pr-10"></i> Zalo : <a href="javascript:;"><?php echo  $contactinfo['Zalo']?></a></p>
+                    <p><i class="fa fa-envelope pr-10"></i> Zalo : <a
+                                href="javascript:"><?php echo $contactinfo['Zalo'] ?></a></p>
 
-                    <p><i class="fa fa-skype pr-10"></i> Skype :<a href="javascript:;"><?php echo  $contactinfo['Skype']?></a></p>
+                    <p><i class="fa fa-skype pr-10"></i> Skype :<a
+                                href="javascript:"><?php echo $contactinfo['Skype'] ?></a></p>
                 </address>
             </div>
             <div class="col-lg-3 col-sm-3">
@@ -73,7 +77,7 @@ $contactinfo = get_a_record('contactinfo',1);
                                     <a href="group/<?php echo $category['Id'] ?>-<?php echo $category['alias'] ?>.html"> <?php echo $category['Name'] ?></a>
                                 </li>
                             <?php endforeach; ?>
-                        <?php endif ; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -87,22 +91,20 @@ $contactinfo = get_a_record('contactinfo',1);
         <div class="row">
             <div class="col-lg-6 col-sm-6 pull-right">
                 <ul class="social-link-footer list-unstyled">
-                    <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".1s"><a href="#"><i
-                                class="fa fa-facebook"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".2s"><a href="#"><i
-                                class="fa fa-google-plus"></i></a></li>
+                                    class="fa fa-google-plus"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".3s"><a href="#"><i
-                                class="fa fa-dribbble"></i></a></li>
+                                    class="fa fa-dribbble"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".4s"><a href="#"><i
-                                class="fa fa-linkedin"></i></a></li>
+                                    class="fa fa-linkedin"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".5s"><a href="#"><i
-                                class="fa fa-twitter"></i></a></li>
+                                    class="fa fa-twitter"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".6s"><a href="#"><i
-                                class="fa fa-skype"></i></a></li>
+                                    class="fa fa-skype"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".7s"><a href="#"><i
-                                class="fa fa-github"></i></a></li>
+                                    class="fa fa-github"></i></a></li>
                     <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".8s"><a href="#"><i
-                                class="fa fa-youtube"></i></a></li>
+                                    class="fa fa-youtube"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-4">
@@ -113,8 +115,29 @@ $contactinfo = get_a_record('contactinfo',1);
         </div>
     </div>
 </div>
+<div class="hotline-phone-ring-wrap">
+    <div class="hotline-phone-ring">
+        <div class="hotline-phone-ring-circle"></div>
+        <div class="hotline-phone-ring-circle-fill"></div>
+        <div class="hotline-phone-ring-img-circle"><a href="tel:0898982526" class="pps-btn-img"> <img
+                        src="https://netweb.vn/img/hotline/icon.png" alt="so dien thoai" width="50"> </a></div>
+    </div>
+    <div class="hotline-bar">
+        <a href="tel:0898982526"> <span class="text-hotline">0939571387</span> </a>
+    </div>
 
+</div>
 
+<div class="float-icon-hotline">
+    <ul class="left-icon hotline">
+        <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton"
+                                          href="https://zalo.me/0939571387"><i
+                        class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
+        <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton"
+                                          href="https://www.messenger.com/t/vanhaiweb"><i
+                        class="fa fa-messenger animated infinite tada"></i><span>Facebook</span></a></li>
+    </ul>
+</div>
 <div id="fb-root"></div>
 <script>
     (function($) {
@@ -136,69 +159,13 @@ $contactinfo = get_a_record('contactinfo',1);
     (document, 'script', 'facebook-jssdk'));
 </script>
 <div class="fb-chat-popup">
-    <div class="fb-page-header"><i class="fa fa-comments"></i> Hỗ Trợ Trực Tuyến</div>
+    <div class="fb-page-header"><i class="fa fa-facebook"></i></div>
     <div class="fb-page-box">
         <div class="fb-page" data-href="https://www.facebook.com/C%E1%BB%ADa-H%C3%A0ng-D%C5%A9ng-L%C3%A2m-387688081723225/" data-height="350" data-width="300" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false" data-tabs="messages" data-show-posts="false"></div>
         <div class="chat-single"><a target="_blank" href="https://www.facebook.com/C%E1%BB%ADa-H%C3%A0ng-D%C5%A9ng-L%C3%A2m-387688081723225/"><i class="fa fa-facebook-square"></i> Fanpage Blog</a></div>
     </div>
 </div>
-
-<script src="website\themes\js\responsiveslides.min.js"></script>
-<script type="text/javascript" src="website\themes\js\memenu.js"></script>
-<script>
-    $('#q').focus(function()
-    {
-        $(this).attr('data-default', $(this).width());
-        $(this).animate({ width:370 }, 'slow');
-    }).blur(function()
-    {
-        var w = $(this).attr('data-default');
-        $(this).animate({ width: w }, 'slow');
-    });
-</script>
-
-<script>
-    $(function () {
-        $("#slider").responsiveSlides({
-            auto: true,
-            speed: 500,
-            namespace: "callbacks",
-            pager: true,
-        });
-    });
-</script>
-
-<script>
-    this.screenshotPreview = function () {
-        xOffset = 10;
-        yOffset = 30;
-        $("a.screenshot").hover(function (e) {
-                this.t = this.title;
-                this.title = "";
-                var c = (this.t != "") ? "<br/>" + this.t : "";
-                $("body").append("<p id='screenshot'><img src='" + this.rel + "' alt='url preview' width='350' height='500' />" + c + "</p>");
-                $("#screenshot")
-                    .css("top", (e.pageY - xOffset) + "px")
-                    .css("left", (e.pageX + yOffset) + "px")
-                    .fadeIn("fast");
-            },
-            function () {
-                this.title = this.t;
-                $("#screenshot").remove();
-            });
-        $("a.screenshot").mousemove(function (e) {
-            $("#screenshot")
-                .css("top", (e.pageY - xOffset) + "px")
-                .css("left", (e.pageX + yOffset) + "px");
-        });
-    };
-</script>
-
-<script>$(document).ready(function () {
-        $(".memenu").memenu();
-        screenshotPreview();
-    });
-</script>
-
 </body>
 </html>
+<link rel="stylesheet" type="text/css" media="screen" href="website/themes/css/hotline.css"/>
+
