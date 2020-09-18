@@ -17,7 +17,3 @@ if (!empty($_SESSION)) {
 } else {
     require('admin/controllers/home/login.php');
 }
-
-
-
-
