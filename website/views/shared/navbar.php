@@ -11,7 +11,7 @@
     <ul class="nav navbar-top-links navbar-right" style="font-size: large">
         <li><a href="website.php?controller=home">Trang chủ</a></li>
         <li><a href="website.php?controller=home">Sản phẩm</a></li>
-        <li><a href="website.php?controller=guibanxe">Gửi bán xe</a></li>
+        <li><a href="website.php?controller=guibanxe">Định giá xe</a></li>
         <li><a href="website.php?controller=timmuaxe">Tìm mua xe</a></li>
         <li><a href="#">Liên hệ</a></li>
         <li><a href="admin.php?controller=home&action=login" class="fa fa-user"></a></li>
