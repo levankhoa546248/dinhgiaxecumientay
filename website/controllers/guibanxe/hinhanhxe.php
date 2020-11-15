@@ -4,5 +4,6 @@ $banner_right = get_a_record('banner', 'Visible = 2');
 $banner_ads = get_a_record('banner', 'Visible = 3');
 $slideshow = get_a_record('slideshow', 'Id = 1');
 $logo = get_a_record('logo', 'LogoId = 1 and IsActive = 1');
-$title = 'Định giá xe';
-require('website/views/guibanxe/index.php');
+$title = 'Gửi bán xe';
+$idguiban = $_GET["idguiban"];
+require('website/views/guibanxe/hinhanhxe.php');
