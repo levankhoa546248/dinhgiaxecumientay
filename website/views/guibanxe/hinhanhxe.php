@@ -1,34 +1,36 @@
 <?php require('website/views/shared/header.php'); ?>
-    <div class="container-top" style="margin-top: 50px">
-        <div class="panel panel-default">
-            <div class="block-title text-center"><h5 class="block-title-name">ĐỊNH GIÁ XE</h5>
-            </div>
-            <div class="panel-body">
-                <div class="col-sm-12">
-                    <div class="small form-horizontal">
-                        <div class="form-group" hidden>
-                            <label for="name" class="col-sm-3 control-label"></label>
-                            <div class="col-sm-9">
-                                <input name="idguiban" type="text" class="form-control text-capitalize" id="idguiban"
-                                       value="<?php echo $idguiban ?>"/>
-                                <input name="done" type="text" class="form-control text-capitalize" id="done"/>
+    <div class="panel panel-default" style="border-top-width: 0px;">
+        <ol class="breadcrumb">
+            <li><a href="website.php?controller=home"><b>Trang chủ</b></a></li>
+            <li><a href="website.php?controller=guibanxe"><b>Định giá xe</b></a></li>
+            <li><a href="website.php?controller=guibanxe&action=giaydangkiem&idguiban=" <?php echo $idguiban; ?>><b>Hình ảnh giấy đăng kiểm</b></a></li>
+            <li class="active">Hình ảnh xe</li>
+        </ol>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="small form-horizontal">
+                    <div class="form-group" hidden>
+                        <label for="name" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input name="idguiban" type="text" class="form-control text-capitalize" id="idguiban"
+                                   value="<?php echo $idguiban ?>"/>
+                            <input name="done" type="text" class="form-control text-capitalize" id="done"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="giaydangkiem" class="col-sm-3 control-label">Hình ảnh xe</label>
+                        <div class="col-sm-9">
+                            <div class="file-loading">
+                                <input id="input-21" type="file" accept="image/*" multiple>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="giaydangkiem" class="col-sm-3 control-label">Hình ảnh xe</label>
-                            <div class="col-sm-9">
-                                <div class="file-loading">
-                                    <input id="input-21" type="file" accept="image/*" multiple>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-3 control-label"></label>
-                            <div class="col-sm-9">
-                                <button type="button" class="btn btn-success" id="hoantat"><i
-                                            class="glyphicon glyphicon-send"></i> Hoàn tất
-                                </button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-success" id="hoantat"><i
+                                        class="glyphicon glyphicon-send"></i> Hoàn tất
+                            </button>
                         </div>
                     </div>
                 </div>

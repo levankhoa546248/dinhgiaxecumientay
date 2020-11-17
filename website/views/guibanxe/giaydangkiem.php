@@ -1,34 +1,35 @@
 <?php require('website/views/shared/header.php'); ?>
-    <div class="container-top" style="margin-top: 50px">
-        <div class="panel panel-default">
-            <div class="block-title text-center"><h5 class="block-title-name">ĐỊNH GIÁ XE</h5>
-            </div>
-            <div class="panel-body">
-                <div class="col-sm-12">
-                    <div class="small form-horizontal">
-                        <div class="form-group" hidden>
-                            <label for="name" class="col-sm-3 control-label"></label>
-                            <div class="col-sm-9">
-                                <input name="idguiban" type="text" class="form-control text-capitalize" id="idguiban"
-                                value="<?php echo $idguiban ?>"/>
-                                <input name="done" type="text" class="form-control text-capitalize" id="done"/>
+    <div class="panel panel-default" style="border-top-width: 0px;">
+        <ol class="breadcrumb">
+            <li><a href="website.php?controller=home"><b>Trang chủ</b></a></li>
+            <li><a href="website.php?controller=guibanxe"><b>Định giá xe</b></a></li>
+            <li class="active">Hình ảnh giấy đăng kiểm</li>
+        </ol>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div class="small form-horizontal">
+                    <div class="form-group" hidden>
+                        <label for="name" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input name="idguiban" type="text" class="form-control text-capitalize" id="idguiban"
+                                   value="<?php echo $idguiban ?>"/>
+                            <input name="done" type="text" class="form-control text-capitalize" id="done"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="giaydangkiem" class="col-sm-3 control-label">Giấy đăng kiểm (hình ảnh)</label>
+                        <div class="col-sm-9">
+                            <div class="file-loading">
+                                <input id="input-21" type="file" accept="image/*" multiple>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="giaydangkiem" class="col-sm-3 control-label">Giấy đăng kiểm (hình ảnh)</label>
-                            <div class="col-sm-9">
-                                <div class="file-loading">
-                                    <input id="input-21" type="file" accept="image/*" multiple>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-3 control-label"></label>
-                            <div class="col-sm-9">
-                                <button type="button" class="btn btn-success" id="tieptheo"><i
-                                            class="glyphicon glyphicon-arrow-right"></i> Tiếp theo
-                                </button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-success" id="tieptheo"><i
+                                        class="glyphicon glyphicon-arrow-right"></i> Tiếp theo
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -38,10 +39,12 @@
     <script>
         $(document).ready(function () {
             $("#input-21").fileinput({
-                uploadUrl: "website.php?controller=guibanxe&action=ha_giaydangkiem&idguiban=1",
+                uploadAsync: true,
+                uploadUrl: "website.php?controller=guibanxe&action=ha_giaydangkiem&idguiban=" + $("#idguiban").val(),
+                deleteUrl: "website.php?controller=guibanxe&action=xoahinhanhgiaydangkiem&idguiban=" + $("#idguiban").val(),
                 previewFileType: "image",
                 browseClass: "btn btn-success",
-                browseLabel: "Browse",
+                browseLabel: "Pick Image",
                 browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
                 removeClass: "btn btn-danger",
                 removeLabel: "Delete",
@@ -49,13 +52,28 @@
                 uploadClass: "btn btn-info",
                 uploadLabel: "Upload",
                 uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
-                uploadExtraData: function(previewId, index) {
+                uploadExtraData: function (previewId, index) {
                     return {key: index};
-                }
-            }).on('filesorted', function(e, params) {
+                },
+                showRemove: true,
+                remove
+            }).on('filesorted', function (e, params) {
                 console.log('file sorted', e, params);
-            }).on('fileuploaded', function(e, params) {
+            }).on('fileuploaded', function (e, params) {
                 $("#done").val(params.filescount);
+            }).on('filebeforedelete', function () {
+                var aborted = !window.confirm('Are you sure you want to delete this file?');
+                if (aborted) {
+                    window.alert('File deletion was aborted! ' + krajeeGetCount('file-5'));
+                }
+                return aborted;
+            });
+            $("#input-21").on("filepredelete", function (jqXHR) {
+                var abort = true;
+                if (confirm("Are you sure you want to delete this image?")) {
+                    abort = false;
+                }
+                return abort; // you can also send any data/object that you can receive on `filecustomerror` event
             });
         });
     </script>

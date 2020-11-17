@@ -17,6 +17,6 @@ if (isset($_POST)) {
         'hangxe' => $hangxe,
         'dongxe' => $dongxe
     );
-//    $result = insert("xeguiban", $xeguiban);
-    echo 1;
+    $result = insert("xeguiban", $xeguiban);
+    echo $result;
 }

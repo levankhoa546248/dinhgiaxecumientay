@@ -39,6 +39,6 @@ if (!empty($_FILES)) {
     move_uploaded_file($file["tmp_name"], $file_path);
     $sqlInsert = "INSERT INTO ha_giaydangkiem (idguiban, duongdan) VALUES ($idguiban, '$file_path')";
     $result = numRows($sqlInsert);
-    echo 6;
+    echo $result;
 //    header('location:admin.php?controller=product');
 }

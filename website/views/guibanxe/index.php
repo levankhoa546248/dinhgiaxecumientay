@@ -1,8 +1,9 @@
 <?php require('website/views/shared/header.php'); ?>
-    <div class="container-top" style="margin-top: 50px">
-        <div class="panel panel-default">
-            <div class="block-title text-center"><h5 class="block-title-name">ĐỊNH GIÁ XE</h5>
-            </div>
+        <div class="panel panel-default" style="border-top-width: 0px;">
+            <ol class="breadcrumb">
+                <li><a href="website.php?controller=home"><b>Trang chủ</b></a></li>
+                <li class="active">Định giá xe</li>
+            </ol>
             <div class="panel-body">
                 <div class="col-sm-12">
                     <div class="small form-horizontal">
@@ -15,7 +16,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="dienthoai" class="col-sm-3 control-label">Điện thoại</label>
+                            <label for="dienthoai" class="col-sm-3 control-label">Điện thoại <span style="color: red">(*)</span></label>
                             <div class="col-sm-9">
                                 <input name="dienthoai" type="text" class="form-control" id="dienthoai"
                                        placeholder="Điện thoại" required=""/>
@@ -52,7 +53,7 @@
                         <div class="form-group">
                             <label for="giabanmongmuon" class="col-sm-3 control-label">Giá bán mong muốn</label>
                             <div class="col-sm-9">
-                                <input name="giabanmongmuon" type="text" class="form-control" id="giabanmongmuon"
+                                <input name="giabanmongmuon" type="text" class="form-control" id="giabanmongmuon" data-type="currency"
                                        placeholder="Giá bán mong muốn" required=""/>
                             </div>
                         </div>
@@ -68,10 +69,8 @@
                 </div>
             </div>
         </div>
-    </div>
     <script>
         $(document).ready(function () {
-            // $('.input-images').imageUploader();
             $('#hoten').keypress(function (e) {
                 if (e.keyCode == 13) {
                     $('#dienthoai').focus();
@@ -100,17 +99,17 @@
             });
             $('#tieptheo').click(function (e) {
                 var hoten = $("#hoten").val();
-                // if (checkIf(hoten)) {
-                //     return jAlert("Chưa nhập họ tên", "Thông báo", function (e) {
-                //         $("#hoten").focus();
-                //     });
-                // }
+                if (checkIf(hoten)) {
+                    return jAlert("Chưa nhập họ tên", "Thông báo", function (e) {
+                        $("#hoten").focus();
+                    });
+                }
                 var dienthoai = $("#dienthoai").val();
-                // if (checkIf(dienthoai)) {
-                //     return jAlert("Chưa nhập số điện thoại", "Thông báo", function (e) {
-                //         $("#hoten").focus();
-                //     });
-                // }
+                if (checkIf(dienthoai)) {
+                    return jAlert("Chưa nhập số điện thoại", "Thông báo", function (e) {
+                        $("#hoten").focus();
+                    });
+                }
                 var diachi = $("#diachi").val();
                 var thongtinxe = $("#thongtinxe").val();
                 var giabanmongmuon = $("#giabanmongmuon").val();
@@ -139,6 +138,14 @@
                         }
                     }
                 });
+            });
+            $("input[data-type='currency']").on({
+                keyup: function () {
+                    formatCurrency($(this));
+                },
+                blur: function () {
+                    formatCurrency($(this), "blur");
+                }
             });
         });
     </script>
