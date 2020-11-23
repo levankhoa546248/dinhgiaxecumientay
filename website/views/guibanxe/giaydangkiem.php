@@ -8,6 +8,9 @@
         <div class="panel-body">
             <div class="col-sm-12">
                 <div class="small form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-12 text-center" style="color: red"><h4><b>HÌNH ẢNH GIẤY ĐĂNG KIỂM</b></h4></label>
+                    </div>
                     <div class="form-group" hidden>
                         <label for="name" class="col-sm-3 control-label"></label>
                         <div class="col-sm-9">
@@ -54,26 +57,13 @@
                 uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
                 uploadExtraData: function (previewId, index) {
                     return {key: index};
-                },
-                showRemove: true,
-                remove
-            }).on('filesorted', function (e, params) {
-                console.log('file sorted', e, params);
-            }).on('fileuploaded', function (e, params) {
-                $("#done").val(params.filescount);
-            }).on('filebeforedelete', function () {
-                var aborted = !window.confirm('Are you sure you want to delete this file?');
-                if (aborted) {
-                    window.alert('File deletion was aborted! ' + krajeeGetCount('file-5'));
                 }
-                return aborted;
-            });
-            $("#input-21").on("filepredelete", function (jqXHR) {
-                var abort = true;
-                if (confirm("Are you sure you want to delete this image?")) {
-                    abort = false;
-                }
-                return abort; // you can also send any data/object that you can receive on `filecustomerror` event
+            }).on('fileremoved', function (event, previewId, index, fileId, data) {
+                location.href = "website.php?controller=guibanxe&action=xoahinhanhgiaydangkiem&idguiban=" + $("#idguiban").val() + "&id=" + fileId;
+            }).on('filedeleted', function (event, id, index) {
+                jAlert(3);
+            }).on('filecleared', function(event, previewId, index, fileId, data) {
+                location.href = "website.php?controller=guibanxe&action=xoahinhanhgiaydangkiem&idguiban=" + $("#idguiban").val() + "&id=" + fileId;
             });
         });
     </script>

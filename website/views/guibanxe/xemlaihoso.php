@@ -2,69 +2,70 @@
         <div class="panel panel-default" style="border-top-width: 0px;">
             <ol class="breadcrumb">
                 <li><a href="website.php?controller=home"><b>Trang chủ</b></a></li>
-                <li class="active">Định giá xe</li>
+                <li><b>Định giá xe</b></li>
+                <li><b>Hình ảnh giấy đăng kiểm</b></li>
+                <li class="active">Hồ sơ đã gửi</li>
             </ol>
             <div class="panel-body">
                 <div class="col-sm-12">
                     <div class="small form-horizontal">
                         <div class="form-group">
-                            <label for="name" class="col-sm-12 text-center" style="color: red"><h4><b>ĐỊNH GIÁ XE</b></h4></label>
+                            <label for="name" class="col-sm-12 text-center" style="color: red"><h4><b>HỒ SƠ GỬI BÁN XE</b></h4></label>
                         </div>
                         <div class="form-group">
                             <label for="name" class="col-sm-3 control-label">Họ tên</label>
                             <div class="col-sm-9">
                                 <input name="hoten" type="text" class="form-control text-capitalize" id="hoten"
-                                       placeholder="Họ tên"
-                                       required="" autofocus/>
+                                       placeholder="Họ tên" disabled value="<?php echo $xeguiban["hoten"];?>" required="" autofocus/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dienthoai" class="col-sm-3 control-label">Điện thoại <span style="color: red">(*)</span></label>
                             <div class="col-sm-9">
                                 <input name="dienthoai" type="text" class="form-control" id="dienthoai"
-                                       placeholder="Điện thoại" required=""/>
+                                       placeholder="Điện thoại" required="" disabled value="<?php echo $xeguiban["dienthoai"];?>"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="diachi" class="col-sm-3 control-label">Địa chỉ</label>
                             <div class="col-sm-9">
                                 <input name="diachi" type="text" class="form-control" id="diachi" placeholder="Địa chỉ"
-                                       required=""/>
+                                       required="" disabled value="<?php echo $xeguiban["diachi"];?>"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="thongtinxe" class="col-sm-3 control-label">Hãng xe</label>
                             <div class="col-sm-9">
                                 <input name="hangxe" type="text" class="form-control" id="hangxe"
-                                       placeholder="Hãng xe" required=""/>
+                                       placeholder="Hãng xe" required="" disabled value="<?php echo $xeguiban["hangxe"];?>"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="thongtinxe" class="col-sm-3 control-label">Dòng xe</label>
                             <div class="col-sm-9">
                                 <input name="dongxe" type="text" class="form-control" id="dongxe"
-                                       placeholder="Dòng xe" required=""/>
+                                       placeholder="Dòng xe" required="" disabled value="<?php echo $xeguiban["dongxe"];?>"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="thongtinxe" class="col-sm-3 control-label">Thông tin xe</label>
                             <div class="col-sm-9">
                                 <textarea name="thongtinxe" type="text" class="form-control" id="thongtinxe"
-                                          rows="5"></textarea>
+                                          disabled rows="5"><?php echo $xeguiban["thongtinxe"];?></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="giabanmongmuon" class="col-sm-3 control-label">Giá bán mong muốn</label>
                             <div class="col-sm-9">
                                 <input name="giabanmongmuon" type="text" class="form-control" id="giabanmongmuon" data-type="currency"
-                                       placeholder="Giá bán mong muốn" required=""/>
+                                       placeholder="Giá bán mong muốn" required="" disabled value="<?php echo $xeguiban["giabanmongmuon"];?>"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="name" class="col-sm-3 control-label"></label>
+                            <label for="trangchu" class="col-sm-3 control-label"></label>
                             <div class="col-sm-9">
-                                <button type="button" class="btn btn-success" id="tieptheo"><i
-                                            class="glyphicon glyphicon-arrow-right"></i> Tiếp theo
+                                <button type="button" class="btn btn-success" id="trangchu"><i
+                                            class="glyphicon glyphicon-home"></i> Trang chủ
                                 </button>
                             </div>
                         </div>
@@ -74,32 +75,6 @@
         </div>
     <script>
         $(document).ready(function () {
-            $('#hoten').keypress(function (e) {
-                if (e.keyCode == 13) {
-                    $('#dienthoai').focus();
-                }
-            });
-
-            $('#dienthoai').keypress(function (e) {
-                if (e.keyCode == 13) {
-                    $('#diachi').focus();
-                }
-            });
-            $('#diachi').keypress(function (e) {
-                if (e.keyCode == 13) {
-                    $('#thongtinxe').focus();
-                }
-            });
-            $('#thongtinxe').keypress(function (e) {
-                if (e.keyCode == 13) {
-                    $('#giabanmongmuon').focus();
-                }
-            });
-            $('#giabanmongmuon').keypress(function (e) {
-                if (e.keyCode == 13) {
-                    $('#guithongtin').focus();
-                }
-            });
             $('#tieptheo').click(function (e) {
                 var hoten = $("#hoten").val();
                 if (checkIf(hoten)) {
@@ -141,14 +116,6 @@
                         }
                     }
                 });
-            });
-            $("input[data-type='currency']").on({
-                keyup: function () {
-                    formatCurrency($(this));
-                },
-                blur: function () {
-                    formatCurrency($(this), "blur");
-                }
             });
         });
     </script>

@@ -3,18 +3,22 @@
         <ol class="breadcrumb">
             <li><a href="website.php?controller=home"><b>Trang chủ</b></a></li>
             <li><a href="website.php?controller=guibanxe"><b>Định giá xe</b></a></li>
-            <li><a href="website.php?controller=guibanxe&action=giaydangkiem&idguiban=" <?php echo $idguiban; ?>><b>Hình ảnh giấy đăng kiểm</b></a></li>
+            <li><a href="website.php?controller=guibanxe&action=giaydangkiem&idguiban=" <?php echo $idguiban; ?>><b>Hình
+                        ảnh giấy đăng kiểm</b></a></li>
             <li class="active">Hình ảnh xe</li>
         </ol>
         <div class="panel-body">
             <div class="col-sm-12">
                 <div class="small form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-12 text-center" style="color: red"><h4><b>HÌNH ẢNH XE</b></h4>
+                        </label>
+                    </div>
                     <div class="form-group" hidden>
                         <label for="name" class="col-sm-3 control-label"></label>
                         <div class="col-sm-9">
                             <input name="idguiban" type="text" class="form-control text-capitalize" id="idguiban"
                                    value="<?php echo $idguiban ?>"/>
-                            <input name="done" type="text" class="form-control text-capitalize" id="done"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -40,8 +44,8 @@
     <script>
         $(document).ready(function () {
             $("#input-21").fileinput({
-                uploadUrl: "website.php?controller=guibanxe&action=themhinhanhxe&idguiban=" + <?php echo $idguiban; ?>,
-                deleteUrl: "admin.php?controller=guibanxe&action=xoahinhanhxe&idguiban=" + <?php echo $idguiban; ?>,
+                uploadUrl: "website.php?controller=guibanxe&action=themhinhanhxe&idguiban=" + $("#idguiban").val(),
+                deleteUrl: "admin.php?controller=guibanxe&action=xoahinhanhxe&idguiban=" + $("#idguiban").val(),
                 previewFileType: "image",
                 browseClass: "btn btn-success",
                 browseLabel: "Browse",
@@ -63,24 +67,15 @@
 
             $('#hoantat').click(function (e) {
                 $.ajax({
-                    url: "website.php?controller=guibanxe&action=guithongtin",
+                    url: "website.php?controller=guibanxe&action=hoantathosoguiban",
                     type: "POST",
                     data: {
-                        hoten: hoten,
-                        dienthoai: dienthoai,
-                        diachi: diachi,
-                        thongtinxe: thongtinxe,
-                        giabanmongmuon: giabanmongmuon
+                        idguiban: $("#idguiban").val()
                     },
                     success: function (response) {
                         if (response > 0) {
                             jAlert("Gửi thông tin thành công", "Thông báo", function (e) {
-                                $("#hoten").prop("disabled", "disabled");
-                                $("#dienthoai").prop("disabled", "disabled");
-                                $("#diachi").prop("disabled", "disabled");
-                                $("#thongtinxe").prop("disabled", "disabled");
-                                $("#giabanmongmuon").prop("disabled", "disabled");
-                                $("#guithongtin").hide();
+                                location.href = "website.php?controller=guibanxe&action=xemlaihoso&idguiban=" + $("#idguiban").val();
                             });
                         } else {
                             jAlert("Gửi thông tin không thành công. Vui lòng liên hệ qua số điện thoại", "Thông báo", function (e) {
