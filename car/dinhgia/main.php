@@ -419,10 +419,34 @@
         </div>
     </section>
 </main>
+<script type="text/javascript" src="car/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="car/js/jquery.alerts.js"></script>
+<link href="car/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen" />
 <script>
     $(document).ready(function () {
         $('#tieptuc').click(function (e) {
-            alert(1);
+            $.ajax({
+                url: "car.php?controller=dinhgia&action=hinhanhgiaydangkiem",
+                type: "POST",
+                data: {
+                    hoten: 1,
+                },
+                success: function (response) {
+                    if (response > 0) {
+                        jAlert("Gửi thông tin thành công", "Thông báo", function (e) {
+                            // $("#hoten").prop("disabled", "disabled");
+                            // $("#dienthoai").prop("disabled", "disabled");
+                            // $("#diachi").prop("disabled", "disabled");
+                            // $("#thongtinxe").prop("disabled", "disabled");
+                            // $("#giamuamongmuon").prop("disabled", "disabled");
+                            // $("#guithongtin").hide();
+                        });
+                    } else {
+                        jAlert("Gửi thông tin không thành công. Vui lòng liên hệ qua số điện thoại", "Thông báo", function (e) {
+                        });
+                    }
+                }
+            });
         });
     });
 </script>

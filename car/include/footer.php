@@ -72,13 +72,10 @@
 </body>
 
 <!-- SCRIPTS -->
-<script src="car/js/jquery.js" type="text/javascript"></script>
+<!--<script src="car/js/jquery.js" type="text/javascript"></script>-->
 <script src="car/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="car/js/owl.carousel.min.js" type="text/javascript"></script>
 <script src="car/js/smoothscroll.js" type="text/javascript"></script>
 <script src="car/js/custom.js" type="text/javascript"></script>
-<script src="car/js/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-
+<script src="car/js/jquery-3.4.1.js" type="text/javascript"></script>
 </html>
