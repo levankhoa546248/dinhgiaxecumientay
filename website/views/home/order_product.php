@@ -3,9 +3,10 @@
 <div class="arrivals">
     <div class="container-top">
         <div class="panel panel-default">
+            <div class="block-title" style="border-bottom: 0px solid #ddd"><h5 class="block-title-name">SẢN PHẨM</h5>
+            </div>
             <div class="panel-body">
-                <div class="block-title"><h5 class="block-title-name">SẢN PHẨM</h5></div>
-                <div class="pull-left col-sm-12">
+                <div class="pull-left col-sm-12" style="border: 1px solid #ddd; padding: 1em">
                     <div class="small form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-1 control-label"> Hãng xe</div>
@@ -113,12 +114,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="dataTable_wrapper small" id="div_sanpham">
+                <div class="dataTable_wrapper small" id="div_sanpham" style="margin-top: 1em">
                     <?php if (empty($order_products)) : ?>
                         <h3 class="col-sm-12">Không có sản phẩm nào trong danh mục này.</h3>
                     <?php endif; ?>
                     <?php foreach ($order_products as $order_product): ?>
-                        <div class="col-xs-4 feature-grid jewel m-1" style="height: 300px">
+                        <div class="col-xs-4 feature-grid jewel m-1" style="height: 300px; margin-top: 1em">
                             <!--                    <a href="product/--><?php //echo $order_product['id']; ?><!----->
                             <?php //echo $order_product['mausac']; ?><!--.html"-->
                             <!--                       class="screenshot"-->
@@ -127,7 +128,8 @@
                             <!--                    </a>-->
                             <?php if ($order_product['duongdan'] == null): ?>
                                 <a href="product/<?php echo $order_product['id']; ?>-<?php echo $order_product['mausac']; ?>.html"
-                                   class="screenshot" rel="<?php echo "website/themes/upload/product/car-loading.jpg" ?>">
+                                   class="screenshot"
+                                   rel="<?php echo "website/themes/upload/product/car-loading.jpg" ?>">
                                     <?php echo '<image style="height: 200px;" src="' . "website/themes/upload/product/car-loading.jpg" . '?time=' . time() . '"alt="' . $order_product['duongdan'] . '" />'; ?>
                                 </a>
                             <?php else: ?>

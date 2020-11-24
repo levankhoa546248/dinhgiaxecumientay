@@ -11,13 +11,13 @@
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/owl.carousel.css">
-     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
+     <link rel="stylesheet" href="../css/font-awesome.min.css">
+     <link rel="stylesheet" href="../css/owl.carousel.css">
+     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
 
      <!-- MAIN CSS -->
-     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -74,7 +74,7 @@
                <div class="row">
                     <div class="col-md-6 col-xs-12">
                          <div>
-                              <img src="images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
+                              <img src="../images/product-1-720x480.jpg" alt="" class="img-responsive wc-image">
                          </div>
 
                          <br>
@@ -82,7 +82,7 @@
                          <div class="row">
                               <div class="col-sm-4 col-xs-6">
                                    <div>
-                                        <img src="images/product-1-720x480.jpg" alt="" class="img-responsive">
+                                        <img src="../images/product-1-720x480.jpg" alt="" class="img-responsive">
                                    </div>
                                    
                                    <br>
@@ -90,7 +90,7 @@
 
                               <div class="col-sm-4 col-xs-6">
                                    <div>
-                                        <img src="images/product-2-720x480.jpg" alt="" class="img-responsive">
+                                        <img src="../images/product-2-720x480.jpg" alt="" class="img-responsive">
                                    </div>
                                    
                                    <br>
@@ -98,7 +98,7 @@
 
                               <div class="col-sm-4 col-xs-6">
                                    <div>
-                                        <img src="images/product-3-720x480.jpg" alt="" class="img-responsive">
+                                        <img src="../images/product-3-720x480.jpg" alt="" class="img-responsive">
                                    </div>
 
                                    <br>
@@ -370,11 +370,11 @@
      </footer>
 
      <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/owl.carousel.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script>
+     <script src="../js/jquery.js"></script>
+     <script src="../js/bootstrap.min.js"></script>
+     <script src="../js/owl.carousel.min.js"></script>
+     <script src="../js/smoothscroll.js"></script>
+     <script src="../js/custom.js"></script>
 
 </body>
 </html>

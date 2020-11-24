@@ -728,7 +728,7 @@ https://templatemo.com/tm-516-known
   
   .form .form-control,
   #contact-form .form-control {
-    border: 0;
+    /*border: 0;*/
     border-radius: 5px;
     box-shadow: none;
     margin: 10px 0;
