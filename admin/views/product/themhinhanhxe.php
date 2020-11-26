@@ -1,9 +1,9 @@
-    <div class="form-group">
-        <div class="file-loading">
-            <input id="file-5" class="file" type="file" multiple data-preview-file-type="any"
-                   data-theme="fas">
-        </div>
+<div class="form-group">
+    <div class="file-loading">
+        <input id="file-5" class="file" type="file" multiple data-preview-file-type="any"
+               data-theme="fas">
     </div>
+</div>
 <script type="text/javascript">
     $("#file-5").fileinput({
         uploadUrl: "admin.php?controller=product&action=themhinhanhxe&idxe=" + <?php echo $idxe; ?>,

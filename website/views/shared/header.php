@@ -100,27 +100,8 @@ $parent_menus = get_all('categories', $options_parent_menu);
             window.scrollTo(0, 1);
         }
     </script>
-    <link href="website/themes/css/memenu.css" rel="stylesheet" type="text/css" media="all"/>
-
 </head>
 
 <body>
 <?php
 require('website/views/shared/navbar.php'); ?>
-<!--<div class="header-top">-->
-<!--            <div class="logo">-->
-<!--                <a href="website.php?controller=home">-->
-<!--                    --><?php //echo '<image class="img-responsive" src="' . PATH_IMG_WEB . $logo['Images'] . '?time=' . time() . '" alt="' . $logo['Images'] . '"/ >'; ?>
-<!--                </a>-->
-<!--            </div>-->
-<!--            <div class="top-nav navbar-right" style="width: auto;">-->
-<!--                <ul class="memenu skyblue">-->
-<!--                    <li><a href="website.php?controller=home">Trang chủ</a></li>-->
-<!--                    <li><a href="website.php?controller=home">Sản phẩm</a></li>-->
-<!--                    <li><a href="website.php?controller=guibanxe">Gửi bán xe</a></li>-->
-<!--                    <li><a href="website.php?controller=timmuaxe">Tìm mua xe</a></li>-->
-<!--                    <li><a href="#">LIÊN HỆ</a></li>-->
-<!--                    <li><a href="admin.php?controller=home&action=login">Đăng nhập</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--</div>-->

@@ -2066,15 +2066,15 @@ a.cpns:hover{
 
 .block-title{
     width: 100%;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     margin: 0.5em 0;
     padding: 0.7em 1em ;
-    background-color: #080707;
+    background-color: white;
 }
 h5.block-title-name{
     margin: 6px 0 0;
     font-size: 1.3em;
-    color: #FFF;
+    color: black;
     font-weight: 700;
 }
 .view-all-product{
