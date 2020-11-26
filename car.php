@@ -7,7 +7,7 @@ else $controller = 'home';
 if (isset($_GET['action'])) $action = $_GET['action'];
 else $action = 'index';
 if (!empty($_SESSION)) {
-    $file = 'car/' . $controller . '/' . $action . '.php';
+    $file = 'car/main/' . $controller . '/' . $action .  '.php';
     if (file_exists($file)) {
         require($file);
     } else {

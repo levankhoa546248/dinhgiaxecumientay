@@ -11,13 +11,13 @@
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-     <link rel="stylesheet" href="../css/bootstrap.min.css">
-     <link rel="stylesheet" href="../css/font-awesome.min.css">
-     <link rel="stylesheet" href="../css/owl.carousel.css">
-     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+     <link rel="stylesheet" href="../../themes/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../../themes/css/font-awesome.min.css">
+     <link rel="stylesheet" href="../../themes/css/owl.carousel.css">
+     <link rel="stylesheet" href="../../themes/css/owl.theme.default.min.css">
 
      <!-- MAIN CSS -->
-     <link rel="stylesheet" href="../css/style.css">
+     <link rel="stylesheet" href="../../themes/css/style.css">
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -52,7 +52,7 @@
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li><a href="index.html">Home</a></li>
 						 <li><a href="cars.html">Cars</a></li>
-	                     <li><a href="about-us.html">About Us</a></li>
+	                     <li class="active"><a href="about-us.html">About Us</a></li>
                          <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
                               
@@ -62,7 +62,7 @@
 			                         <li><a href="testimonials.html">Testimonials</a></li>
                               </ul>
                          </li>
-                         <li class="active"><a href="contact.html">Contact Us</a></li>
+                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                </div>
 
@@ -72,7 +72,7 @@
      <section>
           <div class="container">
                <div class="text-center">
-                    <h1>Contact Us</h1>
+                    <h1>About Us</h1>
 
                     <br>
 
@@ -81,39 +81,69 @@
           </div>
      </section>
 
-
-     <!-- CONTACT -->
-     <section id="contact">
+     <section class="section-background">
           <div class="container">
                <div class="row">
-
-                    <div class="col-md-6 col-sm-12">
-                         <form id="contact-form" role="form" action="" method="post">
-                              <div class="col-md-12 col-sm-12">
-                                   <input type="text" class="form-control" placeholder="Enter full name" name="name" required>
-                    
-                                   <input type="email" class="form-control" placeholder="Enter email address" name="email" required>
-
-                                   <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message" required></textarea>
-                              </div>
-
-                              <div class="col-md-4 col-sm-12">
-                                   <input type="submit" class="form-control" name="send message" value="Send Message">
-                              </div>
-
-                         </form>
+                    <div class="col-md-offset-1 col-md-4 col-xs-12 pull-right">
+                         <img src="../../images/about-1-720x720.jpg" class="img-responsive img-circle" alt="">
                     </div>
 
-                    <div class="col-md-6 col-sm-12">
-                         <div class="contact-image">
-                              <img src="../images/contact-1-600x400.jpg" class="img-responsive" alt="">
+                    <div class="col-md-7 col-xs-12">
+                         <div class="about-info">
+                              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, eos. Corporis, dolor?</h2>
+
+                              <figure>
+                                   <figcaption>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, deserunt beatae praesentium veniam. Aperiam assumenda quas qui officiis, minima laudantium?</p>
+
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis saepe quos repellat eum tempore magnam molestiae. Minus atque, aliquid assumenda, vero non recusandae illum optio, sint dignissimos praesentium ducimus repudiandae eius, nulla. Pariatur magnam alias est voluptatibus distinctio voluptate culpa, iste quisquam! Iure itaque rerum sequi, tenetur voluptatibus nihil quaerat, quisquam non in autem ducimus tempore impedit. Odit, corporis, praesentium.</p>
+                                   </figcaption>
+                              </figure>
                          </div>
                     </div>
-
                </div>
           </div>
-     </section>       
+     </section>
 
+     <section>
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                         <img src="../../images/about-2-720x720.jpg" class="img-responsive img-circle" alt="">
+                    </div>
+
+                    <div class="col-md-offset-1 col-md-7 col-xs-12">
+                         <div class="about-info">
+                              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, minima!</h2>
+
+                              <figure>
+                                   <figcaption>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, deserunt beatae praesentium veniam. Aperiam assumenda quas qui officiis, minima laudantium?</p>
+
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis saepe quos repellat eum tempore magnam molestiae. Minus atque, aliquid assumenda, vero non recusandae illum optio, sint dignissimos praesentium ducimus repudiandae eius, nulla. Pariatur magnam alias est voluptatibus distinctio voluptate culpa, iste quisquam! Iure itaque rerum sequi, tenetur voluptatibus nihil quaerat, quisquam non in autem ducimus tempore impedit. Odit, corporis, praesentium.</p>
+                                   </figcaption>
+                              </figure>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
+
+     <section class="section-background">
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="text-center">
+                              <h2>Lorem ipsum dolor sit amet</h2>
+
+                              <br>
+
+                              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore molestias ipsa veritatis nihil iusto maiores natus dolor, a reiciendis corporis obcaecati ex. Totam assumenda impedit aut eum, illum distinctio saepe explicabo. Consequuntur molestiae similique id quos, quasi quas perferendis laboriosam, fugit natus odit totam! Id dolores saepe, sint debitis rerum dolorem tempora aliquid, pariatur enim nisi. Quia ab iusto assumenda.</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
 
      <!-- FOOTER -->
      <footer id="footer">
@@ -187,11 +217,11 @@
 
 
      <!-- SCRIPTS -->
-     <script src="../js/jquery.js"></script>
-     <script src="../js/bootstrap.min.js"></script>
-     <script src="../js/owl.carousel.min.js"></script>
-     <script src="../js/smoothscroll.js"></script>
-     <script src="../js/custom.js"></script>
+     <script src="../../themes/js/jquery.js"></script>
+     <script src="../../themes/js/bootstrap.min.js"></script>
+     <script src="../../themes/js/owl.carousel.min.js"></script>
+     <script src="../../themes/js/smoothscroll.js"></script>
+     <script src="../../themes/js/custom.js"></script>
 
 </body>
 </html>

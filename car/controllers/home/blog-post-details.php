@@ -11,13 +11,13 @@
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-     <link rel="stylesheet" href="../css/bootstrap.min.css">
-     <link rel="stylesheet" href="../css/font-awesome.min.css">
-     <link rel="stylesheet" href="../css/owl.carousel.css">
-     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+     <link rel="stylesheet" href="../../themes/css/bootstrap.min.css">
+     <link rel="stylesheet" href="../../themes/css/font-awesome.min.css">
+     <link rel="stylesheet" href="../../themes/css/owl.carousel.css">
+     <link rel="stylesheet" href="../../themes/css/owl.theme.default.min.css">
 
      <!-- MAIN CSS -->
-     <link rel="stylesheet" href="../css/style.css">
+     <link rel="stylesheet" href="../../themes/css/style.css">
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
@@ -80,7 +80,7 @@
                     <i class="fa fa-eye"></i> 114
                </p>
 
-               <img src="../images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt="">
+               <img src="../../images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt="">
 
                <br>
 
@@ -252,11 +252,11 @@
      </footer>
 
      <!-- SCRIPTS -->
-     <script src="../js/jquery.js"></script>
-     <script src="../js/bootstrap.min.js"></script>
-     <script src="../js/owl.carousel.min.js"></script>
-     <script src="../js/smoothscroll.js"></script>
-     <script src="../js/custom.js"></script>
+     <script src="../../themes/js/jquery.js"></script>
+     <script src="../../themes/js/bootstrap.min.js"></script>
+     <script src="../../themes/js/owl.carousel.min.js"></script>
+     <script src="../../themes/js/smoothscroll.js"></script>
+     <script src="../../themes/js/custom.js"></script>
 
 </body>
 </html>

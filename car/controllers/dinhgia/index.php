@@ -1,4 +1,5 @@
 <?php require('car/include/head.php'); ?>
+<?php require('car/dinhgia/script.php'); ?>
 <?php require('car/include/menu.php'); ?>
     <main>
         <section>
@@ -476,3 +477,4 @@
     </script>
 <?php require('car/include/contact.php'); ?>
 <?php require('car/include/footer.php'); ?>
+</html>
