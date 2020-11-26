@@ -8,35 +8,19 @@
                         <div class="text-center">
                             <form id="contact-form" role="form" action="" method="post">
                                 <div class="section-title">
-                                    <h2>Định giá xe <small>Nhân viên chúng tôi sẽ kiểm tra thông tin và liên hệ với
-                                            bạn qua số điện thoại.</small></h2>
+                                    <h2>Định giá xe <small>Hình ảnh giấy đăng kiểm. Bạn vui lòng gửi kèm hình ảnh mặt
+                                            trước và sau của giấy đăng kiểm</small></h2>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
-                                    <input type="text" class="form-control" placeholder="Nhập đầy đủ họ tên" id="hoten"
-                                           required>
-
-                                    <input type="text" class="form-control" placeholder="Nhập số điện thoại"
-                                           id="dienthoai" required>
-
-                                    <input type="text" class="form-control" placeholder="Nhập địa chỉ" id="diachi"
-                                           required>
-
-                                    <input type="text" class="form-control" placeholder="Nhập hãng xe" id="hangxe">
-
-                                    <input type="text" class="form-control" placeholder="Nhập dòng xe" id="dongxe">
-
-                                    <input type="text" class="form-control" placeholder="Giá bán mong muốn" id="giabanmongmuon"
-                                           data-type="currency">
-
-                                    <textarea class="form-control" rows="6"
-                                              placeholder="Hãy cho chúng tôi biết tình trạng xe bạn hiện tại như thế nào. Một số thông tin cần cụ thể để dễ dàng định giá hơn. Cảm ơn bạn"
-                                              id="thongtinxe"></textarea>
+                                    <div class="file-loading">
+                                        <input id="input-21" type="file" accept="image/*" multiple>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12 col-sm-12">
                                     <input type="button" class="section-btn btn btn-primary" id="tieptuc"
-                                           value="Tiếp tục và thêm hình ảnh giấy đăng kiểm">
+                                           value="Tiếp tục và thêm hình ảnh của xe">
                                     <input type="button" class="section-btn btn btn-primary" id="hoantat"
                                            value="Hoàn tất thông tin và nhờ tư vấn">
                                 </div>
@@ -432,36 +416,28 @@
             </div>
         </section>
     </main>
-    <script type="text/javascript" src="car/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="car/js/jquery.alerts.js"></script>
-    <script type="text/javascript" src="car/js/selfjs.js"></script>
-    <link href="car/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
     <script>
         $(document).ready(function () {
-            $('#tieptuc').click(function (e) {
-                $.ajax({
-                    url: "car.php?controller=dinhgia&action=hinhanhgiaydangkiem",
-                    type: "POST",
-                    data: {
-                        hoten: $("#hoten").val(),
-                        dienthoai: $("#dienthoai").val(),
-                        diachi: $("#diachi").val(),
-                        hangxe: $("#hangxe").val(),
-                        dongxe: $("#dongxe").val(),
-                        giabanmongmuon: $("#giabanmongmuon").val(),
-                        thongtinxe: $("#thongtinxe").val()
-                    },
-                    success: function (response) {
-                        if (response > 0) {
-                            jAlert("Gửi thông tin thành công", "Thông báo", function (e) {
-                                location.href = "car.php?controller=dinhgia&action=giaydangkiem&idguiban=" + response;
-                            });
-                        } else {
-                            jAlert("Gửi thông tin không thành công. Vui lòng liên hệ qua số điện thoại", "Thông báo", function (e) {
-                            });
-                        }
-                    }
-                });
+            $("#input-21").fileinput({
+                uploadUrl: "website.php?controller=guibanxe&action=themhinhanhxe&idguiban=" + $("#idguiban").val(),
+                deleteUrl: "admin.php?controller=guibanxe&action=xoahinhanhxe&idguiban=" + $("#idguiban").val(),
+                previewFileType: "image",
+                browseClass: "btn btn-success",
+                browseLabel: "Browse",
+                browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+                removeClass: "btn btn-danger",
+                removeLabel: "Delete",
+                removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+                uploadClass: "btn btn-info",
+                uploadLabel: "Upload",
+                uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
+                uploadExtraData: function (previewId, index) {
+                    return {key: index};
+                }
+            }).on('filesorted', function (e, params) {
+                console.log('file sorted', e, params);
+            }).on('fileuploaded', function (e, params, dt) {
+                $("#done").val(params.filescount);
             });
 
             $("input[data-type='currency']").on({
