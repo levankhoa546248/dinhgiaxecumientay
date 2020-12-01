@@ -28,7 +28,7 @@
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first">
-                <li class="active"><a href="car.php?controller=views&action=home&name=index"><i class="fa fa-home"></i></a></li>
+                <li class="active"><a href="car.php?controller=home&action=index"><i class="fa fa-home"></i></a></li>
                 <li><a href="car.php?controller=dinhgia&action=index">Định giá</a></li>
                 <li><a href="about-us.html">Tìm mua</a></li>
                 <!--                <li class="dropdown">-->
