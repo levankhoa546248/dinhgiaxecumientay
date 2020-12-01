@@ -15,9 +15,11 @@
     <link rel="stylesheet" type="text/css" href="car/themes/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="car/themes/css/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="car/themes/css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="car/themes/css/jquery.alerts.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="car/themes/css/style.css">
 
 </head>
+

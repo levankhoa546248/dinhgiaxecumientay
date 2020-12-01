@@ -7,22 +7,22 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="text-center">
-                        <form id="contact-form" role="form" action="" method="post">
-                            <div class="section-title">
-                                <h2>Định giá xe <small>Hình ảnh giấy đăng kiểm. Bạn vui lòng gửi kèm hình ảnh mặt
-                                        trước và sau của giấy đăng kiểm</small></h2>
-                            </div>
-                            <div class="file-loading">
-                                <input id="input-21" type="file" accept="image/*" multiple>
-                            </div>
-                        </form>
+                        <div class="section-title">
+                            <h2>Định giá xe <small>Hình ảnh giấy đăng kiểm. Bạn vui lòng gửi kèm hình ảnh mặt
+                                    trước và sau của giấy đăng kiểm</small></h2>
+                        </div>
+                        <div class="file-loading">
+                            <input id="input-21" type="file" accept="image/*" multiple>
+                        </div>
                     </div>
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="text-center">
-                        <input type="text" class="form-control" id="idguiban" hidden value="<?php echo $_GET["idguiban"]; ?>">
+                        <input type="text" class="form-control" id="idguiban" hidden
+                               value="<?php echo $_GET["idguiban"]; ?>">
                     </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
@@ -424,37 +424,41 @@
 </main>
 <script>
     $(document).ready(function () {
+
         $("#input-21").fileinput({
+            theme: 'fas',
+            showRemove: false,
+            showZoom: true,
+            showDrag: false,
             showCaption: false,
             dropZoneEnabled: true,
             browseOnZoneClick: true,
-            uploadUrl: "car.php?controller=dinhgia&action=giaydangkiemC&idguiban=" + $("#idguiban").val()
-        }).on('fileremoved', function (event, previewId, index, fileId, data) {
-            location.href = "website.php?controller=guibanxe&action=xoahinhanhgiaydangkiem&idguiban=" + $("#idguiban").val() + "&id=" + fileId;
-        }).on('filedeleted', function (event, id, index) {
-            jAlert(3);
-        }).on('filecleared', function (event, previewId, index, fileId, data) {
-            location.href = "website.php?controller=guibanxe&action=xoahinhanhgiaydangkiem&idguiban=" + $("#idguiban").val() + "&id=" + fileId;
+            overwriteInitial: true,
+            initialPreviewAsData: true,
+            uploadUrl: "car.php?controller=dinhgia&action=giaydangkiemC&idguiban=" + $("#idguiban").val(),
+            deleteUrl: "car.php?controller=dinhgia&action=xoagiaydangkiemC&idguiban=" + $("#idguiban").val(),
+            initialPreview: [<?php if (isset($preview)) echo $preview; else null;?>],
+            initialPreviewConfig: <?php if (isset($previewconfig)) echo $previewconfig; else echo '[]';?>
+        }).on('filebatchuploadcomplete', function () {
+            location.href = "car.php?controller=dinhgia&action=reloadgiaydangkiemC&idguiban=" + $("#idguiban").val();
+        });
+
+        $('#tieptuc').click(function (e) {
+            location.href = "car.php?controller=dinhgia&action=hinhanhxe&idguiban=" + $("#idguiban").val();
         });
     });
 </script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all"
-      rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/piexif.min.js"
-        type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/sortable.min.js"
-        type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/plugins/purify.min.js"
-        type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-image-upload/1.2.0/jQuery-image-upload.js"
-        integrity="sha512-Km8iFrCs4rxJ/rO+YqAo/Hz+0lVs8qydavMtQg3/nzK4G70LPuGSyoIYOgpbOZLlFdmNpkxDQLMzaMeMhViFrQ=="
-        crossorigin="anonymous"></script>
+<link href="car/themes/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="car/themes/fileinput/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="car/themes/js/bootstrap.min.js"></script>
+    <script src="car/themes/fileinput/js/plugins/piexif.js" type="text/javascript"></script>
+    <script src="car/themes/fileinput/js/plugins/sortable.js" type="text/javascript"></script>
+    <script src="car/themes/fileinput/js/fileinput.js" type="text/javascript"></script>
+    <script src="car/themes/fileinput/js/locales/fr.js" type="text/javascript"></script>
+    <script src="car/themes/fileinput/js/locales/es.js" type="text/javascript"></script>
+    <script src="car/themes/fileinput/themes/fas/theme.js" type="text/javascript"></script>
+    <script src="car/themes/fileinput/themes/explorer-fas/theme.js" type="text/javascript"></script>
 
 <?php require('car/main/include/contact.php'); ?>
 <?php require('car/main/include/footer.php'); ?>
