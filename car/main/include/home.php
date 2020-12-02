@@ -1,3 +1,4 @@
+<?php $intro = select_1_record("select * from intro where IsActive = 1") ?>
 <!-- HOME -->
 <section id="home">
     <div class="row">
@@ -6,10 +7,9 @@
                 <div class="caption">
                     <div class="container">
                         <div class="col-md-6 col-sm-12">
-                            <h1>Lorem ipsum dolor sit amet.</h1>
-                            <h3>Voluptas dignissimos esse, explicabo cum fugit eaque, perspiciatis quia ab nisi sapiente
-                                delectus eiet.</h3>
-                            <a href="cars.html" class="section-btn btn btn-default">Browse Cars</a>
+                            <h1><?php echo $intro["Title1"]; ?></h1>
+                            <h3><?php echo $intro["Content1"]; ?></h3>
+                            <a href="<?php echo $intro["Link1"]; ?>" class="section-btn btn btn-default">Browse Cars</a>
                         </div>
                     </div>
                 </div>
@@ -19,9 +19,9 @@
                 <div class="caption">
                     <div class="container">
                         <div class="col-md-6 col-sm-12">
-                            <h1>Distinctio explicabo vero animi culpa facere voluptatem.</h1>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, excepturi.</h3>
-                            <a href="cars.html" class="section-btn btn btn-default">Browse Cars</a>
+                            <h1><?php echo $intro["Title2"]; ?></h1>
+                            <h3><?php echo $intro["Content2"]; ?></h3>
+                            <a href="<?php echo $intro["Link2"]; ?>" class="section-btn btn btn-default">Browse Cars</a>
                         </div>
                     </div>
                 </div>
@@ -31,10 +31,9 @@
                 <div class="caption">
                     <div class="container">
                         <div class="col-md-6 col-sm-12">
-                            <h1>Efficient Learning Methods</h1>
-                            <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis
-                                sollicitudin ut at libero.</h3>
-                            <a href="cars.html" class="section-btn btn btn-default">Browse Cars</a>
+                            <h1><?php echo $intro["Title3"]; ?></h1>
+                            <h3><?php echo $intro["Content3"]; ?></h3>
+                            <a href="<?php echo $intro["Link3"]; ?>" class="section-btn btn btn-default">Browse Cars</a>
                         </div>
                     </div>
                 </div>

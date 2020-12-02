@@ -446,6 +446,26 @@
         $('#tieptuc').click(function (e) {
             location.href = "car.php?controller=dinhgia&action=hinhanhxe&idguiban=" + $("#idguiban").val();
         });
+
+        $('#hoantat').click(function (e) {
+            $.ajax({
+                url: "car.php?controller=dinhgia&action=hoantathosoC",
+                type: "POST",
+                data: {
+                    idguiban: $("#idguiban").val()
+                },
+                success: function (rs) {
+                    if (rs > 0) {
+                        jAlert("Gửi thông tin thành công", "Thông báo", function (e) {
+                            location.href = "car.php?controller=dinhgia&action=hosoguibanxeC&idguiban=" + $("#idguiban").val();
+                        });
+                    } else {
+                        jAlert("Gửi thông tin không thành công.", "Thông báo", function (e) {
+                        });
+                    }
+                }
+            });
+        });
     });
 </script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
