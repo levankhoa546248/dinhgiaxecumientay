@@ -8,77 +8,33 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4">
-                <div class="courses-thumb courses-thumb-secondary">
-                    <div class="courses-top">
-                        <div class="courses-image">
-                            <img src="car/images/blog-1-720x480.jpg" class="img-responsive" alt="">
+            <?php $blog = select("select * from blog where trangthai = 1");
+            foreach ($blog as $blogs) {
+                ?>
+                <div class="col-md-4 col-sm-4">
+                    <div class="courses-thumb courses-thumb-secondary" style="height: 455px; width: 360px">
+                        <div class="courses-top">
+                            <div class="courses-image" style="width:360px; height:240px">
+                                <img src="<?php echo $blogs["hinhanh"];?>" class="img-responsive"
+                                     alt="">
+                            </div>
+                            <div class="courses-date">
+                                <span title="Author"><i class="fa fa-user"></i> <?php echo $blogs["nguoidang"];?></span>
+                                <span title="Date"><i class="fa fa-calendar"></i> <?php echo $blogs["ngaytao"];?></span>
+                                <span title="Views"><i class="fa fa-eye"></i> <?php echo $blogs["luotxem"];?></span>
+                            </div>
                         </div>
-                        <div class="courses-date">
-                            <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                            <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                            <span title="Views"><i class="fa fa-eye"></i> 114</span>
+
+                        <div class="courses-detail" style="width:360px; height:132px">
+                            <h3><a href="blog-post-details.html"><?php echo $blogs["tieude"];?></a></h3>
                         </div>
-                    </div>
 
-                    <div class="courses-detail">
-                        <h3><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Lorem ipsum dolor sit amet</a></h3>
-                    </div>
-
-                    <div class="courses-info">
-                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
+                        <div class="courses-info">
+                            <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="courses-thumb courses-thumb-secondary">
-                    <div class="courses-top">
-                        <div class="courses-image">
-                            <img src="car/images/blog-2-720x480.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="courses-date">
-                            <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                            <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                            <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                        </div>
-                    </div>
-
-                    <div class="courses-detail">
-                        <h3><a href="blog-post-details.html">Tempora molestiae, iste, consequatur unde sint
-                                praesentium!</a></h3>
-                    </div>
-
-                    <div class="courses-info">
-                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="courses-thumb courses-thumb-secondary">
-                    <div class="courses-top">
-                        <div class="courses-image">
-                            <img src="car/images/blog-3-720x480.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="courses-date">
-                            <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                            <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                            <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                        </div>
-                    </div>
-
-                    <div class="courses-detail">
-                        <h3><a href="blog-post-details.html">A voluptas ratione, error provident distinctio, eaque
-                                id officia?</a></h3>
-                    </div>
-
-                    <div class="courses-info">
-                        <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </section>
