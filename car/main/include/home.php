@@ -9,7 +9,7 @@
                         <div class="col-md-6 col-sm-12">
                             <h1><?php echo $intro["Title1"]; ?></h1>
                             <h3><?php echo $intro["Content1"]; ?></h3>
-                            <a href="<?php echo $intro["Link1"]; ?>" class="section-btn btn btn-default">Browse Cars</a>
+                            <a href="<?php echo $intro["Link1"]; ?>" class="section-btn btn btn-default">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                         <div class="col-md-6 col-sm-12">
                             <h1><?php echo $intro["Title2"]; ?></h1>
                             <h3><?php echo $intro["Content2"]; ?></h3>
-                            <a href="<?php echo $intro["Link2"]; ?>" class="section-btn btn btn-default">Browse Cars</a>
+                            <a href="<?php echo $intro["Link2"]; ?>" class="section-btn btn btn-default">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-6 col-sm-12">
                             <h1><?php echo $intro["Title3"]; ?></h1>
                             <h3><?php echo $intro["Content3"]; ?></h3>
-                            <a href="<?php echo $intro["Link3"]; ?>" class="section-btn btn btn-default">Browse Cars</a>
+                            <a href="<?php echo $intro["Link3"]; ?>" class="section-btn btn btn-default">Xem thêm</a>
                         </div>
                     </div>
                 </div>

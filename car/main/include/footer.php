@@ -1,3 +1,6 @@
+<?php
+    $infocompany = select_1_record("select * from infocompany where trangthai = 1");
+?>
 <!-- FOOTER -->
 <footer id="footer">
     <div class="container">
@@ -9,14 +12,14 @@
                         <h2>Cơ sở chính</h2>
                     </div>
                     <address>
-                        <p>332-334 Đường 30/04, Thị Trấn Nàng Mau <br>Huyện Vị Thủy, Tỉnh Hậu Giang</p>
+                        <p><?php echo $infocompany["diachi"];?></p>
                     </address>
 
                     <ul class="social-icon">
-                        <li><a href="https://www.facebook.com/linh.duy.794" class="fa fa-facebook-square"
+                        <li><a href="<?php echo $infocompany["facebook"];?>" class="fa fa-facebook-square"
                                attr="facebook icon" target="_blank"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
+                        <li><a href="<?php echo $infocompany["twitter"];?>" class="fa fa-twitter"></a></li>
+                        <li><a href="<?php echo $infocompany["twitter"];?>" class="fa fa-twitter"></a></li>
                     </ul>
 
                     <div class="copyright-text">
@@ -29,20 +32,22 @@
             <div class="col-md-4 col-sm-6">
                 <div class="footer-info">
                     <div class="section-title">
-                        <h2>Contact Info</h2>
+                        <h2>Liên hệ</h2>
                     </div>
                     <address>
-                        <p>+1 333 4040 5566</p>
-                        <p><a href="mailto:contact@company.com">contact@company.com</a></p>
+                        <p><?php echo $infocompany["dienthoai"];?></p>
+                        <p><a href="mailto:<?php echo $infocompany["email"];?>"><?php echo $infocompany["email"];?></a></p>
                     </address>
 
                     <div class="footer_menu">
-                        <h2>Quick Links</h2>
+                        <h2>Danh mục</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="terms.html">Terms & Conditions</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="car.php?controller=home&action=index">Home</a></li>
+                            <li><a href="car.php?controller=xe&action=xeC">Xe</a></li>
+                            <li><a href="car.php?controller=dinhgia&action=index">Định giá</a></li>
+                            <li><a href="car.php?controller=timmua&action=index">Tìm mua</a></li>
+                            <li><a href="car.php?controller=tintuc&action=index">Tin tức</a></li>
+                            <li><a href="car.php?controller=lienhe&action=index">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,7 +56,13 @@
             <div class="col-md-4 col-sm-12">
                 <div class="footer-info newsletter-form">
                     <div id="fb-root"></div>
-                    <div class="fb-page" data-href="https://www.facebook.com/C%E1%BB%ADa-H%C3%A0ng-D%C5%A9ng-L%C3%A2m-387688081723225/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+                    <div class="fb-page"
+                         data-href="https://www.facebook.com/C%E1%BB%ADa-H%C3%A0ng-D%C5%A9ng-L%C3%A2m-387688081723225/"
+                         data-tabs="timeline" data-width="" data-height="" data-small-header="false"
+                         data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a
+                                    href="https://www.facebook.com/facebook">Facebook</a></blockquote>
+                    </div>
                 </div>
             </div>
 
@@ -63,7 +74,7 @@
     <div class="hotline-phone-ring">
         <div class="hotline-phone-ring-circle"></div>
         <div class="hotline-phone-ring-circle-fill"></div>
-        <div class="hotline-phone-ring-img-circle"><a href="tel:0898982526" class="pps-btn-img"> <img
+        <div class="hotline-phone-ring-img-circle"><a href="tel:0939571387" class="pps-btn-img"> <img
                         src="https://netweb.vn/img/hotline/icon.png" alt="so dien thoai" width="50"> </a></div>
     </div>
     <div class="hotline-bar">
@@ -82,5 +93,6 @@
 </div>
 </body>
 <link rel="stylesheet" type="text/css" media="screen" href="website/themes/css/hotline.css"/>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0" nonce="CqeMMtGp"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0"
+        nonce="CqeMMtGp"></script>
 

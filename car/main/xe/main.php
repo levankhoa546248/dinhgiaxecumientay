@@ -1,55 +1,3 @@
-<?php
-$subcategories = get_all('subcategory', array(
-    'select' => 'Id,Name',
-    'order_by' => 'Name'
-));
-$dongxes = get_select_nested('SELECT dx.id, dx.dongxe, dx.idhangxe, sub.`Name` as tenhangxe FROM dongxe dx
-LEFT JOIN subcategory sub ON dx.idhangxe = sub.Id where dx.trangthai = 1');
-$nhienlieus = get_select_nested('SELECT id, name FROM nhienlieu where trangthai = 1');
-$hopsos = get_select_nested('SELECT id, name FROM hopso where trangthai = 1');
-$chongois = get_select_nested('SELECT id, name FROM chongoi where trangthai = 1');
-$xuatxus = get_select_nested('SELECT id, name FROM xuatxu where trangthai = 1');
-$mausacs = get_select_nested('SELECT id, name FROM mausac where trangthai = 1');
-$namsanxuats = get_select_nested('SELECT id, name FROM namsanxuat where trangthai = 1');
-$xe = get_select_nested("
-                            SELECT
-                                hax.id AS idhax,
-                                IFNULL(
-                                    hax.duongdan,
-                                    'car/images/blog-1-720x480.jpg'
-                                ) AS duongdan,
-                                x.*, cn.`name` AS tenchongoi,
-                                hs.`name` AS tenhopso,
-                                nl.`name` AS tennhienlieu,
-                                sub.`Name` AS tenhangxe,
-                                dx.dongxe AS tendongxe,
-                                xx.`name` AS tenxuatxu,
-                                nsx.`name` AS tennamsanxuat,
-                                ms.`name` AS tenmausac
-                            FROM
-                                xe x
-                            LEFT JOIN (
-                                SELECT
-                                    MIN(id) AS id,
-                                    idxe,
-                                    duongdan
-                                FROM
-                                    hinhanhxe
-                                GROUP BY
-                                    idxe
-                            ) hax ON x.id = hax.idxe
-                            LEFT JOIN chongoi cn ON cn.id = x.chongoi
-                            LEFT JOIN hopso hs ON hs.id = x.hopso
-                            LEFT JOIN nhienlieu nl ON nl.id = x.nhienlieu
-                            LEFT JOIN subcategory sub ON sub.id = x.hangxe
-                            LEFT JOIN dongxe dx ON dx.id = x.dongxe
-                            LEFT JOIN xuatxu xx ON xx.id = x.xuatxu
-                            LEFT JOIN namsanxuat nsx ON nsx.id = x.namsanxuat
-                            LEFT JOIN mausac ms ON ms.id = x.mausac
-                            WHERE
-                                x.trangthai = 0
-                            ");
-?>
 <main>
     <section>
         <div class="container">
@@ -58,7 +6,7 @@ $xe = get_select_nested("
 
                 <br>
 
-                <p class="lead">Bán các loại xe cũ mới</p>
+                <p class="lead">Tìm mua và bán các loại xe ô tô.</p>
             </div>
         </div>
     </section>
@@ -73,9 +21,9 @@ $xe = get_select_nested("
                             <label>Hãng xe:</label>
                             <select name="hangxe" class="form-control" id="hangxe"
                                     onChange="getDongXe(this.value);">
-                                <option disabled selected>Chọn hãng xe</option>
+                                <option value="0" selected>Chọn hãng xe</option>
                                 <?php foreach ($subcategories as $subcategory) {
-                                    $selected = '';
+                                    $selected = $s_hangxe == $subcategory['Id'] ? 'selected' : '';
                                     echo '<option value="' . $subcategory['Id'] . '" ' . $selected . '>' . $subcategory['Name'] . '</option>';
                                 } ?>
                             </select>
@@ -84,9 +32,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Dòng xe:</label>
                             <select name="dongxe" class="form-control" id="dongxe">
-                                <option disabled selected>Chọn dòng xe</option>
+                                <option value="0" selected>Chọn dòng xe</option>
                                 <?php foreach ($dongxes as $dongxe) {
-                                    $selected = '';
+                                    $selected = $s_dongxe == $dongxe['id'] ? 'selected' : '';
                                     echo '<option value="' . $dongxe['id'] . '" ' . $selected . '>' . $dongxe['dongxe'] . '</option>';
                                 } ?>
                             </select>
@@ -95,9 +43,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Năm sản xuất:</label>
                             <select name="namsanxuat" class="form-control" id="namsanxuat">
-                                <option disabled selected>Chọn năm sản xuất</option>
+                                <option value="0" selected>Chọn năm sản xuất</option>
                                 <?php foreach ($namsanxuats as $namsanxuat) {
-                                    $selected = '';
+                                    $selected = $s_namsanxuat == $namsanxuat['id'] ? 'selected' : '';
                                     echo '<option value="' . $namsanxuat['id'] . '" ' . $selected . '>' . $namsanxuat['name'] . '</option>';
                                 } ?>
                             </select>
@@ -106,9 +54,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Nhiên liệu:</label>
                             <select name="nhienlieu" class="form-control" id="nhienlieu">
-                                <option disabled selected>Chọn nhiên liệu</option>
+                                <option value="0" selected>Chọn nhiên liệu</option>
                                 <?php foreach ($nhienlieus as $nhienlieu) {
-                                    $selected = '';
+                                    $selected = $s_nhienlieu == $nhienlieu['id'] ? 'selected' : '';
                                     echo '<option value="' . $nhienlieu['id'] . '" ' . $selected . '>' . $nhienlieu['name'] . '</option>';
                                 } ?>
                             </select>
@@ -117,9 +65,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Hộp số:</label>
                             <select name="hopso" class="form-control" id="hopso">
-                                <option disabled selected>Chọn hộp số</option>
+                                <option value="0" selected>Chọn hộp số</option>
                                 <?php foreach ($hopsos as $hopso) {
-                                    $selected = '';
+                                    $selected = $s_hopso == $hopso['id'] ? 'selected' : '';
                                     echo '<option value="' . $hopso['id'] . '" ' . $selected . '>' . $hopso['name'] . '</option>';
                                 } ?>
                             </select>
@@ -128,9 +76,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Số chỗ ngồi:</label>
                             <select name="chongoi" class="form-control" id="chongoi">
-                                <option disabled selected>Chọn chỗ ngồi</option>
+                                <option value="0" selected>Chọn chỗ ngồi</option>
                                 <?php foreach ($chongois as $chongoi) {
-                                    $selected = '';
+                                    $selected = $s_chongoi == $chongoi['id'] ? 'selected' : '';
                                     echo '<option value="' . $chongoi['id'] . '" ' . $selected . '>' . $chongoi['name'] . '</option>';
                                 } ?>
                             </select>
@@ -139,9 +87,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Xuất xứ:</label>
                             <select name="xuatxu" class="form-control" id="xuatxu">
-                                <option disabled selected>Chọn xuất xứ</option>
+                                <option value="0" selected>Chọn xuất xứ</option>
                                 <?php foreach ($xuatxus as $xuatxu) {
-                                    $selected = '';
+                                    $selected = $s_xuatxu == $xuatxu['id'] ? 'selected' : '';
                                     echo '<option value="' . $xuatxu['id'] . '" ' . $selected . '>' . $xuatxu['name'] . '</option>';
                                 } ?>
                             </select>
@@ -150,9 +98,9 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Màu sắc:</label>
                             <select name="mausac" class="form-control" id="mausac">
-                                <option disabled selected>Chọn màu sắc</option>
+                                <option value="0" selected>Chọn màu sắc</option>
                                 <?php foreach ($mausacs as $mausac) {
-                                    $selected = '';
+                                    $selected = $s_mausac == $mausac['id'] ? 'selected' : '';
                                     echo '<option value="' . $mausac['id'] . '" ' . $selected . '>' . $mausac['name'] . '</option>';
                                 } ?>
                             </select>
@@ -160,12 +108,12 @@ $xe = get_select_nested("
                         <div class="form-group">
                             <label>Giá bán:</label>
                             <select name="giaban" class="form-control" id="giaban">
-                                <option disabled selected>Chọn giá bán</option>
-                                <option value="1">Dưới 300</option>
-                                <option value="2">Từ 300 - 500</option>
-                                <option value="3">Từ 500 - 700</option>
-                                <option value="4">Từ 700 - 900</option>
-                                <option value="5">Trên 900</option>
+                                <option value="0" <?php echo $s_giaban == '0' ? 'selected' : '' ?>>Chọn giá bán</option>
+                                <option value="1" <?php echo $s_giaban == '1' ? 'selected' : '' ?>>Dưới 300</option>
+                                <option value="2" <?php echo $s_giaban == '2' ? 'selected' : '' ?>>Từ 300 - 500</option>
+                                <option value="3" <?php echo $s_giaban == '3' ? 'selected' : '' ?>>Từ 500 - 700</option>
+                                <option value="4" <?php echo $s_giaban == '4' ? 'selected' : '' ?>>Từ 700 - 900</option>
+                                <option value="5" <?php echo $s_giaban == '5' ? 'selected' : '' ?>>Trên 900</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -198,7 +146,7 @@ $xe = get_select_nested("
                                     </div>
 
                                     <div class="courses-detail">
-                                        <h3><a href="car-details.html"><?php echo $xes["tenxe"]; ?></a></h3>
+                                        <h3><a href="car.php?controller=xe&action=chitiet"><?php echo $xes["tenxe"]; ?></a></h3>
 
                                         <p class="lead"><small>
                                                 <del> <?php echo number_format($xes["giaban"] + 10000000, 0, '.', ','); ?> </del>
@@ -211,8 +159,7 @@ $xe = get_select_nested("
                                     </div>
 
                                     <div class="courses-info">
-                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">View
-                                            More</a>
+                                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">Xem thêm</a>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +182,30 @@ $xe = get_select_nested("
 <script>
     $(document).ready(function () {
         $('#search').click(function (e) {
-            jAlert(1);
+
+            var hangxe = $("#hangxe").val();
+            var dongxe = $("#dongxe").val();
+            var namsanxuat = $("#namsanxuat").val();
+            var nhienlieu = $("#nhienlieu").val();
+            var hopso = $("#hopso").val();
+            var chongoi = $("#chongoi").val();
+            var xuatxu = $("#xuatxu").val();
+            var mausac = $("#mausac").val();
+            var giaban = $("#giaban").val();
+            var search = [hangxe, dongxe, nhienlieu, hopso, chongoi, namsanxuat, xuatxu, mausac, giaban];
+            location.href = "car.php?controller=xe&action=xeC&search=" + search;
         });
     });
+
+    function getDongXe(val) {
+        $.ajax({
+            type: "POST",
+            url: "car.php?controller=xe&action=getdongxe",
+            data: 'idhangxe=' + val,
+            success: function (data) {
+                $("#dongxe").html(data);
+                // getCity();
+            }
+        });
+    }
 </script>

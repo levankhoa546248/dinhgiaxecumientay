@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
+                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">Xem thêm</a>
                         </div>
                     </div>
                 </div>

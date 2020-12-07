@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="col-md-4 col-sm-12">
-                        <input type="button" class="form-control" id="hoantat" value="Send Message"></div>
+                        <input type="button" class="section-btn btn btn-default" id="hoantat" value="Send Message"></div>
 
                 </form>
             </div>

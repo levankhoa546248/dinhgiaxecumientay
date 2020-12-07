@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="courses-info">
-                            <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
+                            <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Xem thêm</a>
                         </div>
                     </div>
                 </div>
