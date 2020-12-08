@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="col-md-4 col-sm-12">
-                        <input type="button" class="section-btn btn btn-default" id="hoantat" value="Send Message"></div>
+                        <input type="button" class="section-btn btn btn-default" id="sendmessage" value="Send Message"></div>
 
                 </form>
             </div>
@@ -36,13 +36,9 @@
         </div>
     </div>
 </section>
-<script type="text/javascript" src="car/themes/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="car/themes/js/jquery.alerts.js"></script>
-<script type="text/javascript" src="car/themes/js/selfjs.js"></script>
-<link href="car/themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
 <script>
     $(document).ready(function () {
-        $('#hoantat').click(function (e) {
+        $('#sendmessage').click(function (e) {
             if (checkIf($("#dienthoai").val())) {
                 jAlert("Chưa nhập số điện thoại", "Thông báo", function (e) {
                     $("#dienthoai").focus();

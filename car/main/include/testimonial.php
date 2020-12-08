@@ -5,7 +5,7 @@
 
             <div class="col-md-12 col-sm-12">
                 <div class="section-title text-center">
-                    <h2>Bảng giá xe <small>Bài đăng mới nhất của các hãng xe</small></h2>
+                    <h2>Hãng xe <small>Tin tức mới nhất của các hãng xe</small></h2>
                 </div>
 
                 <div class="owl-carousel owl-theme owl-client">

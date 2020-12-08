@@ -1,5 +1,5 @@
 <?php
-    $infocompany = select_1_record("select * from infocompany where trangthai = 1");
+$infocompany = select_1_record("select * from infocompany where trangthai = 1");
 ?>
 <!-- FOOTER -->
 <footer id="footer">
@@ -12,14 +12,14 @@
                         <h2>Cơ sở chính</h2>
                     </div>
                     <address>
-                        <p><?php echo $infocompany["diachi"];?></p>
+                        <p><?php echo $infocompany["diachi"]; ?></p>
                     </address>
 
                     <ul class="social-icon">
-                        <li><a href="<?php echo $infocompany["facebook"];?>" class="fa fa-facebook-square"
+                        <li><a href="<?php echo $infocompany["facebook"]; ?>" class="fa fa-facebook-square"
                                attr="facebook icon" target="_blank"></a></li>
-                        <li><a href="<?php echo $infocompany["twitter"];?>" class="fa fa-twitter"></a></li>
-                        <li><a href="<?php echo $infocompany["twitter"];?>" class="fa fa-twitter"></a></li>
+                        <li><a href="<?php echo $infocompany["twitter"]; ?>" class="fa fa-twitter"></a></li>
+                        <li><a href="<?php echo $infocompany["instagram"]; ?>" class="fa fa-instagram"></a></li>
                     </ul>
 
                     <div class="copyright-text">
@@ -35,8 +35,10 @@
                         <h2>Liên hệ</h2>
                     </div>
                     <address>
-                        <p><?php echo $infocompany["dienthoai"];?></p>
-                        <p><a href="mailto:<?php echo $infocompany["email"];?>"><?php echo $infocompany["email"];?></a></p>
+                        <p><?php echo $infocompany["dienthoai"]; ?></p>
+                        <p>
+                            <a href="mailto:<?php echo $infocompany["email"]; ?>"><?php echo $infocompany["email"]; ?></a>
+                        </p>
                     </address>
 
                     <div class="footer_menu">
@@ -74,8 +76,8 @@
     <div class="hotline-phone-ring">
         <div class="hotline-phone-ring-circle"></div>
         <div class="hotline-phone-ring-circle-fill"></div>
-        <div class="hotline-phone-ring-img-circle"><a href="tel:0939571387" class="pps-btn-img"> <img
-                        src="https://netweb.vn/img/hotline/icon.png" alt="so dien thoai" width="50"> </a></div>
+        <div class="hotline-phone-ring-img-circle"><a href="tel:0939571387" class="pps-btn-img"><i
+                        class="fa fa-phone"></i></div>
     </div>
     <div class="hotline-bar">
         <a href="tel:0898982526"> <span class="text-hotline">0939571387</span> </a>
@@ -86,13 +88,9 @@
         <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton"
                                           href="https://zalo.me/0939571387"><i
                         class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
-        <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton"
-                                          href="https://www.messenger.com/t/vanhaiweb"><i
-                        class="fa fa-messenger animated infinite tada"></i><span>Facebook</span></a></li>
     </ul>
 </div>
 </body>
-<link rel="stylesheet" type="text/css" media="screen" href="website/themes/css/hotline.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="car/themes/css/hotline.css"/>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0"
         nonce="CqeMMtGp"></script>
-
