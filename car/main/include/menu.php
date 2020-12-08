@@ -47,7 +47,8 @@
                 <!--                        <li><a href="testimonials.html">Testimonials</a></li>-->
                 <!--                    </ul>-->
                 <!--                </li>-->
-                <li><a href="contact.html">Tin tức</a></li>
+                <li <?php if ($_GET["controller"] == "tintuc") echo "class=\"active\""; else echo ""; ?>><a
+                            href="car.php?controller=tintuc&action=index">Tin tức</a></li>
                 <li><a href="contact.html">Liên hệ</a></li>
             </ul>
         </div>
