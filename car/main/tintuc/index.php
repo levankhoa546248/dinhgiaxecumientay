@@ -15,9 +15,9 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="courses-thumb courses-thumb-secondary h-courses-thumb">
                                 <div class="courses-top">
-                                    <div class="courses-image">
+                                    <div class="courses-image" style="height: 170px; width: 255px">
                                         <img src="<?php echo $blogs["hinhanh"]; ?>" class="img-responsive"
-                                             alt="" style="height: inherit;">
+                                             alt="" style="height: 170px; width: 255px">
                                     </div>
                                     <div class="courses-date">
                                             <span title="Date"><i
@@ -59,9 +59,9 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="courses-thumb courses-thumb-secondary h-courses-thumb">
                                 <div class="courses-top">
-                                    <div class="courses-image">
+                                    <div class="courses-image" style="height: 170px; width: 255px">
                                         <img src="<?php echo $blogs["hinhanh"]; ?>" class="img-responsive"
-                                             alt="" style="height: inherit;">
+                                             alt="" style="height: 170px; width: 255px">
                                     </div>
                                     <div class="courses-date">
                                         <span title="Date"><i
