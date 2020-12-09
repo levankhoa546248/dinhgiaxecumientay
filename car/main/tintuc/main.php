@@ -7,7 +7,7 @@
                     <div class="section-title text-center">
                         <h2>Tin tức <small>Liên tục cập nhật thông tin mới nhất về ô tô</small></h2>
                     </div>
-                        <?php $blog = select("select * from blog where trangthai = 1");
+                        <?php $blog = select("select * from blog where trangthai = 1 where loai = 0");
                         foreach ($blog as $blogs) {
                             ?>
                             <div class="col-md-3 col-sm-3">
@@ -48,7 +48,7 @@
                         <h2>Hãng xe <small>Tin tức mới nhất của các hãng xe</small></h2>
                     </div>
 
-                    <?php $blog = select("select * from blog where trangthai = 1");
+                    <?php $blog = select("select * from blog where trangthai = 1 and loai = 1");
                     foreach ($blog as $blogs) {
                         ?>
                         <div class="col-md-3 col-sm-3">

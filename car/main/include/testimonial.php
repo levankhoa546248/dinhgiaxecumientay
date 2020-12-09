@@ -10,7 +10,7 @@
 
                 <div class="owl-carousel owl-theme owl-client">
 
-                    <?php $blog = select("select * from blog where trangthai = 1");
+                    <?php $blog = select("select * from blog where trangthai = 1 and loai = 1");
                     foreach ($blog as $blogs) {
                         ?>
                         <div class="col-md-4 col-sm-4">
@@ -18,15 +18,11 @@
                                 <div class="courses-top">
                                     <div class="courses-image" style="width:360px; height:240px">
                                         <img src="<?php echo $blogs["hinhanh"]; ?>" class="img-responsive"
-                                             alt="">
+                                             alt="" style="height: inherit">
                                     </div>
                                     <div class="courses-date">
-                                        <span title="Author"><i
-                                                    class="fa fa-user"></i> <?php echo $blogs["nguoidang"]; ?></span>
                                         <span title="Date"><i
                                                     class="fa fa-calendar"></i> <?php echo $blogs["ngaytao"]; ?></span>
-                                        <span title="Views"><i
-                                                    class="fa fa-eye"></i> <?php echo $blogs["luotxem"]; ?></span>
                                     </div>
                                 </div>
 

@@ -80,3 +80,18 @@ input[type="file"] {
 .h-courses-detail{
     height: 150px
 }
+
+.h-courses-thumb-4{
+    height: 455px;
+    width: 360px
+}
+
+.h-courses-detail-4{
+    width:360px;
+    height:132px
+}
+
+.h-courses-image-4{
+    width:360px;
+    height:240px
+}

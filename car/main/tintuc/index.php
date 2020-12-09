@@ -9,28 +9,31 @@
                     <div class="section-title text-center">
                         <h2>Tin tức <small>Liên tục cập nhật thông tin mới nhất về ô tô</small></h2>
                     </div>
-                    <?php $blog = select("select * from blog where trangthai = 1");
+                    <?php $blog = select("select * from blog where trangthai = 1 and loai = 0");
                     foreach ($blog as $blogs) {
                         ?>
                         <div class="col-md-3 col-sm-3">
-                            <div class="courses-thumb courses-thumb-secondary h-courses-thumb" >
+                            <div class="courses-thumb courses-thumb-secondary h-courses-thumb">
                                 <div class="courses-top">
                                     <div class="courses-image">
                                         <img src="<?php echo $blogs["hinhanh"]; ?>" class="img-responsive"
-                                             alt="">
+                                             alt="" style="height: inherit;">
                                     </div>
                                     <div class="courses-date">
                                             <span title="Date"><i
-                                                    class="fa fa-calendar"></i> <?php echo $blogs["ngaytao"]; ?></span>
+                                                        class="fa fa-calendar"></i> <?php echo $blogs["ngaytao"]; ?></span>
                                     </div>
                                 </div>
 
                                 <div class="courses-detail h-courses-detail">
-                                    <h4><a href="car.php?controller=tintuc&action=chitiet&id="<?php echo $blogs["id"];?>><?php echo $blogs["tieude"]; ?></a></h4>
+                                    <h4>
+                                        <a href="car.php?controller=tintuc&action=chitiet&id=<?php echo $blogs["id"]; ?>"><?php echo $blogs["tieude"]; ?></a>
+                                    </h4>
                                 </div>
 
                                 <div class="courses-info">
-                                    <a href="car.php?controller=tintuc&action=chitiet&id="<?php echo $blogs["id"];?> class="section-btn btn btn-primary btn-block">Xem
+                                    <a href="car.php?controller=tintuc&action=chitiet&id=<?php echo $blogs["id"]; ?>"
+                                       class="section-btn btn btn-primary btn-block">Xem
                                         thêm</a>
                                 </div>
                             </div>
@@ -50,7 +53,7 @@
                         <h2>Hãng xe <small>Tin tức mới nhất của các hãng xe</small></h2>
                     </div>
 
-                    <?php $blog = select("select * from blog where trangthai = 1");
+                    <?php $blog = select("select * from blog where trangthai = 1 and loai = 1");
                     foreach ($blog as $blogs) {
                         ?>
                         <div class="col-md-3 col-sm-3">
@@ -58,15 +61,11 @@
                                 <div class="courses-top">
                                     <div class="courses-image">
                                         <img src="<?php echo $blogs["hinhanh"]; ?>" class="img-responsive"
-                                             alt="">
+                                             alt="" style="height: inherit;">
                                     </div>
                                     <div class="courses-date">
-                                        <span title="Author"><i
-                                                class="fa fa-user"></i> <?php echo $blogs["nguoidang"]; ?></span>
                                         <span title="Date"><i
-                                                class="fa fa-calendar"></i> <?php echo $blogs["ngaytao"]; ?></span>
-                                        <span title="Views"><i
-                                                class="fa fa-eye"></i> <?php echo $blogs["luotxem"]; ?></span>
+                                                    class="fa fa-calendar"></i> <?php echo $blogs["ngaytao"]; ?></span>
                                     </div>
                                 </div>
 
