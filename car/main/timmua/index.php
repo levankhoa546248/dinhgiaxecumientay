@@ -1,5 +1,4 @@
 <?php require('car/main/include/head.php'); ?>
-<?php require('car/main/dinhgia/script.php'); ?>
 <?php require('car/main/include/menu.php'); ?>
 <main>
     <section>
@@ -48,7 +47,12 @@
     </section>
 
     <?php require('car/main/include/featured.php'); ?>
+    <?php require('car/main/include/blog.php'); ?>
+    <?php require('car/main/include/testimonial.php'); ?>
 </main>
+<?php require('car/main/include/contact.php'); ?>
+<?php require('car/main/include/footer.php'); ?>
+
 <script type="text/javascript" src="car/themes/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="car/themes/js/jquery.alerts.js"></script>
 <script type="text/javascript" src="car/themes/js/selfjs.js"></script>
@@ -101,6 +105,5 @@
         });
     });
 </script>
-<?php require('car/main/include/contact.php'); ?>
-<?php require('car/main/include/footer.php'); ?>
+</body>
 </html>
