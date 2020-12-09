@@ -70,11 +70,11 @@
                                 </div>
 
                                 <div class="courses-detail h-courses-detail">
-                                    <h4><a href="blog-post-details.html"><?php echo $blogs["tieude"]; ?></a></h4>
+                                    <h4><a href="car.php?controller=tintuc&action=chitiet&id=<?php echo $blogs["id"]; ?>"><?php echo $blogs["tieude"]; ?></a></h4>
                                 </div>
 
                                 <div class="courses-info">
-                                    <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Xem
+                                    <a href="car.php?controller=tintuc&action=chitiet&id=<?php echo $blogs["id"]; ?>" class="section-btn btn btn-primary btn-block">Xem
                                         thêm</a>
                                 </div>
                             </div>
