@@ -1,5 +1,6 @@
 <?php require('car/main/include/head.php'); ?>
 <?php require('car/main/include/menu.php'); ?>
+<main>
 <!-- HOME -->
 <section id="home">
     <?php $intro = select_1_record("select * from intro where IsActive = 1") ?>
@@ -84,6 +85,7 @@
 <?php require('car/main/include/featured.php'); ?>
 <?php require('car/main/include/blog.php'); ?>
 <?php require('car/main/include/testimonial.php'); ?>
+</main>
 <?php require('car/main/include/contact.php'); ?>
 <?php require('car/main/include/footer.php'); ?>
 </body>
