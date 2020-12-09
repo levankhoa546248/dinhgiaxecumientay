@@ -1,5 +1,4 @@
 <?php require('car/main/include/head.php'); ?>
-<?php require('car/main/xe/script.php'); ?>
 <?php require('car/main/include/menu.php'); ?>
 <main>
     <section>
@@ -182,6 +181,10 @@
 
     <?php require('car/main/include/featured.php'); ?>
 </main>
+
+<?php require('car/main/include/contact.php'); ?>
+<?php require('car/main/include/footer.php'); ?>
+
 <script>
     $(document).ready(function () {
         $("#input-21").fileinput({
@@ -215,7 +218,5 @@
 <script src="car/themes/fileinput/js/locales/es.js" type="text/javascript"></script>
 <script src="car/themes/fileinput/themes/fas/theme.js" type="text/javascript"></script>
 <script src="car/themes/fileinput/themes/explorer-fas/theme.js" type="text/javascript"></script>
-
-<?php require('car/main/include/contact.php'); ?>
-<?php require('car/main/include/footer.php'); ?>
+</body>
 </html>
