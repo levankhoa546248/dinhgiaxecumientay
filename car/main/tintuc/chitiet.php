@@ -1,139 +1,153 @@
 <?php require('car/main/include/head.php'); ?>
 <?php require('car/main/include/menu.php'); ?>
-<section>
-    <div class="container">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse rerum fugit, sunt ut architecto, ipsam!</h2>
+<main>
+    <section>
+        <div class="container">
+            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse rerum fugit, sunt ut architecto, ipsam!</h2>
 
-        <p class="lead">
-            <i class="fa fa-user"></i> John Doe &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-calendar"></i> 12/06/2020 10:30 &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-eye"></i> 114
-        </p>
+            <p class="lead">
+                <i class="fa fa-user"></i> John Doe &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-calendar"></i> 12/06/2020 10:30 &nbsp;&nbsp;&nbsp;
+                <i class="fa fa-eye"></i> 114
+            </p>
 
-        <img src="car/images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt="">
+            <img src="car/images/other-image-fullscreen-1-1920x700.jpg" class="img-responsive" alt="">
 
-        <br>
+            <br>
 
-        <h3>Aut minus, reiciendis fuga sit consequuntur iste, amet numquam, laudantium nam repellendus ipsa vero ipsum
-            dicta blanditiis reprehenderit.</h3>
-
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, nam nisi, excepturi amet repellendus, commodi
-            sunt architecto eum optio cumque recusandae. Ut necessitatibus, rem impedit enim saepe reprehenderit
-            asperiores velit.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat maiores possimus deserunt nam dolores! Unde
-            autem eius deserunt, adipisci officiis ipsum eveniet quidem fugiat nihil temporibus soluta nam animi
-            provident corrupti quod aut ducimus ex, repellendus aperiam minima, deleniti non! Alias, id. Debitis
-            molestiae minima eius adipisci non distinctio expedita cumque ab, accusantium molestias amet cupiditate,
-            nobis sed! Facilis, saepe.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, dicta cum, earum expedita laboriosam
-            doloribus. Aliquid, quibusdam vitae ratione fugiat labore numquam quo corporis, iure fugit incidunt nemo
-            dolorum soluta facilis dolor. Quas quo enim consequatur commodi, quisquam, maiores at quasi quae est quis
-            officiis alias eum omnis amet repudiandae. Nisi alias in,
-            consequuntur? Minus fuga, modi provident laboriosam doloribus.</p>
-
-        <br>
-
-        <h4>Harum libero esse sed nostrum laboriosam dolores rerum</h4>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus consequuntur fuga, provident quibusdam
-            rerum maxime nostrum blanditiis numquam eos accusantium, quis quaerat sed voluptatem optio, nobis, officiis
-            officia ipsum animi.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, nam nisi, excepturi amet repellendus, commodi
-            sunt architecto eum optio cumque recusandae. Ut necessitatibus, rem impedit enim saepe reprehenderit
-            asperiores velit.</p>
-
-        <br>
+            <h3>Aut minus, reiciendis fuga sit consequuntur iste, amet numquam, laudantium nam repellendus ipsa vero ipsum
+                dicta blanditiis reprehenderit.</h3>
 
 
-        <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim voluptatum sint autem, esse nihil.
-            Eaque.</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, nam nisi, excepturi amet repellendus, commodi
+                sunt architecto eum optio cumque recusandae. Ut necessitatibus, rem impedit enim saepe reprehenderit
+                asperiores velit.</p>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat maiores possimus deserunt nam dolores! Unde
-            autem eius deserunt, adipisci officiis ipsum eveniet quidem fugiat nihil temporibus soluta nam animi
-            provident corrupti quod aut ducimus ex, repellendus aperiam minima, deleniti non! Alias, id. Debitis
-            molestiae minima eius adipisci non distinctio expedita cumque ab, accusantium molestias amet cupiditate,
-            nobis sed! Facilis, saepe.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat maiores possimus deserunt nam dolores! Unde
+                autem eius deserunt, adipisci officiis ipsum eveniet quidem fugiat nihil temporibus soluta nam animi
+                provident corrupti quod aut ducimus ex, repellendus aperiam minima, deleniti non! Alias, id. Debitis
+                molestiae minima eius adipisci non distinctio expedita cumque ab, accusantium molestias amet cupiditate,
+                nobis sed! Facilis, saepe.</p>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, dicta cum, earum expedita laboriosam
-            doloribus. Aliquid, quibusdam vitae ratione fugiat labore numquam quo corporis, iure fugit incidunt nemo
-            dolorum soluta facilis dolor. Quas quo enim consequatur commodi, quisquam, maiores at quasi quae est quis
-            officiis alias eum omnis amet repudiandae. Nisi alias in,
-            consequuntur? Minus fuga, modi provident laboriosam doloribus.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, dicta cum, earum expedita laboriosam
+                doloribus. Aliquid, quibusdam vitae ratione fugiat labore numquam quo corporis, iure fugit incidunt nemo
+                dolorum soluta facilis dolor. Quas quo enim consequatur commodi, quisquam, maiores at quasi quae est quis
+                officiis alias eum omnis amet repudiandae. Nisi alias in,
+                consequuntur? Minus fuga, modi provident laboriosam doloribus.</p>
 
-        <br>
-        <br>
+            <br>
 
-        <div class="row">
-            <div class="col-md-4 col-xs-12 pull-right">
-                <h4>Social share</h4>
+            <h4>Harum libero esse sed nostrum laboriosam dolores rerum</h4>
 
-                <p>
-                    <a href="#" target="_blank"><i class="fa fa-facebook"></i></a> &nbsp;&nbsp;&nbsp;
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus consequuntur fuga, provident quibusdam
+                rerum maxime nostrum blanditiis numquam eos accusantium, quis quaerat sed voluptatem optio, nobis, officiis
+                officia ipsum animi.</p>
 
-                    <a href="#" target="_blank"><i class="fa fa-twitter"></i></a> &nbsp;&nbsp;&nbsp;
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, nam nisi, excepturi amet repellendus, commodi
+                sunt architecto eum optio cumque recusandae. Ut necessitatibus, rem impedit enim saepe reprehenderit
+                asperiores velit.</p>
 
-                    <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                </p>
-
-                <br>
+            <br>
 
 
-                <h4>Other posts</h4>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim voluptatum sint autem, esse nihil.
+                Eaque.</h4>
 
-                <ul class="list">
-                    <li><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing.</a></li>
-                    <li><a href="blog-post-details.html">Et animi voluptatem, assumenda enim, consectetur quaerat!</a>
-                    </li>
-                    <li><a href="blog-post-details.html">Ducimus magni eveniet sit doloremque molestiae alias mollitia
-                            vitae.</a></li>
-                </ul>
-            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat maiores possimus deserunt nam dolores! Unde
+                autem eius deserunt, adipisci officiis ipsum eveniet quidem fugiat nihil temporibus soluta nam animi
+                provident corrupti quod aut ducimus ex, repellendus aperiam minima, deleniti non! Alias, id. Debitis
+                molestiae minima eius adipisci non distinctio expedita cumque ab, accusantium molestias amet cupiditate,
+                nobis sed! Facilis, saepe.</p>
 
-            <div class="col-md-8 col-xs-12">
-                <h4>Comments</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, dicta cum, earum expedita laboriosam
+                doloribus. Aliquid, quibusdam vitae ratione fugiat labore numquam quo corporis, iure fugit incidunt nemo
+                dolorum soluta facilis dolor. Quas quo enim consequatur commodi, quisquam, maiores at quasi quae est quis
+                officiis alias eum omnis amet repudiandae. Nisi alias in,
+                consequuntur? Minus fuga, modi provident laboriosam doloribus.</p>
 
-                <p>No comments found.</p>
+            <br>
+            <br>
 
-                <br>
+            <div class="row">
+                <div class="col-md-4 col-xs-12 pull-right">
+                    <h4>Social share</h4>
 
-                <h4>Leave a Comment</h4>
+                    <p>
+                        <a href="#" target="_blank"><i class="fa fa-facebook"></i></a> &nbsp;&nbsp;&nbsp;
 
-                <form action="#" class="form">
+                        <a href="#" target="_blank"><i class="fa fa-twitter"></i></a> &nbsp;&nbsp;&nbsp;
 
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-6">
-                            <div class="form-group">
-                                <label class="control-label">Name</label>
+                        <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    </p>
 
-                                <input type="text" name="name" class="form-control">
+                    <br>
+
+
+                    <h4>Other posts</h4>
+
+                    <ul class="list">
+                        <li><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing.</a></li>
+                        <li><a href="blog-post-details.html">Et animi voluptatem, assumenda enim, consectetur quaerat!</a>
+                        </li>
+                        <li><a href="blog-post-details.html">Ducimus magni eveniet sit doloremque molestiae alias mollitia
+                                vitae.</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-8 col-xs-12">
+                    <h4>Comments</h4>
+
+                    <p>No comments found.</p>
+
+                    <br>
+
+                    <h4>Leave a Comment</h4>
+
+                    <form action="#" class="form">
+
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="control-label">Name</label>
+
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="control-label">Email</label>
+
+                                    <input type="email" name="email" class="form-control">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-xs-6">
-                            <div class="form-group">
-                                <label class="control-label">Email</label>
+                        <div class="form-group">
+                            <label class="control-label">Message</label>
 
-                                <input type="email" name="email" class="form-control">
-                            </div>
+                            <textarea name="comment" class="form-control" rows="10" autocomplete="off"></textarea>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label">Message</label>
-
-                        <textarea name="comment" class="form-control" rows="10" autocomplete="off"></textarea>
-                    </div>
-
-                    <button type="submit" class="section-btn btn btn-primary">Submit</button>
-                </form>
+                        <button type="submit" class="section-btn btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <?php require('car/main/include/blog.php'); ?>
+    <?php require('car/main/include/testimonial.php'); ?>
+    <?php require('car/main/include/featured.php'); ?>
+</main>
+<?php require('car/main/include/contact.php'); ?>
 <?php require('car/main/include/footer.php'); ?>
-<?php require('car/main/home/script.php'); ?>
+<script type="text/javascript" src="car/themes/js/selfjs.js"></script>
+<link href="car/themes/css/selfcss.css" rel="stylesheet" type="text/css" media="screen"/>
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+</body>
+</html>
