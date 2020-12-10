@@ -1,4 +1,3 @@
-<main>
     <section>
         <div class="container">
             <div class="row text-center">
@@ -40,4 +39,3 @@
     <?php require('car/main/include/featured.php'); ?>
     <?php require('car/main/include/blog.php'); ?>
     <?php require('car/main/include/testimonial.php'); ?>
-</main>

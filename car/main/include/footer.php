@@ -90,7 +90,6 @@ $infocompany = select_1_record("select * from infocompany where trangthai = 1");
                         class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
     </ul>
 </div>
-</body>
 <link rel="stylesheet" type="text/css" media="screen" href="car/themes/css/hotline.css"/>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0"
         nonce="CqeMMtGp"></script>

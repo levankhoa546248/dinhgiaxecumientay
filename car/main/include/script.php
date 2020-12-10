@@ -5,6 +5,4 @@
 <script src="car/themes/js/smoothscroll.js" type="text/javascript"></script>
 <script src="car/themes/js/custom.js" type="text/javascript"></script>
 <script src="car/themes/js/jquery-3.4.1.js" type="text/javascript"></script>
-<script src="car/themes/js/jquery.alerts.js" type="text/javascript"></script>
-<script type="text/javascript" src="car/themes/js/selfjs.js"></script>
 </html>
