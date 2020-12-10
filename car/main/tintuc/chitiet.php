@@ -19,6 +19,8 @@
 
             <br>
             <?php echo $blogdetail["chitiet"]; ?>
+            <!-- Homepage Leaderboard -->
+
             <div class="row">
                 <div class="col-md-4 col-xs-12 pull-right">
                     <h4>Social share</h4>
@@ -37,7 +39,7 @@
                     <br>
 
 
-                    <h4>Bài đăng khác</h4>
+                    <h4>Tin liên quan</h4>
                     <ul class="list">
                         <?php $blog = select("select * from blog where trangthai = 1 and id != " . $_GET["id"]. " order by ngaytao desc limit 3");
                         foreach ($blog as $blogs) {
