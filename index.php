@@ -23,7 +23,7 @@ else $controller = 'home';
 
 if(isset($_GET['action'])) $action = $_GET['action'];
 else $action = 'index';
-$file = "car.php";
+$file = "car/main/home/index.php";
 if (file_exists($file)) {
     require($file);
 } else {
