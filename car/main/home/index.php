@@ -84,7 +84,7 @@
 </section>
 <?php require('car/main/include/featured.php'); ?>
 <?php require('car/main/include/blog.php'); ?>
-<?php require('car/main/include/testimonial.php'); ?>
+<?php //require('car/main/include/testimonial.php'); ?>
 </main>
 <?php require('car/main/include/contact.php'); ?>
 <?php require('car/main/include/footer.php'); ?>

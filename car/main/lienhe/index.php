@@ -14,7 +14,7 @@
         </div>
     </section>
     <?php require('car/main/include/blog.php'); ?>
-    <?php require('car/main/include/testimonial.php'); ?>
+<!--    --><?php //require('car/main/include/testimonial.php'); ?>
     <?php require('car/main/include/featured.php'); ?>
 </main>
 <?php require('car/main/include/contact.php'); ?>
