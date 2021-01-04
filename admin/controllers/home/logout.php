@@ -1,5 +1,5 @@
 <?php
 unset($_SESSION['user']);
-//header('location:admin.php');
+session_destroy();
 require('admin/views/home/login.php');
 ?>

@@ -34,9 +34,12 @@ function connectDB()
 //    $ketnoi['Database']['username'] = 'root';
 //    $ketnoi['Database']['password'] = '';
     $ketnoi['Server']['name'] = 'sql354.main-hosting.eu';
-    $ketnoi['Database']['dbname'] = 'u794343867_dinhgiaxecu';
-    $ketnoi['Database']['username'] = 'u794343867_vankhoa';
-    $ketnoi['Database']['password'] = 'Levankhoa0478';
+//    $ketnoi['Database']['dbname'] = 'u794343867_dinhgiaxecu';
+//    $ketnoi['Database']['username'] = 'u794343867_vankhoa';
+//    $ketnoi['Database']['password'] = 'Levankhoa0478';
+    $ketnoi['Database']['dbname'] = 'u794343867_srm';
+    $ketnoi['Database']['username'] = 'u794343867_admin';
+    $ketnoi['Database']['password'] = 'Srm@12345';
     $conn = mysqli_connect(
         "{$ketnoi['Server']['name']}",
         "{$ketnoi['Database']['username']}",
