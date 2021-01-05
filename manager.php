@@ -7,10 +7,6 @@ else $controller = 'home';
 if (isset($_GET['action'])) $action = $_GET['action'];
 else $action = 'index';
 $file = 'manager/controllers/' . $controller . '/' . $action . '.php';
-$website = select_1_record('SELECT * FROM website');
-$logows = 'data:image/png;base64,' . $website["logo"];
-$shortcuticon = $website["shortcuticon"];
-$namews = $website["name"];
 if (!empty($_SESSION)) {
     if (file_exists($file)) {
         require($file);

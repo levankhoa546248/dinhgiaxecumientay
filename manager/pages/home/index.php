@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo $title; ?></title>
-    <link rel="shortcut icon" href="<?php echo $shortcuticon; ?>">
-    <!-- Tell the browser to be responsive to screen width -->
+<?php require('manager/pages/include/head.php'); ?>
+<!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="manager/plugins/fontawesome-free/css/all.min.css">
@@ -30,8 +24,11 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
+    <!-- Navbar -->
     <?php require('manager/pages/include/navbar.php'); ?>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
     <?php require('manager/pages/include/sidebar.php'); ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -45,8 +42,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
+                            <li class="breadcrumb-item"><a href="manager.php?controller=home&action=index">Home</a></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -661,13 +658,8 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.5
-        </div>
-    </footer>
+
+    <?php require('manager/pages/include/footer.php'); ?>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
