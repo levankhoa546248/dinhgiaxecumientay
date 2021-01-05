@@ -89,7 +89,7 @@
                 <a href="manager.php?controller=login&action=forgot-password">Quên mật khẩu</a>
             </p>
             <p class="mb-0">
-                <a href="../examples/register.html" class="text-center">Đăng ký</a>
+                <a href="manager.php?controller=login&action=register" class="text-center">Đăng ký</a>
             </p>
         </div>
         <!-- /.login-card-body -->
