@@ -141,9 +141,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Load danh sach
-        dsdongxe();
+        dsdongxe(-1);
         //Get danh sach
-        function dsdongxe() {
+        function dsdongxe(idhangxe) {
             $('#dsdongxe').DataTable().destroy();
             $('#dsdongxe').DataTable({
                 "paging": true,
@@ -157,6 +157,9 @@
                 ajax: {
                     type: 'POST',
                     url: "manager.php?controller=dongxe&action=dsdongxe",
+                    data: {
+                        idhangxe: idhangxe
+                    },
                     dataSrc: ''
                 },
                 columns: [
@@ -191,8 +194,9 @@
                     },
                     success: function (response) {
                         if (response > 0) {
+                            toastr.success('Thêm thành công');
                             emptyinput();
-                            dsdongxe();
+                            dsdongxe(idhangxe);
                         }
                     }
                 });
@@ -228,7 +232,7 @@
                         if (response > 0) {
                             emptyinput();
                             toastr.success('Sửa thành công');
-                            dsdongxe();
+                            dsdongxe(idhangxe);
                         }
                     }
                 });
@@ -250,7 +254,7 @@
                         if (response > 0) {
                             emptyinput();
                             toastr.success('Xóa thành công');
-                            dsdongxe();
+                            dsdongxe(idhangxe);
                         }
                     }
                 });
@@ -259,7 +263,13 @@
         //Cancel
         $("#huy").click(function (e) {
             emptyinput();
+            dsdongxe(-1);
         });
+        $('#hangxe').on('change', function () {
+            var idhangxe = $("#hangxe").val();
+            dsdongxe(idhangxe);
+        });
+
     })
 
 </script>

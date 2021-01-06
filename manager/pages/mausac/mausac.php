@@ -36,7 +36,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="manager.php?controller=home&action=index">Danh mục</a></li>
-                            <li class="breadcrumb-item active">Hãng xe</li>
+                            <li class="breadcrumb-item active">Màu sắc</li>
                         </ol>
                     </div>
                 </div>
@@ -58,10 +58,10 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <input type="text" id="id" class="form-control" value="" hidden>
                             <div class="form-group">
-                                <label for="hangxe">Tên hãng xe</label>
-                                <input type="text" id="id" class="form-control" value="" hidden>
-                                <input type="text" id="tenhangxe" class="form-control" value="">
+                                <label for="">Tên màu sắc</label>
+                                <input type="text" id="ten" class="form-control" value="">
                             </div>
                             <div class="form-group">
                                 <button type="button" class="btn btn-primary float-right m-1" id="them">Thêm</button>
@@ -76,15 +76,15 @@
                 <div class="col-md-8">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="card-title">Danh sách hãng xe</h3>
+                            <h3 class="card-title">Danh sách màu sắc</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-striped table-bordered table-hover" id="dshangxe" style="width:100%">
+                            <table class="table table-striped table-bordered table-hover" id="danhsach" style="width:100%">
                                 <thead class="bg-success">
                                 <tr>
                                     <th class="text-center">Id</th>
-                                    <th>Tên hãng xe</th>
+                                    <th>Tên màu sắc</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -129,11 +129,11 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Load danh sach
-        dshangxe();
+        danhsach();
         //Get danh sach
-        function dshangxe() {
-            $('#dshangxe').DataTable().destroy();
-            $('#dshangxe').DataTable({
+        function danhsach() {
+            $('#danhsach').DataTable().destroy();
+            $('#danhsach').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -144,69 +144,69 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=hangxe&action=dshangxe",
+                    url: "manager.php?controller=mausac&action=danhsach",
                     dataSrc: ''
                 },
                 columns: [
                     {data: "id", className: "text-center", width: '20%'},
-                    {data: "tenhang"}
+                    {data: "ten"}
                 ]
             });
         }
         //Empty input
         function emptyinput(){
             $("#id").val("");
-            $("#tenhangxe").val("");
+            $("#ten").val("");
         }
         //Insert
         $("#them").click(function (e) {
-            var tenhangxe = $("#tenhangxe").val();
-            if (checkIf(tenhangxe)){
-                toastr.error('Chưa nhập tên hãng xe')
+            var ten = $("#ten").val();
+            if (checkIf(ten)){
+                toastr.error('Chưa nhập tên màu sắc')
             }else {
                 $.ajax({
-                    url: "manager.php?controller=hangxe&action=themhangxe",
+                    url: "manager.php?controller=mausac&action=them",
                     type: "POST",
                     data: {
-                        tenhangxe: tenhangxe
+                        ten: ten
                     },
                     success: function (response) {
                         if (response > 0) {
                             toastr.success('Thêm thành công');
                             emptyinput();
-                            dshangxe();
+                            danhsach();
                         }
                     }
                 });
             }
         });
         //Click row table
-        $('#dshangxe tbody').on( 'click', 'tr', function () {
-            var rowData = $('#dshangxe').DataTable().row( this ).data();
+        $('#danhsach tbody').on( 'click', 'tr', function () {
+            var rowData = $('#danhsach').DataTable().row( this ).data();
             var id = rowData.id;
-            var tenhang = rowData.tenhang;
+            var ten = rowData.ten;
             $("#id").val(id);
-            $("#tenhangxe").val(tenhang);
+            $("#ten").val(ten);
         } );
         //Update
         $("#sua").click(function (e) {
             var id = $("#id").val();
-            var tenhangxe = $("#tenhangxe").val();
+            var ten = $("#ten").val();
             if (checkIf(id)){
                 toastr.error('Hãy chọn một dòng của danh sách');
             }else {
                 $.ajax({
-                    url: "manager.php?controller=hangxe&action=suahangxe",
+                    url: "manager.php?controller=mausac&action=sua",
                     type: "POST",
                     data: {
                         id: id,
-                        tenhangxe: tenhangxe
+                        ten: ten
                     },
                     success: function (response) {
                         if (response > 0) {
                             emptyinput();
                             toastr.success('Sửa thành công');
-                            dshangxe();
+                            danhsach();
                         }
                     }
                 });
@@ -219,7 +219,7 @@
                 toastr.error('Hãy chọn một dòng của danh sách');
             }else {
                 $.ajax({
-                    url: "manager.php?controller=hangxe&action=xoahangxe",
+                    url: "manager.php?controller=mausac&action=xoa",
                     type: "POST",
                     data: {
                         id: id
@@ -228,7 +228,7 @@
                         if (response > 0) {
                             emptyinput();
                             toastr.success('Xóa thành công');
-                            dshangxe();
+                            danhsach();
                         }
                     }
                 });
