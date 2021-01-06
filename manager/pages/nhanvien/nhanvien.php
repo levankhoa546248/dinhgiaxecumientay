@@ -35,7 +35,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="manager.php?controller=home&action=index">Danh mục</a></li>
+                            <li class="breadcrumb-item"><a href="manager.php?controller=home&action=index">Danh mục</a>
+                            </li>
                             <li class="breadcrumb-item active">Năm sản xuất</li>
                         </ol>
                     </div>
@@ -46,45 +47,23 @@
         <!-- Main content -->
         <section class="content">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="card-title"><?php echo $content; ?></h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        data-toggle="tooltip" title="Collapse">
-                                    <i class="fas fa-minus"></i></button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <input type="text" id="id" class="form-control" value="" hidden>
-                            <div class="form-group">
-                                <label for="">Tên năm sản xuất</label>
-                                <input type="text" id="ten" class="form-control" value="">
-                            </div>
-                            <div class="form-group">
-                                <button type="button" class="btn btn-primary float-right m-1" id="them">Thêm</button>
-                                <button type="button" class="btn btn-warning float-right m-1" id="sua">Sửa</button>
-                                <button type="button" class="btn btn-danger float-right m-1" id="xoa">Xóa</button>
-                                <button type="button" class="btn btn-dark float-left m-1" id="huy">Hủy</button>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card card-secondary">
-                        <div class="card-header">
-                            <h3 class="card-title">Danh sách năm sản xuất</h3>
+                            <h3 class="card-title">Danh sách nhân viên</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-striped table-bordered table-hover" id="danhsach" style="width:100%">
+                            <table class="table table-striped table-bordered table-hover" id="danhsach"
+                                   style="width:100%">
                                 <thead class="bg-success">
                                 <tr>
                                     <th class="text-center">Id</th>
-                                    <th>Tên năm sản xuất</th>
+                                    <th class="text-center">Avatar</th>
+                                    <th>Username</th>
+                                    <th>Họ tên</th>
+                                    <th>Email</th>
+                                    <th><i class="fa fa-cogs"></i></th>
                                 </tr>
                                 </thead>
                             </table>
@@ -130,6 +109,7 @@
     $(document).ready(function () {
         //Load danh sach
         danhsach();
+
         //Get danh sach
         function danhsach() {
             $('#danhsach').DataTable().destroy();
@@ -148,22 +128,39 @@
                     dataSrc: ''
                 },
                 columns: [
-                    {data: "id", className: "text-center", width: '20%'},
-                    {data: "ten"}
+                    {data: "id", className: "text-center", width: '20%', visible: false},
+                    {
+                        data: 'avatar', className: "text-center", width: '20%', render: function (data) {
+                            return data ?
+                                '<img height="50px" width="50px" class="img-circle img-fluid" src="data:image/png;base64,' + data + '" />' :
+                                '<img height="50px" width="50px" class="img-circle img-fluid" src="manager/dist/img/boxed-bg.jpg" />';
+                        }
+                    },
+                    {data: "username", width: '20%'},
+                    {data: "hoten"},
+                    {data: "email"},
+                    {
+                        data: '', className: "text-center", width: '20%', render: function () {
+                            return '<button class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></button>' +
+                                ' <button class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i></a>';
+                        }
+                    }
                 ]
             });
         }
+
         //Empty input
-        function emptyinput(){
+        function emptyinput() {
             $("#id").val("");
             $("#ten").val("");
         }
+
         //Insert
         $("#them").click(function (e) {
             var ten = $("#ten").val();
-            if (checkIf(ten)){
+            if (checkIf(ten)) {
                 toastr.error('Chưa nhập tên năm sản xuất')
-            }else {
+            } else {
                 $.ajax({
                     url: "manager.php?controller=nhanvien&action=them",
                     type: "POST",
@@ -181,20 +178,20 @@
             }
         });
         //Click row table
-        $('#danhsach tbody').on( 'click', 'tr', function () {
-            var rowData = $('#danhsach').DataTable().row( this ).data();
+        $('#danhsach tbody').on('click', 'tr', function () {
+            var rowData = $('#danhsach').DataTable().row(this).data();
             var id = rowData.id;
             var ten = rowData.ten;
             $("#id").val(id);
             $("#ten").val(ten);
-        } );
+        });
         //Update
         $("#sua").click(function (e) {
             var id = $("#id").val();
             var ten = $("#ten").val();
-            if (checkIf(id)){
+            if (checkIf(id)) {
                 toastr.error('Hãy chọn một dòng của danh sách');
-            }else {
+            } else {
                 $.ajax({
                     url: "manager.php?controller=nhanvien&action=sua",
                     type: "POST",
@@ -215,9 +212,9 @@
         //Delete
         $("#xoa").click(function (e) {
             var id = $("#id").val();
-            if (checkIf(id)){
+            if (checkIf(id)) {
                 toastr.error('Hãy chọn một dòng của danh sách');
-            }else {
+            } else {
                 $.ajax({
                     url: "manager.php?controller=nhanvien&action=xoa",
                     type: "POST",
