@@ -36,7 +36,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="manager.php?controller=home&action=index">Danh mục</a></li>
-                            <li class="breadcrumb-item active">Dòng xe</li>
+                            <li class="breadcrumb-item active">Hãng xe</li>
                         </ol>
                     </div>
                 </div>
@@ -58,20 +58,10 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <input type="text" id="id" class="form-control" value="" hidden>
                             <div class="form-group">
-                                <label for="dongxe">Tên hãng xe</label>
-                                <select class="form-control custom-select" id="hangxe">
-                                    <option value="-1" selected>Chọn</option>
-                                    <?php foreach ($hangxe as $hangxes) {
-                                        $selected = '';
-                                        echo '<option value="' . $hangxes['id'] . '" ' . $selected . '>' . $hangxes['tenhang'] . '</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="dongxe">Tên dòng xe</label>
-                                <input type="text" id="tendongxe" class="form-control" value="">
+                                <label for="hangxe">Tên hãng xe</label>
+                                <input type="text" id="id" class="form-control" value="" hidden>
+                                <input type="text" id="tenhangxe" class="form-control" value="">
                             </div>
                             <div class="form-group">
                                 <button type="button" class="btn btn-primary float-right m-1" id="them">Thêm</button>
@@ -90,12 +80,10 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-striped table-bordered table-hover" id="dsdongxe" style="width:100%">
+                            <table class="table table-striped table-bordered table-hover" id="dshangxe" style="width:100%">
                                 <thead class="bg-success">
                                 <tr>
                                     <th class="text-center">Id</th>
-                                    <th>Tên dòng xe</th>
-                                    <th>Id hãng xe</th>
                                     <th>Tên hãng xe</th>
                                 </tr>
                                 </thead>
@@ -141,11 +129,11 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Load danh sach
-        dsdongxe();
+        dshangxe();
         //Get danh sach
-        function dsdongxe() {
-            $('#dsdongxe').DataTable().destroy();
-            $('#dsdongxe').DataTable({
+        function dshangxe() {
+            $('#dshangxe').DataTable().destroy();
+            $('#dshangxe').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": true,
@@ -156,79 +144,67 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=dongxe&action=dsdongxe",
+                    url: "manager.php?controller=hangxe&action=dshangxe",
                     dataSrc: ''
                 },
                 columns: [
                     {data: "id", className: "text-center", width: '20%'},
-                    {data: "tendongxe"},
-                    {data: "idhangxe", visible: false},
-                    {data: "tenhangxe"}
+                    {data: "tenhang"}
                 ]
             });
         }
         //Empty input
         function emptyinput(){
             $("#id").val("");
-            $("#hangxe").val("-1");
-            $("#tendongxe").val("");
+            $("#tenhangxe").val("");
         }
         //Insert
         $("#them").click(function (e) {
-            var tendongxe = $("#tendongxe").val();
-            var idhangxe = $("#hangxe").val();
-            if (checkIf(tendongxe)){
-                toastr.error('Chưa nhập tên dòng xe');
-            }else if(checkIf(idhangxe)){
-                toastr.error('Chưa chọn hãng xe');
+            var tenhangxe = $("#tenhangxe").val();
+            if (checkIf(tenhangxe)){
+                toastr.error('Chưa nhập tên hãng xe')
             }else {
                 $.ajax({
-                    url: "manager.php?controller=dongxe&action=themdongxe",
+                    url: "manager.php?controller=hangxe&action=themhangxe",
                     type: "POST",
                     data: {
-                        idhangxe: idhangxe,
-                        tendongxe: tendongxe
+                        tenhangxe: tenhangxe
                     },
                     success: function (response) {
                         if (response > 0) {
-                            emptyinput();
-                            dsdongxe();
+                            dshangxe();
                         }
                     }
                 });
             }
         });
         //Click row table
-        $('#dsdongxe tbody').on( 'click', 'tr', function () {
-            var rowData = $('#dsdongxe').DataTable().row( this ).data();
+        $('#dshangxe tbody').on( 'click', 'tr', function () {
+            var rowData = $('#dshangxe').DataTable().row( this ).data();
             var id = rowData.id;
-            var tendongxe = rowData.tendongxe;
-            var hangxe = rowData.idhangxe;
+            var tenhang = rowData.tenhang;
             $("#id").val(id);
-            $("#tendongxe").val(tendongxe);
-            $("#hangxe").val(hangxe);
+            $("#tenhangxe").val(tenhang);
         } );
         //Update
         $("#sua").click(function (e) {
             var id = $("#id").val();
-            var tendongxe = $("#tendongxe").val();
-            var idhangxe = $("#hangxe").val();
+            var tenhangxe = $("#tenhangxe").val();
             if (checkIf(id)){
                 toastr.error('Hãy chọn một dòng của danh sách');
             }else {
                 $.ajax({
-                    url: "manager.php?controller=dongxe&action=suadongxe",
+                    url: "manager.php?controller=hangxe&action=suahangxe",
                     type: "POST",
                     data: {
                         id: id,
-                        tendongxe: tendongxe,
-                        idhangxe: idhangxe
+                        tenhangxe: tenhangxe
                     },
                     success: function (response) {
                         if (response > 0) {
                             emptyinput();
                             toastr.success('Sửa thành công');
-                            dsdongxe();
+                            dshangxe();
                         }
                     }
                 });
@@ -241,7 +217,7 @@
                 toastr.error('Hãy chọn một dòng của danh sách');
             }else {
                 $.ajax({
-                    url: "manager.php?controller=dongxe&action=xoadongxe",
+                    url: "manager.php?controller=hangxe&action=xoahangxe",
                     type: "POST",
                     data: {
                         id: id
@@ -250,7 +226,7 @@
                         if (response > 0) {
                             emptyinput();
                             toastr.success('Xóa thành công');
-                            dsdongxe();
+                            dshangxe();
                         }
                     }
                 });

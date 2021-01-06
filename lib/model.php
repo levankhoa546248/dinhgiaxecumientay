@@ -425,3 +425,25 @@ function select_value_a_record($table, $where, $selects)
     $row = mysqli_fetch_assoc($query);
     return $row['total'];
 }
+
+
+function insert_sql($sql)
+{
+    $conn = connectDB();
+    if (mysqli_query($conn, $sql) or die(mysqli_error())) {
+        $id = mysqli_insert_id($conn);
+        return $id;
+    } else {
+        return 0;
+    }
+}
+
+function update_sql($sql)
+{
+    $conn = connectDB();
+    if (mysqli_query($conn, $sql) or die(mysqli_error())) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
