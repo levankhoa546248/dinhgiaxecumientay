@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="manager/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="manager/dist/css/adminlte.min.css">
-
+<!-- File input -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all"
       rel="stylesheet" type="text/css"/>
 <!-- Tempusdominus Bbootstrap 4 -->
@@ -111,8 +111,7 @@
 <script src="manager/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="manager/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="manager/dist/js/adminlte.min.js"></script>
+<!-- File input -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
 <!-- AdminLTE App -->
 <script src="manager/dist/js/adminlte.min.js"></script>
