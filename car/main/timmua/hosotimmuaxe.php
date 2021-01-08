@@ -73,18 +73,12 @@
         </div>
     </section>
 
-    <?php require('car/main/include/featured.php'); ?>
-    <?php require('car/main/include/blog.php'); ?>
-    <?php require('car/main/include/testimonial.php'); ?>
+<!--    --><?php //require('car/main/include/featured.php'); ?>
+<!--    --><?php //require('car/main/include/blog.php'); ?>
+<!--    --><?php //require('car/main/include/testimonial.php'); ?>
 </main>
 <?php require('car/main/include/contact.php'); ?>
-<?php require('car/main/include/footer.php'); ?>
-
-<script>
-    $(document).ready(function () {
-
-    });
-</script>
+<?php //require('car/main/include/footer.php'); ?>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
 <link href="car/themes/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
 <link href="car/themes/fileinput/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>

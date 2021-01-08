@@ -11,6 +11,7 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="manager/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="manager/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="manager/plugins/toastr/toastr.min.css">
 <!-- jAlert -->
@@ -67,7 +68,7 @@
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="manager.php?controller=home&action=index">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Nhân viên</li>
+                            <li class="breadcrumb-item active">Tìm xe</li>
                         </ol>
                     </div>
                 </div>
@@ -80,7 +81,7 @@
                 <div class="col-md-12">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="card-title">Danh sách nhân viên</h3>
+                            <h3 class="card-title">Danh sách tìm xe</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -91,17 +92,13 @@
                                     <th class="text-center">Id</th>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
-                                    <th class="text-center">Avatar</th>
-                                    <th>Username</th>
                                     <th>Họ tên</th>
-                                    <th>Email</th>
                                     <th>Điện thoại</th>
-                                    <th>Facebook</th>
-                                    <th>Zalo</th>
                                     <th>Địa chỉ</th>
-                                    <th>Id chức vụ</th>
-                                    <th>Chức vụ</th>
+                                    <th>Giá mong muốn</th>
+                                    <th>Hãng xe</th>
+                                    <th>Dòng xe</th>
+                                    <th>Thông tin xe</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -118,7 +115,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h4 class="modal-title">Cập nhật thông tin nhân viên</h4>
+                    <h4 class="modal-title">Cập nhật thông tin tìm xe</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -205,7 +202,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="suanhanvien">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="suatimxe">Save changes</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -236,7 +233,7 @@
 <script src="manager/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="manager/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="manager/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="manager/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
 <!-- my design js -->
 <script src="themes/js/selfjs.js"></script>
 <!-- Toastr -->
@@ -265,19 +262,15 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=nhanvien&action=danhsach",
+                    url: "manager.php?controller=timxe&action=danhsach",
                     dataSrc: ''
                 },
                 columns: [
                     {data: "id", className: "text-center", width: '20%', visible: false},
                     {
-                        data: '', className: "text-center", width: '5%', render: function () {
-                            return '';
-                        }
-                    },
-                    {
-                        data: '', className: "text-center", width: '5%', render: function () {
-                            return '<button class="btn btn-info btn-sm sua"><i class="fas fa-pencil-alt"></i></button>';
+                        data: 'trangthai', className: "text-center", width: '5%', render: function (data) {
+                            return data == 2 ? '<button class="btn btn-warning btn-sm chuaxem"><i class="fas fa-eye"></i></button>'
+                                : '<button class="btn btn-warning btn-sm daxem"><i class="fas fa-eye-slash"></i></button>';
                         }
                     },
                     {
@@ -285,58 +278,71 @@
                             return '<button class="btn btn-danger btn-sm xoa"><i class="fas fa-trash"></i></button>';
                         }
                     },
-                    {
-                        data: 'avatar', className: "text-center", width: '10%', render: function (data) {
-                            return data ?
-                                '<img height="50px" width="50px" class="img-circle img-fluid" src="data:image/png;base64,' + data + '" />' :
-                                '<img height="50px" width="50px" class="img-circle img-fluid" src="manager/dist/img/boxed-bg.jpg" />';
-                        }
-                    },
-                    {data: "username", width: '15%'},
                     {data: "hoten", width: '15%'},
-                    {data: "email", width: '5%'},
-                    {data: "sodienthoai", width: '5%'},
-                    {
-                        data: "facebook", width: '5%', render: function (data) {
-                            return data ?
-                                '<a target="_blank" href=' + data + ' class="text-center">Facebook</a>' :
-                                'Chưa có thông tin';
-                        }
-                    },
-                    {
-                        data: "zalo", width: '5%', render: function (data) {
-                            return data ?
-                                '<a target="_blank" href=' + data + ' class="text-center">Zalo</a>' :
-                                'Chưa có thông tin';
-                        }
-                    },
+                    {data: "dienthoai", width: '15%'},
                     {data: "diachi", width: '20%'},
-                    {data: "idchucvu", width: '5%', visible: false},
-                    {data: "tenchucvu", width: '5%'}
-                ]
+                    {data: "giamuamongmuon", width: '15%'},
+                    {data: "hangxe", width: '10%'},
+                    {data: "dongxe", width: '10%'},
+                    {data: "thongtinxe", width: '10%'}
+                ],
+                dom: 'B<"clear">lfrtip',
+                buttons: {
+                    dom: {
+                        button: {
+                            tag: 'button',
+                            className: ''
+                        }
+                    },
+                    buttons: [{
+                        className: 'btn btn-primary',
+                        titleAttr: 'Refresh Table',
+                        text: 'Refresh',
+                        action: function () {
+                            danhsach();
+                        }
+                    }]
+                }
             });
         }
 
-        $('#danhsach').on('click', 'button.sua', function (e) {
-            $('#modalupdate').modal('show');
+        $('#danhsach').on('click', 'button.chuaxem', function (e) {
             var $row = $(this).closest('tr');
             var data = $('#danhsach').DataTable().row($row).data();
             $("#id").val(data.id);
-            $("#hoten").val(data.hoten);
-            $("#email").val(data.email);
-            $("#diachi").val(data.diachi);
-            $("#sodienthoai").val(data.sodienthoai);
-            $("#chucvu").val(data.idchucvu ? data.idchucvu : -1);
-            $("#facebook").val(data.facebook);
-            $("#zalo").val(data.zalo);
-            $("#avatar-1").fileinput({
-                showCaption: false,
-                showRemove: true,
-                showUpload: false,
-                showPreview: true,
-                defaultPreviewContent: [
-                    '<img src="data:image/png;base64,' + data.avatar + '">'
-                ]
+            $.ajax({
+                url: "manager.php?controller=timxe&action=capnhattrangthai",
+                type: "POST",
+                data: {
+                    id: data["id"],
+                    trangthai: 1
+                },
+                success: function (response) {
+                    if (response > 0) {
+                        toastr.success('Success');
+                        danhsach();
+                    }
+                }
+            });
+        });
+
+        $('#danhsach').on('click', 'button.daxem', function (e) {
+            var $row = $(this).closest('tr');
+            var data = $('#danhsach').DataTable().row($row).data();
+            $("#id").val(data.id);
+            $.ajax({
+                url: "manager.php?controller=timxe&action=capnhattrangthai",
+                type: "POST",
+                data: {
+                    id: data["id"],
+                    trangthai: 2
+                },
+                success: function (response) {
+                    if (response > 0) {
+                        toastr.success('Success');
+                        danhsach();
+                    }
+                }
             });
         });
 
@@ -346,7 +352,7 @@
             jConfirm('Bạn chắc chắn muốn xóa dòng này?', 'Thông báo', function (e) {
                 if (e) {
                     $.ajax({
-                        url: "manager.php?controller=nhanvien&action=xoa",
+                        url: "manager.php?controller=timxe&action=xoa",
                         type: "POST",
                         data: {
                             id: data["id"]
@@ -364,42 +370,6 @@
             });
         });
 
-        $("#suanhanvien").click(function (e) {
-            if ($("#id").val() == "") {
-                toastr.warning('Chưa chọn nhân viên');
-            } else if ($("#hoten").val() == "") {
-                toastr.warning('Chưa nhập Họ tên');
-            } else if ($("#email").val() == "") {
-                toastr.warning('Chưa nhập Email');
-            } else {
-                var dataform = new FormData();
-                dataform.append("images", $('#avatar-1').prop('files')[0]);
-                dataform.append("id", $("#id").val());
-                dataform.append("hoten", $("#hoten").val());
-                dataform.append("email", $("#email").val());
-                dataform.append("diachi", $("#diachi").val());
-                dataform.append("sodienthoai", $("#sodienthoai").val());
-                dataform.append("chucvu", $("#chucvu").val());
-                dataform.append("facebook", $("#facebook").val());
-                dataform.append("zalo", $("#zalo").val());
-                $.ajax({
-                    url: "manager.php?controller=nhanvien&action=sua",
-                    type: "POST",
-                    data: dataform,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response > 0) {
-                            toastr.success('Cập nhật thành công');
-                            $('#modalupdate').modal('hide');
-                            danhsach();
-                        } else if (response = -1) {
-                            toastr.warning('Cập nhật không thành công');
-                        }
-                    }
-                });
-            }
-        });
     })
 
 </script>
