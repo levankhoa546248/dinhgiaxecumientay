@@ -19,9 +19,11 @@ $infocompany = select_1_record("select * from infocompany where trangthai = 1");
                         <h2>Liên hệ</h2>
                     </div>
                     <address>
-                        <p><?php echo $infocompany["dienthoai"]; ?></p>
+                        <p><a href="tel:<?php echo $infocompany["dienthoai"]; ?>"> <span
+                                        class="text-hotline"><?php echo $infocompany["dienthoai"]; ?></span> </a></p>
                         <p>
-                            <a href="mailto:<?php echo $infocompany["email"]; ?>"><?php echo $infocompany["email"]; ?></a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<?php echo $infocompany["email"]; ?>"
+                               target="_blank"><?php echo $infocompany["email"]; ?></a>
                         </p>
                     </address>
                 </div>
@@ -50,7 +52,9 @@ $infocompany = select_1_record("select * from infocompany where trangthai = 1");
 
                     <div class="copyright-text">
                         <p>Copyright &copy; 2020 Company Name</p>
-                        <p>Template by: <a href="https://www.dinhgiaxecumientay.com/">dinhgiaxecumientay.com</a></p>
+                        <p>Template by:
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=<?php echo $infocompany["email"]; ?>"
+                               target="_blank"><?php echo $infocompany["email"]; ?></a></p>
                     </div>
                 </div>
             </div>
@@ -63,7 +67,7 @@ $infocompany = select_1_record("select * from infocompany where trangthai = 1");
                          data-tabs="timeline" data-width="" data-height="" data-small-header="false"
                          data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                         <blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a
-                                href="https://www.facebook.com/facebook">Facebook</a></blockquote>
+                                    href="https://www.facebook.com/facebook">Facebook</a></blockquote>
                     </div>
                 </div>
             </div>
@@ -76,18 +80,20 @@ $infocompany = select_1_record("select * from infocompany where trangthai = 1");
     <div class="hotline-phone-ring">
         <div class="hotline-phone-ring-circle"></div>
         <div class="hotline-phone-ring-circle-fill"></div>
-        <div class="hotline-phone-ring-img-circle"><a href="tel:0939571387" class="pps-btn-img"><i
-                    class="fa fa-phone"></i></div>
+        <div class="hotline-phone-ring-img-circle">
+            <a href="tel:<?php echo $infocompany["dienthoai"]; ?>" class="pps-btn-img">
+                <i class="fa fa-phone"></i></div>
     </div>
     <div class="hotline-bar">
-        <a href="tel:0898982526"> <span class="text-hotline">0939571387</span> </a>
+        <a href="tel:<?php echo $infocompany["dienthoai"]; ?>"> <span
+                    class="text-hotline"><?php echo $infocompany["dienthoai"]; ?></span> </a>
     </div>
 </div>
 <div class="float-icon-hotline">
     <ul class="left-icon hotline">
         <li class="hotline_float_icon"><a target="_blank" rel="nofollow" id="messengerButton"
-                                          href="https://zalo.me/0939571387"><i
-                    class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
+                                          href="<?php echo $infocompany["zalo"]; ?>"><i
+                        class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>
     </ul>
 </div>
 <link rel="stylesheet" type="text/css" media="screen" href="car/themes/css/hotline.css"/>

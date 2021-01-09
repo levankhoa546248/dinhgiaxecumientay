@@ -1,6 +1,6 @@
 <?php
 $website = select_1_record('SELECT * FROM website');
-$logows = 'data:image/png;base64,' . $website["logo"];
+$logows = $website["logo"];
 $shortcuticon = $website["shortcuticon"];
 $namews = $website["name"];
 ?>

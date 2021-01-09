@@ -12,8 +12,8 @@
             <!-- lOGO TEXT HERE -->
             <!--            <img src="logo-auto-dung-lam-1.png" class="img-responsive">-->
 
-            <img class="navbar-left" src="car/images/dinh-gia-xe-cu-mien-tay.png"/>
-            <a href="#" class="navbar-brand" style="margin-left: 5px">ĐỊNH GIÁ XE CŨ MIỀN TÂY</a>
+            <img class="navbar-left" src="<?php echo $logows; ?>"/>
+            <a href="#" class="navbar-brand" style="margin-left: 5px"><?php echo $namews; ?></a>
         </div>
 
         <!-- MENU LINKS -->
