@@ -25,14 +25,15 @@
     <div class="row">
         <div class="owl-carousel owl-theme home-slider">
             <?php foreach ($sliders as $slider) { ?>
-<!--                <div class="item" style="--><?php //echo $slider["image"]; ?><!--">-->
-                <div class="item" style="background-image: url('<?php echo $slider["image"];?>')">
+                <!--                <div class="item" style="--><?php //echo $slider["image"]; ?><!--">-->
+                <div class="item" style="background-image: url('<?php echo $slider["image"]; ?>')">
                     <div class="caption">
                         <div class="container">
                             <div class="col-md-6 col-sm-12">
                                 <h1><?php echo $slider["title"]; ?></h1>
                                 <h3><?php echo $slider["content"]; ?></h3>
-                                <a href="<?php echo $slider["link"]; ?>" class="section-btn btn btn-default">Truy cập</a>
+                                <a href="<?php echo $slider["link"]; ?>" class="section-btn btn btn-default">Truy
+                                    cập</a>
                             </div>
                         </div>
                     </div>
@@ -48,17 +49,19 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="text-center">
-                        <h2>About us</h2>
+                        <h2>Giới thiệu</h2>
 
                         <br>
 
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore molestias
-                            ipsa veritatis nihil iusto maiores natus dolor, a reiciendis corporis obcaecati ex. Totam
-                            assumenda impedit aut eum, illum distinctio saepe explicabo. Consequuntur molestiae
-                            similique id quos, quasi quas perferendis laboriosam, fugit natus odit totam! Id dolores
-                            saepe, sint debitis rerum dolorem tempora aliquid, pariatur enim nisi. Quia ab iusto
-                            assumenda.</p>
-                    </div>
+                        <p class="lead"><?php echo $gioithieu["tieude"]; ?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">Xem thêm</a>
                 </div>
             </div>
         </div>

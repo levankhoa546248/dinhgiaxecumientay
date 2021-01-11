@@ -11,3 +11,5 @@ $namews = $website["name"];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo $title; ?></title>
     <link rel="shortcut icon" href="<?php echo $shortcuticon; ?>">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="manager/plugins/toastr/toastr.min.css">
