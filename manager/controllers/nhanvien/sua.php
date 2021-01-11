@@ -9,7 +9,7 @@ if (!empty($_POST)) {
     $zalo = escape($_POST['zalo']);
     $chucvu = $_POST['chucvu'];
     if (!empty($_FILES)) {
-        $avatar = base64_encode(file_get_contents($_FILES['images']['tmp_name']));
+        $avatar = "data:" . $_FILES['images']['type'] . ";base64," . base64_encode(file_get_contents($_FILES['images']['tmp_name']));
     } else {
         $avatar = '';
     }

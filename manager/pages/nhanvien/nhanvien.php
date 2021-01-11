@@ -18,31 +18,8 @@
 <!-- File input -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all"
       rel="stylesheet" type="text/css"/>
-<style>
-    .kv-avatar .krajee-default.file-preview-frame, .kv-avatar .krajee-default.file-preview-frame:hover {
-        margin: 0;
-        padding: 0;
-        border: none;
-        box-shadow: none;
-        text-align: center;
-    }
-
-    .kv-avatar {
-        display: inline-block;
-    }
-
-    .kv-avatar .file-input {
-        display: table-cell;
-        width: 213px;
-    }
-
-    .kv-reqd {
-        color: red;
-        font-family: monospace;
-        font-weight: normal;
-    }
-</style>
-
+<!-- Self css -->
+<link href="themes/css/selfcss.css" rel="stylesheet" type="text/css" media="screen"/>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -128,7 +105,7 @@
                           enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-6 text-center">
-                                <div class="kv-avatar">
+                                <div class="kv-avatar justify-content-center">
                                     <div class="file-loading">
                                         <input id="avatar-1" name="avatar-1" type="file" required>
                                     </div>
@@ -288,7 +265,7 @@
                     {
                         data: 'avatar', className: "text-center", width: '10%', render: function (data) {
                             return data ?
-                                '<img height="50px" width="50px" class="img-circle img-fluid" src="data:image/png;base64,' + data + '" />' :
+                                '<img height="50px" width="50px" class="img-circle img-fluid" src="' + data + '" />' :
                                 '<img height="50px" width="50px" class="img-circle img-fluid" src="manager/dist/img/boxed-bg.jpg" />';
                         }
                     },
@@ -329,13 +306,13 @@
             $("#chucvu").val(data.idchucvu ? data.idchucvu : -1);
             $("#facebook").val(data.facebook);
             $("#zalo").val(data.zalo);
-            $("#avatar-1").fileinput({
+            $("#avatar-1").fileinput('clear',{
                 showCaption: false,
                 showRemove: true,
                 showUpload: false,
                 showPreview: true,
                 defaultPreviewContent: [
-                    '<img src="data:image/png;base64,' + data.avatar + '">'
+                    '<img src="' + data.avatar + '">'
                 ]
             });
         });

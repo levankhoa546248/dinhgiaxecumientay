@@ -7,7 +7,7 @@ if (!empty($_POST)) {
         $email = escape($_POST['email']);
         $password = md5($_POST['password']);
         if (!empty($_FILES)) {
-            $avatar = base64_encode(file_get_contents($_FILES['images']['tmp_name']));
+            $avatar = "data:" . $_FILES['images']['type'] . ";base64," . base64_encode(file_get_contents($_FILES['images']['tmp_name']));
         } else {
             $avatar = '';
         }

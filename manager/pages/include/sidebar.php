@@ -1,7 +1,7 @@
 <?php
 $username = $_SESSION["username"];
 $nhanvien = select_1_record("SELECT * FROM nhanvien WHERE username = '$username'");
-$avatar = 'data:image/png;base64,' . $nhanvien["avatar"];
+$avatar = $nhanvien["avatar"];
 $hoten = $nhanvien["hoten"];
 $menu = select("SELECT * FROM menu WHERE level = 1 order by sortmenu asc");
 ?>
