@@ -3,8 +3,8 @@ if (!empty($_POST)) {
     $idnhanvien = $_POST['idnhanvien'];
     if ($idnhanvien !== '') {
         $idnhanvien = $_POST['idnhanvien'];
-        $sql = "INSERT INTO `chudautu` (`hoten`, `avatar`, `email`, `diachi`, `sodienthoai`, `facebook`, `zalo`) 
-            SELECT	hoten,	avatar,	email,	diachi,	sodienthoai,	facebook,	zalo FROM	nhanvien WHERE	id = $idnhanvien";
+        $sql = "INSERT INTO `chudautu` (`hoten`, `avatar`, `email`, `diachi`, `sodienthoai`, `facebook`, `zalo`, `idnhanvien`) 
+            SELECT	hoten,	avatar,	email,	diachi,	sodienthoai,	facebook,	zalo, id FROM	nhanvien WHERE	id = $idnhanvien";
         $data = insert_sql($sql);
         echo $data;
     } else {

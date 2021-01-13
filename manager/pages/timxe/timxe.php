@@ -16,33 +16,6 @@
 <link rel="stylesheet" href="manager/plugins/toastr/toastr.min.css">
 <!-- jAlert -->
 <link href="themes/css/jquery.alerts.css" rel="stylesheet" type="text/css" media="screen"/>
-<!-- File input -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all"
-      rel="stylesheet" type="text/css"/>
-<style>
-    .kv-avatar .krajee-default.file-preview-frame, .kv-avatar .krajee-default.file-preview-frame:hover {
-        margin: 0;
-        padding: 0;
-        border: none;
-        box-shadow: none;
-        text-align: center;
-    }
-
-    .kv-avatar {
-        display: inline-block;
-    }
-
-    .kv-avatar .file-input {
-        display: table-cell;
-        width: 213px;
-    }
-
-    .kv-reqd {
-        color: red;
-        font-family: monospace;
-        font-weight: normal;
-    }
-</style>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -240,9 +213,6 @@
 <script src="manager/plugins/toastr/toastr.min.js"></script>
 <!-- jAlert -->
 <script src="themes/js/jquery.alerts.js" type="text/javascript"></script>
-<!-- File input -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         //Load danh sach

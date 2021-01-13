@@ -399,41 +399,47 @@
 
         //Insert
         $("#them").click(function (e) {
-            var hoten = $("#hoten").val();
-            var email = $("#email").val();
-            var sodienthoai = $("#sodienthoai").val();
-            var facebook = $("#facebook").val();
-            var zalo = $("#zalo").val();
-            var idnhanvien = $("#idnhanvien").val();
-            var diachi = $("#diachi").val();
-            if (checkIf(hoten)) {
-                toastr.error('Chưa nhập tên chủ đầu tư')
-            } else {
-                var dataform = new FormData();
-                dataform.append("images", $('#avatar').prop('files')[0]);
-                dataform.append("idnhanvien", idnhanvien);
-                dataform.append("hoten", hoten);
-                dataform.append("email", email);
-                dataform.append("diachi", diachi);
-                dataform.append("sodienthoai", sodienthoai);
-                dataform.append("facebook", facebook);
-                dataform.append("zalo", zalo);
-                $.ajax({
-                    url: "manager.php?controller=chudautu&action=them",
-                    type: "POST",
-                    data: dataform,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        if (response > 0) {
-                            toastr.success('Success');
-                            danhsach();
-                            emptyinput();
-                        } else {
-                            toastr.error('Fail');
+            var id = $("#id").val();
+            if (checkIf(id)) {
+                var hoten = $("#hoten").val();
+                var email = $("#email").val();
+                var sodienthoai = $("#sodienthoai").val();
+                var facebook = $("#facebook").val();
+                var zalo = $("#zalo").val();
+                var idnhanvien = $("#idnhanvien").val();
+                var diachi = $("#diachi").val();
+                if (checkIf(hoten)) {
+                    toastr.error('Chưa nhập tên chủ đầu tư')
+                } else {
+                    var dataform = new FormData();
+                    dataform.append("images", $('#avatar').prop('files')[0]);
+                    dataform.append("idnhanvien", idnhanvien);
+                    dataform.append("hoten", hoten);
+                    dataform.append("email", email);
+                    dataform.append("diachi", diachi);
+                    dataform.append("sodienthoai", sodienthoai);
+                    dataform.append("facebook", facebook);
+                    dataform.append("zalo", zalo);
+                    $.ajax({
+                        url: "manager.php?controller=chudautu&action=them",
+                        type: "POST",
+                        data: dataform,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            if (response > 0) {
+                                toastr.success('Success');
+                                danhsach();
+                                emptyinput();
+                                disableinput(false);
+                            } else {
+                                toastr.error('Fail');
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            } else {
+                toastr.error('Đã có thông tin');
             }
         });
         //Click row table
@@ -515,6 +521,7 @@
                             emptyinput();
                             toastr.success('Xóa thành công');
                             danhsach();
+                            disableinput(false);
                         }
                     }
                 });
@@ -548,6 +555,14 @@
                 ]
             });
             $('#modallist').modal('hide');
+        });
+
+        $("#modallist").on('hidden.bs.modal', function () {
+            var idnhanvien = $("#idnhanvien").val();
+            if (checkIf(idnhanvien)) {
+                emptyinput();
+                disableinput(false);
+            }
         });
     })
 
