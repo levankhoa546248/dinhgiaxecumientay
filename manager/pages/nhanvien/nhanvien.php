@@ -109,6 +109,10 @@
                                     <div class="file-loading">
                                         <input id="avatar-1" name="avatar-1" type="file" required>
                                     </div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-secondary btn-reset-4"><i class="fa fa-ban"></i> Clear</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -306,15 +310,22 @@
             $("#chucvu").val(data.idchucvu ? data.idchucvu : -1);
             $("#facebook").val(data.facebook);
             $("#zalo").val(data.zalo);
-            $("#avatar-1").fileinput('clear',{
+            $("#avatar-1").fileinput('destroy');
+            $("#avatar-1").fileinput({
                 showCaption: false,
                 showRemove: true,
                 showUpload: false,
                 showPreview: true,
+                initialPreviewAsData: true,
+                overwriteInitial: false,
                 defaultPreviewContent: [
                     '<img src="' + data.avatar + '">'
                 ]
             });
+        });
+
+        $(".btn-reset-4").on("click", function() {
+            $("#avatar-1").fileinput('clear');
         });
 
         $('#danhsach').on('click', 'button.xoa', function (e) {
