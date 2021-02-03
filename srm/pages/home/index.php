@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="srm/themes/css/font-awesome.min.css">
 <link rel="stylesheet" href="srm/themes/css/owl.carousel.css">
 <link rel="stylesheet" href="srm/themes/css/owl.theme.default.min.css">
-
+<link rel="stylesheet" type="text/css" href="themes/css/jquery.alerts.css">
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="srm/themes/css/style.css">
 
@@ -54,17 +54,17 @@
                         <br>
 
                         <p class="lead"><?php echo $gioithieu["tieude"]; ?></p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-4">
 
-                </div>
-                <div class="col-sm-4">
-                    <a href="car-details.html" class="section-btn btn btn-primary btn-block">Xem thêm</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="car-details.html" class="section-btn btn btn-primary btn-block">Xem thêm</a>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <section>
@@ -72,373 +72,94 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                        <h2>Featured Cars <small>Lorem ipsum dolor sit amet.</small></h2>
+                        <h2>Các xe nỗi bật <small>Hãy liên hệ chúng tôi để được tư vấn và hỗ trợ</small></h2>
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/product-1-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                            <p class="lead"><small>
-                                    <del> $11199.00</del>
-                                </small> <strong>$11179.00</strong></p>
-
-                            <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp;
-                                Used vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/product-2-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                            <p class="lead"><small>
-                                    <del> $11199.00</del>
-                                </small> <strong>$11179.00</strong></p>
-
-                            <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp;
-                                New vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/product-3-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                            <p class="lead"><small>
-                                    <del> $11199.00</del>
-                                </small> <strong>$11179.00</strong></p>
-
-                            <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp;
-                                Used vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/product-4-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                            <p class="lead"><small>
-                                    <del> $11199.00</del>
-                                </small> <strong>$11179.00</strong></p>
-
-                            <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp;
-                                Used vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/product-5-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                            <p class="lead"><small>
-                                    <del> $11199.00</del>
-                                </small> <strong>$11179.00</strong></p>
-
-                            <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp;
-                                New vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/product-6-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-dashboard"></i> 130 000km</span>
-                                <span title="Author"><i class="fa fa-cube"></i> 1800cc</span>
-                                <span title="Views"><i class="fa fa-cog"></i> Manual</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="car-details.html">Lorem ipsum dolor sit amet</a></h3>
-
-                            <p class="lead"><small>
-                                    <del> $11199.00</del>
-                                </small> <strong>$11179.00</strong></p>
-
-                            <p>190 hp &nbsp;&nbsp;/&nbsp;&nbsp; Petrol &nbsp;&nbsp;/&nbsp;&nbsp; 2008 &nbsp;&nbsp;/&nbsp;&nbsp;
-                                New vehicle</p>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="car-details.html" class="section-btn btn btn-primary btn-block">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title text-center">
-                        <h2>Latest Blog posts <small>Lorem ipsum dolor sit amet.</small></h2>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/blog-1-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="blog-post-details.html">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit.</a></h3>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/blog-2-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="blog-post-details.html">Tempora molestiae, iste, consequatur unde sint
-                                    praesentium!</a></h3>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="courses-thumb courses-thumb-secondary">
-                        <div class="courses-top">
-                            <div class="courses-image">
-                                <img src="images/blog-3-720x480.jpg" class="img-responsive" alt="">
-                            </div>
-                            <div class="courses-date">
-                                <span title="Author"><i class="fa fa-user"></i> John Doe</span>
-                                <span title="Date"><i class="fa fa-calendar"></i> 12/06/2020 10:30</span>
-                                <span title="Views"><i class="fa fa-eye"></i> 114</span>
-                            </div>
-                        </div>
-
-                        <div class="courses-detail">
-                            <h3><a href="blog-post-details.html">A voluptas ratione, error provident distinctio, eaque
-                                    id officia?</a></h3>
-                        </div>
-
-                        <div class="courses-info">
-                            <a href="blog-post-details.html" class="section-btn btn btn-primary btn-block">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="testimonial">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12">
-                    <div class="section-title text-center">
-                        <h2>Testimonials <small>from around the world</small></h2>
-                    </div>
-
-                    <div class="owl-carousel owl-theme owl-client">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image-1-200x216.jpg" class="img-responsive" alt="">
+                <?php
+                $xe = get_select_nested("
+                SELECT
+                    x.id,
+                    x.tenxe,
+                    x.giahienthi,
+                    x.giaban,
+                    x.tieude,
+                    x.mota,
+                    x.chitiet,
+                    ms.ten AS tenmausac,
+                    dx.tendongxe AS tendongxe,
+                    hx.tenhang AS tenhangxe,
+                    hs.tenhopso AS tenhopso,
+                    nl.tennhienlieu AS tennhienlieu,
+                    cn.tenchongoi AS tenchongoi,
+                    nsx.ten AS tennamsanxuat,
+                    xx.ten AS tenxuatxu,
+                    hax.images AS duongdan
+                    FROM
+                    `xe` AS x
+                    INNER JOIN namsanxuat AS nsx ON nsx.id = x.namsanxuat
+                    INNER JOIN nhienlieu AS nl ON nl.id = x.nhienlieu
+                    INNER JOIN mausac AS ms ON ms.id = x.mausac
+                    INNER JOIN dongxe AS dx ON dx.id = x.dongxe
+                    INNER JOIN hangxe AS hx ON hx.id = x.hangxe
+                    INNER JOIN hopso AS hs ON hs.id = x.hopso
+                    INNER JOIN chongoi AS cn ON cn.id = x.chongoi
+                    INNER JOIN xuatxu AS xx ON xx.id = x.xuatxu
+                    LEFT JOIN (
+                        SELECT
+                            MIN(id) AS id,
+                            idxe,
+                            images
+                        FROM
+                            hinhanhxe
+                        GROUP BY
+                            idxe
+                    ) AS hax ON x.id = hax.idxe
+                    WHERE
+                        x.trangthai = 1
+                    ORDER BY
+                        x.ngaytao DESC
+                 ");
+                foreach ($xe as $xes) {
+                    ?>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="courses-thumb courses-thumb-secondary">
+                            <div class="courses-top">
+                                <div class="courses-image">
+                                    <img src="<?php echo $xes["duongdan"]; ?>" class="img-responsive" alt=""
+                                         style="height: inherit;width: inherit;">
                                 </div>
-                                <div class="tst-author">
-                                    <h4>Jackson</h4>
-                                    <span>Shopify Developer</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam voluptas, facilis
-                                    adipisci dolorem exercitationem nemo aut error impedit repudiandae iusto.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <div class="courses-date">
+                                <span title="Author"><i
+                                            class="fa fa-tint"></i> <?php echo $xes["tennhienlieu"]; ?></span>
+                                    <span title="Author"><i
+                                                class="fa fa-cube"></i> <?php echo $xes["tenchongoi"]; ?></span>
+                                    <span title="Views"><i class="fa fa-cog"></i> <?php echo $xes["tenhopso"]; ?></span>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image-2-200x216.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Camila</h4>
-                                    <span>Marketing Manager</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente error, unde eos
-                                    laborum consequatur officiis perferendis vel debitis, dolore, ipsum quibusdam culpa
-                                    quisquam, reiciendis aspernatur.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
+                            <div class="courses-detail">
+                                <h3><a href="car-details.html"><?php echo $xes["tenxe"]; ?></a></h3>
+
+                                <p class="lead"><small>
+                                        <del> <?php echo number_format($xes["giaban"] + 10000000, 0, '.', ','); ?> </del>
+                                    </small> <strong><?php echo number_format($xes["giaban"], 0, '.', ','); ?>
+                                        VND </strong>
+                                </p>
+
+                                <p>
+                                    &nbsp;<?php echo $xes["tenhangxe"] . " / " . $xes["tendongxe"] . " / " . $xes["tenmausac"] . " / " . $xes["tennamsanxuat"] . " / " . $xes["tenxuatxu"]; ?></p>
+                            </div>
+
+                            <div class="courses-info">
+                                <a href="car.php?controller=xe&action=chitietC&idxe=<?php echo $xes["id"]; ?>"
+                                   class="section-btn btn btn-primary btn-block">Xem thêm</a>
                             </div>
                         </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image-3-200x216.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Barbie</h4>
-                                    <span>Art Director</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit laborum minima autem,
-                                    reprehenderit mollitia amet id, beatae quo sequi culpa assumenda neque a quisquam,
-                                    magni.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="item">
-                                <div class="tst-image">
-                                    <img src="images/tst-image-4-200x216.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="tst-author">
-                                    <h4>Andrio</h4>
-                                    <span>Web Developer</span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore natus culpa
-                                    laudantium sit dolores quidem at nulla, iure atque laborum! Odit tempora, enim
-                                    aliquid at modi illum ducimus explicabo soluta.</p>
-                                <div class="tst-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
     </section>
@@ -452,23 +173,26 @@
             <div class="col-md-6 col-sm-12">
                 <form id="contact-form" role="form" action="" method="post">
                     <div class="section-title">
-                        <h2>Contact us <small>we love conversations. let us talk!</small></h2>
+                        <h2>Thông tin liên lạc <small>We love conversations. Let us talk!</small></h2>
                     </div>
 
                     <div class="col-md-12 col-sm-12">
-                        <input type="text" class="form-control" placeholder="Enter full name" name="name" required>
+                        <input type="text" class="form-control" placeholder="Nhập họ tên" id="hoten" required>
 
-                        <input type="email" class="form-control" placeholder="Enter email address" name="email"
+                        <input type="text" class="form-control" placeholder="Nhập số điện thoại" id="dienthoai"
                                required>
 
-                        <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message"
+                        <input type="email" class="form-control" placeholder="Nhập địa chỉ email" id="email"
+                               required>
+
+                        <textarea class="form-control" rows="6" placeholder="Hãy cho chúng tôi biết về tin nhắn của bạn"
+                                  id="message"
                                   required></textarea>
                     </div>
 
                     <div class="col-md-4 col-sm-12">
-                        <input type="submit" class="form-control" name="send message" value="Send Message">
+                        <input type="button" class="section-btn btn btn-default" id="sendcontact" value="Send Message">
                     </div>
-
                 </form>
             </div>
 
@@ -491,6 +215,43 @@
 <script src="srm/themes/js/owl.carousel.min.js"></script>
 <script src="srm/themes/js/smoothscroll.js"></script>
 <script src="srm/themes/js/custom.js"></script>
-
+<script src="themes/js/jquery.alerts.js" type="text/javascript"></script>
+<script type="text/javascript" src="themes/js/selfjs.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#sendcontact').click(function (e) {
+            if (checkIf($("#dienthoai").val())) {
+                jAlert("Chưa nhập số điện thoại", "Thông báo", function (e) {
+                    $("#dienthoai").focus();
+                });
+            } else {
+                $.ajax({
+                    url: "srm.php?controller=home&action=contact",
+                    type: "POST",
+                    data: {
+                        hoten: $("#hoten").val(),
+                        dienthoai: $("#dienthoai").val(),
+                        email: $("#email").val(),
+                        message: $("#message").val()
+                    },
+                    success: function (response) {
+                        if (response > 0) {
+                            jAlert("Gửi thông tin thành công. Chúng tôi sẽ sớm liên hệ với bạn", "Thông báo", function (e) {
+                                $("#hoten").prop("disabled", true);
+                                $("#dienthoai").prop("disabled", true);
+                                $("#email").prop("disabled", true);
+                                $("#message").prop("disabled", true);
+                                $("#sendcontact").prop("disabled", true);
+                            });
+                        } else {
+                            jAlert("Gửi thông tin không thành công.", "Thông báo", function (e) {
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -21,9 +21,9 @@
             <ul class="nav navbar-nav navbar-nav-first">
 
                 <li <?php if ($_GET["controller"] == "home") echo "class=\"active\""; else echo ""; ?>><a
-                            href="car.php?controller=home&action=index"><i class="fa fa-home"></i></a></li>
+                            href="srm.php?controller=home&action=index"><i class="fa fa-home"></i></a></li>
                 <li <?php if ($_GET["controller"] == "xe") echo "class=\"active\""; else echo ""; ?>><a
-                            href="car.php?controller=xe&action=xeC">Xe</a></li>
+                            href="srm.php?controller=xe&action=xeC">Xe</a></li>
                 <li <?php if ($_GET["controller"] == "dinhgia") echo "class=\"active\""; else echo ""; ?>><a
                             href="car.php?controller=dinhgia&action=index">Định giá</a></li>
                 <li <?php if ($_GET["controller"] == "timmua") echo "class=\"active\""; else echo ""; ?>><a
