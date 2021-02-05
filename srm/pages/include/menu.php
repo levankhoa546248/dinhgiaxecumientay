@@ -25,7 +25,7 @@
                 <li <?php if ($_GET["controller"] == "xe") echo "class=\"active\""; else echo ""; ?>><a
                             href="srm.php?controller=xe&action=index">Xe</a></li>
                 <li <?php if ($_GET["controller"] == "dinhgia") echo "class=\"active\""; else echo ""; ?>><a
-                            href="car.php?controller=dinhgia&action=index">Định giá</a></li>
+                            href="srm.php?controller=dinhgia&action=index">Định giá</a></li>
                 <li <?php if ($_GET["controller"] == "timmua") echo "class=\"active\""; else echo ""; ?>><a
                             href="car.php?controller=timmua&action=index">Tìm mua</a></li>
                 <!--                <li class="dropdown">-->

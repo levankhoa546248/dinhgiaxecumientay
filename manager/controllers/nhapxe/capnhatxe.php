@@ -41,7 +41,7 @@ if (!empty($_POST)) {
             }
             if (!empty($_FILES)) {
                 $countima = count($_FILES['hinhxes']['tmp_name']);
-                for ($k = 0; $k < $cvondautu; $k++) {
+                for ($k = 0; $k < $countima; $k++) {
                     $hinhanh = "data:" . $_FILES['hinhxes']['type'][$k] . ";base64," . base64_encode(file_get_contents($_FILES['hinhxes']['tmp_name'][$k]));
                     $sqlhinh = "INSERT INTO `hinhanhxe` (`idxe`, `images`) SELECT $isxe, '$hinhanh' FROM dual";
                     $ishinh = insert_sql($sqlhinh);
