@@ -20,12 +20,16 @@ if (!empty($_POST)) {
     $tieude = empty(escape($_POST["tieude"])) ? null : escape($_POST["tieude"]);
     $mota = empty(escape($_POST["mota"])) ? null : escape($_POST["mota"]);
     $chitiet = empty(escape($_POST["chitiet"])) ? null : escape($_POST["chitiet"]);
+    $idnhanvien = null;
+    if (!empty($_SESSION)){
+        $idnhanvien = $_SESSION["idnhanvien"];
+    }
     if ($id == 0) {
         $sqlxe = "
         INSERT INTO `xe` 
-            (`tenxe`, `chiphimua`, `chiphiban`, `giavon`, `giahienthi`, `giaban`, `soluong`, `ngaynhap`, `hangxe`, `dongxe`, `nhienlieu`, `hopso`, `chongoi`, `xuatxu`, `mausac`, `namsanxuat`, `tieude`, `mota`, `chitiet`) 
+            (`tenxe`, `chiphimua`, `chiphiban`, `giavon`, `giahienthi`, `giaban`, `soluong`, `ngaynhap`, `hangxe`, `dongxe`, `nhienlieu`, `hopso`, `chongoi`, `xuatxu`, `mausac`, `namsanxuat`, `tieude`, `mota`, `chitiet`, `nhanviennhap`) 
         VALUES 
-            ('$tenxe', $chiphimua, $chiphiban, $giavon, $giahienthi, $giaban, $soluong, '$ngaynhap', $hangxe, $dongxe, $nhienlieu, $hopso, $chongoi, $xuatxu, $mausac, $namsanxuat, '$tieude', '$mota', '$chitiet')";
+            ('$tenxe', $chiphimua, $chiphiban, $giavon, $giahienthi, $giaban, $soluong, '$ngaynhap', $hangxe, $dongxe, $nhienlieu, $hopso, $chongoi, $xuatxu, $mausac, $namsanxuat, '$tieude', '$mota', '$chitiet', $idnhanvien)";
         $isxe = insert_sql($sqlxe);
         if ($isxe > 0) {
             $cvondautu = count($_POST["vondautus"]);
@@ -73,6 +77,7 @@ if (!empty($_POST)) {
              `tieude` = '$tieude',
              `mota` = '$mota',
              `chitiet` = '$chitiet'
+             `idnhanvien` = '$idnhanvien'
             WHERE
                 (`id` = $id)";
         $upxe = update_sql($sqlu);

@@ -168,7 +168,7 @@
                                     </div>
 
                                     <div class="courses-info">
-                                        <a href="car.php?controller=xe&action=chitietC&idxe=<?php echo $xes["id"]; ?>"
+                                        <a href="srm.php?controller=xe&action=chitiet&idxe=<?php echo $xes["id"]; ?>"
                                            class="section-btn btn btn-primary btn-block">Xem thêm</a>
                                     </div>
                                 </div>

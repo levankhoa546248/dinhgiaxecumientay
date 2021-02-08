@@ -9,6 +9,7 @@ if (!empty($_POST)) {
     if ($count > 0) {
         $result = mysqli_fetch_assoc($query);
         $_SESSION["username"] = $result["username"];
+        $_SESSION["idnhanvien"] = $result["id"];
     }
     echo $count;
 } else {
