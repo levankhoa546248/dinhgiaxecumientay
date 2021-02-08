@@ -10,19 +10,28 @@ if (!empty($_POST)) {
     $chucvu = $_POST['chucvu'];
     if (!empty($_FILES)) {
         $avatar = "data:" . $_FILES['images']['type'] . ";base64," . base64_encode(file_get_contents($_FILES['images']['tmp_name']));
+        $nhanvien = array(
+            'hoten' => $hoten,
+            'email' => $email,
+            'diachi' => $diachi,
+            'sodienthoai' => $sodienthoai,
+            'facebook' => $facebook,
+            'zalo' => $zalo,
+            'avatar' => $avatar,
+            'idchucvu' => $chucvu
+        );
     } else {
-        $avatar = '';
+        $nhanvien = array(
+            'hoten' => $hoten,
+            'email' => $email,
+            'diachi' => $diachi,
+            'sodienthoai' => $sodienthoai,
+            'facebook' => $facebook,
+            'zalo' => $zalo,
+            'idchucvu' => $chucvu
+        );
     }
-    $nhanvien = array(
-        'hoten' => $hoten,
-        'email' => $email,
-        'diachi' => $diachi,
-        'sodienthoai' => $sodienthoai,
-        'facebook' => $facebook,
-        'zalo' => $zalo,
-        'avatar' => $avatar,
-        'idchucvu' => $chucvu
-    );
+
     $result = update('nhanvien', $nhanvien, " id = $id");
     echo $result;
 

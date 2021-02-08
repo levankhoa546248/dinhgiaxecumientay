@@ -11,6 +11,7 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="manager/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="manager/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="manager/plugins/toastr/toastr.min.css">
 <!-- jAlert -->
@@ -217,7 +218,7 @@
 <script src="manager/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="manager/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="manager/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="manager/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
 <!-- my design js -->
 <script src="themes/js/selfjs.js"></script>
 <!-- Toastr -->
@@ -294,7 +295,24 @@
                     {data: "diachi", width: '20%'},
                     {data: "idchucvu", width: '5%', visible: false},
                     {data: "tenchucvu", width: '5%'}
-                ]
+                ],
+                dom: 'B<"clear">lfrtip',
+                buttons: {
+                    dom: {
+                        button: {
+                            tag: 'button',
+                            className: ''
+                        }
+                    },
+                    buttons: [{
+                        className: 'btn btn-primary',
+                        titleAttr: 'Làm mới danh sách',
+                        text: 'Làm mới',
+                        action: function () {
+                            danhsach();
+                        }
+                    }]
+                }
             });
         }
 

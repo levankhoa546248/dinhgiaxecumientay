@@ -159,8 +159,8 @@
                     },
                     buttons: [{
                         className: 'btn btn-primary',
-                        titleAttr: 'Refresh Table',
-                        text: 'Refresh',
+                        titleAttr: 'Làm mới danh sách',
+                        text: 'Làm mới',
                         action: function () {
                             danhsach();
                         }
@@ -182,7 +182,7 @@
                 },
                 success: function (response) {
                     if (response > 0) {
-                        toastr.success('Success');
+                        toastr.success('Chưa xem');
                         danhsach();
                     }
                 }
@@ -202,7 +202,7 @@
                 },
                 success: function (response) {
                     if (response > 0) {
-                        toastr.success('Success');
+                        toastr.success('Đã xem');
                         danhsach();
                     }
                 }
