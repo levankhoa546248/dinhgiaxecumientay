@@ -27,7 +27,7 @@
                 <li <?php if ($_GET["controller"] == "dinhgia") echo "class=\"active\""; else echo ""; ?>><a
                             href="srm.php?controller=dinhgia&action=index">Định giá</a></li>
                 <li <?php if ($_GET["controller"] == "timmua") echo "class=\"active\""; else echo ""; ?>><a
-                            href="car.php?controller=timmua&action=index">Tìm mua</a></li>
+                            href="srm.php?controller=timmua&action=index">Tìm mua</a></li>
                 <!--                <li class="dropdown">-->
                 <!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
                 <!--                       aria-expanded="false">More <span class="caret"></span></a>-->

@@ -80,7 +80,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-md-12 col-sm-12 text-center">
+                <div class="col-sm-12 text-center">
                     <input type="button" class="section-btn btn btn-primary" id="guidinhgia"
                            value="Hoàn tất thông tin và nhờ tư vấn">
                 </div>

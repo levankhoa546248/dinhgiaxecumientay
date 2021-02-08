@@ -239,8 +239,8 @@
                     {data: "id", className: "text-center", width: '20%', visible: false},
                     {
                         data: 'trangthai', className: "text-center", width: '5%', render: function (data) {
-                            return data == 2 ? '<button class="btn btn-warning btn-sm chuaxem"><i class="fas fa-eye"></i></button>'
-                                : '<button class="btn btn-warning btn-sm daxem"><i class="fas fa-eye-slash"></i></button>';
+                            return data == 1 ? '<button placeholder="Chưa xem" class="btn btn-warning btn-sm daxem"><i class="fas fa-eye"></i></button>'
+                                : '<button placeholder="Đã xem" class="btn btn-warning btn-sm chuaxem"><i class="fas fa-eye-slash"></i></button>';
                         }
                     },
                     {
@@ -266,8 +266,8 @@
                     },
                     buttons: [{
                         className: 'btn btn-primary',
-                        titleAttr: 'Refresh Table',
-                        text: 'Refresh',
+                        titleAttr: 'Làm mới danh sách',
+                        text: 'Làm mới',
                         action: function () {
                             danhsach();
                         }
@@ -279,42 +279,37 @@
         $('#danhsach').on('click', 'button.chuaxem', function (e) {
             var $row = $(this).closest('tr');
             var data = $('#danhsach').DataTable().row($row).data();
-            $("#id").val(data.id);
-            $.ajax({
-                url: "manager.php?controller=timxe&action=capnhattrangthai",
-                type: "POST",
-                data: {
-                    id: data["id"],
-                    trangthai: 1
-                },
-                success: function (response) {
-                    if (response > 0) {
-                        toastr.success('Success');
-                        danhsach();
-                    }
-                }
-            });
+            var id = data.id;
+            capnhattrangthai(id, 1);
         });
 
         $('#danhsach').on('click', 'button.daxem', function (e) {
             var $row = $(this).closest('tr');
             var data = $('#danhsach').DataTable().row($row).data();
-            $("#id").val(data.id);
+            var id = data.id;
+            capnhattrangthai(id, 0);
+        });
+
+        function capnhattrangthai(id, trangthai) {
             $.ajax({
                 url: "manager.php?controller=timxe&action=capnhattrangthai",
                 type: "POST",
                 data: {
-                    id: data["id"],
-                    trangthai: 2
+                    id: id,
+                    trangthai: trangthai
                 },
                 success: function (response) {
                     if (response > 0) {
-                        toastr.success('Success');
+                        if (trangthai == 1) {
+                            toastr.success('Đã xem');
+                        } else {
+                            toastr.success('Chưa xem');
+                        }
                         danhsach();
                     }
                 }
             });
-        });
+        }
 
         $('#danhsach').on('click', 'button.xoa', function (e) {
             var $row = $(this).closest('tr');
