@@ -38,10 +38,10 @@
                 <!--                        <li><a href="testimonials.html">Testimonials</a></li>-->
                 <!--                    </ul>-->
                 <!--                </li>-->
-                <li <?php if ($_GET["controller"] == "tintuc") echo "class=\"active\""; else echo ""; ?>><a
-                            href="car.php?controller=tintuc&action=index">Tin tức</a></li>
-                <li <?php if ($_GET["controller"] == "lienhe") echo "class=\"active\""; else echo ""; ?>><a
-                            href="car.php?controller=lienhe&action=index">Liên hệ</a></li>
+<!--                <li --><?php //if ($_GET["controller"] == "tintuc") echo "class=\"active\""; else echo ""; ?><!--><a-->
+<!--                            href="car.php?controller=tintuc&action=index">Tin tức</a></li>-->
+<!--                <li --><?php //if ($_GET["controller"] == "lienhe") echo "class=\"active\""; else echo ""; ?><!--><a-->
+<!--                            href="car.php?controller=lienhe&action=index">Liên hệ</a></li>-->
             </ul>
         </div>
 
