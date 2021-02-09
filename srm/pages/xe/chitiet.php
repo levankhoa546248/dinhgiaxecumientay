@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="file-loading">
-                        <input id="input-21" type="file" accept="image/*" multiple>
+                        <input id="hinhxes" type="file" multiple>
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@
 
                                 <br>
 
-                                <strong><?php echo $chitietxe["tennhanvien"] ?></strong>
+                                <strong><?php echo $ctnhanvien["hoten"] ?></strong>
                             </p>
 
                             <p>
@@ -167,7 +167,7 @@
                                 <br>
 
                                 <strong><a target="_blank"
-                                           href="tel:<?php echo $chitietxe["dienthoai"] ?>"><?php echo $chitietxe["dienthoai"] ?></a></strong>
+                                           href="tel:<?php echo $ctnhanvien["sodienthoai"] ?>"><?php echo $ctnhanvien["sodienthoai"] ?></a></strong>
                             </p>
 
 
@@ -177,7 +177,7 @@
                                 <br>
 
                                 <strong><a target="_blank"
-                                           href="<?php echo $chitietxe["zalo"] ?>"><?php echo $chitietxe["zaloview"] ?></a></strong>
+                                           href="<?php echo $ctnhanvien["zalo"] ?>">Zalo</a></strong>
                             </p>
 
                             <p>
@@ -186,7 +186,7 @@
                                 <br>
 
                                 <strong><a target="_blank"
-                                           href="<?php echo $chitietxe["facebook"] ?>"><?php echo $chitietxe["facebookview"] ?></a></strong>
+                                           href="<?php echo $ctnhanvien["facebook"] ?>">Facebook</a></strong>
                             </p>
                             <p>
                                 <span>Email</span>
@@ -194,7 +194,7 @@
                                 <br>
 
                                 <strong><a target="_blank"
-                                           href="mailto:<?php echo $chitietxe["email"] ?>"><?php echo $chitietxe["email"] ?></a></strong>
+                                           href="mailto:<?php echo $ctnhanvien["email"] ?>"><?php echo $ctnhanvien["email"] ?></a></strong>
                             </p>
                         </div>
                     </div>
@@ -216,31 +216,50 @@
 <script src="themes/js/jquery.alerts.js" type="text/javascript"></script>
 <script type="text/javascript" src="themes/js/selfjs.js"></script>
 <!-- File input -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
-<script src="themes/fileinput/js/fileinput.js"></script>
-<script src="themes/fileinput/themes/explorer-fas/theme.js"></script>
-<script src="manager/plugins/summernote/summernote-bs4.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+<link href="themes/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="themes/fileinput/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="themes/fileinput/js/plugins/piexif.js" type="text/javascript"></script>
+<script src="themes/fileinput/js/plugins/sortable.js" type="text/javascript"></script>
+<script src="themes/fileinput/js/fileinput.js" type="text/javascript"></script>
+<script src="themes/fileinput/js/locales/fr.js" type="text/javascript"></script>
+<script src="themes/fileinput/js/locales/es.js" type="text/javascript"></script>
+<script src="themes/fileinput/themes/fas/theme.js" type="text/javascript"></script>
+<script src="themes/fileinput/themes/explorer-fas/theme.js" type="text/javascript"></script>
 <!-- blockUI -->
 <script type="text/javascript" src="themes/jquery/blockUI/jquery.blockUI.js"></script>
 <script>
     $(document).ready(function () {
-        $("#hinhdinhgias").fileinput({
-            showCaption: false,
-            showRemove: true,
-            showUpload: false,
-            showPreview: true,
-            theme: 'explorer-fas',
-            dropZoneTitle: 'Thêm hình ảnh xe'
-        });
+        hinhanhxe(<?php echo $_GET["idxe"]; ?>);
 
-        $("#hinhdangkiems").fileinput({
-            showCaption: false,
-            showRemove: true,
-            showUpload: false,
-            showPreview: true,
-            theme: 'explorer-fas',
-            dropZoneTitle: 'Thêm hình ảnh giấy đăng kiểm'
-        });
+        function hinhanhxe(idxe){
+            $.ajax({
+                url: "srm.php?controller=xe&action=hinhanhxe",
+                type: "POST",
+                data: {
+                    id: idxe
+                },
+                success: function (data) {
+                    var ha = JSON.parse(data);
+                    var length = ha.length;
+                    if (length > 0) {
+                        var pre = [];
+                        for (var i = 0; i < length; i++) {
+                            pre.push("<img class='kv-preview-data file-preview-image' src='" + ha[i].images + "'>");
+                        }
+                        $("#hinhxes").fileinput({
+                            showBrowse: false,
+                            showCaption: false,
+                            showRemove: true,
+                            showUpload: false,
+                            showPreview: true,
+                            theme: 'fas',
+                            initialPreview: pre
+                        });
+                    }
+                }
+            });
+        }
 
         $("#guidinhgia").click(function (e) {
             var dataform = new FormData();

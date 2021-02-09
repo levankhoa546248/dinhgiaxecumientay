@@ -28,14 +28,14 @@ if (!empty($_POST)) {
                             hax.images AS duongdan
                             FROM
                             `xe` AS x
-                            INNER JOIN namsanxuat AS nsx ON nsx.id = x.namsanxuat
-                            INNER JOIN nhienlieu AS nl ON nl.id = x.nhienlieu
-                            INNER JOIN mausac AS ms ON ms.id = x.mausac
-                            INNER JOIN dongxe AS dx ON dx.id = x.dongxe
-                            INNER JOIN hangxe AS hx ON hx.id = x.hangxe
-                            INNER JOIN hopso AS hs ON hs.id = x.hopso
-                            INNER JOIN chongoi AS cn ON cn.id = x.chongoi
-                            INNER JOIN xuatxu AS xx ON xx.id = x.xuatxu
+                            LEFT JOIN namsanxuat AS nsx ON nsx.id = x.namsanxuat
+                            LEFT JOIN nhienlieu AS nl ON nl.id = x.nhienlieu
+                            LEFT JOIN mausac AS ms ON ms.id = x.mausac
+                            LEFT JOIN dongxe AS dx ON dx.id = x.dongxe
+                            LEFT JOIN hangxe AS hx ON hx.id = x.hangxe
+                            LEFT JOIN hopso AS hs ON hs.id = x.hopso
+                            LEFT JOIN chongoi AS cn ON cn.id = x.chongoi
+                            LEFT JOIN xuatxu AS xx ON xx.id = x.xuatxu
                             LEFT JOIN (
                                 SELECT
                                     MIN(id) AS id,
@@ -99,7 +99,7 @@ if (!empty($_POST)) {
                     </div>
 
                     <div class="courses-info">
-                        <a href="car.php?controller=xe&action=chitietC&idxe=<?php echo $xes["id"]; ?>"
+                        <a href="srm.php?controller=xe&action=chitiet&idxe=<?php echo $xes["id"]; ?>"
                            class="section-btn btn btn-primary btn-block">Xem thêm</a>
                     </div>
                 </div>

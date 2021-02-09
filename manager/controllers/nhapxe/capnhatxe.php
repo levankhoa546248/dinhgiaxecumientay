@@ -76,8 +76,8 @@ if (!empty($_POST)) {
              `namsanxuat` = $namsanxuat,
              `tieude` = '$tieude',
              `mota` = '$mota',
-             `chitiet` = '$chitiet'
-             `idnhanvien` = '$idnhanvien'
+             `chitiet` = '$chitiet',
+             `nhanviennhap` = $idnhanvien
             WHERE
                 (`id` = $id)";
         $upxe = update_sql($sqlu);
