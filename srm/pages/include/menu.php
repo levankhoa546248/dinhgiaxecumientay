@@ -1,4 +1,3 @@
-
 <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
     <div class="container">
 
@@ -19,7 +18,8 @@
         <!-- MENU LINKS -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first">
-
+                <?php if (isset($_GET['controller'])){
+                ?>
                 <li <?php if ($_GET["controller"] == "home") echo "class=\"active\""; else echo ""; ?>><a
                             href="srm.php?controller=home&action=index"><i class="fa fa-home"></i></a></li>
                 <li <?php if ($_GET["controller"] == "xe") echo "class=\"active\""; else echo ""; ?>><a
@@ -38,10 +38,21 @@
                 <!--                        <li><a href="testimonials.html">Testimonials</a></li>-->
                 <!--                    </ul>-->
                 <!--                </li>-->
-<!--                <li --><?php //if ($_GET["controller"] == "tintuc") echo "class=\"active\""; else echo ""; ?><!--><a-->
-<!--                            href="car.php?controller=tintuc&action=index">Tin tức</a></li>-->
-<!--                <li --><?php //if ($_GET["controller"] == "lienhe") echo "class=\"active\""; else echo ""; ?><!--><a-->
-<!--                            href="car.php?controller=lienhe&action=index">Liên hệ</a></li>-->
+                <!--                <li -->
+                        <?php
+                        } else {
+                    ?>
+                    <li class="active"><a
+                                href="srm.php?controller=home&action=index"><i class="fa fa-home"></i></a></li>
+                    <li><a
+                                href="srm.php?controller=xe&action=index">Xe</a></li>
+                    <li><a
+                                href="srm.php?controller=dinhgia&action=index">Định giá</a></li>
+                    <li><a
+                                href="srm.php?controller=timmua&action=index">Tìm mua</a></li>
+                <?php
+                }?>
+
             </ul>
         </div>
 
