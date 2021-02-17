@@ -1,8 +1,8 @@
 <?php
 /** setting **/
-define('BASEURL', 'http://duylinh.byethost3.com');
+define('BASEURL', 'https://www.dinhgiaxecumientay.com');
 define('BASEPATH', dirname(__FILE__) . '/');
-define('PATH_URL', 'http://duylinh.byethost3.com');
+define('PATH_URL', 'https://www.dinhgiaxecumientay.com');
 define('PATH_URL_IMG', PATH_URL . '/public/upload/images/');
 define('PATH_IMG_WEB', 'website/themes/upload/images/');
 define('PATH_IMG_PRODUCT', 'website/themes/upload/product/');

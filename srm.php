@@ -9,5 +9,5 @@ $file = 'srm/controllers/' . $controller . '/' . $action . '.php';
 if (file_exists($file)) {
     require($file);
 } else {
-    show_404();
+    echo $file;
 }
