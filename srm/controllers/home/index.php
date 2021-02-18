@@ -44,6 +44,7 @@ $xe = get_select_nested("
                         x.trangthai = 1
                     ORDER BY
                         x.ngaytao DESC
+                    LIMIT 6
                  ");
 require('srm/pages/home/index.php');
 ?>

@@ -35,18 +35,16 @@
             <div class="row">
                 <div class="col-md-6 col-xs-12">
                     <div class="img-view-main">
-                        <img id="image-main-hax" src="<?php echo $dataims[0]["images"]; ?>" alt="" class="img-responsive wc-image">
+                        <img id="image-main-hax" src="<?php echo $dataims[0]["images"]; ?>" alt=""
+                             class="img-responsive wc-image">
                     </div>
                     <div class="row text-center">
                         <div class="carousel-wrap">
                             <div class="owl-carousel">
-<!--                                <div><img class="link" src="//placehold.it/400x300/f06/fff/?text=1" alt=""></div>-->
-<!--                                <div><img class="link" src="//placehold.it/400x300/f63/fff/?text=2" alt=""></div>-->
-<!--                                <div><img class="link" src="//placehold.it/400x300/fc3/fff/?text=3" alt=""></div>-->
-<!--                                <div><img class="link" src="//placehold.it/400x300/693/fff/?text=4" alt=""></div>-->
                                 <?php foreach ($dataims as $dataim) { ?>
                                     <button class="btn btn-default btn-block" style="border: 0px">
-                                        <img class="hinhanhxe" src="<?php echo $dataim["images"]; ?>" style="height: 100px">
+                                        <img class="hinhanhxe" src="<?php echo $dataim["images"]; ?>"
+                                             style="height: 100px">
                                     </button>
                                 <?php } ?>
                             </div>
@@ -366,7 +364,7 @@
             }
         });
 
-        $('.hinhanhxe').on('click', function(event){
+        $('.hinhanhxe').on('click', function (event) {
             var $this = $(this);
             $('#image-main-hax').attr('src', $this.attr('src'));
         });
