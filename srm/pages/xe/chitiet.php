@@ -1,11 +1,12 @@
 <?php require('srm/pages/include/head.php'); ?>
 <link rel="stylesheet" href="srm/themes/css/bootstrap.min.css">
 <link rel="stylesheet" href="srm/themes/css/font-awesome.min.css">
-<link rel="stylesheet" href="srm/themes/css/owl.carousel.css">
-<link rel="stylesheet" href="srm/themes/css/owl.theme.default.min.css">
+<!--<link rel="stylesheet" href="srm/themes/css/owl.carousel.css">-->
+<!--<link rel="stylesheet" href="srm/themes/css/owl.theme.default.min.css">-->
 <link rel="stylesheet" type="text/css" href="themes/css/jquery.alerts.css">
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="srm/themes/css/style.css">
+<link rel="stylesheet" href="srm/themes/css/style-view-image.css">
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 <!-- File input -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css" media="all"
@@ -13,6 +14,8 @@
 <link href="themes/fileinput/css/fileinput.min.css" rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" rel="stylesheet">
 <link href="themes/fileinput/themes/explorer-fas/theme.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" rel="stylesheet">
+
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
@@ -31,106 +34,125 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-xs-12">
-                    <div class="file-loading">
-                        <input id="hinhxes" type="file" multiple>
+                    <div class="img-view-main">
+                        <img id="image-main-hax" src="<?php echo $dataims[0]["images"]; ?>" alt="" class="img-responsive wc-image">
+                    </div>
+                    <div class="row text-center">
+                        <div class="carousel-wrap">
+                            <div class="owl-carousel">
+<!--                                <div><img class="link" src="//placehold.it/400x300/f06/fff/?text=1" alt=""></div>-->
+<!--                                <div><img class="link" src="//placehold.it/400x300/f63/fff/?text=2" alt=""></div>-->
+<!--                                <div><img class="link" src="//placehold.it/400x300/fc3/fff/?text=3" alt=""></div>-->
+<!--                                <div><img class="link" src="//placehold.it/400x300/693/fff/?text=4" alt=""></div>-->
+                                <?php foreach ($dataims as $dataim) { ?>
+                                    <button class="btn btn-default btn-block" style="border: 0px">
+                                        <img class="hinhanhxe" src="<?php echo $dataim["images"]; ?>" style="height: 100px">
+                                    </button>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
                 <div class="col-md-6 col-xs-12">
                     <form action="#" method="post" class="form">
-                        <h2><?php echo $chitietxe["tenxe"] ?></h2>
-
-                        <p class="lead"><small>
-                                <del> <?php echo $chitietxe["giahienthi"] == 0 ? "" : number_format($chitietxe["giahienthi"], 0, '.', ',') ?></del>
-                            </small> <strong
-                                    class="text-primary"><?php echo number_format($chitietxe["giaban"], 0, '.', ',') ?>
-                                VND</strong></p>
-                        <p class="lead"><?php echo $chitietxe["mota"] ?></p>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Nhiên liệu</span>
-
-                                    <br>
-
-                                    <strong><?php echo $chitietxe["tennhienlieu"] ?></strong>
-                                </p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Thông tin xe</h4>
                             </div>
+                            <div class="panel-body">
+                                <h2><?php echo $chitietxe["tenxe"] ?></h2>
+                                <p class="lead"><small>
+                                        <del> <?php echo $chitietxe["giahienthi"] == 0 ? "" : number_format($chitietxe["giahienthi"], 0, '.', ',') ?></del>
+                                    </small> <strong
+                                            class="text-primary"><?php echo number_format($chitietxe["giaban"], 0, '.', ',') ?>
+                                        VND</strong></p>
+                                <p class="lead"><?php echo $chitietxe["mota"] ?></p>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Nhiên liệu</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Số chỗ ngồi</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tennhienlieu"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tenchongoi"] ?></strong>
-                                </p>
-                            </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Số chỗ ngồi</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Hộp số</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tenchongoi"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tenhopso"] ?></strong>
-                                </p>
-                            </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Hộp số</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Hãng sản xuất</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tenhopso"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tenhangxe"] ?></strong>
-                                </p>
-                            </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Hãng sản xuất</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Dòng xe</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tenhangxe"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tendongxe"] ?></strong>
-                                </p>
-                            </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Dòng xe</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Màu sắc</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tendongxe"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tenmausac"] ?></strong>
-                                </p>
-                            </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Màu sắc</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Năm sản xuất</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tenmausac"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tennamsanxuat"] ?></strong>
-                                </p>
-                            </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Năm sản xuất</span>
 
-                            <div class="col-md-4 col-sm-6">
-                                <p>
-                                    <span>Xuất xứ</span>
+                                            <br>
 
-                                    <br>
+                                            <strong><?php echo $chitietxe["tennamsanxuat"] ?></strong>
+                                        </p>
+                                    </div>
 
-                                    <strong><?php echo $chitietxe["tenxuatxu"] ?></strong>
-                                </p>
+                                    <div class="col-md-4 col-sm-6">
+                                        <p>
+                                            <span>Xuất xứ</span>
+
+                                            <br>
+
+                                            <strong><?php echo $chitietxe["tenxuatxu"] ?></strong>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-8 col-xs-12">
                     <div class="panel panel-default">
@@ -145,7 +167,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -228,11 +249,13 @@
 <script src="themes/fileinput/themes/explorer-fas/theme.js" type="text/javascript"></script>
 <!-- blockUI -->
 <script type="text/javascript" src="themes/jquery/blockUI/jquery.blockUI.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js"></script>
 <script>
     $(document).ready(function () {
         hinhanhxe(<?php echo $_GET["idxe"]; ?>);
 
-        function hinhanhxe(idxe){
+        function hinhanhxe(idxe) {
             $.ajax({
                 url: "srm.php?controller=xe&action=hinhanhxe",
                 type: "POST",
@@ -319,6 +342,34 @@
             $('#hinhdinhgias').fileinput(bool ? 'disable' : 'enable');
             $("#guidinhgia").prop("disabled", bool);
         }
+
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                "<i class='fa fa-caret-left'></i>",
+                "<i class='fa fa-caret-right'></i>"
+            ],
+            autoplay: false,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 4
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
+
+        $('.hinhanhxe').on('click', function(event){
+            var $this = $(this);
+            $('#image-main-hax').attr('src', $this.attr('src'));
+        });
     });
 </script>
 </body>

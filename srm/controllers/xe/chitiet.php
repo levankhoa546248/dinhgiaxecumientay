@@ -39,7 +39,10 @@ $chitietxe = select_1_record("
 $idnhanvien = $chitietxe["nhanviennhap"];
 $ctnhanvien = select_1_record("SELECT * FROM nhanvien WHERE trangthai = 1 AND id = $idnhanvien");
 //Hình ảnh xe
-$sqlim = 'SELECT images FROM hinhanhxe WHERE idxe =' . $idxe;
-$dataim = select_1_record($sqlim);
-$images = json_encode($dataim["images"]);
+//$sqlim = 'SELECT images FROM hinhanhxe WHERE idxe =' . $idxe;
+//$dataim = select_1_record($sqlim);
+//$images = json_encode($dataim["images"]);
+
+$sqlim = "SELECT ha.* FROM hinhanhxe ha WHERE ha.trangthai = 1 AND ha.idxe = $idxe ORDER BY ha.ngaytao DESC";
+$dataims = select($sqlim);
 require('srm/pages/xe/chitiet.php');

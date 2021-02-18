@@ -55,6 +55,7 @@
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">Danh sách tìm xe</h3>
+                            <a id="lammoi" href="#" class="float-right"><i class="fas fa-sync-alt"></i></a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -255,26 +256,30 @@
                     {data: "hangxe", width: '10%'},
                     {data: "dongxe", width: '10%'},
                     {data: "thongtinxe", width: '10%'}
-                ],
-                dom: 'B<"clear">lfrtip',
-                buttons: {
-                    dom: {
-                        button: {
-                            tag: 'button',
-                            className: ''
-                        }
-                    },
-                    buttons: [{
-                        className: 'btn btn-primary',
-                        titleAttr: 'Làm mới danh sách',
-                        text: 'Làm mới',
-                        action: function () {
-                            danhsach();
-                        }
-                    }]
-                }
+                ]
+                // dom: 'B<"clear">lfrtip',
+                // buttons: {
+                //     dom: {
+                //         button: {
+                //             tag: 'button',
+                //             className: ''
+                //         }
+                //     },
+                //     buttons: [{
+                //         className: 'btn btn-primary',
+                //         titleAttr: 'Làm mới danh sách',
+                //         text: 'Làm mới',
+                //         action: function () {
+                //             danhsach();
+                //         }
+                //     }]
+                // }
             });
         }
+
+        $("#lammoi").click(function () {
+            danhsach();
+        });
 
         $('#danhsach').on('click', 'button.chuaxem', function (e) {
             var $row = $(this).closest('tr');

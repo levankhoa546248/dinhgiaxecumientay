@@ -85,6 +85,9 @@
             <p class="mb-0">
                 <a href="manager.php?controller=login&action=register" class="text-center">Đăng ký</a>
             </p>
+            <p class="mb-0">
+                <a href="srm.php" class="text-center">Website</a>
+            </p>
         </div>
         <!-- /.login-card-body -->
     </div>

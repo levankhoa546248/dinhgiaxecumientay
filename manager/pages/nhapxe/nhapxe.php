@@ -798,7 +798,7 @@
             $("#taidautu").prop('disabled', bool);
             $("#tiendautu").prop('disabled', bool);
             $("#themdautu").prop('disabled', bool);
-            $('#hinhxes').fileinput(bool ? 'disable' : 'enable');
+            // $('#hinhxes').fileinput(bool ? 'disable' : 'enable');
             $("#capnhat").prop('disabled', bool);
         }
 

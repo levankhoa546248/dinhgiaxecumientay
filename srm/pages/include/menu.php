@@ -53,7 +53,7 @@
                                 href="srm.php?controller=timmua&action=index">Tìm mua</a></li>
                     <?php
                 } ?>
-                <li><a href="manager.php" target="_blank"><i class="fa fa-user"></i></a></li>
+                <li><a href="manager.php?controller=login&action=logout" target="_blank"><i class="fa fa-user"></i></a></li>
             </ul>
         </div>
 

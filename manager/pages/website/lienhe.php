@@ -53,8 +53,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-secondary">
-                        <div class="card-header">
+                        <div class="card-header text-left">
                             <h3 class="card-title">Danh sách liên hệ</h3>
+                            <a id="lammoi" href="#" class="float-right"><i class="fas fa-sync-alt"></i></a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -148,24 +149,24 @@
                     {data: "dienthoai", width: '15%'},
                     {data: "email", width: '20%'},
                     {data: "noidung", width: '15%'}
-                ],
-                dom: 'B<"clear">lfrtip',
-                buttons: {
-                    dom: {
-                        button: {
-                            tag: 'button',
-                            className: ''
-                        }
-                    },
-                    buttons: [{
-                        className: 'btn btn-primary',
-                        titleAttr: 'Làm mới danh sách',
-                        text: 'Làm mới',
-                        action: function () {
-                            danhsach();
-                        }
-                    }]
-                }
+                ]
+                // dom: 'B<"clear">lfrtip',
+                // buttons: {
+                //     dom: {
+                //         button: {
+                //             tag: 'button',
+                //             className: ''
+                //         }
+                //     },
+                //     buttons: [{
+                //         className: 'btn btn-primary',
+                //         titleAttr: 'Làm mới danh sách',
+                //         text: 'Làm mới',
+                //         action: function () {
+                //             danhsach();
+                //         }
+                //     }]
+                // }
             });
         }
 
@@ -233,6 +234,9 @@
             });
         });
 
+        $("#lammoi").click(function () {
+            danhsach();
+        });
     })
 
 </script>

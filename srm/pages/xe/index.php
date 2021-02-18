@@ -154,11 +154,11 @@
                                         </div>
                                     </div>
 
-                                    <div class="courses-detail">
+                                    <div class="courses-detail" style="height: 177px;">
                                         <h3><a href="car-details.html"><?php echo $xes["tenxe"]; ?></a></h3>
 
                                         <p class="lead"><small>
-                                                <del> <?php echo number_format($xes["giaban"] + 10000000, 0, '.', ','); ?> </del>
+                                                <del> <?php echo $xes["giahienthi"] == "0" ? number_format($xes["giaban"] + 10000000, 0, '.', ',') : number_format($xes["giahienthi"] + 10000000, 0, '.', ','); ?> </del>
                                             </small> <strong><?php echo number_format($xes["giaban"], 0, '.', ','); ?>
                                                 VND </strong>
                                         </p>

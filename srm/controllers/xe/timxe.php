@@ -47,7 +47,6 @@ if (!empty($_POST)) {
                                     idxe
                             ) AS hax ON x.id = hax.idxe
                             WHERE x.trangthai = 1
-                            AND x.hangxe = $hangxe
                             AND ($hangxe = 0 OR ($hangxe != 0 AND x.hangxe = $hangxe))
                             AND ($dongxe = 0 OR ($dongxe != 0 AND x.dongxe = $dongxe))
                             AND ($nhienlieu = 0 OR ($nhienlieu != 0 AND x.nhienlieu = $nhienlieu))
@@ -85,11 +84,11 @@ if (!empty($_POST)) {
                         </div>
                     </div>
 
-                    <div class="courses-detail">
+                    <div class="courses-detail" style="height: 177px;">
                         <h3><a href="car-details.html"><?php echo $xes["tenxe"]; ?></a></h3>
 
                         <p class="lead"><small>
-                                <del> <?php echo number_format($xes["giaban"] + 10000000, 0, '.', ','); ?> </del>
+                                <del> <?php echo $xes["giahienthi"] == "0" ? number_format($xes["giaban"] + 10000000, 0, '.', ',') : number_format($xes["giahienthi"] + 10000000, 0, '.', ','); ?> </del>
                             </small> <strong><?php echo number_format($xes["giaban"], 0, '.', ','); ?>
                                 VND </strong>
                         </p>

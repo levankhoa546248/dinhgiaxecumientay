@@ -88,6 +88,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                             <table class="table table-striped table-bordered table-hover" id="danhsach"
                                    style="width:100%">
                                 <thead class="bg-success">
@@ -166,7 +167,7 @@
             $('#danhsach').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,

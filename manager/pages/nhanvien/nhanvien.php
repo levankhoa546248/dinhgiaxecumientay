@@ -59,6 +59,7 @@
                     <div class="card card-secondary">
                         <div class="card-header">
                             <h3 class="card-title">Danh sách nhân viên</h3>
+                            <a id="lammoi" href="#" class="float-right"><i class="fas fa-sync-alt"></i></a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -295,24 +296,24 @@
                     {data: "diachi", width: '20%'},
                     {data: "idchucvu", width: '5%', visible: false},
                     {data: "tenchucvu", width: '5%'}
-                ],
-                dom: 'B<"clear">lfrtip',
-                buttons: {
-                    dom: {
-                        button: {
-                            tag: 'button',
-                            className: ''
-                        }
-                    },
-                    buttons: [{
-                        className: 'btn btn-primary',
-                        titleAttr: 'Làm mới danh sách',
-                        text: 'Làm mới',
-                        action: function () {
-                            danhsach();
-                        }
-                    }]
-                }
+                ]
+                // dom: 'B<"clear">lfrtip',
+                // buttons: {
+                //     dom: {
+                //         button: {
+                //             tag: 'button',
+                //             className: ''
+                //         }
+                //     },
+                //     buttons: [{
+                //         className: 'btn btn-primary',
+                //         titleAttr: 'Làm mới danh sách',
+                //         text: 'Làm mới',
+                //         action: function () {
+                //             danhsach();
+                //         }
+                //     }]
+                // }
             });
         }
 
@@ -407,6 +408,9 @@
             }
         });
 
+        $("#lammoi").click(function () {
+            danhsach();
+        });
     })
 
 </script>
