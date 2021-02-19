@@ -15,7 +15,20 @@
 <link href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" rel="stylesheet">
 <link href="themes/fileinput/themes/explorer-fas/theme.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" rel="stylesheet">
+<style>
+    .modal-dialog-full-width {
+        height: 100% !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        max-width: none !important;
+    }
 
+    .modal-content-full-width {
+        height: auto !important;
+        min-height: 100% !important;
+        border-radius: 0 !important;
+    }
+</style>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
@@ -36,7 +49,7 @@
                 <div class="col-md-6 col-xs-12">
                     <div class="img-view-main">
                         <img id="image-main-hax" src="<?php echo $dataims[0]["images"]; ?>" alt=""
-                             class="img-responsive wc-image">
+                             class="img-responsive wc-image" data-toggle="modal" data-target="#exampleModalPreview">
                     </div>
                     <div class="row text-center">
                         <div class="carousel-wrap">
@@ -220,6 +233,46 @@
                 </div>
             </div>
         </div>
+
+        <!--Xem anh-->
+        <!-- /.content-wrapper -->
+        <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+            <div class="modal-dialog-full-width modal-dialog modal-lg">
+                <div class="modal-content-full-width modal-content">
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title">Xem hình ảnh</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="img-view-main">
+                                <img id="image-dialog-hax" src="<?php echo $dataims[0]["images"]; ?>" alt=""
+                                     class="img-responsive-dialog wc-image" data-toggle="modal" data-target="#exampleModalPreview">
+                            </div>
+                            <div class="row text-center">
+                                <div class="carousel-wrap">
+                                    <div class="owl-carousel">
+                                        <?php foreach ($dataims as $dataim) { ?>
+                                            <button class="btn btn-default btn-block" style="border: 0px">
+                                                <img class="img-list-dialog" src="<?php echo $dataim["images"]; ?>"
+                                                     style="height: 100px">
+                                            </button>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
     </section>
 </main>
 
@@ -367,6 +420,13 @@
         $('.hinhanhxe').on('click', function (event) {
             var $this = $(this);
             $('#image-main-hax').attr('src', $this.attr('src'));
+        });
+        $('#image-main-hax').on('click', function (event) {
+            $('#modalxemanh').modal('show');
+        });
+        $('.img-list-dialog').on('click', function (event) {
+            var $this = $(this);
+            $('#image-dialog-hax').attr('src', $this.attr('src'));
         });
     });
 </script>

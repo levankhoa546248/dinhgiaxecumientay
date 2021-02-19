@@ -69,7 +69,6 @@
                                 <div class="col-sm-12">
                                     <label>Chi tiết xe</label>
                                     <textarea class="form-control" rows="3" disabled
-                                              placeholder="Hãy cho chúng tôi biết tình trạng xe bạn hiện tại như thế nào. Một số thông tin cần cụ thể để dễ dàng định giá hơn. Cảm ơn bạn"
                                               id="thongtinxe"></textarea>
                                 </div>
                             </div>
@@ -167,7 +166,7 @@
             $('#danhsach').DataTable({
                 "paging": true,
                 "lengthChange": false,
-                "searching": false,
+                searching: false,
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
