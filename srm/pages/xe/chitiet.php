@@ -234,19 +234,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-md-12 col-xs-12">
-                            <div class="img-view-main">
-                                <img id="image-dialog-hax" src="<?php echo $dataims[0]["images"]; ?>" alt=""
-                                     class="img-responsive-dialog wc-image" data-toggle="modal"
-                                     data-target="#exampleModalPreview">
-                            </div>
-                            <div class="row text-center">
-                                <div class="carousel-wrap">
-                                    <div class="owl-carousel" id="owl-dialog">
-                                        <?php foreach ($dataims as $dataim) { ?>
-                                            <img class="img-list-dialog" src="<?php echo $dataim["images"]; ?>"
-                                                 style="height: 100px">
-                                        <?php } ?>
-                                    </div>
+                            <div class="row">
+                                <div class="owl-carousel owl-theme" id="owl-dialog">
+                                    <?php foreach ($dataims as $dataim) { ?>
+                                        <img class="img-responsive-dialog img-list-dialog" src="<?php echo $dataim["images"]; ?>">
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -414,13 +406,13 @@
             autoplayHoverPause: true,
             responsive: {
                 0: {
-                    items: 3
+                    items: 1
                 },
                 600: {
-                    items: 4
+                    items: 1
                 },
                 1000: {
-                    items: 5
+                    items: 1
                 }
             }
         });
