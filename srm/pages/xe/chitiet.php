@@ -15,20 +15,6 @@
 <link href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" rel="stylesheet">
 <link href="themes/fileinput/themes/explorer-fas/theme.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" rel="stylesheet">
-<style>
-    .modal-dialog-full-width {
-        height: 100% !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-        max-width: none !important;
-    }
-
-    .modal-content-full-width {
-        height: auto !important;
-        min-height: 100% !important;
-        border-radius: 0 !important;
-    }
-</style>
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
@@ -53,7 +39,7 @@
                     </div>
                     <div class="row text-center">
                         <div class="carousel-wrap">
-                            <div class="owl-carousel">
+                            <div class="owl-carousel" id="owl-main">
                                 <?php foreach ($dataims as $dataim) { ?>
                                     <button class="btn btn-default btn-block" style="border: 0px">
                                         <img class="hinhanhxe" src="<?php echo $dataim["images"]; ?>"
@@ -250,16 +236,15 @@
                         <div class="col-md-12 col-xs-12">
                             <div class="img-view-main">
                                 <img id="image-dialog-hax" src="<?php echo $dataims[0]["images"]; ?>" alt=""
-                                     class="img-responsive-dialog wc-image" data-toggle="modal" data-target="#exampleModalPreview">
+                                     class="img-responsive-dialog wc-image" data-toggle="modal"
+                                     data-target="#exampleModalPreview">
                             </div>
                             <div class="row text-center">
                                 <div class="carousel-wrap">
-                                    <div class="owl-carousel">
+                                    <div class="owl-carousel" id="owl-dialog">
                                         <?php foreach ($dataims as $dataim) { ?>
-                                            <button class="btn btn-default btn-block" style="border: 0px">
-                                                <img class="img-list-dialog" src="<?php echo $dataim["images"]; ?>"
-                                                     style="height: 100px">
-                                            </button>
+                                            <img class="img-list-dialog" src="<?php echo $dataim["images"]; ?>"
+                                                 style="height: 100px">
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -394,7 +379,30 @@
             $("#guidinhgia").prop("disabled", bool);
         }
 
-        $('.owl-carousel').owlCarousel({
+        $('#owl-main').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                "<i class='fa fa-caret-left'></i>",
+                "<i class='fa fa-caret-right'></i>"
+            ],
+            autoplay: false,
+            autoplayHoverPause: true,
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 4
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
+
+        $('#owl-dialog').owlCarousel({
             loop: true,
             margin: 10,
             nav: true,
@@ -421,10 +429,12 @@
             var $this = $(this);
             $('#image-main-hax').attr('src', $this.attr('src'));
         });
+
         $('#image-main-hax').on('click', function (event) {
             $('#modalxemanh').modal('show');
         });
-        $('.img-list-dialog').on('click', function (event) {
+
+        $('.img-list-dialog').click(function (event) {
             var $this = $(this);
             $('#image-dialog-hax').attr('src', $this.attr('src'));
         });
