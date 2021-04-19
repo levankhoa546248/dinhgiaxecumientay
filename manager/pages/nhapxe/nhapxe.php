@@ -108,13 +108,13 @@
                                            data-type="currency">
                                 </div>
                                 <div class="form-group col-sm-3">
-                                    <label for="">Giá hiển thị</label>
-                                    <input type="text" id="giahienthi" class="form-control text-right" value=""
+                                    <label for="">Giá bán</label>
+                                    <input type="text" id="giaban" class="form-control text-right" value=""
                                            data-type="currency">
                                 </div>
                                 <div class="form-group col-sm-3">
-                                    <label for="">Giá bán</label>
-                                    <input type="text" id="giaban" class="form-control text-right" value=""
+                                    <label for="">Giá hiển thị</label>
+                                    <input type="text" id="giahienthi" class="form-control text-right" value=""
                                            data-type="currency">
                                 </div>
                                 <div class="form-group col-sm-3">
@@ -282,6 +282,7 @@
                                 <div class="col-sm-12 text-center">
                                     <div class="form-group">
                                         <button type="button" class="btn btn-primary m-1" id="capnhat">Cập nhật</button>
+                                        <button type="button" class="btn btn-warning m-1" id="banxe">Bán xe</button>
                                         <button type="button" class="btn btn-danger m-1" id="xoa">Xóa</button>
                                         <button type="button" class="btn btn-dark m-1" id="huy">Hủy</button>
                                     </div>
@@ -323,15 +324,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-3">
+                                <div class="form-group col-sm-2">
                                     <select class="form-control" id="dshangxe" style="width: 100%;">
-                                        <option selected="selected" value="0">---Chọn hãng xe---</option>
+                                        <option selected="selected" value="0">Chọn hãng xe</option>
                                         <?php foreach ($hangxes as $hangxe) {
                                             echo '<option value="' . $hangxe['id'] . '">' . $hangxe['tenhang'] . '</option>';
                                         } ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-sm-3">
+                                <div class="form-group col-sm-2">
+                                    <select class="form-control" id="trangthai" style="width: 100%;">
+                                        <option selected="selected" value="0">Chưa bán</option>
+                                        <option value="1">Đã bán</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-2">
                                     <button id="xemdanhsach" type="button"
                                             class="btn btn-block btn-outline-primary">Xem danh sách
                                     </button>
@@ -345,6 +352,8 @@
                                     <th>Tên xe</th>
                                     <th>Giá bán</th>
                                     <th>Ngày nhập</th>
+                                    <th>Ngày bán</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -727,7 +736,7 @@
         });
 
         //Get danh sach dau tu
-        function dsxe(tungay, denngay, hangxe) {
+        function dsxe(tungay, denngay, hangxe, trangthai) {
             $('#dsxe').DataTable().destroy();
             $('#dsxe').DataTable({
                 "paging": false,
@@ -744,29 +753,33 @@
                     data: {
                         tungay: tungay,
                         denngay: denngay,
-                        hangxe: hangxe
+                        hangxe: hangxe,
+                        trangthai: trangthai
                     },
                     dataSrc: ''
                 },
                 columns: [
                     {data: "id", className: "text-center", width: '10%'},
-                    {data: "tenxe", className: "text-left", width: '30%'},
+                    {data: "tenxe", className: "text-left", width: '25%'},
                     {
-                        data: "giaban", className: "text-right", width: '20%',
+                        data: "giaban", className: "text-right", width: '15%',
                         render: $.fn.dataTable.render.number(',', '.', 0)
                     },
-                    {data: "ngaynhap", className: "text-center", width: '20%'}
+                    {data: "ngaynhap", className: "text-right", width: '10%'},
+                    {data: "ngayban", className: "text-right", width: '10%'},
+                    {data: "trangthai", className: "text-center", width: '10%'}
                 ]
             });
         }
 
-        dsxe($("#tungay").data().date, $("#denngay").data().date, "0");
+        dsxe($("#tungay").data().date, $("#denngay").data().date, "0", "0");
 
         $("#xemdanhsach").click(function (e) {
             var tungay = $("#tungay").data().date;
             var denngay = $("#denngay").data().date;
             var hangxe = $("#dshangxe").val();
-            dsxe(tungay, denngay, hangxe);
+            var trangthai = $("#trangthai").val();
+            dsxe(tungay, denngay, hangxe, trangthai);
         });
 
         $("#huy").click(function (e) {
@@ -987,6 +1000,49 @@
                 }
             });
         }
+
+        $("#giaban").keyup(function() {
+            $("#giahienthi").val($("#giaban").val());
+        });
+
+        //bán xe
+        $("#banxe").click(function (e) {
+            var id = $("#id").val();
+            var ngaynhap = $("#ngaynhap").val();
+            var dsvondautu = $('#dsvondautu').DataTable().rows().data();
+            var coutrows = dsvondautu.length;
+            for (var row = 0; row < coutrows; row++) {
+                var obj = {
+                    id: dsvondautu[row]["id"],
+                    idchudautu: dsvondautu[row]["idchudautu"],
+                    tiendautu: StringToNumber(dsvondautu[row]["tiendautu"]),
+                    taidautu: dsvondautu[row]["taidautu"]
+                };
+            }
+            jConfirm('Bạn chắc chắn bán xe này?', 'Thông báo', function (e) {
+                if (e == true) {
+                    $.ajax({
+                        url: "manager.php?controller=nhapxe&action=banxe",
+                        type: "POST",
+                        data: {
+                            id: id,
+                            ngaynhap: ngaynhap,
+                            vondautus: JSON.stringify(obj)
+                        },
+                        success: function (response) {
+                            if (response > 0) {
+                                toastr.success('Xóa thành công');
+                                dsxe($("#tungay").data().date, $("#denngay").data().date, $("#dshangxe").val());
+                                disabledinput(false);
+                                emptyinput();
+                            } else if (response = -1) {
+                                toastr.warning('Xóa không thành công');
+                            }
+                        }
+                    });
+                }
+            });
+        });
     });
 
 </script>
