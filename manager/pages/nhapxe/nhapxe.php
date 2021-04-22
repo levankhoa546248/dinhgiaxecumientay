@@ -458,7 +458,7 @@
             if (id && id != "0") {
                 $.ajax({
                     type: 'POST',
-                    url: 'manager.php?controller=nhapxe&action=getdongxe',
+                    url: 'manager.php?controller=xe&action=getdongxe',
                     data: {
                         id: id
                     },
@@ -487,7 +487,7 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=nhapxe&action=dsvondautu",
+                    url: "manager.php?controller=xe&action=dsvondautu",
                     data: {
                         idxe: idxe
                     },
@@ -579,7 +579,7 @@
             var taidautu = $('#taidautu').is(":checked") ? "1" : "0";
             if (taidautu == "1") {
                 $.ajax({
-                    url: "manager.php?controller=nhapxe&action=kiemtrasodu",
+                    url: "manager.php?controller=xe&action=kiemtrasodu",
                     type: "POST",
                     data: {
                         idchudautu: idchudautu
@@ -683,7 +683,7 @@
                 message: '<h4>Đang load dữ liệu</h4>',
             });
             $.ajax({
-                url: "manager.php?controller=nhapxe&action=capnhatxe",
+                url: "manager.php?controller=xe&action=capnhatxe",
                 type: "POST",
                 data: dataform,
                 contentType: false,
@@ -715,7 +715,7 @@
                 jConfirm('Bạn chắc chắn xóa vốn đầu tư này?', 'Thông báo', function (e) {
                     if (e == true) {
                         $.ajax({
-                            url: "manager.php?controller=nhapxe&action=xoavondautu",
+                            url: "manager.php?controller=xe&action=xoavondautu",
                             type: "POST",
                             data: {
                                 id: id
@@ -749,7 +749,7 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=nhapxe&action=danhsach",
+                    url: "manager.php?controller=xe&action=danhsach",
                     data: {
                         tungay: tungay,
                         denngay: denngay,
@@ -850,7 +850,7 @@
                         message: '<h4>Đang load dữ liệu</h4>',
                     });
                     $.ajax({
-                        url: "manager.php?controller=nhapxe&action=xoa",
+                        url: "manager.php?controller=xe&action=xoa",
                         type: "POST",
                         data: {
                             id: id
@@ -891,7 +891,7 @@
 
         function thongtinxe(idxe) {
             $.ajax({
-                url: "manager.php?controller=nhapxe&action=thongtinxe",
+                url: "manager.php?controller=xe&action=thongtinxe",
                 type: "POST",
                 data: {
                     id: idxe
@@ -934,7 +934,7 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=nhapxe&action=thongtinvon",
+                    url: "manager.php?controller=xe&action=thongtinvon",
                     data: {
                         id: idxe
                     },
@@ -972,7 +972,7 @@
 
         function thongtinhinhxe(idxe) {
             $.ajax({
-                url: "manager.php?controller=nhapxe&action=thongtinhinhxe",
+                url: "manager.php?controller=xe&action=thongtinhinhxe",
                 type: "POST",
                 data: {
                     id: idxe
@@ -1022,7 +1022,7 @@
             jConfirm('Bạn chắc chắn bán xe này?', 'Thông báo', function (e) {
                 if (e == true) {
                     $.ajax({
-                        url: "manager.php?controller=nhapxe&action=banxe",
+                        url: "manager.php?controller=xe&action=banxe",
                         type: "POST",
                         data: {
                             id: id,
