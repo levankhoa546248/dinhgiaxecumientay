@@ -749,7 +749,7 @@
                 order: [[0, 'desc']],
                 ajax: {
                     type: 'POST',
-                    url: "manager.php?controller=xe&action=danhsach",
+                    url: "manager.php?controller=xe&action=laydanhsach",
                     data: {
                         tungay: tungay,
                         denngay: denngay,

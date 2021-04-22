@@ -11,5 +11,5 @@ $xuatxus= select("SELECT * FROM xuatxu WHERE trangthai = 1 ORDER BY ngaytao DESC
 $mausacs= select("SELECT * FROM mausac WHERE trangthai = 1 ORDER BY ngaytao DESC ");
 $namsanxuats= select("SELECT * FROM namsanxuat WHERE trangthai = 1 ORDER BY ngaytao DESC ");
 $chudautus= select("SELECT * FROM chudautu WHERE trangthai = 1 ORDER BY ngaytao DESC ");
-require('manager/pages/nhapxe/nhapxe.php');
+require('manager/pages/xe/nhapxe.php');
 ?>
