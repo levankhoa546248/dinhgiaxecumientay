@@ -262,21 +262,8 @@
                     $("#chiphimua").val(formatNumber(xe.chiphimua));
                     $("#chiphiban").val(formatNumber(xe.chiphiban));
                     $("#giavon").val(formatNumber(xe.giavon));
-                    $("#giahienthi").val(formatNumber(xe.giahienthi));
                     $("#giaban").val(formatNumber(xe.giaban));
                     $("#soluong").val(xe.soluong);
-                    $('#ngaynhap').data("datetimepicker").date(xe.ngaynhap);
-                    $("#hangxe").val(xe.hangxe);
-                    $("#dongxe").val(xe.dongxe);
-                    $("#nhienlieu").val(xe.nhienlieu);
-                    $("#hopso").val(xe.hopso);
-                    $("#chongoi").val(xe.chongoi);
-                    $("#xuatxu").val(xe.xuatxu);
-                    $("#mausac").val(xe.mausac);
-                    $("#namsanxuat").val(xe.namsanxuat);
-                    $("#tieude").val(xe.tieude);
-                    $("#mota").val(xe.mota);
-                    $("#chitiet").summernote('code', xe.chitiet);
                 }
             });
         }
@@ -368,9 +355,10 @@
                         processData: false,
                         success: function (response) {
                             if (response > 0) {
-                                toastr.success('Cập nhật thành công');
+                                toastr.success('Bán xe thành công');
+                                disabledinput(true);
                             } else if (response = -1) {
-                                toastr.warning('Cập nhật không thành công');
+                                toastr.warning('Bán xe không thành công');
                             }
                             $.unblockUI();
                         }
@@ -382,8 +370,20 @@
         loadthongtinxe();
         function loadthongtinxe() {
             var id = <?php echo $idxe; ?>;
+            $("#id").val(id);
             thongtinxe(id);
             thongtinvon(id);
+        }
+
+        function disabledinput(bool) {
+            $("#tenxe").prop('disabled', bool);
+            $("#chiphimua").prop('disabled', bool);
+            $("#chiphiban").prop('disabled', bool);
+            $("#giavon").prop('disabled', bool);
+            $("#giaban").prop('disabled', bool);
+            $("#soluong").prop('disabled', bool);
+            bool ? $('#ngayban').data("datetimepicker").disable() : $('#ngayban').data("datetimepicker").enable();
+            $("#banxe").prop('disabled', bool);
         }
     });
 

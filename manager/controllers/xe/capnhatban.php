@@ -26,6 +26,7 @@ if (!empty($_POST)) {
             WHERE
                 (`id` = $id)";
     $upxe = update_sql($sqlu);
+    $tienlai = $giaban - $giavon;
     if ($upxe > 0) {
         $cvondautu = count($_POST["vondautus"]);
         for ($k = 0; $k < $cvondautu; $k++) {
@@ -34,14 +35,14 @@ if (!empty($_POST)) {
             $idchudautu = $jsonvondautu->idchudautu;
             $tiendautu = $jsonvondautu->tiendautu;
             $taidautu = $jsonvondautu->taidautu;
-            $sqlvonu =
-                "UPDATE `vondautu`
-                    SET `idchudautu` = $idchudautu,
-                     `taidautu` = $taidautu,
-                     `tiendautu` = $tiendautu
+            $phantramvon = floor($tiendautu/$giavon*100);
+            $laidautu = $phantramvon * $tienlai / 100;
+            $sqlchudautu =
+                "UPDATE chudautu
+                    SET sodu = sodu + $laidautu
                     WHERE
-                        (`id` = $idvon)";
-            $isvon = update_sql($sqlvonu);
+                        id = $idchudautu";
+            $ischudautu = update_sql($sqlchudautu);
         }
         echo $upxe;
     } else {

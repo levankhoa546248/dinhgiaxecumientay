@@ -1004,45 +1004,6 @@
         $("#giaban").keyup(function() {
             $("#giahienthi").val($("#giaban").val());
         });
-
-        //bán xe
-        $("#banxe").click(function (e) {
-            var id = $("#id").val();
-            var ngaynhap = $("#ngaynhap").val();
-            var dsvondautu = $('#dsvondautu').DataTable().rows().data();
-            var coutrows = dsvondautu.length;
-            for (var row = 0; row < coutrows; row++) {
-                var obj = {
-                    id: dsvondautu[row]["id"],
-                    idchudautu: dsvondautu[row]["idchudautu"],
-                    tiendautu: StringToNumber(dsvondautu[row]["tiendautu"]),
-                    taidautu: dsvondautu[row]["taidautu"]
-                };
-            }
-            jConfirm('Bạn chắc chắn bán xe này?', 'Thông báo', function (e) {
-                if (e == true) {
-                    $.ajax({
-                        url: "manager.php?controller=xe&action=banxe",
-                        type: "POST",
-                        data: {
-                            id: id,
-                            ngaynhap: ngaynhap,
-                            vondautus: JSON.stringify(obj)
-                        },
-                        success: function (response) {
-                            if (response > 0) {
-                                toastr.success('Xóa thành công');
-                                dsxe($("#tungay").data().date, $("#denngay").data().date, $("#dshangxe").val());
-                                disabledinput(false);
-                                emptyinput();
-                            } else if (response = -1) {
-                                toastr.warning('Xóa không thành công');
-                            }
-                        }
-                    });
-                }
-            });
-        });
     });
 
 </script>
