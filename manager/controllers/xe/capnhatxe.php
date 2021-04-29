@@ -32,16 +32,18 @@ if (!empty($_POST)) {
             ('$tenxe', $chiphimua, $chiphiban, $giavon, $giahienthi, $giaban, $soluong, '$ngaynhap', $hangxe, $dongxe, $nhienlieu, $hopso, $chongoi, $xuatxu, $mausac, $namsanxuat, '$tieude', '$mota', '$chitiet', $idnhanvien)";
         $isxe = insert_sql($sqlxe);
         if ($isxe > 0) {
-            $cvondautu = count($_POST["vondautus"]);
-            for ($k = 0; $k < $cvondautu; $k++) {
-                $jsonvondautu = json_decode($_POST["vondautus"][$k]);
-                $idchudautu = $jsonvondautu->idchudautu;
-                $tiendautu = $jsonvondautu->tiendautu;
-                $taidautu = $jsonvondautu->taidautu;
-                $sqlvon =
-                    "INSERT INTO `vondautu` (`idchudautu`, `idxe`, `taidautu`, `tiendautu`) 
+            if(!empty($_POST["vondautus"])){
+                $cvondautu = count($_POST["vondautus"]);
+                for ($k = 0; $k < $cvondautu; $k++) {
+                    $jsonvondautu = json_decode($_POST["vondautus"][$k]);
+                    $idchudautu = $jsonvondautu->idchudautu;
+                    $tiendautu = $jsonvondautu->tiendautu;
+                    $taidautu = $jsonvondautu->taidautu;
+                    $sqlvon =
+                        "INSERT INTO `vondautu` (`idchudautu`, `idxe`, `taidautu`, `tiendautu`) 
                     SELECT $idchudautu, $isxe, $taidautu, $tiendautu FROM dual";
-                $isvon = insert_sql($sqlvon);
+                    $isvon = insert_sql($sqlvon);
+                }
             }
             if (!empty($_FILES)) {
                 $countima = count($_FILES['hinhxes']['tmp_name']);
@@ -82,21 +84,20 @@ if (!empty($_POST)) {
                 (`id` = $id)";
         $upxe = update_sql($sqlu);
         if ($upxe > 0) {
-            $cvondautu = count($_POST["vondautus"]);
-            for ($k = 0; $k < $cvondautu; $k++) {
-                $jsonvondautu = json_decode($_POST["vondautus"][$k]);
-                $idvon = $jsonvondautu->id;
-                $idchudautu = $jsonvondautu->idchudautu;
-                $tiendautu = $jsonvondautu->tiendautu;
-                $taidautu = $jsonvondautu->taidautu;
-                $sqlvonu =
-                    "UPDATE `vondautu`
-                    SET `idchudautu` = $idchudautu,
-                     `taidautu` = $taidautu,
-                     `tiendautu` = $tiendautu
-                    WHERE
-                        (`id` = $idvon)";
-                $isvon = update_sql($sqlvonu);
+            if(!empty($_POST["vondautus"])){
+                $sqld = "DELETE FROM vondautu WHERE idxe = $id";
+                $rsqld = update_sql($sqld);
+                $cvondautu = count($_POST["vondautus"]);
+                for ($k = 0; $k < $cvondautu; $k++) {
+                    $jsonvondautu = json_decode($_POST["vondautus"][$k]);
+                    $idchudautu = $jsonvondautu->idchudautu;
+                    $tiendautu = $jsonvondautu->tiendautu;
+                    $taidautu = $jsonvondautu->taidautu;
+                    $sqlvon =
+                        "INSERT INTO `vondautu` (`idchudautu`, `idxe`, `taidautu`, `tiendautu`) 
+                    SELECT $idchudautu, $id, $taidautu, $tiendautu FROM dual";
+                    $isvon = insert_sql($sqlvon);
+                }
             }
             if (!empty($_FILES)) {
                 $sqld = "DELETE FROM hinhanhxe WHERE idxe = $id";

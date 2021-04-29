@@ -371,7 +371,7 @@
                     {data: "facebook"},
                     {data: "zalo"},
                     {data: "diachi"},
-                    {data: "sodu"}
+                    {data: "sodu", className: "text-right", render: $.fn.dataTable.render.number(',', '.', 0)}
                 ]
             });
         }

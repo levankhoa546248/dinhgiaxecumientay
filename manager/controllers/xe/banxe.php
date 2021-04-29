@@ -1,6 +1,6 @@
 <?php
-$title = 'Nhập xe';
-$header = 'Danh mục nhập xe';
+$title = 'Bán xe';
+$header = 'Danh mục bán xe';
 $content = 'Bảng điều khiển';
 $hangxes= select("SELECT * FROM hangxe WHERE trangthai = 1 ORDER BY ngaytao DESC ");
 $dongxes= select("SELECT * FROM dongxe WHERE trangthai = 1 ORDER BY ngaytao DESC ");

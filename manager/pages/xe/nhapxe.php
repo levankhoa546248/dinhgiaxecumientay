@@ -220,6 +220,9 @@
                                               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                 </div>
                                 <div class="form-group col-sm-6">
+                                    <div class="row" hidden>
+                                        <input type="text" id="tongtiendautu" class="form-control text-right" value=""/>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-sm-6">
                                             <label for="">Chủ đầu tư</label>
@@ -266,6 +269,17 @@
                                                     <th class="text-center"></th>
                                                 </tr>
                                                 </thead>
+                                                <tfoot align="right">
+                                                <tr>
+                                                    <th class="text-center"></th>
+                                                    <th class="text-center"></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th class="text-center"></th>
+                                                </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -282,7 +296,6 @@
                                 <div class="col-sm-12 text-center">
                                     <div class="form-group">
                                         <button type="button" class="btn btn-primary m-1" id="capnhat">Cập nhật</button>
-                                        <button type="button" class="btn btn-warning m-1" id="banxe">Bán xe</button>
                                         <button type="button" class="btn btn-danger m-1" id="xoa">Xóa</button>
                                         <button type="button" class="btn btn-dark m-1" id="huy">Hủy</button>
                                     </div>
@@ -519,7 +532,30 @@
                             return '<button class="btn btn-danger btn-sm xoadautu"><i class="fas fa-trash"></i></button>';
                         }
                     }
-                ]
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var tongtiendautu = api
+                        .column(3)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(0).footer()).html('Tổng');
+                    $(api.column(1).footer()).html(end);
+                    $(api.column(3).footer()).html(formatNumber(tongtiendautu.toString()));
+                    $("#tongtiendautu").val(formatNumber(tongtiendautu.toString()));
+                }
             });
         }
 
@@ -552,7 +588,30 @@
                             return '<button class="btn btn-danger btn-sm xoadautu"><i class="fas fa-trash"></i></button>';
                         }
                     }
-                ]
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var tongtiendautu = api
+                        .column(3)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(0).footer()).html('Tổng');
+                    $(api.column(1).footer()).html(end);
+                    $(api.column(3).footer()).html(formatNumber(tongtiendautu.toString()));
+                    $("#tongtiendautu").val(formatNumber(tongtiendautu.toString()));
+                }
             }).rows.add(data).draw();
             // table.rows.add(data).draw();
         }
@@ -585,17 +644,43 @@
                         idchudautu: idchudautu
                     },
                     success: function (sodu) {
-                        if (StringToNumber(sodu) > StringToNumber(tiendautu)) {
-                            var objnhadautu = [{
-                                id: 0,
-                                idchudautu: idchudautu,
-                                hoten: chudautu,
-                                tiendautu: tiendautu,
-                                taidautu: taidautu,
-                                taidautushow: '<i class="far fa-check-square"></i>'
-                            }];
-                            addrowdsvondautu(objnhadautu);
-                            emptydautu();
+                        if (StringToNumber(sodu) >= StringToNumber(tiendautu)) {
+                            var dsvondautu = $('#dsvondautu').DataTable().rows().data();
+                            var coutrows = dsvondautu.length;
+                            if (coutrows > 0) {
+                                for (var row = 0; row < coutrows; row++) {
+                                    var idcdt = dsvondautu[row]["idchudautu"];
+                                    if (idcdt == idchudautu) {
+                                        var tiendadautu = StringToNumber(dsvondautu[row]["tiendautu"]);
+                                        var tongtiendautu = StringToNumber(sodu) - tiendadautu - StringToNumber(tiendautu);
+                                        if (tongtiendautu >= 0) {
+                                            var objnhadautu = [{
+                                                id: 0,
+                                                idchudautu: idchudautu,
+                                                hoten: chudautu,
+                                                tiendautu: tiendautu,
+                                                taidautu: taidautu,
+                                                taidautushow: '<i class="far fa-check-square"></i>'
+                                            }];
+                                            addrowdsvondautu(objnhadautu);
+                                            emptydautu();
+                                        } else {
+                                            return toastr.warning("Số dư không đủ để tái đầu tư");
+                                        }
+                                    }
+                                }
+                            } else {
+                                var objnhadautu = [{
+                                    id: 0,
+                                    idchudautu: idchudautu,
+                                    hoten: chudautu,
+                                    tiendautu: tiendautu,
+                                    taidautu: taidautu,
+                                    taidautushow: '<i class="far fa-check-square"></i>'
+                                }];
+                                addrowdsvondautu(objnhadautu);
+                                emptydautu();
+                            }
                         } else {
                             return toastr.warning("Số dư không đủ để tái đầu tư");
                         }
@@ -627,7 +712,6 @@
             for (var index = 0; index < lengthimages; index++) {
                 dataform.append("hinhxes[]", document.getElementById('hinhxes').files[index]);
             }
-
             var dsvondautu = $('#dsvondautu').DataTable().rows().data();
             var coutrows = dsvondautu.length;
             for (var row = 0; row < coutrows; row++) {
@@ -642,16 +726,25 @@
             var id = $("#id").val();
             dataform.append("id", id);
             var tenxe = $("#tenxe").val();
+            if (checkIf(tenxe)){
+                return toastr.warning("Chưa nhập tên xe");
+            }
             dataform.append("tenxe", tenxe);
             var chiphimua = $("#chiphimua").val();
             dataform.append("chiphimua", StringToNumber(chiphimua));
             var chiphiban = $("#chiphiban").val();
             dataform.append("chiphiban", StringToNumber(chiphiban));
             var giavon = $("#giavon").val();
+            if (checkIf(giavon)){
+                return toastr.warning("Chưa nhập giá vốn");
+            }
             dataform.append("giavon", StringToNumber(giavon));
             var giahienthi = $("#giahienthi").val();
             dataform.append("giahienthi", StringToNumber(giahienthi));
             var giaban = $("#giaban").val();
+            if (checkIf(giaban)){
+                return toastr.warning("Chưa nhập giá bán");
+            }
             dataform.append("giaban", StringToNumber(giaban));
             var soluong = $("#soluong").val();
             dataform.append("soluong", soluong);
@@ -679,6 +772,10 @@
             dataform.append("mota", mota);
             var chitiet = $("#chitiet").summernote("code");
             dataform.append("chitiet", chitiet);
+            var tongtiendautu = StringToNumber($("#tongtiendautu").val());
+            if (tongtiendautu != StringToNumber(giavon)) {
+                return toastr.warning('Tổng tiền đầu tư khác với giá vốn');
+            }
             $.blockUI({
                 message: '<h4>Đang load dữ liệu</h4>',
             });
@@ -691,7 +788,7 @@
                 success: function (response) {
                     if (response > 0) {
                         toastr.success('Cập nhật thành công');
-                        dsxe($("#ngaynhap").data().date, $("#ngaynhap").data().date, $("#dshangxe").val());
+                        dsxe($("#tungay").data().date, $("#denngay").data().date, $("#dshangxe").val(), "0");
                         disabledinput(true);
                     } else if (response = -1) {
                         toastr.warning('Cập nhật không thành công');
@@ -813,6 +910,8 @@
             $("#themdautu").prop('disabled', bool);
             // $('#hinhxes').fileinput(bool ? 'disable' : 'enable');
             $("#capnhat").prop('disabled', bool);
+            $("#xoa").prop('disabled', bool);
+            $("#huy").prop('disabled', bool);
         }
 
         function emptyinput() {
@@ -858,7 +957,7 @@
                         success: function (response) {
                             if (response > 0) {
                                 toastr.success('Xóa thành công');
-                                dsxe($("#tungay").data().date, $("#denngay").data().date, $("#dshangxe").val());
+                                dsxe($("#tungay").data().date, $("#denngay").data().date, $("#dshangxe").val(), "0");
                                 disabledinput(false);
                                 emptyinput();
                             } else if (response = -1) {
@@ -966,7 +1065,30 @@
                             return '<button class="btn btn-danger btn-sm xoadautu"><i class="fas fa-trash"></i></button>';
                         }
                     }
-                ]
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var tongtiendautu = api
+                        .column(3)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(0).footer()).html('Tổng');
+                    $(api.column(1).footer()).html(end);
+                    $(api.column(3).footer()).html(formatNumber(tongtiendautu.toString()));
+                    $("#tongtiendautu").val(formatNumber(tongtiendautu.toString()));
+                }
             });
         }
 
@@ -1001,8 +1123,17 @@
             });
         }
 
-        $("#giaban").keyup(function() {
+        $("#giaban").keyup(function () {
             $("#giahienthi").val($("#giaban").val());
+        });
+
+        $('#trangthai').on('change', function () {
+            var id = $(this).val();
+            if (id == "0") {
+                disabledinput(false);
+            } else {
+                disabledinput(true);
+            }
         });
     });
 

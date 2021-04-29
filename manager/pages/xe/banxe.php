@@ -59,7 +59,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1><?php echo $header; ?></h1>
+                        <h1>
+                            <a href="manager.php?controller=xe&action=danhsach">
+                                <i class="fas fa-arrow-alt-circle-left"></i></a>
+                            <?php echo $header; ?></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -126,6 +129,13 @@
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="">Số lượng</label>
+                                    <select class="form-control" id="trangthai" style="width: 100%;">
+                                        <option selected="selected" value="0">Chưa bán</option>
+                                        <option value="1">Đã bán</option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <div class="row">
@@ -264,6 +274,13 @@
                     $("#giavon").val(formatNumber(xe.giavon));
                     $("#giaban").val(formatNumber(xe.giaban));
                     $("#soluong").val(xe.soluong);
+                    var trangthai = xe.trangthai;
+                    $("#trangthai").val(trangthai);
+                    if (trangthai == "0") {
+                        $("#banxe").prop('disabled', false);
+                    } else {
+                        $("#banxe").prop('disabled', true);
+                    }
                 }
             });
         }
@@ -368,6 +385,7 @@
         });
 
         loadthongtinxe();
+
         function loadthongtinxe() {
             var id = <?php echo $idxe; ?>;
             $("#id").val(id);
