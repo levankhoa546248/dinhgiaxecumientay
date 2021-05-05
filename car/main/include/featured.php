@@ -71,11 +71,7 @@
                                     <del> <?php echo number_format($xes["giaban"] + 10000000, 0, '.', ','); ?> </del>
                                 </small> <strong><?php echo number_format($xes["giaban"], 0, '.', ','); ?> VND </strong>
                             </p>
-
-                            <p>
-                                &nbsp;<?php echo $xes["tenhangxe"] . " / " . $xes["tendongxe"] . " / " . $xes["tenmausac"] . " / " . $xes["tennamsanxuat"] . " / " . $xes["tenxuatxu"]; ?></p>
                         </div>
-
                         <div class="courses-info">
                             <a href="car.php?controller=xe&action=chitietC&idxe=<?php echo $xes["id"]; ?>"
                                class="section-btn btn btn-primary btn-block">Xem thêm</a>

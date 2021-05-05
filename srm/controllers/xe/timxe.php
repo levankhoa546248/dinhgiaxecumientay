@@ -46,7 +46,7 @@ if (!empty($_POST)) {
                                 GROUP BY
                                     idxe
                             ) AS hax ON x.id = hax.idxe
-                            WHERE x.trangthai = 1
+                            WHERE x.trangthai = 0
                             AND ($hangxe = 0 OR ($hangxe != 0 AND x.hangxe = $hangxe))
                             AND ($dongxe = 0 OR ($dongxe != 0 AND x.dongxe = $dongxe))
                             AND ($nhienlieu = 0 OR ($nhienlieu != 0 AND x.nhienlieu = $nhienlieu))
@@ -92,11 +92,7 @@ if (!empty($_POST)) {
                             </small> <strong><?php echo number_format($xes["giaban"], 0, '.', ','); ?>
                                 VND </strong>
                         </p>
-
-                        <p>
-                            &nbsp;<?php echo $xes["tenhangxe"] . " / " . $xes["tendongxe"] . " / " . $xes["tenmausac"] . " / " . $xes["tennamsanxuat"] . " / " . $xes["tenxuatxu"]; ?></p>
                     </div>
-
                     <div class="courses-info">
                         <a href="srm.php?controller=xe&action=chitiet&idxe=<?php echo $xes["id"]; ?>"
                            class="section-btn btn btn-primary btn-block">Xem thêm</a>

@@ -911,7 +911,6 @@
             // $('#hinhxes').fileinput(bool ? 'disable' : 'enable');
             $("#capnhat").prop('disabled', bool);
             $("#xoa").prop('disabled', bool);
-            $("#huy").prop('disabled', bool);
         }
 
         function emptyinput() {
@@ -939,6 +938,7 @@
             $("#tiendautu").val("");
             $('#hinhxes').fileinput('clear');
             thongtinvon("0");
+            $("#trangthai").val("0");
         }
 
         $("#xoa").click(function (e) {

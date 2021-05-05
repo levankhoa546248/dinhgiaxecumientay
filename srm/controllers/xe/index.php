@@ -58,7 +58,7 @@ $xe = get_select_nested("
                                     idxe
                             ) AS hax ON x.id = hax.idxe
                             WHERE
-                                x.trangthai = 1
+                                x.trangthai = 0
                             ORDER BY
                                 x.ngaytao DESC
                          ");
