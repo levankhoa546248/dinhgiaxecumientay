@@ -137,6 +137,11 @@
                                         <option value="1">Đã bán</option>
                                     </select>
                                 </div>
+                                <div class="form-group col-sm-3">
+                                    <label for="">Tổng lãi</label>
+                                    <input type="text" id="tonglai" class="form-control text-right" value=""
+                                           data-type="currency">
+                                </div>
                                 <div class="form-group col-sm-12">
                                     <div class="row">
                                         <div class="form-group col-sm-12">
@@ -153,6 +158,16 @@
                                                     <th>Tái đầu tư</th>
                                                 </tr>
                                                 </thead>
+                                                <tfoot align="right">
+                                                <tr>
+                                                    <th class="text-center"></th>
+                                                    <th class="text-center"></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -274,6 +289,8 @@
                     $("#giavon").val(formatNumber(xe.giavon));
                     $("#giaban").val(formatNumber(xe.giaban));
                     $("#soluong").val(xe.soluong);
+                    var tonglai = formatNumber(String(Number(xe.giaban) - (Number(xe.giavon) + Number(xe.chiphiban) + Number(xe.chiphimua))));
+                    $("#tonglai").val(tonglai);
                     var trangthai = xe.trangthai;
                     $("#trangthai").val(trangthai);
                     if (trangthai == "0") {
@@ -325,7 +342,28 @@
                         className: "text-center",
                         width: '20%'
                     }
-                ]
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var tongtiendautu = api
+                        .column(3)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(2).footer()).html('Tổng');
+                    $(api.column(3).footer()).html(formatNumber(tongtiendautu.toString()));
+                }
             });
         }
 

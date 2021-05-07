@@ -22,6 +22,7 @@ if (!empty($_POST)) {
              `soluong` = $soluong,
              `ngayban` = '$ngayban',
              `nhanvienban` = $idnhanvien,
+             `tienlai` = $giaban - ($chiphiban + $chiphimua + $giavon),
              `trangthai` = 1
             WHERE
                 (`id` = $id)";

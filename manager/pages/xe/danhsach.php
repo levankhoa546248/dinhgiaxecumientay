@@ -128,12 +128,33 @@
                                     <th></th>
                                     <th class="text-center">Id</th>
                                     <th>Tên xe</th>
+                                    <th>Gía vốn</th>
+                                    <th>Chi phí mua</th>
+                                    <th>Chi phí bán</th>
+                                    <th>Số lượng</th>
                                     <th>Giá bán</th>
+                                    <th>Tổng lãi</th>
                                     <th>Ngày nhập</th>
                                     <th>Ngày bán</th>
                                     <th>Trạng thái</th>
                                 </tr>
                                 </thead>
+                                <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center"></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -247,13 +268,86 @@
                     {data: "id", className: "text-center", width: '10%'},
                     {data: "tenxe", className: "text-left", width: '25%'},
                     {
+                        data: "giavon", className: "text-right", width: '15%',
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "chiphimua", className: "text-right", width: '15%',
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "chiphiban", className: "text-right", width: '15%',
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {data: "soluong", className: "text-center", width: '25%'},
+                    {
                         data: "giaban", className: "text-right", width: '15%',
+                        render: $.fn.dataTable.render.number(',', '.', 0)
+                    },
+                    {
+                        data: "tienlai", className: "text-right", width: '15%',
                         render: $.fn.dataTable.render.number(',', '.', 0)
                     },
                     {data: "ngaynhap", className: "text-right", width: '10%'},
                     {data: "ngayban", className: "text-right", width: '10%'},
                     {data: "trangthai", className: "text-center", width: '10%'}
-                ]
+                ],
+                footerCallback: function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // converting to interger to find total
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\$,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    var tongtienvon = api
+                        .column(3)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    var tongchiphimua = api
+                        .column(4)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    var tongchiphiban = api
+                        .column(5)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    var tongsoluong = api
+                        .column(6)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    var tonggiaban = api
+                        .column(7)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    var tonglai = api
+                        .column(8)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    // Update footer by showing the total with the reference of the column index
+                    $(api.column(2).footer()).html('Tổng');
+                    $(api.column(3).footer()).html(formatNumber(tongtienvon.toString()));
+                    $(api.column(4).footer()).html(formatNumber(tongchiphimua.toString()));
+                    $(api.column(5).footer()).html(formatNumber(tongchiphiban.toString()));
+                    $(api.column(6).footer()).html(formatNumber(tongsoluong.toString()));
+                    $(api.column(7).footer()).html(formatNumber(tonggiaban.toString()));
+                    $(api.column(8).footer()).html(formatNumber(tonglai.toString()));
+                }
             });
         }
 
