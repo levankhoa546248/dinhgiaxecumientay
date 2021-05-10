@@ -482,6 +482,12 @@
             } else {
                 $('#dongxe').html('<option selected="selected" value="0">---Chọn---</option>');
             }
+            $('#tenxe').val($('#hangxe option:selected').text());
+        });
+        $('#dongxe').on('change', function () {
+            var hangxe = $('#hangxe option:selected').text()
+            var dongxe = $('#dongxe option:selected').text()
+            $('#tenxe').val(hangxe + " | " + dongxe);
         });
 
         dsvondautu(0);
